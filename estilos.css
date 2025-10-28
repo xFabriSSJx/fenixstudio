@@ -1,0 +1,116 @@
+/* Fondo y texto general */
+body {
+    background-color: #111; /* fondo oscuro */
+    color: white; /* texto blanco */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Logo */
+.logo {
+    width: 200px;
+    margin-top: 20px;
+}
+
+/* Título */
+h1 {
+    margin-top: 20px;
+    color: #f5f5f5;
+}
+
+/* Tabla de precios mejorada */
+table {
+    margin: 30px auto;
+    border-collapse: collapse;
+    width: 70%;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #333;
+    color: #f5f5f5;
+    font-size: 1.1em;
+}
+
+tr:nth-child(even) {
+    background-color: #222; /* filas pares */
+}
+
+tr:nth-child(odd) {
+    background-color: #1a1a1a; /* filas impares */
+}
+
+/* Botón de Instagram mejorado */
+a {
+    display: inline-block;
+    color: #fff;
+    background-color: #e1306c;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+a:hover {
+    background-color: #c72e60;
+    transform: scale(1.05); /* efecto zoom */
+}
+/* Fondo degradado opcional */
+body {
+    background: linear-gradient(135deg, #111 0%, #222 100%);
+}
+
+/* Botón con sombra y efecto hover más elegante */
+a {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+a:hover {
+    background-color: #c72e60;
+    transform: scale(1.08); /* un poco más grande al pasar el mouse */
+}
+/* === ANIMACIONES DE APARICIÓN === */
+
+/* Animación general */
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplicamos la animación a los elementos */
+.logo, h1, table, a {
+    opacity: 0;
+    animation: aparecer 1s ease forwards;
+}
+
+/* Diferentes tiempos para que aparezcan escalonados */
+.logo {
+  width: 120px;
+  height: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  filter: brightness(1.3);
+}
+
