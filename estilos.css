@@ -1,116 +1,104 @@
-/* Fondo y texto general */
+/* ==== ESTILO GENERAL ==== */
 body {
-    background-color: #111; /* fondo oscuro */
-    color: white; /* texto blanco */
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+  background-color: #000; /* fondo negro */
+  color: #fff; /* texto blanco */
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
-/* Logo */
-.logo {
-    width: 200px;
-    margin-top: 20px;
-}
-
-/* Título */
+/* ==== ENCABEZADO ==== */
 h1 {
-    margin-top: 20px;
-    color: #f5f5f5;
+  color: #ffbb33;
+  margin-top: 20px;
+  text-shadow: 0 0 10px #ffbb33;
 }
 
-/* Tabla de precios mejorada */
+/* ==== LOGO ==== */
+img {
+  width: 200px;
+  margin: 20px 0;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ffbb33;
+}
+
+/* ==== TABLA ==== */
 table {
-    margin: 30px auto;
-    border-collapse: collapse;
-    width: 70%;
-    background-color: #1a1a1a;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 60%;
+  background-color: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 187, 51, 0.3);
 }
 
 th, td {
-    padding: 12px;
-    text-align: center;
+  border: 1px solid #ffbb33;
+  padding: 12px 16px;
+  font-size: 1.1rem;
 }
 
 th {
-    background-color: #333;
-    color: #f5f5f5;
-    font-size: 1.1em;
+  background-color: #ffbb33;
+  color: #000;
+  font-weight: bold;
 }
 
-tr:nth-child(even) {
-    background-color: #222; /* filas pares */
+td {
+  color: #fff;
 }
 
-tr:nth-child(odd) {
-    background-color: #1a1a1a; /* filas impares */
-}
-
-/* Botón de Instagram mejorado */
+/* ==== BOTÓN DE INSTAGRAM ==== */
 a {
-    display: inline-block;
-    color: #fff;
-    background-color: #e1306c;
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 25px;
-    margin-top: 20px;
-    font-weight: bold;
-    transition: all 0.3s;
+  display: inline-block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #ffbb33;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: 0.3s ease;
 }
 
 a:hover {
-    background-color: #c72e60;
-    transform: scale(1.05); /* efecto zoom */
-}
-/* Fondo degradado opcional */
-body {
-    background: linear-gradient(135deg, #111 0%, #222 100%);
+  background-color: #ffdd66;
+  transform: scale(1.05);
 }
 
-/* Botón con sombra y efecto hover más elegante */
-a {
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
+/* ==== RESPONSIVE PARA CELULARES ==== */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
 
-a:hover {
-    background-color: #c72e60;
-    transform: scale(1.08); /* un poco más grande al pasar el mouse */
-}
-/* === ANIMACIONES DE APARICIÓN === */
+  h1 {
+    font-size: 1.8rem;
+  }
 
-/* Animación general */
-@keyframes aparecer {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+  table {
+    width: 100%;
+    font-size: 0.9rem;
+  }
 
-/* Aplicamos la animación a los elementos */
-.logo, h1, table, a {
-    opacity: 0;
-    animation: aparecer 1s ease forwards;
-}
+  th, td {
+    padding: 8px;
+  }
 
-/* Diferentes tiempos para que aparezcan escalonados */
-.logo {
-  width: 120px;
-  height: auto;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  cursor: pointer;
-}
+  img {
+    width: 100%;
+    max-width: 250px;
+  }
 
-.logo:hover {
-  transform: scale(1.1);
-  filter: brightness(1.3);
+  a {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
 }
-
