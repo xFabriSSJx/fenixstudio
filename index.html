@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fenix Studio | Barbería, Productos & Cursos</title>
+    <title>Fenix Studio | Barbería, Productos & Academia</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -77,6 +77,7 @@
             font-size: 1.2rem;
             letter-spacing: 2px;
             color: var(--text-main);
+            cursor: pointer;
         }
 
         .admin-toggle {
@@ -165,7 +166,7 @@
             text-align: left;
             padding: 14px 16px;
             border-radius: 12px;
-            font-size: 0.98rem;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             display: flex;
@@ -183,7 +184,7 @@
         /* --- CONTENEDOR PRINCIPAL --- */
         .container {
             width: 100%;
-            max-width: 520px;
+            max-width: 650px;
             margin: 0 auto;
             padding: 0 18px;
         }
@@ -201,6 +202,11 @@
             padding: 3px;
             background: linear-gradient(135deg, var(--accent-gold), #8a5a10);
             box-shadow: 0 8px 25px rgba(229, 169, 60, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-wrapper:hover {
+            transform: scale(1.05);
         }
 
         .logo-wrapper img {
@@ -213,7 +219,7 @@
 
         .section-view {
             display: none;
-            animation: fadeIn 0.25s ease;
+            animation: fadeIn 0.3s ease;
         }
 
         .section-view.active {
@@ -221,7 +227,7 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -233,6 +239,130 @@
             text-align: center;
             letter-spacing: 1px;
             text-transform: uppercase;
+        }
+
+        /* --- GALERÍA CON ANIMACIONES AL PASAR EL CURSOR --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .gallery-card {
+            position: relative;
+            height: 230px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--bg-card);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.4s ease;
+            filter: brightness(0.88);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 55%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 16px;
+            text-align: left;
+            transition: all 0.35s ease;
+        }
+
+        .gallery-tag {
+            display: inline-block;
+            width: fit-content;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--accent-gold);
+            color: #0d0d0f;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            transform: translateY(6px);
+            opacity: 0.85;
+            transition: all 0.35s ease;
+        }
+
+        .gallery-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #ffffff;
+            transform: translateY(4px);
+            transition: all 0.35s ease;
+        }
+
+        .gallery-sub {
+            font-size: 0.78rem;
+            color: #d1d1d6;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.35s ease;
+        }
+
+        /* EFECTO HOVER (AL PASAR EL CURSOR) */
+        .gallery-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 14px 30px rgba(229, 169, 60, 0.28);
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.13) rotate(1deg);
+            filter: brightness(1.05);
+        }
+
+        .gallery-card:hover .gallery-tag,
+        .gallery-card:hover .gallery-title {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gallery-card:hover .gallery-sub {
+            opacity: 1;
+            max-height: 40px;
+            margin-top: 4px;
+        }
+
+        /* --- ACCESOS RÁPIDOS EN INICIO --- */
+        .quick-nav {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .quick-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 12px 8px;
+            text-align: center;
+            color: var(--text-main);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .quick-card:hover {
+            border-color: var(--accent-gold);
+            background: rgba(229, 169, 60, 0.1);
+            transform: translateY(-3px);
         }
 
         /* --- TARJETAS DE SERVICIOS Y PRODUCTOS --- */
@@ -252,6 +382,12 @@
             justify-content: space-between;
             align-items: center;
             gap: 12px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateX(4px);
+            border-color: var(--border-subtle);
         }
 
         .card-info {
@@ -474,6 +610,11 @@
             font-weight: 600;
             text-decoration: none;
             margin-bottom: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
         }
 
         .btn-whatsapp {
@@ -498,8 +639,6 @@
             flex-direction: column;
             gap: 8px;
         }
-
-        footer a { color: var(--text-muted); text-decoration: none; }
     </style>
 </head>
 <body>
@@ -511,7 +650,7 @@
             <span></span>
             <span></span>
         </button>
-        <div class="nav-brand">FENIX STUDIO</div>
+        <div class="nav-brand" onclick="showSection('inicio')">FENIX STUDIO</div>
         <button class="admin-toggle" id="adminBtn" onclick="toggleAdmin()">🔒 Admin</button>
     </nav>
 
@@ -522,22 +661,90 @@
             <h3>MENÚ FÉNIX</h3>
             <button class="close-btn" onclick="toggleMenu()">×</button>
         </div>
-        <button class="nav-item active" onclick="showSection('cortes', this)">✂️ Precios de Cortes</button>
-        <button class="nav-item" onclick="showSection('productos', this)">📦 Productos en Stock</button>
-        <button class="nav-item" onclick="showSection('curso', this)">🎓 Curso de Barbería</button>
-        <button class="nav-item" onclick="showSection('finanzas', this)">💰 Caja (Ingresos / Egresos)</button>
+        <button class="nav-item active" id="nav-inicio" onclick="showSection('inicio', this)">🏠 Inicio y Galería</button>
+        <button class="nav-item" id="nav-cortes" onclick="showSection('cortes', this)">✂️ Precios de Cortes</button>
+        <button class="nav-item" id="nav-productos" onclick="showSection('productos', this)">📦 Productos en Stock</button>
+        <button class="nav-item" id="nav-curso" onclick="showSection('curso', this)">🎓 Curso de Barbería</button>
+        <button class="nav-item" id="nav-finanzas" onclick="showSection('finanzas', this)">💰 Caja (Ingresos / Egresos)</button>
     </aside>
 
     <div class="container">
         <!-- LOGO ENCABEZADO -->
         <div class="header-hero">
-            <div class="logo-wrapper">
+            <div class="logo-wrapper" onclick="showSection('inicio')">
                 <img src="fenix.png.jpeg" alt="Logo de Fenix Studio">
             </div>
         </div>
 
+        <!-- SECCIÓN PRINCIPAL (INICIO): FOTOS DE CORTES Y EGRESADOS -->
+        <section id="sec-inicio" class="section-view active">
+            
+            <!-- Botones rápidos a las 3 secciones del menú -->
+            <div class="quick-nav">
+                <div class="quick-card" onclick="showSection('cortes')">✂️ Ver Precios</div>
+                <div class="quick-card" onclick="showSection('productos')">📦 Productos</div>
+                <div class="quick-card" onclick="showSection('curso')">🎓 Cursos</div>
+            </div>
+
+            <h2 class="section-title">🔥 Nuestros Trabajos</h2>
+            <div class="gallery-grid">
+                <!-- Foto Corte 1 -->
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80" alt="Taper Fade">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">Tendencia</span>
+                        <div class="gallery-title">Taper Fade & Textura</div>
+                        <div class="gallery-sub">Degradado limpio con terminación a navaja</div>
+                    </div>
+                </div>
+
+                <!-- Foto Corte 2 -->
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80" alt="Perfilado de Barba">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">Clásico & Prolijo</span>
+                        <div class="gallery-title">Ritual de Barba</div>
+                        <div class="gallery-sub">Simetría, perfilado y nutrición</div>
+                    </div>
+                </div>
+
+                <!-- Foto Corte 3 -->
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=600&q=80" alt="Mid Fade">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">Precisión</span>
+                        <div class="gallery-title">Mid / High Fade</div>
+                        <div class="gallery-sub">Transición suave sin líneas marcadas</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">🎓 Egresados de la Academia</h2>
+            <div class="gallery-grid">
+                <!-- Foto Egresados 1 -->
+                <div class="gallery-card" onclick="showSection('curso')">
+                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=80" alt="Egresados Curso">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">Diploma Entregado</span>
+                        <div class="gallery-title">Camada de Barberos</div>
+                        <div class="gallery-sub">Alumnos certificados listos para trabajar</div>
+                    </div>
+                </div>
+
+                <!-- Foto Egresados 2 -->
+                <div class="gallery-card" onclick="showSection('curso')">
+                    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80" alt="Práctica en vivo">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">100% Práctico</span>
+                        <div class="gallery-title">Examen Final Aprobado</div>
+                        <div class="gallery-sub">Prácticas reales en el salón Fénix</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SECCIÓN 1: CORTES DE PELO -->
-        <section id="sec-cortes" class="section-view active">
+        <section id="sec-cortes" class="section-view">
             <h2 class="section-title">✂️ Precios de Cortes</h2>
             <div class="card-list" id="cortes-list"></div>
         </section>
@@ -546,7 +753,6 @@
         <section id="sec-productos" class="section-view">
             <h2 class="section-title">📦 Productos y Stock</h2>
             
-            <!-- Panel Admin para sumar producto nuevo -->
             <div class="admin-box admin-only">
                 <h4>➕ Agregar Nuevo Producto al Stock</h4>
                 <input type="text" id="prod-name" placeholder="Nombre (ej: Cera Mate, Minoxidil)">
@@ -570,7 +776,7 @@
                     <li>✅ Uso correcto de máquinas, tijeras y navaja</li>
                     <li>✅ Técnicas limpias de Taper Fade y Degradados</li>
                     <li>✅ Perfilado, visagismo y ritual de barba</li>
-                    <li>✅ Atención al cliente y manejo de barbería</li>
+                    <li>✅ Entrega de certificado al finalizar</li>
                 </ul>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08);">
                     <div>
@@ -645,7 +851,6 @@
     </div>
 
     <script>
-        // --- DATOS INICIALES (Se guardan en la memoria del teléfono/PC) ---
         const defaultCortes = [
             { id: 1, name: "Taper Fade", desc: "Degradado limpio en patillas y nuca", price: 8000 },
             { id: 2, name: "Degradado (Fade)", desc: "Corte completo con transición a elección", price: 7000 },
@@ -668,7 +873,6 @@
             localStorage.setItem('fenix_finanzas', JSON.stringify(finanzas));
         }
 
-        // --- ABRIR / CERRAR MENÚ 3 BARRITAS ---
         function toggleMenu() {
             document.getElementById('sidebar').classList.toggle('open');
             document.getElementById('overlay').classList.toggle('open');
@@ -678,11 +882,16 @@
             document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
             document.getElementById('sec-' + secName).classList.add('active');
             document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-            if (btnElement) btnElement.classList.add('active');
-            toggleMenu();
+            
+            const activeNav = btnElement || document.getElementById('nav-' + secName);
+            if (activeNav) activeNav.classList.add('active');
+
+            if (document.getElementById('sidebar').classList.contains('open')) {
+                toggleMenu();
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- MODO ADMINISTRADOR (PIN: 1234) ---
         function toggleAdmin() {
             if (!isAdmin) {
                 const pin = prompt("Ingresá tu clave de Administrador (Por defecto es 1234):");
@@ -702,7 +911,6 @@
             }
         }
 
-        // --- RENDERIZAR CORTES ---
         function renderCortes() {
             const container = document.getElementById('cortes-list');
             container.innerHTML = cortes.map(c => `
@@ -719,7 +927,6 @@
             `).join('');
         }
 
-        // --- RENDERIZAR Y CONTROLAR STOCK DE PRODUCTOS ---
         function renderProductos() {
             const container = document.getElementById('productos-list');
             container.innerHTML = productos.map(p => `
@@ -789,7 +996,6 @@
             }
         }
 
-        // --- FINANZAS (CAJA) ---
         function quickRegister(type, category, desc, amount, silent = false) {
             const fecha = new Date().toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
             finanzas.unshift({ id: Date.now(), type, category, desc, amount, fecha });
@@ -852,11 +1058,9 @@
             `).join('');
         }
 
-        // Inicializar vistas
         renderCortes();
         renderProductos();
         renderFinanzas();
     </script>
 </body>
-</html>
 </html>
