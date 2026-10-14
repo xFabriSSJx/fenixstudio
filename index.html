@@ -2,39 +2,861 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Fenix Studio</title>
-    <link rel="stylesheet" href="estilos.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenix Studio | Barbería, Productos & Cursos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0d0d0f;
+            --bg-card: #16161a;
+            --bg-input: #202026;
+            --accent-gold: #e5a93c;
+            --accent-green: #25D366;
+            --accent-red: #e74c3c;
+            --text-main: #f4f4f6;
+            --text-muted: #9496a1;
+            --border-subtle: rgba(229, 169, 60, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at 50% 0%, #261b12 0%, var(--bg-dark) 60%);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding-top: 75px;
+            padding-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        /* --- BARRA SUPERIOR Y MENÚ DE 3 BARRITAS --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 65px;
+            background: rgba(13, 13, 15, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 18px;
+            z-index: 1000;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 8px;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 26px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: var(--text-main);
+        }
+
+        .admin-toggle {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .admin-toggle.active {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            background: rgba(229, 169, 60, 0.12);
+        }
+
+        /* --- MENÚ LATERAL DESPLEGABLE --- */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 1001;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .sidebar-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -290px;
+            width: 280px;
+            height: 100%;
+            background-color: var(--bg-card);
+            border-right: 1px solid var(--border-subtle);
+            z-index: 1002;
+            padding: 25px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: 0.3s ease;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 18px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .sidebar-header h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-item {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-main);
+            text-align: left;
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: 0.98rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.2s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(229, 169, 60, 0.12);
+            border-color: var(--border-subtle);
+            color: var(--accent-gold);
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .container {
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 0 18px;
+        }
+
+        .header-hero {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-wrapper {
+            width: 105px;
+            height: 105px;
+            margin: 0 auto 12px;
+            border-radius: 22px;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--accent-gold), #8a5a10);
+            box-shadow: 0 8px 25px rgba(229, 169, 60, 0.2);
+        }
+
+        .logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 19px;
+            background-color: var(--bg-dark);
+        }
+
+        .section-view {
+            display: none;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .section-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            color: var(--accent-gold);
+            margin-bottom: 16px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- TARJETAS DE SERVICIOS Y PRODUCTOS --- */
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 14px;
+            padding: 16px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-info {
+            text-align: left;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .card-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        .badge-stock {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            background: rgba(37, 211, 102, 0.15);
+            color: #2ecc71;
+        }
+
+        .badge-stock.out {
+            background: rgba(231, 76, 60, 0.15);
+            color: var(--accent-red);
+        }
+
+        .card-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .price-tag {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            background: rgba(229, 169, 60, 0.12);
+            padding: 6px 12px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        /* --- CONTROLES DE ADMINISTRADOR --- */
+        .admin-only {
+            display: none !important;
+        }
+
+        body.is-admin .admin-only {
+            display: flex !important;
+        }
+
+        .stock-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-mini {
+            background: var(--bg-input);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--text-main);
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-sell {
+            background: rgba(37, 211, 102, 0.2);
+            border: 1px solid #25D366;
+            color: #2ecc71;
+            padding: 4px 10px;
+            border-radius: 7px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .admin-box {
+            background: #1b1b22;
+            border: 1px dashed var(--accent-gold);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 24px;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .admin-box h4 {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+        }
+
+        input, select {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--text-main);
+            padding: 11px 12px;
+            border-radius: 9px;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+
+        .btn-gold {
+            background: var(--accent-gold);
+            color: #0d0d0f;
+            border: none;
+            padding: 12px;
+            border-radius: 9px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* --- SECCIÓN CURSO --- */
+        .course-banner {
+            background: linear-gradient(145deg, #1b1610, #16161a);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 22px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .course-banner h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .course-list {
+            list-style: none;
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        /* --- SECCIÓN CAJA Y FINANZAS --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.07);
+            padding: 12px 10px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .stat-val {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .val-in { color: #2ecc71; }
+        .val-out { color: var(--accent-red); }
+        .val-net { color: var(--accent-gold); }
+
+        .tx-item {
+            background: var(--bg-card);
+            padding: 12px 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .tx-item.ingreso { border-left-color: #2ecc71; }
+        .tx-item.egreso { border-left-color: var(--accent-red); }
+
+        /* --- BOTONES GENERALES Y FOOTER --- */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 0.98rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 12px;
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #1da851);
+            color: #ffffff;
+        }
+
+        .btn-instagram {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        footer {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 22px;
+            margin-top: 30px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        footer a { color: var(--text-muted); text-decoration: none; }
+    </style>
 </head>
 <body>
-    <img src="fenix.png.jpeg" alt="Logo de Fenix Studio" class="logo">
 
-    <h1>Precios de cortes de pelo</h1>
+    <!-- BARRA SUPERIOR CON LAS 3 BARRITAS -->
+    <nav class="navbar">
+        <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-brand">FENIX STUDIO</div>
+        <button class="admin-toggle" id="adminBtn" onclick="toggleAdmin()">🔒 Admin</button>
+    </nav>
 
-    <table border="1">
-        <tr>
-            <th>Corte</th>
-            <th>Precio</th>
-        </tr>
-        <tr>
-            <td>Taper Fade</td>
-            <td>$8000</td>
-        </tr>
-        <tr>
-            <td>Degradado</td>
-            <td>$7000</td>
-        </tr>
-        <tr>
-            <td>Perfilado de barba</td>
-            <td>$3000</td>
-        </tr>
-    </table>
+    <!-- MENÚ DESPLEGABLE LATERAL -->
+    <div class="sidebar-overlay" id="overlay" onclick="toggleMenu()"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>MENÚ FÉNIX</h3>
+            <button class="close-btn" onclick="toggleMenu()">×</button>
+        </div>
+        <button class="nav-item active" onclick="showSection('cortes', this)">✂️ Precios de Cortes</button>
+        <button class="nav-item" onclick="showSection('productos', this)">📦 Productos en Stock</button>
+        <button class="nav-item" onclick="showSection('curso', this)">🎓 Curso de Barbería</button>
+        <button class="nav-item" onclick="showSection('finanzas', this)">💰 Caja (Ingresos / Egresos)</button>
+    </aside>
 
-<a href="https://www.instagram.com/fenixstudio25" target="_blank">📸 Síguenos en Instagram</a>
-<footer>
-    <p>📍 C. Ushuaia - Resistencia, Chaco</p>
-    <p>📞 Tel: +54 362 4595042</p>
-    <p>© 2025 Fenix Studio - Todos los derechos reservados</p>
-</footer>
+    <div class="container">
+        <!-- LOGO ENCABEZADO -->
+        <div class="header-hero">
+            <div class="logo-wrapper">
+                <img src="fenix.png.jpeg" alt="Logo de Fenix Studio">
+            </div>
+        </div>
 
+        <!-- SECCIÓN 1: CORTES DE PELO -->
+        <section id="sec-cortes" class="section-view active">
+            <h2 class="section-title">✂️ Precios de Cortes</h2>
+            <div class="card-list" id="cortes-list"></div>
+        </section>
+
+        <!-- SECCIÓN 2: PRODUCTOS Y STOCK -->
+        <section id="sec-productos" class="section-view">
+            <h2 class="section-title">📦 Productos y Stock</h2>
+            
+            <!-- Panel Admin para sumar producto nuevo -->
+            <div class="admin-box admin-only">
+                <h4>➕ Agregar Nuevo Producto al Stock</h4>
+                <input type="text" id="prod-name" placeholder="Nombre (ej: Cera Mate, Minoxidil)">
+                <div class="input-group">
+                    <input type="number" id="prod-price" placeholder="Precio ($)">
+                    <input type="number" id="prod-stock" placeholder="Cantidad inicial">
+                </div>
+                <button class="btn-gold" onclick="addNewProduct()">Guardar Producto</button>
+            </div>
+
+            <div class="card-list" id="productos-list"></div>
+        </section>
+
+        <!-- SECCIÓN 3: CURSO DE BARBERÍA -->
+        <section id="sec-curso" class="section-view">
+            <h2 class="section-title">🎓 Curso de Barbería</h2>
+            <div class="course-banner">
+                <h3>Formación Profesional Inicial</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Aprendé desde cero las técnicas más pedidas hoy en día con práctica real y salida laboral inmediata.</p>
+                <ul class="course-list">
+                    <li>✅ Uso correcto de máquinas, tijeras y navaja</li>
+                    <li>✅ Técnicas limpias de Taper Fade y Degradados</li>
+                    <li>✅ Perfilado, visagismo y ritual de barba</li>
+                    <li>✅ Atención al cliente y manejo de barbería</li>
+                </ul>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08);">
+                    <div>
+                        <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Valor de inscripción / cuota</span>
+                        <strong style="font-size:1.3rem; color:var(--accent-gold);">$25.000</strong>
+                    </div>
+                    <button class="btn-sell admin-only" onclick="quickRegister('Ingreso', 'Curso', 'Inscripción Curso de Barbería', 25000)">+ Cobrar Curso</button>
+                </div>
+            </div>
+            <a href="https://wa.me/5493624595042?text=Hola%20Fenix%20Studio!%20Quiero%20información%20para%20inscribirme%20al%20Curso%20de%20Barbería." target="_blank" class="btn btn-whatsapp">
+                🎓 Consultar Cupos por WhatsApp
+            </a>
+        </section>
+
+        <!-- SECCIÓN 4: CONTROL DE CAJA (INGRESOS Y EGRESOS) -->
+        <section id="sec-finanzas" class="section-view">
+            <h2 class="section-title">💰 Control de Caja</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Ingresos</div>
+                    <div class="stat-val val-in" id="tot-in">$0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Egresos</div>
+                    <div class="stat-val val-out" id="tot-out">$0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Caja Neta</div>
+                    <div class="stat-val val-net" id="tot-net">$0</div>
+                </div>
+            </div>
+
+            <div class="admin-box" style="display:flex;">
+                <h4>📝 Anotar Movimiento de Dinero</h4>
+                <div class="input-group">
+                    <select id="tx-type">
+                        <option value="Ingreso">🟢 Ingreso (+)</option>
+                        <option value="Egreso">🔴 Egreso / Gasto (-)</option>
+                    </select>
+                    <select id="tx-cat">
+                        <option value="Corte">✂️ Corte</option>
+                        <option value="Producto">📦 Producto</option>
+                        <option value="Curso">🎓 Curso</option>
+                        <option value="Gasto">🧾 Insumos / Gasto</option>
+                    </select>
+                </div>
+                <input type="text" id="tx-desc" placeholder="Detalle (ej: Taper Fade, Compra de filos, etc.)">
+                <input type="number" id="tx-amount" placeholder="Monto en pesos (ej: 8000)">
+                <button class="btn-gold" onclick="addManualTransaction()">Registrar en Caja</button>
+            </div>
+
+            <h4 style="margin-bottom: 12px; color: var(--text-muted); font-size: 0.9rem;">Historial de Movimientos</h4>
+            <div class="card-list" id="tx-list"></div>
+        </section>
+
+        <!-- BOTONES DE CONTACTO FIJOS -->
+        <div style="margin-top: 25px;">
+            <a href="https://wa.me/5493624595042?text=Hola%20Fenix%20Studio!%20Quisiera%20consultar%20por%20un%20turno." target="_blank" class="btn btn-whatsapp">
+                💬 Reservar Turno por WhatsApp
+            </a>
+            <a href="https://www.instagram.com/fenixstudio25" target="_blank" class="btn btn-instagram">
+                📸 Seguinos en Instagram
+            </a>
+        </div>
+
+        <footer>
+            <div>📍 C. Ushuaia - Resistencia, Chaco</div>
+            <div>📞 Tel: +54 362 4595042</div>
+            <div style="font-size: 0.75rem; opacity: 0.6; margin-top: 6px;">© 2026 Fenix Studio - Todos los derechos reservados</div>
+        </footer>
+    </div>
+
+    <script>
+        // --- DATOS INICIALES (Se guardan en la memoria del teléfono/PC) ---
+        const defaultCortes = [
+            { id: 1, name: "Taper Fade", desc: "Degradado limpio en patillas y nuca", price: 8000 },
+            { id: 2, name: "Degradado (Fade)", desc: "Corte completo con transición a elección", price: 7000 },
+            { id: 3, name: "Perfilado de Barba", desc: "Diseño, simetría y rebaje prolijo", price: 3000 }
+        ];
+
+        const defaultProductos = [
+            { id: 101, name: "Cera Modeladora Mate", price: 6500, stock: 8 },
+            { id: 102, name: "Polvo Texturizador", price: 7500, stock: 5 },
+            { id: 103, name: "Aceite para Barba", price: 5500, stock: 4 }
+        ];
+
+        let cortes = JSON.parse(localStorage.getItem('fenix_cortes')) || defaultCortes;
+        let productos = JSON.parse(localStorage.getItem('fenix_productos')) || defaultProductos;
+        let finanzas = JSON.parse(localStorage.getItem('fenix_finanzas')) || [];
+        let isAdmin = false;
+
+        function saveData() {
+            localStorage.setItem('fenix_productos', JSON.stringify(productos));
+            localStorage.setItem('fenix_finanzas', JSON.stringify(finanzas));
+        }
+
+        // --- ABRIR / CERRAR MENÚ 3 BARRITAS ---
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('overlay').classList.toggle('open');
+        }
+
+        function showSection(secName, btnElement) {
+            document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
+            document.getElementById('sec-' + secName).classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            if (btnElement) btnElement.classList.add('active');
+            toggleMenu();
+        }
+
+        // --- MODO ADMINISTRADOR (PIN: 1234) ---
+        function toggleAdmin() {
+            if (!isAdmin) {
+                const pin = prompt("Ingresá tu clave de Administrador (Por defecto es 1234):");
+                if (pin === "1234") {
+                    isAdmin = true;
+                    document.body.classList.add('is-admin');
+                    document.getElementById('adminBtn').classList.add('active');
+                    document.getElementById('adminBtn').innerText = "🔓 Admin Activo";
+                } else if (pin !== null) {
+                    alert("Clave incorrecta");
+                }
+            } else {
+                isAdmin = false;
+                document.body.classList.remove('is-admin');
+                document.getElementById('adminBtn').classList.remove('active');
+                document.getElementById('adminBtn').innerText = "🔒 Admin";
+            }
+        }
+
+        // --- RENDERIZAR CORTES ---
+        function renderCortes() {
+            const container = document.getElementById('cortes-list');
+            container.innerHTML = cortes.map(c => `
+                <div class="card">
+                    <div class="card-info">
+                        <div class="card-title">${c.name}</div>
+                        <div class="card-desc">${c.desc}</div>
+                    </div>
+                    <div class="card-right">
+                        <div class="price-tag">$${c.price.toLocaleString('es-AR')}</div>
+                        <button class="btn-sell admin-only" onclick="quickRegister('Ingreso', 'Corte', '${c.name}', ${c.price})">+ Cobrar Corte</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- RENDERIZAR Y CONTROLAR STOCK DE PRODUCTOS ---
+        function renderProductos() {
+            const container = document.getElementById('productos-list');
+            container.innerHTML = productos.map(p => `
+                <div class="card">
+                    <div class="card-info">
+                        <div class="card-title">${p.name}</div>
+                        <span class="badge-stock ${p.stock === 0 ? 'out' : ''}">
+                            ${p.stock > 0 ? `En Stock: ${p.stock} u.` : 'Sin Stock'}
+                        </span>
+                    </div>
+                    <div class="card-right">
+                        <div class="price-tag">$${p.price.toLocaleString('es-AR')}</div>
+                        <div class="stock-controls admin-only">
+                            <button class="btn-mini" onclick="changeStock(${p.id}, -1)">-</button>
+                            <button class="btn-mini" onclick="changeStock(${p.id}, 1)">+</button>
+                            <button class="btn-sell" onclick="sellProduct(${p.id})">Vender</button>
+                            <button class="btn-mini" style="color:#e74c3c;" onclick="deleteProduct(${p.id})">×</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function changeStock(id, delta) {
+            const prod = productos.find(p => p.id === id);
+            if (prod) {
+                prod.stock = Math.max(0, prod.stock + delta);
+                saveData();
+                renderProductos();
+            }
+        }
+
+        function sellProduct(id) {
+            const prod = productos.find(p => p.id === id);
+            if (prod && prod.stock > 0) {
+                prod.stock -= 1;
+                quickRegister('Ingreso', 'Producto', `Venta: ${prod.name}`, prod.price, true);
+                saveData();
+                renderProductos();
+                alert(`✅ Se descontó 1 ${prod.name} del stock y se sumaron $${prod.price} a la caja.`);
+            } else {
+                alert("⚠️ No queda stock de este producto.");
+            }
+        }
+
+        function addNewProduct() {
+            const name = document.getElementById('prod-name').value.trim();
+            const price = parseFloat(document.getElementById('prod-price').value);
+            const stock = parseInt(document.getElementById('prod-stock').value);
+            if (!name || isNaN(price) || isNaN(stock)) {
+                alert("Completá nombre, precio y cantidad.");
+                return;
+            }
+            productos.push({ id: Date.now(), name, price, stock });
+            document.getElementById('prod-name').value = '';
+            document.getElementById('prod-price').value = '';
+            document.getElementById('prod-stock').value = '';
+            saveData();
+            renderProductos();
+        }
+
+        function deleteProduct(id) {
+            if (confirm("¿Eliminar este producto de la lista?")) {
+                productos = productos.filter(p => p.id !== id);
+                saveData();
+                renderProductos();
+            }
+        }
+
+        // --- FINANZAS (CAJA) ---
+        function quickRegister(type, category, desc, amount, silent = false) {
+            const fecha = new Date().toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+            finanzas.unshift({ id: Date.now(), type, category, desc, amount, fecha });
+            saveData();
+            renderFinanzas();
+            if (!silent) alert(`💰 Registrado en Caja: ${desc} ($${amount.toLocaleString('es-AR')})`);
+        }
+
+        function addManualTransaction() {
+            const type = document.getElementById('tx-type').value;
+            const category = document.getElementById('tx-cat').value;
+            const desc = document.getElementById('tx-desc').value.trim() || category;
+            const amount = parseFloat(document.getElementById('tx-amount').value);
+            if (isNaN(amount) || amount <= 0) {
+                alert("Ingresá un monto válido.");
+                return;
+            }
+            quickRegister(type, category, desc, amount, true);
+            document.getElementById('tx-desc').value = '';
+            document.getElementById('tx-amount').value = '';
+        }
+
+        function deleteTx(id) {
+            finanzas = finanzas.filter(t => t.id !== id);
+            saveData();
+            renderFinanzas();
+        }
+
+        function renderFinanzas() {
+            let totalIn = 0;
+            let totalOut = 0;
+            finanzas.forEach(t => {
+                if (t.type === 'Ingreso') totalIn += t.amount;
+                else totalOut += t.amount;
+            });
+
+            document.getElementById('tot-in').innerText = `$${totalIn.toLocaleString('es-AR')}`;
+            document.getElementById('tot-out').innerText = `$${totalOut.toLocaleString('es-AR')}`;
+            document.getElementById('tot-net').innerText = `$${(totalIn - totalOut).toLocaleString('es-AR')}`;
+
+            const list = document.getElementById('tx-list');
+            if (finanzas.length === 0) {
+                list.innerHTML = `<div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:15px;">Todavía no hay movimientos anotados.</div>`;
+                return;
+            }
+
+            list.innerHTML = finanzas.map(t => `
+                <div class="tx-item ${t.type === 'Ingreso' ? 'ingreso' : 'egreso'}">
+                    <div>
+                        <strong>${t.desc}</strong>
+                        <div style="font-size:0.75rem; color:var(--text-muted);">${t.category} • ${t.fecha}</div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <strong style="color:${t.type === 'Ingreso' ? '#2ecc71' : '#e74c3c'};">
+                            ${t.type === 'Ingreso' ? '+' : '-'}$${t.amount.toLocaleString('es-AR')}
+                        </strong>
+                        <button class="btn-mini admin-only" onclick="deleteTx(${t.id})">×</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Inicializar vistas
+        renderCortes();
+        renderProductos();
+        renderFinanzas();
+    </script>
 </body>
+</html>
 </html>
