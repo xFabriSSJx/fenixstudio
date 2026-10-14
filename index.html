@@ -949,7 +949,7 @@
             const activeNav = btnElement || document.getElementById('nav-' + secName);
             if (activeNav) activeNav.classList.add('active');
 
-            // Ocultar botones de WhatsApp e Instagram si estamos en Caja, mostrarlos en el resto
+            // Ocultar o mostrar botones públicos según la sección
             const publicActions = document.getElementById('public-actions');
             if (secName === 'finanzas') {
                 publicActions.style.display = 'none';
