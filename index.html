@@ -696,14 +696,14 @@
             <h3>MENÚ FÉNIX</h3>
             <button class="close-btn" onclick="toggleMenu()">×</button>
         </div>
-        <button class="nav-item active" id="nav-inicio" onclick="showSection('inicio', this)">🏠 Inicio</button>
-        <button class="nav-item" id="nav-book" onclick="showSection('book', this)">📸 Book de Trabajos</button>
-        <button class="nav-item" id="nav-cortes" onclick="showSection('cortes', this)">✂️ Precios de Cortes</button>
-        <button class="nav-item" id="nav-productos" onclick="showSection('productos', this)">📦 Productos en Stock</button>
-        <button class="nav-item" id="nav-curso" onclick="showSection('curso', this)">🎓 Curso de Barbería</button>
+        <button class="nav-item active" id="nav-inicio" onclick="showSection('inicio', this)">Inicio</button>
+        <button class="nav-item" id="nav-book" onclick="showSection('book', this)">Galería Fénix</button>
+        <button class="nav-item" id="nav-cortes" onclick="showSection('cortes', this)">Precios de Cortes</button>
+        <button class="nav-item" id="nav-productos" onclick="showSection('productos', this)">Productos en Stock</button>
+        <button class="nav-item" id="nav-curso" onclick="showSection('curso', this)">Curso de Barbería</button>
         
         <!-- ESTA OPCIÓN DE CAJA SOLO APARECE SI PUSISTE LA CLAVE DE ADMIN -->
-        <button class="nav-item admin-only" id="nav-finanzas" onclick="showSection('finanzas', this)">💰 Caja (Ingresos / Egresos)</button>
+        <button class="nav-item admin-only" id="nav-finanzas" onclick="showSection('finanzas', this)">Caja (Ingresos / Egresos)</button>
     </aside>
 
     <div class="container">
@@ -724,18 +724,18 @@
         <section id="sec-inicio" class="section-view active">
             
             <div class="quick-nav">
-                <div class="quick-card" onclick="showSection('book')">📸 Ver Book de Fotos</div>
-                <div class="quick-card" onclick="showSection('cortes')">✂️ Precios y Turnos</div>
+                <div class="quick-card" onclick="showSection('book')">Ver Galería</div>
+                <div class="quick-card" onclick="showSection('cortes')">Precios y Turnos</div>
             </div>
 
-            <h2 class="section-title">🔥 Destacados</h2>
+            <h2 class="section-title">Destacados Fénix</h2>
             <div class="gallery-grid">
                 <div class="gallery-card" onclick="showSection('book')">
                     <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80" alt="Taper Fade">
                     <div class="gallery-overlay">
                         <span class="gallery-tag">Tendencia</span>
                         <div class="gallery-title">Taper Fade & Textura</div>
-                        <div class="gallery-sub">Tocá para ver más en el Book</div>
+                        <div class="gallery-sub">Tocá para ver más en la galería</div>
                     </div>
                 </div>
 
@@ -750,9 +750,9 @@
             </div>
         </section>
 
-        <!-- SECCIÓN NUEVA: BOOK DE TRABAJOS (GALERÍA COMPLETA) -->
+        <!-- SECCIÓN: GALERÍA FÉNIX -->
         <section id="sec-book" class="section-view">
-            <h2 class="section-title">📸 Book de Trabajos</h2>
+            <h2 class="section-title">Galería Fénix</h2>
             <p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Explorá nuestros mejores cortes, estilos y momentos de la academia.</p>
             
             <div class="gallery-grid">
@@ -805,13 +805,13 @@
 
         <!-- SECCIÓN 1: CORTES DE PELO -->
         <section id="sec-cortes" class="section-view">
-            <h2 class="section-title">✂️ Precios de Cortes</h2>
+            <h2 class="section-title">Precios de Cortes</h2>
             <div class="card-list" id="cortes-list"></div>
         </section>
 
         <!-- SECCIÓN 2: PRODUCTOS Y STOCK -->
         <section id="sec-productos" class="section-view">
-            <h2 class="section-title">📦 Productos y Stock</h2>
+            <h2 class="section-title">Productos y Stock</h2>
             
             <div class="admin-box admin-only">
                 <h4>➕ Agregar Nuevo Producto al Stock</h4>
@@ -828,7 +828,7 @@
 
         <!-- SECCIÓN 3: CURSO DE BARBERÍA -->
         <section id="sec-curso" class="section-view">
-            <h2 class="section-title">🎓 Curso de Barbería</h2>
+            <h2 class="section-title">Curso de Barbería</h2>
             <div class="course-banner">
                 <h3>Formación Profesional Inicial</h3>
                 <p style="color: var(--text-muted); font-size: 0.9rem;">Aprendé desde cero las técnicas más pedidas hoy en día con práctica real y salida laboral inmediata.</p>
@@ -850,13 +850,13 @@
                 </div>
             </div>
             <a href="https://wa.me/5493624595042?text=Hola%20Fenix%20Studio!%20Quiero%20información%20para%20inscribirme%20al%20Curso%20de%20Barbería." target="_blank" class="btn btn-whatsapp">
-                🎓 Consultar Cupos por WhatsApp
+                Consultar Cupos por WhatsApp
             </a>
         </section>
 
         <!-- SECCIÓN 4: CONTROL DE CAJA (SOLO ACCESIBLE EN MODO ADMIN) -->
         <section id="sec-finanzas" class="section-view">
-            <h2 class="section-title">💰 Control Privado de Caja</h2>
+            <h2 class="section-title">Control Privado de Caja</h2>
             
             <div class="stats-grid">
                 <div class="stat-card">
@@ -899,10 +899,10 @@
         <!-- BOTONES DE CONTACTO FIJOS (SE OCULTAN AUTOMÁTICAMENTE EN CAJA) -->
         <div id="public-actions" style="margin-top: 25px;">
             <a href="https://wa.me/5493624595042?text=Hola%20Fenix%20Studio!%20Quisiera%20consultar%20por%20un%20turno." target="_blank" class="btn btn-whatsapp">
-                💬 Reservar Turno por WhatsApp
+                Reservar Turno por WhatsApp
             </a>
             <a href="https://www.instagram.com/fenixstudio25" target="_blank" class="btn btn-instagram">
-                📸 Seguinos en Instagram
+                Seguinos en Instagram
             </a>
         </div>
 
