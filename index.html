@@ -462,7 +462,7 @@
             white-space: nowrap;
         }
 
-        /* --- CONTROLES DE ADMINISTRADOR --- */
+        /* --- OCULTAR TODO LO DE ADMIN A LOS CLIENTES --- */
         .admin-only {
             display: none !important;
         }
@@ -475,6 +475,8 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .btn-mini {
@@ -489,6 +491,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .btn-edit-price {
+            background: rgba(229, 169, 60, 0.15);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 4px 8px;
+            border-radius: 7px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
         }
 
         .btn-sell {
@@ -687,7 +700,9 @@
         <button class="nav-item" id="nav-cortes" onclick="showSection('cortes', this)">✂️ Precios de Cortes</button>
         <button class="nav-item" id="nav-productos" onclick="showSection('productos', this)">📦 Productos en Stock</button>
         <button class="nav-item" id="nav-curso" onclick="showSection('curso', this)">🎓 Curso de Barbería</button>
-        <button class="nav-item" id="nav-finanzas" onclick="showSection('finanzas', this)">💰 Caja (Ingresos / Egresos)</button>
+        
+        <!-- ESTA OPCIÓN DE CAJA SOLO APARECE SI PUSISTE LA CLAVE DE ADMIN -->
+        <button class="nav-item admin-only" id="nav-finanzas" onclick="showSection('finanzas', this)">💰 Caja (Ingresos / Egresos)</button>
     </aside>
 
     <div class="container">
@@ -698,10 +713,10 @@
             </div>
         </div>
 
-        <!-- BARRA PARA CAMBIAR CONTRASEÑA SIN TOCAR CÓDIGO (SOLO VISIBLE EN MODO ADMIN) -->
+        <!-- BARRA PARA CAMBIAR CONTRASEÑA (SOLO VISIBLE EN MODO ADMIN) -->
         <div class="admin-bar admin-only">
-            <span>🔓 Modo Administrador Activo</span>
-            <button class="btn-change-pin" onclick="changeAdminPin()">🔑 Cambiar mi Clave</button>
+            <span>🔓 Modo Admin Activo</span>
+            <button class="btn-change-pin" onclick="changeAdminPin()">🔑 Cambiar Clave</button>
         </div>
 
         <!-- SECCIÓN PRINCIPAL (INICIO): FOTOS DE CORTES Y EGRESADOS -->
@@ -800,12 +815,15 @@
                     <li>✅ Perfilado, visagismo y ritual de barba</li>
                     <li>✅ Entrega de certificado al finalizar</li>
                 </ul>
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); flex-wrap:wrap; gap:10px;">
                     <div>
                         <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Valor de inscripción / cuota</span>
-                        <strong style="font-size:1.3rem; color:var(--accent-gold);">$25.000</strong>
+                        <strong style="font-size:1.3rem; color:var(--accent-gold);" id="curso-price-display">$25.000</strong>
                     </div>
-                    <button class="btn-sell admin-only" onclick="quickRegister('Ingreso', 'Curso', 'Inscripción Curso de Barbería', 25000)">+ Cobrar Curso</button>
+                    <div class="stock-controls admin-only">
+                        <button class="btn-edit-price" onclick="editCursoPrice()">✏️ Precio</button>
+                        <button class="btn-sell" onclick="cobrarCurso()">+ Cobrar Curso</button>
+                    </div>
                 </div>
             </div>
             <a href="https://wa.me/5493624595042?text=Hola%20Fenix%20Studio!%20Quiero%20información%20para%20inscribirme%20al%20Curso%20de%20Barbería." target="_blank" class="btn btn-whatsapp">
@@ -813,9 +831,9 @@
             </a>
         </section>
 
-        <!-- SECCIÓN 4: CONTROL DE CAJA (INGRESOS Y EGRESOS) -->
+        <!-- SECCIÓN 4: CONTROL DE CAJA (SOLO ACCESIBLE EN MODO ADMIN) -->
         <section id="sec-finanzas" class="section-view">
-            <h2 class="section-title">💰 Control de Caja</h2>
+            <h2 class="section-title">💰 Control Privado de Caja</h2>
             
             <div class="stats-grid">
                 <div class="stat-card">
@@ -832,7 +850,7 @@
                 </div>
             </div>
 
-            <div class="admin-box" style="display:flex;">
+            <div class="admin-box admin-only">
                 <h4>📝 Anotar Movimiento de Dinero</h4>
                 <div class="input-group">
                     <select id="tx-type">
@@ -874,7 +892,7 @@
 
     <script>
         // ==========================================================
-        // 🔑 ACA ABAJO ESTA TU CONTRASEÑA INICIAL (Podes cambiar el 1234):
+        // 🔑 CLAVE INICIAL DE ADMINISTRADOR:
         // ==========================================================
         const CLAVE_POR_DEFECTO = "1234";
 
@@ -892,6 +910,7 @@
 
         let cortes = JSON.parse(localStorage.getItem('fenix_cortes')) || defaultCortes;
         let productos = JSON.parse(localStorage.getItem('fenix_productos')) || defaultProductos;
+        let cursoPrecio = parseFloat(localStorage.getItem('fenix_curso_precio')) || 25000;
         let finanzas = JSON.parse(localStorage.getItem('fenix_finanzas')) || [];
         let isAdmin = false;
 
@@ -900,6 +919,7 @@
         }
 
         function changeAdminPin() {
+            if (!isAdmin) return;
             const nueva = prompt("Escribí tu nueva contraseña de Administrador:");
             if (nueva && nueva.trim().length > 0) {
                 localStorage.setItem('fenix_pin', nueva.trim());
@@ -908,7 +928,9 @@
         }
 
         function saveData() {
+            localStorage.setItem('fenix_cortes', JSON.stringify(cortes));
             localStorage.setItem('fenix_productos', JSON.stringify(productos));
+            localStorage.setItem('fenix_curso_precio', cursoPrecio);
             localStorage.setItem('fenix_finanzas', JSON.stringify(finanzas));
         }
 
@@ -918,6 +940,12 @@
         }
 
         function showSection(secName, btnElement) {
+            // Bloquear acceso a finanzas si no es admin
+            if (secName === 'finanzas' && !isAdmin) {
+                alert("🔒 Necesitás iniciar sesión como Administrador para ver la Caja.");
+                return;
+            }
+
             document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
             document.getElementById('sec-' + secName).classList.add('active');
             document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
@@ -947,9 +975,14 @@
                 document.body.classList.remove('is-admin');
                 document.getElementById('adminBtn').classList.remove('active');
                 document.getElementById('adminBtn').innerText = "🔒 Admin";
+                // Si estaba en la sección de caja, devolverlo al inicio al cerrar sesión
+                if (document.getElementById('sec-finanzas').classList.contains('active')) {
+                    showSection('inicio');
+                }
             }
         }
 
+        // --- CORTES Y CAMBIO DE PRECIOS ---
         function renderCortes() {
             const container = document.getElementById('cortes-list');
             container.innerHTML = cortes.map(c => `
@@ -960,12 +993,29 @@
                     </div>
                     <div class="card-right">
                         <div class="price-tag">$${c.price.toLocaleString('es-AR')}</div>
-                        <button class="btn-sell admin-only" onclick="quickRegister('Ingreso', 'Corte', '${c.name}', ${c.price})">+ Cobrar Corte</button>
+                        <div class="stock-controls admin-only">
+                            <button class="btn-edit-price" onclick="editCortePrice(${c.id})">✏️ Precio</button>
+                            <button class="btn-sell" onclick="quickRegister('Ingreso', 'Corte', '${c.name}', ${c.price})">+ Cobrar</button>
+                        </div>
                     </div>
                 </div>
             `).join('');
         }
 
+        function editCortePrice(id) {
+            if (!isAdmin) return;
+            const corte = cortes.find(c => c.id === id);
+            if (!corte) return;
+            const nuevo = prompt(`Nuevo precio para ${corte.name}:`, corte.price);
+            const num = parseFloat(nuevo);
+            if (!isNaN(num) && num >= 0) {
+                corte.price = num;
+                saveData();
+                renderCortes();
+            }
+        }
+
+        // --- PRODUCTOS, STOCK Y CAMBIO DE PRECIOS ---
         function renderProductos() {
             const container = document.getElementById('productos-list');
             container.innerHTML = productos.map(p => `
@@ -981,6 +1031,7 @@
                         <div class="stock-controls admin-only">
                             <button class="btn-mini" onclick="changeStock(${p.id}, -1)">-</button>
                             <button class="btn-mini" onclick="changeStock(${p.id}, 1)">+</button>
+                            <button class="btn-edit-price" onclick="editProductPrice(${p.id})">✏️</button>
                             <button class="btn-sell" onclick="sellProduct(${p.id})">Vender</button>
                             <button class="btn-mini" style="color:#e74c3c;" onclick="deleteProduct(${p.id})">×</button>
                         </div>
@@ -989,7 +1040,21 @@
             `).join('');
         }
 
+        function editProductPrice(id) {
+            if (!isAdmin) return;
+            const prod = productos.find(p => p.id === id);
+            if (!prod) return;
+            const nuevo = prompt(`Nuevo precio para ${prod.name}:`, prod.price);
+            const num = parseFloat(nuevo);
+            if (!isNaN(num) && num >= 0) {
+                prod.price = num;
+                saveData();
+                renderProductos();
+            }
+        }
+
         function changeStock(id, delta) {
+            if (!isAdmin) return;
             const prod = productos.find(p => p.id === id);
             if (prod) {
                 prod.stock = Math.max(0, prod.stock + delta);
@@ -999,19 +1064,21 @@
         }
 
         function sellProduct(id) {
+            if (!isAdmin) return;
             const prod = productos.find(p => p.id === id);
             if (prod && prod.stock > 0) {
                 prod.stock -= 1;
                 quickRegister('Ingreso', 'Producto', `Venta: ${prod.name}`, prod.price, true);
                 saveData();
                 renderProductos();
-                alert(`✅ Se descontó 1 ${prod.name} del stock y se sumaron $${prod.price} a la caja.`);
+                alert(`✅ Se descontó 1 ${prod.name} del stock y se sumaron $${prod.price.toLocaleString('es-AR')} a la caja.`);
             } else {
                 alert("⚠️ No queda stock de este producto.");
             }
         }
 
         function addNewProduct() {
+            if (!isAdmin) return;
             const name = document.getElementById('prod-name').value.trim();
             const price = parseFloat(document.getElementById('prod-price').value);
             const stock = parseInt(document.getElementById('prod-stock').value);
@@ -1028,6 +1095,7 @@
         }
 
         function deleteProduct(id) {
+            if (!isAdmin) return;
             if (confirm("¿Eliminar este producto de la lista?")) {
                 productos = productos.filter(p => p.id !== id);
                 saveData();
@@ -1035,7 +1103,30 @@
             }
         }
 
+        // --- CURSO PRECIO Y COBRO ---
+        function renderCurso() {
+            document.getElementById('curso-price-display').innerText = `$${cursoPrecio.toLocaleString('es-AR')}`;
+        }
+
+        function editCursoPrice() {
+            if (!isAdmin) return;
+            const nuevo = prompt("Nuevo valor de inscripción / cuota del Curso:", cursoPrecio);
+            const num = parseFloat(nuevo);
+            if (!isNaN(num) && num >= 0) {
+                cursoPrecio = num;
+                saveData();
+                renderCurso();
+            }
+        }
+
+        function cobrarCurso() {
+            if (!isAdmin) return;
+            quickRegister('Ingreso', 'Curso', 'Inscripción Curso de Barbería', cursoPrecio);
+        }
+
+        // --- FINANZAS (CAJA PRIVADA) ---
         function quickRegister(type, category, desc, amount, silent = false) {
+            if (!isAdmin) return;
             const fecha = new Date().toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
             finanzas.unshift({ id: Date.now(), type, category, desc, amount, fecha });
             saveData();
@@ -1044,6 +1135,7 @@
         }
 
         function addManualTransaction() {
+            if (!isAdmin) return;
             const type = document.getElementById('tx-type').value;
             const category = document.getElementById('tx-cat').value;
             const desc = document.getElementById('tx-desc').value.trim() || category;
@@ -1058,6 +1150,7 @@
         }
 
         function deleteTx(id) {
+            if (!isAdmin) return;
             finanzas = finanzas.filter(t => t.id !== id);
             saveData();
             renderFinanzas();
@@ -1099,6 +1192,7 @@
 
         renderCortes();
         renderProductos();
+        renderCurso();
         renderFinanzas();
     </script>
 </body>
