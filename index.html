@@ -713,7 +713,7 @@
             </div>
         </div>
 
-        <!-- BARRA PARA CAMBIAR CONTRASEÑA (SOLO VISIBLE EN MODO ADMIN) -->
+        <!-- BARRA PARA CAMBIAR CLAVE (SOLO VISIBLE EN MODO ADMIN) -->
         <div class="admin-bar admin-only">
             <span>🔓 Modo Admin Activo</span>
             <button class="btn-change-pin" onclick="changeAdminPin()">🔑 Cambiar Clave</button>
@@ -873,8 +873,8 @@
             <div class="card-list" id="tx-list"></div>
         </section>
 
-        <!-- BOTONES DE CONTACTO FIJOS -->
-        <div style="margin-top: 25px;">
+        <!-- BOTONES DE CONTACTO FIJOS (SE OCULTAN AUTOMÁTICAMENTE EN CAJA) -->
+        <div id="public-actions" style="margin-top: 25px;">
             <a href="https://wa.me/5493624595042?text=Hola%20Fenix%20Studio!%20Quisiera%20consultar%20por%20un%20turno." target="_blank" class="btn btn-whatsapp">
                 💬 Reservar Turno por WhatsApp
             </a>
@@ -884,16 +884,13 @@
         </div>
 
         <footer>
-            <div>📍 C. Ushuaia - Resistencia, Chaco</div>
-            <div>📞 Tel: +54 362 4595042</div>
-            <div style="font-size: 0.75rem; opacity: 0.6; margin-top: 6px;">© 2026 Fenix Studio - Todos los derechos reservados</div>
+            <div>📍 C. Ushuaia - Resistencia, Chaco[cite: 1]</div>
+            <div>📞 Tel: +54 362 4595042[cite: 1]</div>
+            <div style="font-size: 0.75rem; opacity: 0.6; margin-top: 6px;">© 2026 Fenix Studio - Todos los derechos reservados[cite: 1]</div>
         </footer>
     </div>
 
     <script>
-        // ==========================================================
-        // 🔑 CLAVE INICIAL DE ADMINISTRADOR:
-        // ==========================================================
         const CLAVE_POR_DEFECTO = "1234";
 
         const defaultCortes = [
@@ -940,7 +937,6 @@
         }
 
         function showSection(secName, btnElement) {
-            // Bloquear acceso a finanzas si no es admin
             if (secName === 'finanzas' && !isAdmin) {
                 alert("🔒 Necesitás iniciar sesión como Administrador para ver la Caja.");
                 return;
@@ -952,6 +948,14 @@
             
             const activeNav = btnElement || document.getElementById('nav-' + secName);
             if (activeNav) activeNav.classList.add('active');
+
+            // Ocultar botones de WhatsApp e Instagram si estamos en Caja, mostrarlos en el resto
+            const publicActions = document.getElementById('public-actions');
+            if (secName === 'finanzas') {
+                publicActions.style.display = 'none';
+            } else {
+                publicActions.style.display = 'block';
+            }
 
             if (document.getElementById('sidebar').classList.contains('open')) {
                 toggleMenu();
@@ -975,14 +979,12 @@
                 document.body.classList.remove('is-admin');
                 document.getElementById('adminBtn').classList.remove('active');
                 document.getElementById('adminBtn').innerText = "🔒 Admin";
-                // Si estaba en la sección de caja, devolverlo al inicio al cerrar sesión
                 if (document.getElementById('sec-finanzas').classList.contains('active')) {
                     showSection('inicio');
                 }
             }
         }
 
-        // --- CORTES Y CAMBIO DE PRECIOS ---
         function renderCortes() {
             const container = document.getElementById('cortes-list');
             container.innerHTML = cortes.map(c => `
@@ -1015,7 +1017,6 @@
             }
         }
 
-        // --- PRODUCTOS, STOCK Y CAMBIO DE PRECIOS ---
         function renderProductos() {
             const container = document.getElementById('productos-list');
             container.innerHTML = productos.map(p => `
@@ -1103,7 +1104,6 @@
             }
         }
 
-        // --- CURSO PRECIO Y COBRO ---
         function renderCurso() {
             document.getElementById('curso-price-display').innerText = `$${cursoPrecio.toLocaleString('es-AR')}`;
         }
@@ -1124,7 +1124,6 @@
             quickRegister('Ingreso', 'Curso', 'Inscripción Curso de Barbería', cursoPrecio);
         }
 
-        // --- FINANZAS (CAJA PRIVADA) ---
         function quickRegister(type, category, desc, amount, silent = false) {
             if (!isAdmin) return;
             const fecha = new Date().toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
