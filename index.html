@@ -363,19 +363,19 @@
         /* --- ACCESOS RÁPIDOS EN INICIO --- */
         .quick-nav {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
-            margin-bottom: 28px;
+            margin-bottom: 25px;
         }
 
         .quick-card {
             background: var(--bg-card);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 12px;
-            padding: 12px 8px;
+            padding: 12px 10px;
             text-align: center;
             color: var(--text-main);
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -696,7 +696,8 @@
             <h3>MENÚ FÉNIX</h3>
             <button class="close-btn" onclick="toggleMenu()">×</button>
         </div>
-        <button class="nav-item active" id="nav-inicio" onclick="showSection('inicio', this)">🏠 Inicio y Galería</button>
+        <button class="nav-item active" id="nav-inicio" onclick="showSection('inicio', this)">🏠 Inicio</button>
+        <button class="nav-item" id="nav-book" onclick="showSection('book', this)">📸 Book de Trabajos</button>
         <button class="nav-item" id="nav-cortes" onclick="showSection('cortes', this)">✂️ Precios de Cortes</button>
         <button class="nav-item" id="nav-productos" onclick="showSection('productos', this)">📦 Productos en Stock</button>
         <button class="nav-item" id="nav-curso" onclick="showSection('curso', this)">🎓 Curso de Barbería</button>
@@ -719,62 +720,84 @@
             <button class="btn-change-pin" onclick="changeAdminPin()">🔑 Cambiar Clave</button>
         </div>
 
-        <!-- SECCIÓN PRINCIPAL (INICIO): FOTOS DE CORTES Y EGRESADOS -->
+        <!-- SECCIÓN PRINCIPAL (INICIO) -->
         <section id="sec-inicio" class="section-view active">
             
             <div class="quick-nav">
-                <div class="quick-card" onclick="showSection('cortes')">✂️ Ver Precios</div>
-                <div class="quick-card" onclick="showSection('productos')">📦 Productos</div>
-                <div class="quick-card" onclick="showSection('curso')">🎓 Cursos</div>
+                <div class="quick-card" onclick="showSection('book')">📸 Ver Book de Fotos</div>
+                <div class="quick-card" onclick="showSection('cortes')">✂️ Precios y Turnos</div>
             </div>
 
-            <h2 class="section-title">🔥 Nuestros Trabajos</h2>
+            <h2 class="section-title">🔥 Destacados</h2>
             <div class="gallery-grid">
-                <div class="gallery-card">
+                <div class="gallery-card" onclick="showSection('book')">
                     <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80" alt="Taper Fade">
                     <div class="gallery-overlay">
                         <span class="gallery-tag">Tendencia</span>
                         <div class="gallery-title">Taper Fade & Textura</div>
-                        <div class="gallery-sub">Degradado limpio con terminación a navaja</div>
+                        <div class="gallery-sub">Tocá para ver más en el Book</div>
                     </div>
                 </div>
 
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80" alt="Perfilado de Barba">
+                <div class="gallery-card" onclick="showSection('book')">
+                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=80" alt="Academia">
                     <div class="gallery-overlay">
-                        <span class="gallery-tag">Clásico & Prolijo</span>
-                        <div class="gallery-title">Ritual de Barba</div>
-                        <div class="gallery-sub">Simetría, perfilado y nutrición</div>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=600&q=80" alt="Mid Fade">
-                    <div class="gallery-overlay">
-                        <span class="gallery-tag">Precisión</span>
-                        <div class="gallery-title">Mid / High Fade</div>
-                        <div class="gallery-sub">Transición suave sin líneas marcadas</div>
+                        <span class="gallery-tag">Academia Fénix</span>
+                        <div class="gallery-title">Egresados & Prácticas</div>
+                        <div class="gallery-sub">Conocé los trabajos de los alumnos</div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <h2 class="section-title">🎓 Egresados de la Academia</h2>
+        <!-- SECCIÓN NUEVA: BOOK DE TRABAJOS (GALERÍA COMPLETA) -->
+        <section id="sec-book" class="section-view">
+            <h2 class="section-title">📸 Book de Trabajos</h2>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Explorá nuestros mejores cortes, estilos y momentos de la academia.</p>
+            
             <div class="gallery-grid">
-                <div class="gallery-card" onclick="showSection('curso')">
-                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=80" alt="Egresados Curso">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80" alt="Corte 1">
                     <div class="gallery-overlay">
-                        <span class="gallery-tag">Diploma Entregado</span>
-                        <div class="gallery-title">Camada de Barberos</div>
-                        <div class="gallery-sub">Alumnos certificados listos para trabajar</div>
+                        <span class="gallery-tag">Estilo</span>
+                        <div class="gallery-title">Taper Fade</div>
+                        <div class="gallery-sub">Terminación impecable a navaja</div>
                     </div>
                 </div>
 
-                <div class="gallery-card" onclick="showSection('curso')">
-                    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80" alt="Práctica en vivo">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80" alt="Corte 2">
                     <div class="gallery-overlay">
-                        <span class="gallery-tag">100% Práctico</span>
-                        <div class="gallery-title">Examen Final Aprobado</div>
-                        <div class="gallery-sub">Prácticas reales en el salón Fénix</div>
+                        <span class="gallery-tag">Barba</span>
+                        <div class="gallery-title">Ritual de Barba</div>
+                        <div class="gallery-sub">Perfilado y simetría profesional</div>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=600&q=80" alt="Corte 3">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">Fade</span>
+                        <div class="gallery-title">High Fade</div>
+                        <div class="gallery-sub">Degradado alto de precisión</div>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=80" alt="Egresados 1">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">Academia</span>
+                        <div class="gallery-title">Entrega de Diplomas</div>
+                        <div class="gallery-sub">Nuevos profesionales recibidos</div>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80" alt="Práctica">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">Clases</span>
+                        <div class="gallery-title">Práctica en Vivo</div>
+                        <div class="gallery-sub">Aprendizaje real en el salón</div>
                     </div>
                 </div>
             </div>
@@ -949,7 +972,6 @@
             const activeNav = btnElement || document.getElementById('nav-' + secName);
             if (activeNav) activeNav.classList.add('active');
 
-            // Ocultar o mostrar botones públicos según la sección
             const publicActions = document.getElementById('public-actions');
             if (secName === 'finanzas') {
                 publicActions.style.display = 'none';
