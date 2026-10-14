@@ -841,22 +841,22 @@
         <section id="sec-curso" class="section-view">
             <h2 class="section-title">Curso de Barbería</h2>
             <div class="course-banner">
-                <h3>Formación Profesional Inicial</h3>
+                <h3>Formación Profesional (Duración: 3 Meses)</h3>
                 <p style="color: var(--text-muted); font-size: 0.9rem;">Aprendé desde cero las técnicas más pedidas hoy en día con práctica real y salida laboral inmediata.</p>
                 <ul class="course-list">
                     <li>✅ Uso correcto de máquinas, tijeras y navaja</li>
-                    <li>✅ Técnicas limpias de Taper Fade y Degradados</li>
+                    <li>✅ Técnicas limpias de Degradados y Freestyle</li>
                     <li>✅ Perfilado, visagismo y ritual de barba</li>
                     <li>✅ Entrega de certificado al finalizar</li>
                 </ul>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); flex-wrap:wrap; gap:10px;">
                     <div>
-                        <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Valor de inscripción / cuota</span>
-                        <strong style="font-size:1.3rem; color:var(--accent-gold);" id="curso-price-display">$25.000</strong>
+                        <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Valor por mes</span>
+                        <strong style="font-size:1.3rem; color:var(--accent-gold);" id="curso-price-display">$75.000</strong>
                     </div>
                     <div class="stock-controls admin-only">
                         <button class="btn-edit-price" onclick="editCursoPrice()">✏️ Precio</button>
-                        <button class="btn-sell" onclick="cobrarCurso()">+ Cobrar Curso</button>
+                        <button class="btn-sell" onclick="cobrarCurso()">+ Cobrar Cuota</button>
                     </div>
                 </div>
             </div>
@@ -898,8 +898,8 @@
                         <option value="Gasto">🧾 Insumos / Gasto</option>
                     </select>
                 </div>
-                <input type="text" id="tx-desc" placeholder="Detalle (ej: Taper Fade, Compra de filos, etc.)">
-                <input type="number" id="tx-amount" placeholder="Monto en pesos (ej: 8000)">
+                <input type="text" id="tx-desc" placeholder="Detalle (ej: Degradado, Compra de filos, etc.)">
+                <input type="number" id="tx-amount" placeholder="Monto en pesos (ej: 15000)">
                 <button class="btn-gold" onclick="addManualTransaction()">Registrar en Caja</button>
             </div>
 
@@ -918,7 +918,7 @@
         </div>
 
         <footer>
-            <div>📍 C. Ushuaia - Resistencia, Chaco</div>
+            <div>📍 C. Ushuaia y Pasaje Mansilla - Resistencia, Chaco</div>
             <div>📞 Tel: +54 362 4595042</div>
             <div style="font-size: 0.75rem; opacity: 0.6; margin-top: 6px;">© 2026 Fenix Studio - Todos los derechos reservados</div>
         </footer>
@@ -928,20 +928,21 @@
         const CLAVE_POR_DEFECTO = "1234";
 
         const defaultCortes = [
-            { id: 1, name: "Taper Fade", desc: "Degradado limpio en patillas y nuca", price: 8000 },
-            { id: 2, name: "Degradado (Fade)", desc: "Corte completo con transición a elección", price: 7000 },
-            { id: 3, name: "Perfilado de Barba", desc: "Diseño, simetría y rebaje prolijo", price: 3000 }
+            { id: 1, name: "DEGRADADO (FADE)", desc: "Corte completo con transición limpia", price: 15000 },
+            { id: 2, name: "DEGRADADO (FADE) + BARBA", desc: "Corte completo y ritual de perfilado", price: 18000 },
+            { id: 3, name: "DISEÑO FREESTYLE", desc: "Diseño y trazos personalizados", price: 18000 },
+            { id: 4, name: "CORTE V.I.P A DOMICILIO", desc: "Servicio exclusivo a domicilio", price: 20000 }
         ];
 
         const defaultProductos = [
-            { id: 101, name: "Cera Modeladora Mate", price: 6500, stock: 8 },
+            { id: 101, name: "Cera Modeladora Mate", price: 15000, stock: 8 },
             { id: 102, name: "Polvo Texturizador", price: 7500, stock: 5 },
             { id: 103, name: "Aceite para Barba", price: 5500, stock: 4 }
         ];
 
         let cortes = JSON.parse(localStorage.getItem('fenix_cortes')) || defaultCortes;
         let productos = JSON.parse(localStorage.getItem('fenix_productos')) || defaultProductos;
-        let cursoPrecio = parseFloat(localStorage.getItem('fenix_curso_precio')) || 25000;
+        let cursoPrecio = parseFloat(localStorage.getItem('fenix_curso_precio')) || 75000;
         let finanzas = JSON.parse(localStorage.getItem('fenix_finanzas')) || [];
         let isAdmin = false;
 
@@ -1143,7 +1144,7 @@
 
         function editCursoPrice() {
             if (!isAdmin) return;
-            const nuevo = prompt("Nuevo valor de inscripción / cuota del Curso:", cursoPrecio);
+            const nuevo = prompt("Nuevo valor por mes del Curso:", cursoPrecio);
             const num = parseFloat(nuevo);
             if (!isNaN(num) && num >= 0) {
                 cursoPrecio = num;
@@ -1154,7 +1155,7 @@
 
         function cobrarCurso() {
             if (!isAdmin) return;
-            quickRegister('Ingreso', 'Curso', 'Inscripción Curso de Barbería', cursoPrecio);
+            quickRegister('Ingreso', 'Curso', 'Cuota Curso de Barbería (3 Meses)', cursoPrecio);
         }
 
         function quickRegister(type, category, desc, amount, silent = false) {
