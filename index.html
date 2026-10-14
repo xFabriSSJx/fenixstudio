@@ -9,7 +9,7 @@
     <style>
         :root {
             --bg-dark: #0d0d0f;
-            --bg-card: #16161a;
+            --bg-card: rgba(22, 22, 26, 0.90);
             --bg-input: #202026;
             --accent-gold: #e5a93c;
             --accent-green: #25D366;
@@ -27,8 +27,11 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
-            background-image: radial-gradient(circle at 50% 0%, #261b12 0%, var(--bg-dark) 60%);
+            /* AQUÍ SE CARGA TU FOTO DE FONDO CON UN FILTRO OSCURO ENCIMA */
+            background: linear-gradient(rgba(13, 13, 15, 0.88), rgba(13, 13, 15, 0.92)), url('fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--text-main);
             min-height: 100vh;
             padding-top: 75px;
@@ -43,7 +46,7 @@
             left: 0;
             width: 100%;
             height: 65px;
-            background: rgba(13, 13, 15, 0.92);
+            background: rgba(13, 13, 15, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
@@ -122,7 +125,8 @@
             left: -290px;
             width: 280px;
             height: 100%;
-            background-color: var(--bg-card);
+            background-color: #16161acc;
+            backdrop-filter: blur(12px);
             border-right: 1px solid var(--border-subtle);
             z-index: 1002;
             padding: 25px 18px;
@@ -219,7 +223,7 @@
 
         /* BARRA DE CAMBIO DE CLAVE CUANDO SOS ADMIN */
         .admin-bar {
-            background: rgba(229, 169, 60, 0.12);
+            background: rgba(229, 169, 60, 0.15);
             border: 1px solid var(--accent-gold);
             border-radius: 12px;
             padding: 10px 14px;
@@ -227,6 +231,7 @@
             justify-content: space-between;
             align-items: center;
             font-size: 0.85rem;
+            backdrop-filter: blur(5px);
         }
 
         .btn-change-pin {
@@ -379,11 +384,12 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.25s ease;
+            backdrop-filter: blur(5px);
         }
 
         .quick-card:hover {
             border-color: var(--accent-gold);
-            background: rgba(229, 169, 60, 0.1);
+            background: rgba(229, 169, 60, 0.15);
             transform: translateY(-3px);
         }
 
@@ -397,7 +403,8 @@
 
         .card {
             background-color: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 14px;
             padding: 16px 18px;
             display: flex;
@@ -516,7 +523,8 @@
         }
 
         .admin-box {
-            background: #1b1b22;
+            background: rgba(27, 27, 34, 0.92);
+            backdrop-filter: blur(8px);
             border: 1px dashed var(--accent-gold);
             border-radius: 14px;
             padding: 16px;
@@ -561,7 +569,8 @@
 
         /* --- SECCIÓN CURSO --- */
         .course-banner {
-            background: linear-gradient(145deg, #1b1610, #16161a);
+            background: linear-gradient(145deg, rgba(27, 22, 16, 0.92), rgba(22, 22, 26, 0.92));
+            backdrop-filter: blur(8px);
             border: 1px solid var(--border-subtle);
             border-radius: 16px;
             padding: 22px;
@@ -596,6 +605,7 @@
 
         .stat-card {
             background: var(--bg-card);
+            backdrop-filter: blur(8px);
             border: 1px solid rgba(255,255,255,0.07);
             padding: 12px 10px;
             border-radius: 12px;
@@ -620,6 +630,7 @@
 
         .tx-item {
             background: var(--bg-card);
+            backdrop-filter: blur(8px);
             padding: 12px 15px;
             border-radius: 10px;
             display: flex;
@@ -659,6 +670,7 @@
 
         .btn-instagram {
             background-color: var(--bg-card);
+            backdrop-filter: blur(8px);
             color: var(--text-main);
             border: 1px solid rgba(255, 255, 255, 0.12);
         }
@@ -999,7 +1011,7 @@
             } else {
                 isAdmin = false;
                 document.body.classList.remove('is-admin');
-                document.getElementById('adminBtn').classList.remove('active');
+                document.getElementById('adminBtn').classList.add('active');
                 document.getElementById('adminBtn').innerText = "🔒 Admin";
                 if (document.getElementById('sec-finanzas').classList.contains('active')) {
                     showSection('inicio');
