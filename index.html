@@ -43,35 +43,34 @@
       overflow-x: hidden;
     }
 
-    /* INTERRUPTOR NATIVO OCULTO PARA LAS 3 BARRAS (INFALIBLE) */
-    #chkMenu {
-      display: none !important;
-    }
-
-    /* CABECERA PRINCIPAL CON LAS 3 BARRAS */
+    /* CABECERA PRINCIPAL OPTIMIZADA PARA CELULAR Y PC */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(9, 9, 12, 0.95);
+      background: rgba(9, 9, 12, 0.96);
       border-bottom: 1px solid var(--border);
-      padding: 12px 20px;
+      padding: 10px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
     }
 
     .header-left {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
+      min-width: 0;
     }
 
-    /* BOTÓN DE LAS 3 BARRAS INTERACTIVO */
+    /* BOTÓN DE LAS 3 BARRAS (TAMAÑO FIJO SIN DEFORMARSE) */
     .menu-toggle {
-      width: 46px;
-      height: 46px;
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      min-height: 42px;
+      flex-shrink: 0;
       border-radius: 10px;
       background: var(--bg-card-alt);
       border: 1px solid var(--gold);
@@ -82,20 +81,12 @@
       gap: 5px;
       cursor: pointer;
       position: relative;
-      z-index: 1002;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
-      transition: 0.2s;
-    }
-
-    .menu-toggle:hover,
-    .menu-toggle:active {
-      background: rgba(212, 175, 55, 0.2);
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.45);
     }
 
     .menu-toggle .bar {
-      width: 22px;
+      width: 20px;
       height: 2.5px;
       background-color: var(--gold);
       border-radius: 2px;
@@ -120,12 +111,6 @@
       justify-content: center;
       box-shadow: 0 0 8px rgba(239, 68, 68, 0.9);
       pointer-events: none;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.12); }
     }
 
     .brand {
@@ -134,11 +119,17 @@
       gap: 10px;
       cursor: pointer;
       user-select: none;
+      min-width: 0;
     }
 
+    /* CÍRCULO FS PERFECTAMENTE REDONDO SIEMPRE (NUNCA OVALADO) */
     .brand-logo {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      min-height: 42px;
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--gold), #8a6d1b);
       display: flex;
@@ -146,73 +137,95 @@
       justify-content: center;
       font-weight: 900;
       color: #000;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       box-shadow: 0 0 14px rgba(212, 175, 55, 0.4);
     }
 
+    .brand-text {
+      min-width: 0;
+    }
+
     .brand-text h1 {
-      font-size: 1.18rem;
-      letter-spacing: 1px;
+      font-size: 1.05rem;
+      letter-spacing: 0.8px;
       color: var(--gold);
       text-transform: uppercase;
+      line-height: 1.15;
     }
 
     .brand-text span {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       color: var(--text-muted);
       display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
+    /* BOTONES SUPERIORES: SOLO RESERVAR TURNO Y MI CUENTA */
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      gap: 6px;
+      flex-shrink: 0;
     }
 
-    /* MENÚ LATERAL DESLIZANTE (SE ACTIVA POR CSS :checked Y POR CLASE .open) */
+    @media (max-width: 480px) {
+      header {
+        padding: 10px 10px;
+      }
+      .brand-text span {
+        display: none;
+      }
+      .brand-text h1 {
+        font-size: 0.95rem;
+      }
+      .nav-actions .btn {
+        padding: 8px 10px;
+        font-size: 0.78rem;
+      }
+    }
+
+    /* MENÚ LATERAL DESLIZANTE Y BORDE OSCURO (CIERRE CORREGIDO) */
     .drawer-overlay {
       position: fixed;
       top: 0;
       left: 0;
+      right: 0;
+      bottom: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.75);
-      z-index: 2000;
+      background: rgba(0, 0, 0, 0.78);
+      z-index: 3000;
       display: none;
-      opacity: 0;
       cursor: pointer;
-      transition: opacity 0.25s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .drawer-overlay.open {
+      display: block !important;
     }
 
     .side-drawer {
       position: fixed;
       top: 0;
       left: 0;
-      width: 310px;
-      max-width: 85vw;
+      width: 300px;
+      max-width: 82vw;
       height: 100vh;
       background: #111117;
       border-right: 1px solid var(--gold);
-      z-index: 2001;
+      z-index: 3001;
       transform: translateX(-105%);
-      transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.26s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 20px 16px;
+      padding: 18px 14px;
       overflow-y: auto;
-      box-shadow: 8px 0 30px rgba(0, 0, 0, 0.85);
+      box-shadow: 8px 0 30px rgba(0, 0, 0, 0.9);
     }
 
-    /* Regla directa: cuando se tocan las 3 barras, el menú se desliza sí o sí */
-    #chkMenu:checked ~ .drawer-overlay,
-    .drawer-overlay.open {
-      display: block !important;
-      opacity: 1 !important;
-    }
-
-    #chkMenu:checked ~ .side-drawer,
     .side-drawer.open {
       transform: translateX(0%) !important;
     }
@@ -230,15 +243,24 @@
       background: var(--bg-card-alt);
       border: 1px solid var(--gold);
       color: var(--gold);
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      min-height: 40px;
+      flex-shrink: 0;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: bold;
       display: flex;
       align-items: center;
       justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .drawer-close:active {
+      background: var(--gold);
+      color: #000;
     }
 
     .drawer-nav {
@@ -294,7 +316,6 @@
       gap: 6px;
     }
 
-    /* BOTÓN DE PERSONAL DISCRETO Y FINO */
     .staff-subtle-link {
       background: transparent;
       border: none;
@@ -306,7 +327,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: color 0.2s;
     }
 
     .staff-subtle-link:hover {
@@ -328,11 +348,11 @@
       gap: 6px;
       transition: all 0.2s ease;
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .btn:hover {
       border-color: var(--gold);
-      transform: translateY(-1px);
     }
 
     .btn-gold {
@@ -340,11 +360,6 @@
       color: #000;
       border: none;
       font-weight: 700;
-    }
-
-    .btn-gold:hover {
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
     }
 
     .btn-success { background: var(--success); color: #fff; border: none; }
@@ -374,43 +389,37 @@
       max-width: 1140px;
       width: 100%;
       margin: 0 auto;
-      padding: 22px 18px;
+      padding: 20px 14px;
       flex: 1;
     }
 
     .section {
       display: none;
-      animation: fadeIn 0.25s ease;
     }
 
     .section.active {
       display: block;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* PORTADA CON TU IMAGEN fondodelapagina.jpeg */
+    /* PORTADA PRINCIPAL LIMPIA CON fondodelapagina.jpeg */
     .hero-banner {
       position: relative;
       background-image:
-        linear-gradient(180deg, rgba(9, 9, 12, 0.45) 0%, rgba(9, 9, 12, 0.9) 100%),
+        linear-gradient(180deg, rgba(9, 9, 12, 0.45) 0%, rgba(9, 9, 12, 0.92) 100%),
         var(--hero-bg),
         url('fondodelapagina.jpg');
       background-size: cover;
       background-position: center;
       border: 1px solid var(--gold);
       border-radius: 18px;
-      padding: 52px 24px;
+      padding: 44px 20px;
       text-align: center;
-      margin-bottom: 26px;
+      margin-bottom: 24px;
       box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
     }
 
     .hero-banner h2 {
-      font-size: 2.3rem;
+      font-size: 2.1rem;
       color: var(--gold);
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -420,51 +429,43 @@
 
     .hero-banner p {
       color: #f4f4f6;
-      max-width: 680px;
-      margin: 0 auto 24px;
-      font-size: 1.02rem;
-      line-height: 1.55;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+      max-width: 660px;
+      margin: 0 auto 22px;
+      font-size: 0.98rem;
+      line-height: 1.5;
     }
 
     .hero-buttons {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    .hero-quick-links {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 14px;
     }
 
     .btn-cta-large {
-      font-size: 1rem;
-      padding: 13px 26px;
+      font-size: 0.96rem;
+      padding: 12px 22px;
       border-radius: 12px;
+      white-space: normal;
+      text-align: center;
     }
 
     /* GRILLAS Y TARJETAS */
     .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
     }
 
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
     }
 
     .grid-4 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
     }
 
@@ -473,15 +474,15 @@
       backdrop-filter: blur(10px);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 22px;
+      padding: 18px;
+      margin-bottom: 20px;
     }
 
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
       gap: 10px;
@@ -489,7 +490,7 @@
     }
 
     .card-title {
-      font-size: 1.14rem;
+      font-size: 1.1rem;
       color: var(--gold);
       font-weight: 700;
       display: flex;
@@ -506,24 +507,18 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-
-    .cut-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--gold);
     }
 
     .cut-card img {
       width: 100%;
-      height: 180px;
+      height: 175px;
       object-fit: cover;
       border-bottom: 1px solid var(--border);
       background: #1a1a22;
     }
 
     .cut-card-body {
-      padding: 15px;
+      padding: 14px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -531,7 +526,7 @@
     }
 
     .cut-price {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: var(--gold);
     }
@@ -539,8 +534,8 @@
     /* GALERÍA FENIX */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
     }
 
     .gallery-item {
@@ -556,11 +551,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.06);
     }
 
     .gallery-caption {
@@ -569,8 +559,8 @@
       left: 0;
       right: 0;
       background: linear-gradient(transparent, rgba(0,0,0,0.9));
-      padding: 18px 10px 8px;
-      font-size: 0.84rem;
+      padding: 16px 8px 8px;
+      font-size: 0.8rem;
       color: #fff;
       font-weight: 600;
     }
@@ -582,7 +572,7 @@
       padding: 14px 16px;
       border-radius: 8px;
       margin-bottom: 18px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       line-height: 1.48;
       color: #e5e7eb;
     }
@@ -609,28 +599,22 @@
       font-size: 0.94rem;
     }
 
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--gold);
-    }
-
     .slots-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+      gap: 8px;
       margin-top: 8px;
     }
 
     .slot-item {
-      padding: 10px;
+      padding: 10px 6px;
       border-radius: 8px;
       border: 1px solid var(--border);
       background: rgba(9, 9, 12, 0.85);
       text-align: center;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.9rem;
-      transition: 0.2s;
+      font-size: 0.88rem;
     }
 
     .slot-item.selected {
@@ -662,7 +646,7 @@
     .status-pill {
       padding: 4px 10px;
       border-radius: 999px;
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
     }
@@ -672,10 +656,9 @@
     .status-listo { background: rgba(16, 185, 129, 0.2); color: #34d399; }
     .status-pendiente { background: rgba(239, 68, 68, 0.2); color: #f87171; }
 
-    /* RESUMEN FINANCIERO */
     .finance-summary {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
       gap: 12px;
       margin-bottom: 16px;
     }
@@ -691,7 +674,7 @@
     .staff-banner {
       background: linear-gradient(90deg, #171721, #231d10);
       border: 1px solid var(--gold);
-      padding: 12px 18px;
+      padding: 12px 16px;
       margin-bottom: 20px;
       border-radius: 12px;
       display: none;
@@ -703,17 +686,42 @@
 
     .staff-banner.active { display: flex; }
 
-    footer {
-      background: rgba(9, 9, 12, 0.95);
-      border-top: 1px solid var(--border);
-      padding: 22px 20px;
+    /* SECCIÓN INFERIOR DE CONTACTO (IG, WP, UBICACIÓN ABAJO) */
+    .bottom-contact-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .bottom-contact-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .bottom-contact-buttons a {
+      justify-content: center;
+      padding: 12px 14px;
+      font-size: 0.9rem;
+      white-space: normal;
       text-align: center;
-      font-size: 0.82rem;
+    }
+
+    footer {
+      background: rgba(9, 9, 12, 0.96);
+      border-top: 1px solid var(--border);
+      padding: 22px 16px;
+      text-align: center;
+      font-size: 0.8rem;
       color: var(--text-muted);
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
@@ -727,18 +735,14 @@
       background: none;
       border: none;
       color: #52525b;
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       cursor: pointer;
     }
-
-    footer button:hover { color: var(--gold); }
   </style>
 
-  <!-- FUNCIONES PRINCIPALES DEL MENÚ EN HEAD PARA QUE ESTÉN ACTIVAS AL INSTANTE -->
+  <!-- FUNCIONES DEL MENÚ LATERAL (ABRIR Y CERRAR CON X O TOCANDO AFUERA) -->
   <script>
     function abrirMenuLateral() {
-      var chk = document.getElementById("chkMenu");
-      if (chk) chk.checked = true;
       var drawer = document.getElementById("sideDrawer");
       var overlay = document.getElementById("drawerOverlay");
       if (drawer) drawer.classList.add("open");
@@ -746,12 +750,20 @@
     }
 
     function cerrarMenuLateral() {
-      var chk = document.getElementById("chkMenu");
-      if (chk) chk.checked = false;
       var drawer = document.getElementById("sideDrawer");
       var overlay = document.getElementById("drawerOverlay");
       if (drawer) drawer.classList.remove("open");
       if (overlay) overlay.classList.remove("open");
+    }
+
+    function toggleMenuLateral() {
+      var drawer = document.getElementById("sideDrawer");
+      if (!drawer) return;
+      if (drawer.classList.contains("open")) {
+        cerrarMenuLateral();
+      } else {
+        abrirMenuLateral();
+      }
     }
 
     function cambiarSeccion(id) {
@@ -779,11 +791,8 @@
 </head>
 <body>
 
-  <!-- CHECKBOX NATIVO QUE CONTROLA LAS 3 BARRAS SIN FALLAR JAMÁS -->
-  <input type="checkbox" id="chkMenu" aria-hidden="true" />
-
-  <!-- FONDO OSCURO AL ABRIR EL MENÚ (TOCAR AFUERA CIERRA EL MENÚ) -->
-  <label for="chkMenu" class="drawer-overlay" id="drawerOverlay" onclick="cerrarMenuLateral()"></label>
+  <!-- BORDE OSCURO EXTERIOR: AL TOCARLO SE CIERRA EL MENÚ -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="cerrarMenuLateral()"></div>
 
   <!-- MENÚ LATERAL DESLIZANTE DE LAS 3 BARRAS -->
   <aside class="side-drawer" id="sideDrawer">
@@ -796,7 +805,8 @@
             <span>Menú Interactivo</span>
           </div>
         </div>
-        <label for="chkMenu" class="drawer-close" onclick="cerrarMenuLateral()">✕</label>
+        <!-- BOTÓN X CORREGIDO PARA CERRAR AL INSTANTE -->
+        <button type="button" class="drawer-close" onclick="cerrarMenuLateral()" aria-label="Cerrar menú">✕</button>
       </div>
 
       <nav class="drawer-nav">
@@ -826,20 +836,23 @@
           <span>👤 Mi Cuenta / Crear Usuario</span>
         </button>
 
-        <!-- Visible solo cuando se desbloquea Personal -->
         <button type="button" class="drawer-item hidden" id="drawerItemPersonal" data-sec="admin" onclick="cambiarSeccion('admin')">
           <span style="color:var(--gold);">💼 Panel de Personal</span>
           <span class="badge hidden" id="badgeDrawerPersonal">0</span>
         </button>
       </nav>
 
-      <!-- INSTAGRAM @fenixstudio25 Y UBICACIÓN REAL EN EL MENÚ DE 3 BARRAS -->
+      <!-- ACCESOS RÁPIDOS EN EL MENÚ LATERAL -->
       <div class="drawer-socials">
-        <a id="linkIgDrawer" href="https://www.instagram.com/fenixstudio25/" target="_blank" class="drawer-item">
+        <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="drawer-item">
           <span>📸 Instagram</span>
-          <span style="color:var(--gold); font-size:0.8rem;" id="txtIgDrawer">@fenixstudio25</span>
+          <span style="color:var(--gold); font-size:0.8rem;">@fenixstudio25</span>
         </a>
-        <a id="linkUbiDrawer" href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="drawer-item">
+        <a href="https://wa.me/543624595042" target="_blank" class="drawer-item">
+          <span>💬 WhatsApp Consultas</span>
+          <span style="color:var(--gold); font-size:0.8rem;">362 4595042</span>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="drawer-item">
           <span>📍 C. Ushuaia y Pje. Mansilla</span>
           <span style="color:var(--gold); font-size:0.78rem;">Mapa</span>
         </a>
@@ -856,29 +869,26 @@
     </div>
   </aside>
 
-  <!-- CABECERA PRINCIPAL -->
+  <!-- CABECERA PRINCIPAL LIMPIA: 3 BARRAS + CÍRCULO FS REDONDO + RESERVAR TURNO Y MI CUENTA -->
   <header>
     <div class="header-left">
-      <!-- BOTÓN DE LAS 3 BARRAS VINCULADO NATIVAMENTE A #chkMenu -->
-      <label for="chkMenu" class="menu-toggle" id="btnMenuTresBarras" title="Abrir menú">
+      <button type="button" class="menu-toggle" id="btnMenuTresBarras" onclick="toggleMenuLateral()" title="Abrir menú">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="menu-dot hidden" id="badgeMenuHamburguesa">0</span>
-      </label>
+      </button>
 
       <div class="brand" onclick="toqueSecretoLogo()">
         <div class="brand-logo">FS</div>
         <div class="brand-text">
           <h1>Fenix Studio</h1>
-          <span>C. Ushuaia y Pasaje Mansilla</span>
+          <span>Barbería & Academia</span>
         </div>
       </div>
     </div>
 
     <div class="nav-actions">
-      <a id="btnHeaderIg" href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn">📸 @fenixstudio25</a>
-      <a id="btnHeaderUbi" href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="btn">📍 Ubicación</a>
       <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">
         📅 Reservar Turno
       </button>
@@ -909,11 +919,11 @@
     </div>
 
     <!-- =====================================================================
-         1. SECCIÓN INICIO (PORTADA CON fondodelapagina.jpeg + CORTES + GALERÍA + CURSO + UBICACIÓN)
+         1. SECCIÓN INICIO (PORTADA + CORTES + GALERÍA + CURSO + BOTONES IG/WP/UBI ABAJO)
          ===================================================================== -->
     <section id="sec-inicio" class="section active">
       
-      <!-- PORTADA PRINCIPAL CON fondodelapagina.jpeg -->
+      <!-- PORTADA PRINCIPAL -->
       <div class="hero-banner">
         <h2>Fenix Studio</h2>
         <p>Barbería & Academia de Estilo en Resistencia, Chaco. Reservá tu horario en nuestra agenda online, conocé nuestro curso profesional de 3 meses o sumate a la comunidad para sorteos y beneficios.</p>
@@ -928,24 +938,68 @@
             ✨ Crear mi Usuario
           </button>
         </div>
-
-        <div class="hero-quick-links">
-          <a id="heroBtnIg" href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn">
-            📸 Instagram: <strong id="heroTxtIg">@fenixstudio25</strong>
-          </a>
-          <a id="heroBtnUbi" href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="btn">
-            📍 Dirección: <strong id="heroTxtUbi">C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco</strong>
-          </a>
-        </div>
       </div>
 
-      <!-- TIPOS DE CORTES Y SUS PRECIOS EN PÁGINA PRINCIPAL -->
+      <!-- TIPOS DE CORTES Y SUS PRECIOS (PRECARGADOS PARA QUE SE VEAN SIEMPRE) -->
       <div class="card">
         <div class="card-header">
           <div class="card-title">✂️ Tipos de Cortes y sus Precios</div>
           <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
         </div>
-        <div class="grid-4" id="grillaCortesInicio"></div>
+        <div class="grid-4" id="grillaCortesInicio">
+          <div class="cut-card">
+            <img src="corte1.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80';" alt="Degradado (Fade)" />
+            <div class="cut-card-body">
+              <div>
+                <strong style="font-size:1.04rem; display:block; margin-bottom:6px; color:var(--gold);">Degradado (Fade)</strong>
+                <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">Degradado limpio (Low, Mid, High o Taper Fade) con terminación a navaja y peinado.</p>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
+                <span class="cut-price">$15.000</span>
+                <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(1)">Reservar</button>
+              </div>
+            </div>
+          </div>
+          <div class="cut-card">
+            <img src="corte2.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80';" alt="Degradado + Barba" />
+            <div class="cut-card-body">
+              <div>
+                <strong style="font-size:1.04rem; display:block; margin-bottom:6px; color:var(--gold);">Degradado + Barba</strong>
+                <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">Corte degradado completo más perfilado, rebaje y ritual de barba a navaja.</p>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
+                <span class="cut-price">$18.000</span>
+                <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(2)">Reservar</button>
+              </div>
+            </div>
+          </div>
+          <div class="cut-card">
+            <img src="corte3.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80';" alt="Diseño Freestyle" />
+            <div class="cut-card-body">
+              <div>
+                <strong style="font-size:1.04rem; display:block; margin-bottom:6px; color:var(--gold);">Diseño Freestyle</strong>
+                <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">Degradado más diseño artístico Freestyle a mano alzada con navaja.</p>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
+                <span class="cut-price">$18.000</span>
+                <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(3)">Reservar</button>
+              </div>
+            </div>
+          </div>
+          <div class="cut-card">
+            <img src="corte4.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80';" alt="Corte V.I.P. a Domicilio" />
+            <div class="cut-card-body">
+              <div>
+                <strong style="font-size:1.04rem; display:block; margin-bottom:6px; color:var(--gold);">Corte V.I.P. a Domicilio</strong>
+                <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">Atención exclusiva y personalizada en tu domicilio con todo el equipamiento profesional.</p>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
+                <span class="cut-price">$20.000</span>
+                <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(4)">Reservar</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- GALERÍA FENIX EN LA PÁGINA PRINCIPAL -->
@@ -954,7 +1008,24 @@
           <div class="card-title">📸 Galería Fenix — Fotos de Nuestros Trabajos</div>
           <button type="button" class="btn" onclick="cambiarSeccion('galeria')">Ver Galería Completa</button>
         </div>
-        <div class="gallery-grid" id="galeriaPreviewInicio"></div>
+        <div class="gallery-grid" id="galeriaPreviewInicio">
+          <div class="gallery-item">
+            <img src="corte1.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80';" alt="Degradado / Taper Fade" />
+            <div class="gallery-caption">Degradado / Taper Fade</div>
+          </div>
+          <div class="gallery-item">
+            <img src="corte2.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80';" alt="Degradado + Barba" />
+            <div class="gallery-caption">Degradado + Perfilado de Barba</div>
+          </div>
+          <div class="gallery-item">
+            <img src="corte3.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80';" alt="Diseño Freestyle" />
+            <div class="gallery-caption">Diseño Freestyle Profesional</div>
+          </div>
+          <div class="gallery-item">
+            <img src="foto1.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=80';" alt="Fenix Studio" />
+            <div class="gallery-caption">Trabajo en Fenix Studio</div>
+          </div>
+        </div>
       </div>
 
       <!-- QUÉ TE DA EL CURSO (3 MESES - $75.000) + PRODUCTOS -->
@@ -978,27 +1049,42 @@
 
         <div class="card">
           <div class="card-header">
-            <div class="card-title">🧴 Productos Oficiales & Ubicación</div>
-            <button type="button" class="btn" onclick="cambiarSeccion('productos')">Ver Stock</button>
+            <div class="card-title">🧴 Productos Oficiales en Stock</div>
+            <button type="button" class="btn" onclick="cambiarSeccion('productos')">Ver Catálogo</button>
           </div>
-          <div id="resumenProductosInicio"></div>
+          <div id="resumenProductosInicio">
+            <div class="item-row">
+              <div><strong>Cera Modeladora Mate</strong><span style="font-size:0.8rem; color:var(--text-muted); display:block;">Stock disponible: 10 u.</span></div>
+              <strong style="color:var(--gold);">$15.000</strong>
+            </div>
+            <div class="item-row">
+              <div><strong>Polvo Texturizador</strong><span style="font-size:0.8rem; color:var(--text-muted); display:block;">Stock disponible: 12 u.</span></div>
+              <strong style="color:var(--gold);">$7.500</strong>
+            </div>
+            <div class="item-row">
+              <div><strong>Aceite para Barba</strong><span style="font-size:0.8rem; color:var(--text-muted); display:block;">Stock disponible: 8 u.</span></div>
+              <strong style="color:var(--gold);">$5.500</strong>
+            </div>
+          </div>
+        </div>
+      </div>
 
-          <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--border);">
-            <div class="item-row">
-              <div>
-                <strong>📍 C. Ushuaia y Pasaje Mansilla</strong>
-                <div style="font-size:0.82rem; color:var(--text-muted);">Resistencia, Chaco</div>
-              </div>
-              <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="btn btn-gold">📍 Abrir Mapa</a>
-            </div>
-            <div class="item-row">
-              <div>
-                <strong>📸 Instagram Oficial</strong>
-                <div style="font-size:0.82rem; color:var(--text-muted);">@fenixstudio25</div>
-              </div>
-              <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn">Ver IG</a>
-            </div>
-          </div>
+      <!-- BOTONES DE IG, WHATSAPP Y UBICACIÓN MANDADOS HACIA ABAJO COMO PEDISTE -->
+      <div class="bottom-contact-bar">
+        <div class="card-title" style="justify-content:center; margin-bottom:6px;">📍 Contacto, Redes y Ubicación</div>
+        <p style="text-align:center; font-size:0.86rem; color:var(--text-muted);">
+          Encontranos en C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco
+        </p>
+        <div class="bottom-contact-buttons">
+          <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn">
+            📸 Instagram: <strong>@fenixstudio25</strong>
+          </a>
+          <a href="https://wa.me/543624595042" target="_blank" class="btn">
+            💬 WhatsApp: <strong>+54 362 4595042</strong>
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="btn btn-gold">
+            📍 Ubicación: <strong>C. Ushuaia y Pasaje Mansilla</strong>
+          </a>
         </div>
       </div>
     </section>
@@ -1058,7 +1144,12 @@
           <div>
             <div class="form-group">
               <label>1. Seleccioná el Tipo de Corte</label>
-              <select id="turnoServicio"></select>
+              <select id="turnoServicio">
+                <option value="1">Degradado (Fade) — $15.000</option>
+                <option value="2">Degradado + Barba — $18.000</option>
+                <option value="3">Diseño Freestyle — $18.000</option>
+                <option value="4">Corte V.I.P. a Domicilio — $20.000</option>
+              </select>
             </div>
 
             <div class="form-group">
@@ -1226,7 +1317,7 @@
     </section>
 
     <!-- =====================================================================
-         9. PANEL DE PERSONAL COMPLETO (CON TODO RESTAURADO + LO NUEVO)
+         9. PANEL DE PERSONAL COMPLETO
          ===================================================================== -->
     <section id="sec-admin" class="section">
 
@@ -1443,13 +1534,15 @@
 
   </div>
 
-  <!-- PIE DE PÁGINA CON DATOS REALES Y ACCESO PERSONAL SUTIL -->
+  <!-- PIE DE PÁGINA CON IG, WHATSAPP, MAPA Y ACCESO PERSONAL SUTIL -->
   <footer>
     <span>© 2026 Fenix Studio — C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco</span>
     <span>•</span>
     <a href="https://www.instagram.com/fenixstudio25/" target="_blank">@fenixstudio25</a>
     <span>•</span>
-    <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank">Mapa</a>
+    <a href="https://wa.me/543624595042" target="_blank">WhatsApp</a>
+    <span>•</span>
+    <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank">Ubicación</a>
     <span>•</span>
     <button type="button" onclick="accesoPersonalLogin()">Acceso Personal</button>
   </footer>
@@ -1461,61 +1554,58 @@
       "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"
     ];
 
-    /* BASE DE DATOS CON TODOS LOS DATOS REALES DE FENIX STUDIO */
-    let estado = {
-      config: {
-        bgImage: "fondodelapagina.jpeg",
-        igUser: "@fenixstudio25",
-        igUrl: "https://www.instagram.com/fenixstudio25/",
-        ubiTexto: "C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco",
-        ubiUrl: "https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco",
-        telefono: "+54 362 4595042"
+    const SERVICIOS_DEFAULT = [
+      {
+        id: 1,
+        nombre: "Degradado (Fade)",
+        precio: 15000,
+        desc: "Degradado limpio (Low, Mid, High o Taper Fade) con terminación a navaja y peinado.",
+        img: "corte1.jpeg",
+        fallbackImg: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80"
       },
-      servicios: [
-        {
-          id: 1,
-          nombre: "Degradado (Fade)",
-          precio: 15000,
-          desc: "Degradado limpio (Low, Mid, High o Taper Fade) con terminación a navaja y peinado.",
-          img: "corte1.jpeg",
-          fallbackImg: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80"
-        },
-        {
-          id: 2,
-          nombre: "Degradado + Barba",
-          precio: 18000,
-          desc: "Corte degradado completo más perfilado, rebaje y ritual de barba a navaja.",
-          img: "corte2.jpeg",
-          fallbackImg: "https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80"
-        },
-        {
-          id: 3,
-          nombre: "Diseño Freestyle",
-          precio: 18000,
-          desc: "Degradado más diseño artístico Freestyle a mano alzada con navaja.",
-          img: "corte3.jpeg",
-          fallbackImg: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80"
-        },
-        {
-          id: 4,
-          nombre: "Corte V.I.P. a Domicilio",
-          precio: 20000,
-          desc: "Atención exclusiva y personalizada en tu domicilio con todo el equipamiento profesional.",
-          img: "corte4.jpeg",
-          fallbackImg: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80"
-        }
-      ],
-      productos: [
-        { id: 201, nombre: "Cera Modeladora Mate", precio: 15000, stock: 10 },
-        { id: 202, nombre: "Polvo Texturizador", precio: 7500, stock: 12 },
-        { id: 203, nombre: "Aceite para Barba", precio: 5500, stock: 8 }
-      ],
-      galeria: [
-        { id: 101, titulo: "Degradado / Taper Fade", url: "corte1.jpeg", fallback: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80" },
-        { id: 102, titulo: "Degradado + Perfilado de Barba", url: "corte2.jpeg", fallback: "https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80" },
-        { id: 103, titulo: "Diseño Freestyle Profesional", url: "corte3.jpeg", fallback: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80" },
-        { id: 104, titulo: "Trabajo en Fenix Studio", url: "foto1.jpeg", fallback: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=80" }
-      ],
+      {
+        id: 2,
+        nombre: "Degradado + Barba",
+        precio: 18000,
+        desc: "Corte degradado completo más perfilado, rebaje y ritual de barba a navaja.",
+        img: "corte2.jpeg",
+        fallbackImg: "https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 3,
+        nombre: "Diseño Freestyle",
+        precio: 18000,
+        desc: "Degradado más diseño artístico Freestyle a mano alzada con navaja.",
+        img: "corte3.jpeg",
+        fallbackImg: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 4,
+        nombre: "Corte V.I.P. a Domicilio",
+        precio: 20000,
+        desc: "Atención exclusiva y personalizada en tu domicilio con todo el equipamiento profesional.",
+        img: "corte4.jpeg",
+        fallbackImg: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80"
+      }
+    ];
+
+    const PRODUCTOS_DEFAULT = [
+      { id: 201, nombre: "Cera Modeladora Mate", precio: 15000, stock: 10 },
+      { id: 202, nombre: "Polvo Texturizador", precio: 7500, stock: 12 },
+      { id: 203, nombre: "Aceite para Barba", precio: 5500, stock: 8 }
+    ];
+
+    const GALERIA_DEFAULT = [
+      { id: 101, titulo: "Degradado / Taper Fade", url: "corte1.jpeg", fallback: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80" },
+      { id: 102, titulo: "Degradado + Perfilado de Barba", url: "corte2.jpeg", fallback: "https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80" },
+      { id: 103, titulo: "Diseño Freestyle Profesional", url: "corte3.jpeg", fallback: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80" },
+      { id: 104, titulo: "Trabajo en Fenix Studio", url: "foto1.jpeg", fallback: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=80" }
+    ];
+
+    let estado = {
+      servicios: SERVICIOS_DEFAULT,
+      productos: PRODUCTOS_DEFAULT,
+      galeria: GALERIA_DEFAULT,
       turnos: [],
       usuarios: [],
       finanzas: [],
@@ -1541,21 +1631,23 @@
     let timerToquesLogo = null;
     let cloudDbUrl = localStorage.getItem("fenix_cloud_url") || "";
 
-    window.addEventListener("DOMContentLoaded", async () => {
+    function inicializarApp() {
       cargarDatosLocales();
       const hoy = new Date().toISOString().split("T")[0];
       const inTurnoFecha = document.getElementById("turnoFecha");
       const inFiltroFecha = document.getElementById("filtroFechaAdmin");
-      if (inTurnoFecha) inTurnoFecha.value = hoy;
-      if (inFiltroFecha) inFiltroFecha.value = hoy;
-
-      if (cloudDbUrl) {
-        await descargarDesdeNube();
-        setInterval(descargarDesdeNube, 12000);
-      }
+      if (inTurnoFecha && !inTurnoFecha.value) inTurnoFecha.value = hoy;
+      if (inFiltroFecha && !inFiltroFecha.value) inFiltroFecha.value = hoy;
 
       renderTodo();
-    });
+
+      if (cloudDbUrl && cloudDbUrl.startsWith("http")) {
+        descargarDesdeNube();
+        setInterval(descargarDesdeNube, 12000);
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", inicializarApp);
 
     function toqueSecretoLogo() {
       contadorToquesLogo++;
@@ -1571,15 +1663,34 @@
       }
     }
 
-    /* PERSISTENCIA Y SINCRONIZACIÓN */
+    function asegurarDatosBase() {
+      if (!Array.isArray(estado.servicios) || estado.servicios.length === 0) estado.servicios = SERVICIOS_DEFAULT;
+      if (!Array.isArray(estado.productos) || estado.productos.length === 0) estado.productos = PRODUCTOS_DEFAULT;
+      if (!Array.isArray(estado.galeria) || estado.galeria.length === 0) estado.galeria = GALERIA_DEFAULT;
+      if (!Array.isArray(estado.turnos)) estado.turnos = [];
+      if (!Array.isArray(estado.usuarios)) estado.usuarios = [];
+      if (!Array.isArray(estado.finanzas)) estado.finanzas = [];
+      if (!Array.isArray(estado.deudores)) estado.deudores = [];
+      if (!estado.sorteo) {
+        estado.sorteo = {
+          titulo: "Sorteo Oficial Comunidad Fenix Studio",
+          premio: "1 Corte Degradado + Barba Gratis + 1 Cera Modeladora",
+          fecha: "Fin de mes",
+          participantes: [],
+          ultimoGanador: null
+        };
+      }
+    }
+
     function cargarDatosLocales() {
-      const guardado = localStorage.getItem("fenix_studio_real_v5");
+      const guardado = localStorage.getItem("fenix_studio_real_v6");
       if (guardado) {
         try {
           const parsed = JSON.parse(guardado);
           estado = { ...estado, ...parsed };
         } catch (e) {}
       }
+      asegurarDatosBase();
       const sesionGuardada = localStorage.getItem("fenix_usuario_sesion");
       if (sesionGuardada) {
         try { usuarioActual = JSON.parse(sesionGuardada); } catch (e) {}
@@ -1587,10 +1698,11 @@
     }
 
     async function guardarDatos() {
-      localStorage.setItem("fenix_studio_real_v5", JSON.stringify(estado));
+      asegurarDatosBase();
+      localStorage.setItem("fenix_studio_real_v6", JSON.stringify(estado));
       renderTodo();
 
-      if (cloudDbUrl) {
+      if (cloudDbUrl && cloudDbUrl.startsWith("http")) {
         try {
           await fetch(cloudDbUrl.replace(/\/$/, "") + "/fenix_db.json", {
             method: "PUT",
@@ -1605,14 +1717,15 @@
     }
 
     async function descargarDesdeNube() {
-      if (!cloudDbUrl) return;
+      if (!cloudDbUrl || !cloudDbUrl.startsWith("http")) return;
       try {
         const res = await fetch(cloudDbUrl.replace(/\/$/, "") + "/fenix_db.json");
         if (res.ok) {
           const dataRemota = await res.json();
           if (dataRemota) {
             estado = { ...estado, ...dataRemota };
-            localStorage.setItem("fenix_studio_real_v5", JSON.stringify(estado));
+            asegurarDatosBase();
+            localStorage.setItem("fenix_studio_real_v6", JSON.stringify(estado));
             renderTodo();
           }
         }
@@ -1633,7 +1746,6 @@
       }
     }
 
-    /* BURBUJAS ROJAS DE NOTIFICACIÓN */
     function actualizarBurbujasNotificacion() {
       const usuariosPendientes = (estado.usuarios || []).filter(u => u.estado === "pendiente").length;
       const turnosEnEspera = (estado.turnos || []).filter(t => t.estado === "espera").length;
@@ -1659,56 +1771,53 @@
       setBadge("badgeTurnosAdmin", turnosEnEspera);
     }
 
-    /* RENDERIZADO GENERAL */
     function renderTodo() {
-      try {
-        actualizarBurbujasNotificacion();
-        renderCortesYServicios();
-        renderProductos();
-        renderGaleriaFenix();
-        renderHorariosDisponibles();
-        renderVistaPublicaTurnosDia();
-        renderSorteo();
-        renderAulaVirtual();
-        renderSesionUsuario();
-        if (esPersonal) {
-          renderAdminSolicitudes();
-          renderAdminAgenda();
-          renderAdminFinanzas();
-          renderAdminDeudores();
-          renderAdminUsuarios();
-          actualizarDestinatariosMail();
-        }
-      } catch (err) {
-        console.error("Error en renderTodo:", err);
+      try { actualizarBurbujasNotificacion(); } catch (e) {}
+      try { renderCortesYServicios(); } catch (e) {}
+      try { renderProductos(); } catch (e) {}
+      try { renderGaleriaFenix(); } catch (e) {}
+      try { renderHorariosDisponibles(); } catch (e) {}
+      try { renderVistaPublicaTurnosDia(); } catch (e) {}
+      try { renderSorteo(); } catch (e) {}
+      try { renderAulaVirtual(); } catch (e) {}
+      try { renderSesionUsuario(); } catch (e) {}
+      if (esPersonal) {
+        try { renderAdminSolicitudes(); } catch (e) {}
+        try { renderAdminAgenda(); } catch (e) {}
+        try { renderAdminFinanzas(); } catch (e) {}
+        try { renderAdminDeudores(); } catch (e) {}
+        try { renderAdminUsuarios(); } catch (e) {}
+        try { actualizarDestinatariosMail(); } catch (e) {}
       }
     }
 
-    /* TIPOS DE CORTES Y PRECIOS ($15.000 a $20.000) */
     function renderCortesYServicios() {
       const gInicio = document.getElementById("grillaCortesInicio");
       const gSeccion = document.getElementById("grillaCortesSeccion");
       const selTurno = document.getElementById("turnoServicio");
       const contAdmin = document.getElementById("listaServiciosAdmin");
 
-      const htmlCards = (estado.servicios || []).map(s => `
-        <div class="cut-card">
-          <img src="${s.img}" onerror="this.onerror=null; this.src='${s.fallbackImg || 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80'}';" alt="${s.nombre}" />
-          <div class="cut-card-body">
-            <div>
-              <strong style="font-size:1.04rem; display:block; margin-bottom:6px; color:var(--gold);">${s.nombre}</strong>
-              <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">${s.desc || ''}</p>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
-              <span class="cut-price">$${Number(s.precio).toLocaleString("es-AR")}</span>
-              <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(${s.id})">Reservar</button>
+      const htmlCards = (estado.servicios || []).map(s => {
+        const fb = s.fallbackImg || "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80";
+        return `
+          <div class="cut-card">
+            <img src="${s.img || 'corte1.jpeg'}" data-fb="${fb}" onerror="this.onerror=null; this.src=this.getAttribute('data-fb');" alt="${s.nombre}" />
+            <div class="cut-card-body">
+              <div>
+                <strong style="font-size:1.04rem; display:block; margin-bottom:6px; color:var(--gold);">${s.nombre}</strong>
+                <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">${s.desc || ''}</p>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
+                <span class="cut-price">$${Number(s.precio).toLocaleString("es-AR")}</span>
+                <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(${s.id})">Reservar</button>
+              </div>
             </div>
           </div>
-        </div>
-      `).join("");
+        `;
+      }).join("");
 
-      if (gInicio) gInicio.innerHTML = htmlCards;
-      if (gSeccion) gSeccion.innerHTML = htmlCards;
+      if (gInicio && htmlCards) gInicio.innerHTML = htmlCards;
+      if (gSeccion && htmlCards) gSeccion.innerHTML = htmlCards;
 
       if (selTurno) {
         selTurno.innerHTML = (estado.servicios || []).map(s =>
@@ -1775,7 +1884,6 @@
       guardarDatos();
     }
 
-    /* PRODUCTOS Y CONTROL DE STOCK (Cera $15.000, Polvo $7.500, Aceite $5.500) */
     function renderProductos() {
       const resIni = document.getElementById("resumenProductosInicio");
       const pubGrid = document.getElementById("grillaProductosPublica");
@@ -1860,26 +1968,28 @@
       guardarDatos();
     }
 
-    /* GALERÍA FENIX */
     function renderGaleriaFenix() {
       const prev = document.getElementById("galeriaPreviewInicio");
       const full = document.getElementById("galeriaCompletaGrid");
       const adm = document.getElementById("listaAdminGaleria");
 
-      const htmlGal = (estado.galeria || []).map(f => `
-        <div class="gallery-item">
-          <img src="${f.url}" onerror="this.onerror=null; this.src='${f.fallback || 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80'}';" alt="${f.titulo}" />
-          <div class="gallery-caption">${f.titulo}</div>
-        </div>
-      `).join("");
+      const htmlGal = (estado.galeria || []).map(f => {
+        const fb = f.fallback || "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80";
+        return `
+          <div class="gallery-item">
+            <img src="${f.url || 'corte1.jpeg'}" data-fb="${fb}" onerror="this.onerror=null; this.src=this.getAttribute('data-fb');" alt="${f.titulo}" />
+            <div class="gallery-caption">${f.titulo}</div>
+          </div>
+        `;
+      }).join("");
 
-      if (prev) prev.innerHTML = htmlGal;
-      if (full) full.innerHTML = htmlGal;
+      if (prev && htmlGal) prev.innerHTML = htmlGal;
+      if (full && htmlGal) full.innerHTML = htmlGal;
 
       if (adm) {
         adm.innerHTML = (estado.galeria || []).map(f => `
           <div class="item-row">
-            <span>📸 ${f.titulo} (<small>${f.url.slice(0, 22)}</small>)</span>
+            <span>📸 ${f.titulo}</span>
             <button type="button" class="btn btn-danger" onclick="eliminarFotoGaleria(${f.id})">🗑️</button>
           </div>
         `).join("");
@@ -1914,7 +2024,6 @@
       guardarDatos();
     }
 
-    /* TURNERO WEB SIN WHATSAPP */
     function renderHorariosDisponibles() {
       const inFecha = document.getElementById("turnoFecha");
       const fecha = inFecha ? inFecha.value : "";
@@ -2020,7 +2129,6 @@
       `).join("");
     }
 
-    /* USUARIOS Y ALUMNOS */
     function registrarNuevoUsuario() {
       const nombre = document.getElementById("regNombre").value.trim();
       const email = document.getElementById("regEmail").value.trim();
@@ -2123,7 +2231,6 @@
       }
     }
 
-    /* AULA VIRTUAL */
     function renderAulaVirtual() {
       const cont = document.getElementById("contenidoAulaVirtual");
       if (!cont) return;
@@ -2163,7 +2270,6 @@
       `;
     }
 
-    /* SORTEOS */
     function renderSorteo() {
       const cont = document.getElementById("contenedorSorteoPublico");
       if (!cont) return;
@@ -2221,7 +2327,6 @@
       }
     }
 
-    /* ACCESO PERSONAL (DISCRETO) */
     function accesoPersonalLogin() {
       if (esPersonal) {
         cambiarSeccion("admin");
@@ -2249,7 +2354,6 @@
       cambiarSeccion("inicio");
     }
 
-    /* ACEPTAR / RECHAZAR SOLICITUDES */
     function renderAdminSolicitudes() {
       const cont = document.getElementById("listaPendientesAdmin");
       if (!cont) return;
@@ -2287,7 +2391,6 @@
       guardarDatos();
     }
 
-    /* FINANZAS: INGRESOS, EGRESOS Y BALANCE */
     function registrarMovimientoFinanciero(tipo) {
       const concepto = document.getElementById("cajaConcepto").value.trim();
       const monto = Number(document.getElementById("cajaMonto").value);
@@ -2344,7 +2447,6 @@
       guardarDatos();
     }
 
-    /* DEUDORES */
     function agregarDeudorAdmin() {
       const nombre = document.getElementById("deudorNombre").value.trim();
       const detalle = document.getElementById("deudorDetalle").value.trim();
@@ -2391,4 +2493,213 @@
         fecha: new Date().toLocaleDateString("es-AR")
       });
       estado.deudores = estado.deudores.filter(x => x.id !== id);
-      guardarDatos
+      guardarDatos();
+    }
+
+    function eliminarDeudor(id) {
+      estado.deudores = (estado.deudores || []).filter(x => x.id !== id);
+      guardarDatos();
+    }
+
+    function renderAdminAgenda(mostrarTodos = false) {
+      const cont = document.getElementById("listaAgendaAdmin");
+      if (!cont) return;
+      const fechaFiltro = document.getElementById("filtroFechaAdmin").value;
+      let lista = estado.turnos || [];
+      if (!mostrarTodos && fechaFiltro) lista = lista.filter(t => t.fecha === fechaFiltro);
+      lista.sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
+
+      if (lista.length === 0) {
+        cont.innerHTML = `<p style="color:var(--text-muted);">No hay turnos agendados para esta fecha.</p>`;
+        return;
+      }
+
+      cont.innerHTML = lista.map(t => `
+        <div class="item-row">
+          <div>
+            <strong style="color:var(--gold);">${t.fecha} — ${t.hora} hs</strong> | <strong>${t.cliente}</strong>
+            <span class="status-pill ${t.estado === 'atendiendo' ? 'status-atendiendo' : t.estado === 'finalizado' ? 'status-listo' : 'status-espera'}">
+              ${t.estado === 'atendiendo' ? '✂️ En Silla' : t.estado === 'finalizado' ? '✅ Terminado' : '⏳ En Espera'}
+            </span>
+            <div style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">
+              ${t.servicio} ($${Number(t.precio).toLocaleString("es-AR")}) | 📱 ${t.telefono} | 📧 ${t.email || 'Sin email'}
+              ${t.nota ? `<br>📝 Nota: <em>${t.nota}</em>` : ``}
+            </div>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            ${t.estado === 'espera' ? `<button type="button" class="btn btn-info" onclick="cambiarEstadoTurno(${t.id}, 'atendiendo')">✂️ Pasar a Silla</button>` : ``}
+            ${t.estado !== 'finalizado' ? `<button type="button" class="btn btn-success" onclick="finalizarYCobrarTurno(${t.id})">✅ Terminar (+Ingreso)</button>` : ``}
+            ${t.email ? `<button type="button" class="btn" onclick="enviarCorreoIndividual('${t.email}', 'Confirmación de Turno - Fenix Studio', 'Hola ${t.cliente}, te confirmamos tu turno para el ${t.fecha} a las ${t.hora} hs en C. Ushuaia y Pasaje Mansilla.')">📧 Gmail</button>` : ``}
+            <button type="button" class="btn btn-danger" onclick="eliminarTurnoAdmin(${t.id})">🗑️</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function cambiarEstadoTurno(id, nuevoEstado) {
+      const t = estado.turnos.find(x => x.id === id);
+      if (t) { t.estado = nuevoEstado; guardarDatos(); }
+    }
+
+    function finalizarYCobrarTurno(id) {
+      const t = estado.turnos.find(x => x.id === id);
+      if (!t) return;
+      t.estado = "finalizado";
+      estado.finanzas.push({
+        id: Date.now(),
+        tipo: "ingreso",
+        concepto: `Corte: ${t.servicio} (${t.cliente})`,
+        monto: Number(t.precio),
+        fecha: new Date().toLocaleDateString("es-AR") + " " + new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" })
+      });
+      guardarDatos();
+    }
+
+    function eliminarTurnoAdmin(id) {
+      estado.turnos = estado.turnos.filter(x => x.id !== id);
+      guardarDatos();
+    }
+
+    function crearUsuarioManualAdmin() {
+      const nombre = document.getElementById("manualNombre").value.trim();
+      const email = document.getElementById("manualEmail").value.trim();
+      const user = document.getElementById("manualUser").value.trim().toLowerCase();
+      const pass = document.getElementById("manualPass").value.trim();
+      const rol = document.getElementById("manualRol").value;
+      if (!nombre || !user || !pass) return alert("Completá Nombre, Usuario y Contraseña.");
+
+      estado.usuarios.push({
+        id: Date.now(),
+        nombre,
+        email: email || "sin-correo@gmail.com",
+        telefono: "",
+        rol,
+        user,
+        pass,
+        estado: "activo",
+        fechaAlta: new Date().toLocaleDateString("es-AR")
+      });
+
+      document.getElementById("manualNombre").value = "";
+      document.getElementById("manualEmail").value = "";
+      document.getElementById("manualUser").value = "";
+      document.getElementById("manualPass").value = "";
+      guardarDatos();
+    }
+
+    function renderAdminUsuarios() {
+      const cont = document.getElementById("listaTodosUsuariosAdmin");
+      if (!cont) return;
+      if (!estado.usuarios || estado.usuarios.length === 0) {
+        cont.innerHTML = `<p style="color:var(--text-muted);">Sin usuarios registrados.</p>`;
+        return;
+      }
+      cont.innerHTML = estado.usuarios.map(u => `
+        <div class="item-row">
+          <div>
+            <strong>${u.nombre}</strong> (@${u.user} / Clave: <code>${u.pass}</code>)
+            <span class="status-pill ${u.estado === 'activo' ? 'status-listo' : 'status-espera'}">${u.estado}</span>
+            <div style="font-size:0.8rem; color:var(--text-muted);">${u.rol === 'alumno' ? '🎓 Alumno' : '💈 Cliente'} | ${u.email}</div>
+          </div>
+          <div style="display:flex; gap:6px;">
+            ${u.rol === 'alumno' ? `<button type="button" class="btn btn-gold" onclick="cobrarCuotaAlumno(${u.id})">💰 Cobrar Mes ($75.000)</button>` : ``}
+            <button type="button" class="btn" onclick="enviarCorreoIndividual('${u.email}', 'Fenix Studio', 'Hola ${u.nombre}...')">✉️</button>
+            <button type="button" class="btn btn-danger" onclick="rechazarUsuarioAdmin(${u.id})">🗑️</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function cobrarCuotaAlumno(id) {
+      const u = estado.usuarios.find(x => x.id === id);
+      if (!u) return;
+      estado.finanzas.push({
+        id: Date.now(),
+        tipo: "ingreso",
+        concepto: `Cuota Curso (Mes) - ${u.nombre}`,
+        monto: 75000,
+        fecha: new Date().toLocaleDateString("es-AR")
+      });
+      guardarDatos();
+      alert(`✅ Cuota de $75.000 de ${u.nombre} sumada a Ingresos.`);
+    }
+
+    function actualizarDestinatariosMail() {
+      const filtro = document.getElementById("mailDestinatario").value;
+      let lista = estado.usuarios || [];
+      if (filtro === "alumnos") lista = lista.filter(u => u.rol === "alumno");
+      if (filtro === "clientes") lista = lista.filter(u => u.rol === "cliente");
+      const correos = lista.map(u => u.email).filter(e => e && e.includes("@"));
+      document.getElementById("mailListaCorreos").value = correos.join(", ") || "Sin correos en este filtro";
+    }
+
+    function cargarPlantillaMail(tipo) {
+      const asu = document.getElementById("mailAsunto");
+      const cue = document.getElementById("mailCuerpo");
+      if (tipo === "sorteo") {
+        asu.value = "🎁 ¡Nuevo Sorteo en Fenix Studio!";
+        cue.value = `Hola comunidad de Fenix Studio,\n\nYa está activo el sorteo por: ${estado.sorteo.premio}.\nIngresá con tu usuario en nuestra web y anotate con un clic.\n\n📍 C. Ushuaia y Pasaje Mansilla, Resistencia\n📸 @fenixstudio25`;
+      } else if (tipo === "turnos") {
+        asu.value = "📅 Turnos Disponibles - Fenix Studio";
+        cue.value = `Hola,\n\nYa podés reservar tu horario de esta semana directamente en nuestra agenda web.\n\n📍 C. Ushuaia y Pasaje Mansilla, Resistencia\n📸 @fenixstudio25`;
+      } else if (tipo === "academia") {
+        asu.value = "🎓 Aviso Curso de Barbería - Fenix Studio";
+        cue.value = `Estimados alumnos,\n\nYa tienen actualizado el material en el Aula Virtual. Ingresen con su usuario y contraseña.\n\nSaludos,\nFenix Studio`;
+      }
+    }
+
+    function dispararGmailWeb() {
+      const correos = document.getElementById("mailListaCorreos").value;
+      if (!correos || correos.startsWith("Sin correos")) return alert("No hay correos cargados.");
+      const asunto = encodeURIComponent(document.getElementById("mailAsunto").value || "Fenix Studio");
+      const cuerpo = encodeURIComponent(document.getElementById("mailCuerpo").value || "");
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&bcc=${encodeURIComponent(correos)}&su=${asunto}&body=${cuerpo}`, "_blank");
+    }
+
+    function dispararMailtoApp() {
+      const correos = document.getElementById("mailListaCorreos").value;
+      const asunto = encodeURIComponent(document.getElementById("mailAsunto").value || "Fenix Studio");
+      const cuerpo = encodeURIComponent(document.getElementById("mailCuerpo").value || "");
+      window.location.href = `mailto:?bcc=${encodeURIComponent(correos)}&subject=${asunto}&body=${cuerpo}`;
+    }
+
+    function enviarCorreoIndividual(email, asunto, cuerpo) {
+      if (!email || !email.includes("@")) return alert("Sin correo Gmail válido.");
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`, "_blank");
+    }
+
+    function guardarConfigSorteo() {
+      estado.sorteo.titulo = document.getElementById("adminSorteoTitulo").value.trim();
+      estado.sorteo.premio = document.getElementById("adminSorteoPremio").value.trim();
+      estado.sorteo.fecha = document.getElementById("adminSorteoFecha").value.trim();
+      guardarDatos();
+      alert("✅ Sorteo actualizado.");
+    }
+
+    function sortearGanadorAzar() {
+      const part = estado.sorteo.participantes || [];
+      if (part.length === 0) return alert("No hay participantes anotados.");
+      const ganador = part[Math.floor(Math.random() * part.length)];
+      estado.sorteo.ultimoGanador = ganador;
+      guardarDatos();
+      document.getElementById("resultadoGanadorAdmin").innerHTML = `
+        <div class="notice-box" style="margin-top:10px;">
+          🎉 <strong>Ganador:</strong> ${ganador.nombre} (@${ganador.user})<br>
+          <button type="button" class="btn btn-gold" style="margin-top:6px;" onclick="enviarCorreoIndividual('${ganador.email}', '🏆 ¡Ganaste el Sorteo de Fenix Studio!', '¡Felicitaciones ${ganador.nombre}! Ganaste: ${estado.sorteo.premio}. Te esperamos en C. Ushuaia y Pasaje Mansilla.')">
+            📧 Avisar por Gmail
+          </button>
+        </div>
+      `;
+    }
+
+    function vaciarParticipantesSorteo() {
+      if (!confirm("¿Reiniciar lista de participantes?")) return;
+      estado.sorteo.participantes = [];
+      guardarDatos();
+    }
+
+    // Ejecutar también de inmediato por si el DOM ya estaba listo
+    inicializarApp();
+  </script>
+</body>
+</html>
