@@ -6,17 +6,18 @@
   <title>Fenix Studio | Barbería & Academia Oficial</title>
   <style>
     :root {
-      --bg-main: #0b0b0e;
-      --bg-card: #15151b;
-      --bg-card-alt: #1e1e26;
+      --bg-main: #09090c;
+      --bg-card: rgba(20, 20, 26, 0.92);
+      --bg-card-alt: rgba(30, 30, 39, 0.95);
       --gold: #d4af37;
-      --gold-light: #f3d266;
+      --gold-light: #f5d76e;
       --text-main: #f4f4f6;
-      --text-muted: #9ca3af;
+      --text-muted: #a1a1aa;
       --danger: #ef4444;
       --success: #10b981;
       --info: #3b82f6;
-      --border: #2a2a35;
+      --border: rgba(212, 175, 55, 0.22);
+      --hero-bg: url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=80');
     }
 
     * {
@@ -28,18 +29,24 @@
 
     body {
       background-color: var(--bg-main);
+      background-image: 
+        linear-gradient(to bottom, rgba(9, 9, 12, 0.82), rgba(9, 9, 12, 0.96)),
+        var(--hero-bg);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* CABECERA LIMPIA */
+    /* CABECERA PRINCIPAL CON 3 BARRAS */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(11, 11, 14, 0.95);
+      background: rgba(9, 9, 12, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 12px 20px;
@@ -55,14 +62,13 @@
       gap: 14px;
     }
 
-    /* BOTÓN DE LAS 3 BARRAS (MENÚ HAMBURGUESA) */
+    /* BOTÓN DE LAS 3 BARRAS INTERACTIVO */
     .menu-toggle {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 10px;
       background: var(--bg-card-alt);
       border: 1px solid var(--border);
-      color: var(--text-main);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -70,37 +76,43 @@
       gap: 5px;
       cursor: pointer;
       position: relative;
-      transition: 0.2s ease;
+      transition: 0.2s;
     }
 
     .menu-toggle:hover {
       border-color: var(--gold);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
     }
 
-    .menu-toggle span.bar {
-      width: 20px;
-      height: 2px;
+    .menu-toggle .bar {
+      width: 22px;
+      height: 2.5px;
       background-color: var(--gold);
       border-radius: 2px;
-      transition: 0.25s;
     }
 
     .menu-dot {
       position: absolute;
-      top: -4px;
-      right: -4px;
+      top: -5px;
+      right: -5px;
       background: var(--danger);
       color: #fff;
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       font-weight: 800;
-      min-width: 18px;
-      height: 18px;
+      min-width: 20px;
+      height: 20px;
       padding: 0 5px;
       border-radius: 999px;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 0 8px rgba(239, 68, 68, 0.9);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
     }
 
     .brand {
@@ -112,8 +124,8 @@
     }
 
     .brand-logo {
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--gold), #8a6d1b);
       display: flex;
@@ -121,12 +133,12 @@
       justify-content: center;
       font-weight: 900;
       color: #000;
-      font-size: 1.05rem;
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+      font-size: 1.1rem;
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.4);
     }
 
     .brand-text h1 {
-      font-size: 1.15rem;
+      font-size: 1.18rem;
       letter-spacing: 1px;
       color: var(--gold);
       text-transform: uppercase;
@@ -142,14 +154,15 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
-    /* MENÚ LATERAL INTERACTIVO (DRAWER) */
+    /* MENÚ LATERAL DESPLEGABLE (3 BARRAS) */
     .drawer-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(3px);
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
       z-index: 200;
       opacity: 0;
       pointer-events: none;
@@ -166,9 +179,9 @@
       top: 0;
       left: 0;
       bottom: 0;
-      width: 290px;
-      max-width: 85vw;
-      background: var(--bg-card);
+      width: 300px;
+      max-width: 86vw;
+      background: #121218;
       border-right: 1px solid var(--border);
       z-index: 210;
       transform: translateX(-100%);
@@ -177,6 +190,7 @@
       flex-direction: column;
       justify-content: space-between;
       padding: 20px 16px;
+      overflow-y: auto;
     }
 
     .side-drawer.open {
@@ -187,17 +201,17 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-bottom: 16px;
+      padding-bottom: 14px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .drawer-close {
       background: transparent;
       border: 1px solid var(--border);
       color: var(--text-muted);
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 8px;
       cursor: pointer;
       font-size: 1rem;
@@ -213,16 +227,17 @@
       background: transparent;
       color: var(--text-main);
       border: 1px solid transparent;
-      padding: 12px 14px;
+      padding: 11px 14px;
       border-radius: 10px;
       text-align: left;
-      font-size: 0.95rem;
+      font-size: 0.94rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
       transition: 0.2s;
+      text-decoration: none;
     }
 
     .drawer-item:hover {
@@ -231,25 +246,34 @@
     }
 
     .drawer-item.active {
-      background: rgba(212, 175, 55, 0.14);
+      background: rgba(212, 175, 55, 0.16);
       color: var(--gold);
-      border-color: rgba(212, 175, 55, 0.45);
+      border-color: var(--gold);
     }
 
-    .drawer-footer {
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
+    .drawer-socials {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    /* BOTÓN SUTIL Y FINO DE "ACCESO PERSONAL" */
+    .drawer-footer {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
     .staff-subtle-link {
       background: transparent;
       border: none;
       color: #52525b;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       text-align: left;
       padding: 6px 4px;
       cursor: pointer;
@@ -257,14 +281,13 @@
       align-items: center;
       justify-content: space-between;
       transition: color 0.2s;
-      letter-spacing: 0.5px;
     }
 
     .staff-subtle-link:hover {
-      color: var(--text-muted);
+      color: var(--gold);
     }
 
-    /* BOTONES Y BURBUJAS */
+    /* BOTONES GENERALES */
     .btn {
       background: var(--bg-card-alt);
       color: var(--text-main);
@@ -278,7 +301,6 @@
       align-items: center;
       gap: 6px;
       transition: all 0.2s ease;
-      position: relative;
       text-decoration: none;
     }
 
@@ -315,7 +337,6 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
     }
 
     .hidden {
@@ -324,10 +345,10 @@
 
     /* CONTENEDOR PRINCIPAL */
     .container {
-      max-width: 1100px;
+      max-width: 1140px;
       width: 100%;
       margin: 0 auto;
-      padding: 22px 20px;
+      padding: 22px 18px;
       flex: 1;
     }
 
@@ -345,28 +366,37 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* HERO PRINCIPAL */
-    .hero {
-      background: linear-gradient(145deg, rgba(21, 21, 27, 0.95), rgba(11, 11, 14, 0.98)),
-                  radial-gradient(circle at top right, rgba(212, 175, 55, 0.2), transparent);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 34px 24px;
+    /* PORTADA / HERO CON IMAGEN DE FONDO */
+    .hero-banner {
+      position: relative;
+      background-image: 
+        linear-gradient(180deg, rgba(9, 9, 12, 0.55) 0%, rgba(9, 9, 12, 0.92) 100%),
+        var(--hero-bg);
+      background-size: cover;
+      background-position: center;
+      border: 1px solid var(--gold);
+      border-radius: 18px;
+      padding: 48px 24px;
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
     }
 
-    .hero h2 {
-      font-size: 1.95rem;
+    .hero-banner h2 {
+      font-size: 2.2rem;
       color: var(--gold);
-      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     }
 
-    .hero p {
-      color: var(--text-muted);
-      max-width: 650px;
-      margin: 0 auto 22px;
-      line-height: 1.5;
+    .hero-banner p {
+      color: #e4e4e7;
+      max-width: 680px;
+      margin: 0 auto 24px;
+      font-size: 1rem;
+      line-height: 1.55;
     }
 
     .hero-buttons {
@@ -374,6 +404,15 @@
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .hero-quick-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 12px;
     }
 
     .btn-cta-large {
@@ -382,32 +421,33 @@
       border-radius: 12px;
     }
 
-    /* TARJETAS Y GRILLAS */
+    /* GRILLAS Y TARJETAS */
     .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
       gap: 20px;
     }
 
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
     }
 
     .card {
       background: var(--bg-card);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 20px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
       gap: 10px;
@@ -415,7 +455,7 @@
     }
 
     .card-title {
-      font-size: 1.08rem;
+      font-size: 1.12rem;
       color: var(--gold);
       font-weight: 700;
       display: flex;
@@ -423,8 +463,85 @@
       gap: 8px;
     }
 
+    /* TARJETAS DE TIPOS DE CORTES CON FOTO Y PRECIO */
+    .cut-card {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .cut-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+    }
+
+    .cut-card img {
+      width: 100%;
+      height: 175px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cut-card-body {
+      padding: 14px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cut-price {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    /* GALERÍA FENIX */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 1 / 1;
+      background: #000;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      inset-inline: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.88));
+      padding: 18px 10px 8px;
+      font-size: 0.82rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* AVISOS */
     .notice-box {
-      background: rgba(212, 175, 55, 0.1);
+      background: rgba(212, 175, 55, 0.12);
       border-left: 4px solid var(--gold);
       padding: 14px 16px;
       border-radius: 8px;
@@ -434,18 +551,13 @@
       color: #e5e7eb;
     }
 
-    .notice-box strong {
-      color: var(--gold);
-    }
+    .notice-box strong { color: var(--gold); }
 
-    /* FORMULARIOS */
-    .form-group {
-      margin-bottom: 14px;
-    }
-
+    /* FORMULARIOS Y HORARIOS */
+    .form-group { margin-bottom: 14px; }
     .form-group label {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--text-muted);
       margin-bottom: 6px;
       font-weight: 600;
@@ -454,11 +566,11 @@
     input, select, textarea {
       width: 100%;
       padding: 10px 12px;
-      background: var(--bg-main);
+      background: rgba(9, 9, 12, 0.9);
       border: 1px solid var(--border);
       border-radius: 8px;
       color: var(--text-main);
-      font-size: 0.95rem;
+      font-size: 0.94rem;
     }
 
     input:focus, select:focus, textarea:focus {
@@ -466,7 +578,6 @@
       border-color: var(--gold);
     }
 
-    /* GRILLA DE HORARIOS */
     .slots-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
@@ -478,16 +589,12 @@
       padding: 10px;
       border-radius: 8px;
       border: 1px solid var(--border);
-      background: var(--bg-main);
+      background: rgba(9, 9, 12, 0.85);
       text-align: center;
       cursor: pointer;
       font-weight: 600;
       font-size: 0.9rem;
       transition: 0.2s;
-    }
-
-    .slot-item:hover {
-      border-color: var(--gold);
     }
 
     .slot-item.selected {
@@ -503,7 +610,6 @@
       color: #fcd34d;
     }
 
-    /* FILAS DE ITEMS */
     .item-row {
       display: flex;
       justify-content: space-between;
@@ -530,10 +636,25 @@
     .status-listo { background: rgba(16, 185, 129, 0.2); color: #34d399; }
     .status-pendiente { background: rgba(239, 68, 68, 0.2); color: #f87171; }
 
-    /* BARRA DISCRETA DE PERSONAL ACTIVO */
+    /* TARJETAS DE INGRESOS / EGRESOS / BALANCE */
+    .finance-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .finance-box {
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(9, 9, 12, 0.85);
+      text-align: center;
+    }
+
     .staff-banner {
       background: linear-gradient(90deg, #171721, #231d10);
-      border: 1px solid rgba(212, 175, 55, 0.5);
+      border: 1px solid var(--gold);
       padding: 12px 18px;
       margin-bottom: 20px;
       border-radius: 12px;
@@ -544,17 +665,15 @@
       gap: 10px;
     }
 
-    .staff-banner.active {
-      display: flex;
-    }
+    .staff-banner.active { display: flex; }
 
-    /* PIE DE PÁGINA DISCRETO */
     footer {
+      background: rgba(9, 9, 12, 0.95);
       border-top: 1px solid var(--border);
-      padding: 20px;
+      padding: 22px 20px;
       text-align: center;
-      font-size: 0.8rem;
-      color: #6b7280;
+      font-size: 0.82rem;
+      color: var(--text-muted);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -562,23 +681,26 @@
       flex-wrap: wrap;
     }
 
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
     footer button {
       background: none;
       border: none;
       color: #52525b;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       cursor: pointer;
-      transition: color 0.2s;
     }
 
-    footer button:hover {
-      color: var(--gold);
-    }
+    footer button:hover { color: var(--gold); }
   </style>
 </head>
 <body>
 
-  <!-- OVERLAY Y MENÚ LATERAL DE 3 BARRAS -->
+  <!-- OVERLAY Y MENÚ LATERAL INTERACTIVO DE 3 BARRAS -->
   <div class="drawer-overlay" id="drawerOverlay" onclick="cerrarMenuLateral()"></div>
 
   <aside class="side-drawer" id="sideDrawer">
@@ -588,7 +710,7 @@
           <div class="brand-logo">FS</div>
           <div class="brand-text">
             <h1>Fenix Studio</h1>
-            <span>Menú Principal</span>
+            <span>Menú Interactivo</span>
           </div>
         </div>
         <button class="drawer-close" onclick="cerrarMenuLateral()">✕</button>
@@ -596,32 +718,51 @@
 
       <nav class="drawer-nav">
         <button class="drawer-item active" data-sec="inicio" onclick="cambiarSeccion('inicio')">
-          <span>🏠 Inicio & Precios</span>
+          <span>🏠 Inicio & Catálogo</span>
+        </button>
+        <button class="drawer-item" data-sec="cortes" onclick="cambiarSeccion('cortes')">
+          <span>✂️ Tipos de Cortes y Precios</span>
+        </button>
+        <button class="drawer-item" data-sec="galeria" onclick="cambiarSeccion('galeria')">
+          <span>📸 Galería Fenix</span>
         </button>
         <button class="drawer-item" data-sec="turnos" onclick="cambiarSeccion('turnos')">
           <span>📅 Reservar Turno</span>
         </button>
+        <button class="drawer-item" data-sec="academia" onclick="cambiarSeccion('academia')">
+          <span>🎓 Curso y Aula Virtual</span>
+          <span class="badge hidden" id="badgeMenuCurso">0</span>
+        </button>
         <button class="drawer-item" data-sec="sorteos" onclick="cambiarSeccion('sorteos')">
           <span>🎁 Sorteos & Beneficios</span>
         </button>
-        <button class="drawer-item" data-sec="academia" onclick="cambiarSeccion('academia')">
-          <span>🎓 Curso y Aula Virtual</span>
-        </button>
         <button class="drawer-item" data-sec="usuarios" onclick="cambiarSeccion('usuarios')">
-          <span>👤 Mi Cuenta / Registro</span>
+          <span>👤 Mi Cuenta / Crear Usuario</span>
         </button>
 
-        <!-- Solo se muestra cuando el Personal desbloquea su sesión -->
+        <!-- Botón visible únicamente cuando el Personal está activo -->
         <button class="drawer-item hidden" id="drawerItemPersonal" data-sec="admin" onclick="cambiarSeccion('admin')">
           <span style="color:var(--gold);">💼 Panel de Personal</span>
           <span class="badge hidden" id="badgeDrawerPersonal">0</span>
         </button>
       </nav>
+
+      <!-- REDES Y UBICACIÓN EN EL MENÚ DE 3 BARRAS -->
+      <div class="drawer-socials">
+        <a id="linkIgDrawer" href="https://instagram.com" target="_blank" class="drawer-item">
+          <span>📸 Instagram Oficial</span>
+          <span style="color:var(--gold); font-size:0.8rem;" id="txtIgDrawer">@fenixstudio</span>
+        </a>
+        <a id="linkUbiDrawer" href="https://maps.google.com" target="_blank" class="drawer-item">
+          <span>📍 Nuestra Ubicación</span>
+          <span style="color:var(--gold); font-size:0.8rem;">Ver Mapa</span>
+        </a>
+      </div>
     </div>
 
-    <!-- ACCESO PERSONAL DISCRETO AL FONDO DEL MENÚ -->
+    <!-- ACCESO PERSONAL SUTIL AL FONDO -->
     <div class="drawer-footer">
-      <div style="font-size:0.75rem; color:#52525b;" id="textoNube">● Sistema Online</div>
+      <div style="font-size:0.74rem; color:#52525b;" id="textoNube">● Sistema Sincronizado</div>
       <button class="staff-subtle-link" onclick="accesoPersonalLogin()">
         <span id="lblAccesoPersonalDrawer">Acceso Personal</span>
         <span class="badge hidden" id="badgeSubtlePersonal">0</span>
@@ -629,7 +770,7 @@
     </div>
   </aside>
 
-  <!-- CABECERA PRINCIPAL DESPEJADA -->
+  <!-- CABECERA PRINCIPAL -->
   <header>
     <div class="header-left">
       <button class="menu-toggle" onclick="abrirMenuLateral()" aria-label="Abrir menú">
@@ -649,6 +790,8 @@
     </div>
 
     <div class="nav-actions">
+      <a id="btnHeaderIg" href="https://instagram.com" target="_blank" class="btn">📸 IG</a>
+      <a id="btnHeaderUbi" href="https://maps.google.com" target="_blank" class="btn">📍 Ubicación</a>
       <button class="btn btn-gold" onclick="cambiarSeccion('turnos')">
         📅 Reservar Turno
       </button>
@@ -660,108 +803,171 @@
 
   <div class="container">
 
-    <!-- BARRA INTERNA DE PERSONAL (SOLO VISIBLE AL INGRESAR PIN) -->
+    <!-- BARRA INTERNA DE PERSONAL (SOLO AL PONER PIN) -->
     <div class="staff-banner" id="staffBanner">
       <div>
-        <strong style="color:var(--gold);">💼 Sesión de Personal Activa</strong>
+        <strong style="color:var(--gold);">💼 Modo Personal Activo</strong>
         <span style="font-size:0.82rem; color:#d1d5db; display:block;">
-          Gestión de Agenda, Solicitudes de Usuarios/Alumnos y Mensajería Gmail.
+          Control de Solicitudes, Agenda, Ingresos/Egresos, Galería, Imagen de Fondo y Gmail.
         </span>
       </div>
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
         <button class="btn btn-gold" onclick="cambiarSeccion('admin')">
-          Abrir Panel de Personal
+          Panel de Personal
           <span class="badge hidden" id="badgeBannerPersonal">0</span>
         </button>
-        <button class="btn" onclick="abrirConfigNube()">☁️ Conectar Base Nube</button>
-        <button class="btn btn-danger" onclick="cerrarSesionPersonal()">Cerrar Personal</button>
+        <button class="btn" onclick="abrirConfigNube()">☁️ Nube / Token</button>
+        <button class="btn btn-danger" onclick="cerrarSesionPersonal()">Salir</button>
       </div>
     </div>
 
-    <!-- 1. SECCIÓN INICIO -->
+    <!-- =====================================================================
+         1. SECCIÓN INICIO (CON FONDO, CORTES, GALERÍA FENIX, CURSO Y UBICACIÓN)
+         ===================================================================== -->
     <section id="sec-inicio" class="section active">
-      <div class="hero">
-        <h2>Estilo, Precisión y Formación Profesional</h2>
-        <p>Reservá tu lugar en la agenda online sin esperas por chat, participá de sorteos exclusivos para miembros registrados o formáte en nuestra Academia Oficial.</p>
+      
+      <!-- PORTADA PRINCIPAL CON IMAGEN DE FONDO -->
+      <div class="hero-banner">
+        <h2>Fenix Studio</h2>
+        <p>Excelencia en barbería clásica y moderna. Reservá tu turno online en segundos, sumate a nuestra comunidad con sorteos exclusivos o formáte como profesional en nuestra Academia.</p>
         <div class="hero-buttons">
           <button class="btn btn-gold btn-cta-large" onclick="cambiarSeccion('turnos')">
-            📅 RESERVAR TURNO
+            📅 RESERVAR TURNO AHORA
+          </button>
+          <button class="btn btn-cta-large" onclick="cambiarSeccion('academia')">
+            🎓 Conocer el Curso & Aula Virtual
           </button>
           <button class="btn btn-cta-large" onclick="cambiarSeccion('usuarios')">
             ✨ Crear mi Usuario
           </button>
         </div>
+
+        <div class="hero-quick-links">
+          <a id="heroBtnIg" href="https://instagram.com" target="_blank" class="btn">📸 Seguinos en Instagram: <strong id="heroTxtIg">@fenixstudio</strong></a>
+          <a id="heroBtnUbi" href="https://maps.google.com" target="_blank" class="btn">📍 Ubicación: <strong id="heroTxtUbi">Resistencia, Chaco</strong></a>
+        </div>
       </div>
 
+      <!-- TIPOS DE CORTES Y PRECIOS EN PÁGINA PRINCIPAL -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">✂️ Tipos de Cortes y Tarifas</div>
+          <button class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Agendar mi Corte</button>
+        </div>
+        <div class="grid-3" id="grillaCortesInicio"></div>
+      </div>
+
+      <!-- FOTOS EN PÁGINA PRINCIPAL: GALERÍA FENIX -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📸 Galería Fenix — Nuestros Trabajos</div>
+          <button class="btn" onclick="cambiarSeccion('galeria')">Ver Galería Completa</button>
+        </div>
+        <div class="gallery-grid" id="galeriaPreviewInicio"></div>
+      </div>
+
+      <!-- RESUMEN DE QUÉ TE DA EL CURSO + UBICACIÓN -->
       <div class="grid-2">
         <div class="card">
           <div class="card-header">
-            <div class="card-title">✂️ Servicios y Tarifas</div>
-            <button class="btn btn-gold" onclick="cambiarSeccion('turnos')">Agendar</button>
+            <div class="card-title">🎓 ¿Qué te da el Curso de Fenix Studio?</div>
           </div>
-          <div id="listaServiciosInicio"></div>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:12px;">
+            Formación intensiva de cero a barbero profesional con salida laboral inmediata:
+          </p>
+          <div class="item-row"><span>✅ Prácticas reales sobre modelos y manejo de herramientas</span></div>
+          <div class="item-row"><span>✅ Dominio de Degradé (Low, Mid, High Fade), tijera y navaja</span></div>
+          <div class="item-row"><span>✅ Acceso 24/7 al Aula Virtual + Certificado Oficial al finalizar</span></div>
+          <button class="btn btn-gold" style="width:100%; justify-content:center; margin-top:8px;" onclick="cambiarSeccion('academia')">
+            Ver Programa Completo y Aula Virtual
+          </button>
         </div>
 
         <div class="card">
           <div class="card-header">
-            <div class="card-title">🔥 Beneficios de Comunidad</div>
-          </div>
-          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5; margin-bottom:14px;">
-            Creá tu cuenta gratuita en segundos desde el menú y accedé a:
-          </p>
-          <div class="item-row">
-            <div>
-              <strong>🎟️ Sorteos Mensuales Exclusivos</strong>
-              <div style="font-size:0.82rem; color:var(--text-muted);">Participá con un clic por cortes, productos y combos.</div>
-            </div>
-            <button class="btn" onclick="cambiarSeccion('sorteos')">Ver Sorteo</button>
+            <div class="card-title">📍 Dónde Estamos & Redes</div>
           </div>
           <div class="item-row">
             <div>
-              <strong>📅 Agenda Directa en la Web</strong>
-              <div style="font-size:0.82rem; color:var(--text-muted);">Consultá los horarios disponibles del día y reservá al instante.</div>
+              <strong>📍 Dirección / Local</strong>
+              <div style="font-size:0.85rem; color:var(--text-muted);" id="cardTxtDireccion">Resistencia, Chaco — Atención por orden de agenda</div>
             </div>
-            <button class="btn" onclick="cambiarSeccion('turnos')">Ver Horarios</button>
+            <a id="cardBtnMapa" href="https://maps.google.com" target="_blank" class="btn btn-gold">Abrir Mapa</a>
           </div>
           <div class="item-row">
             <div>
-              <strong>🎓 Aula Virtual de Barbería</strong>
-              <div style="font-size:0.82rem; color:var(--text-muted);">Plataforma exclusiva de estudio para alumnos inscriptos.</div>
+              <strong>📸 Nuestro Instagram</strong>
+              <div style="font-size:0.85rem; color:var(--text-muted);" id="cardTxtInstagram">@fenixstudio — Mirá nuestros reels y trabajos</div>
             </div>
-            <button class="btn" onclick="cambiarSeccion('academia')">Ir al Curso</button>
+            <a id="cardBtnIg" href="https://instagram.com" target="_blank" class="btn">Ir a IG</a>
+          </div>
+          <div class="item-row">
+            <div>
+              <strong>🎁 Comunidad y Sorteos</strong>
+              <div style="font-size:0.85rem; color:var(--text-muted);">Registrate en la web para participar de premios mensuales.</div>
+            </div>
+            <button class="btn" onclick="cambiarSeccion('sorteos')">Sorteos</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 2. SECCIÓN RESERVAR TURNO -->
+    <!-- =====================================================================
+         2. SECCIÓN TIPOS DE CORTES Y PRECIOS (DETALLADA)
+         ===================================================================== -->
+    <section id="sec-cortes" class="section">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">✂️ Catálogo de Cortes, Servicios y Precios</div>
+          <button class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
+        </div>
+        <div class="grid-3" id="grillaCortesSeccion"></div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         3. SECCIÓN GALERÍA FENIX COMPLETA
+         ===================================================================== -->
+    <section id="sec-galeria" class="section">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📸 Galería Fenix — Portfolio Oficial</div>
+          <a id="galBtnIg" href="https://instagram.com" target="_blank" class="btn">📸 Ver más en Instagram</a>
+        </div>
+        <div class="gallery-grid" id="galeriaCompletaGrid"></div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4. SECCIÓN RESERVAR TURNO (SIN WHATSAPP + AVISO DE TIEMPO FLEXIBLE)
+         ===================================================================== -->
     <section id="sec-turnos" class="section">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">📅 Reservar Turno Online</div>
+          <div class="card-title">📅 Reservar Turno en la Agenda</div>
         </div>
 
         <div class="notice-box">
-          ⏱️ <strong>Modalidad de Atención en Fenix Studio:</strong> Nuestros cortes no tienen un tiempo fijo cronometrado; cada trabajo se realiza con la dedicación que merece. El horario que elijas asegura tu orden en la agenda del día. <strong>En caso de que un turno previo requiera más tiempo, el siguiente turno deberá aguardar a que finalice el corte anterior.</strong>
+          ⏱️ <strong>Modalidad de Trabajo en Fenix Studio:</strong> El barbero no corta contra reloj ni con tiempo rígido; cada corte lleva el detalle necesario para que quede perfecto. <strong>En caso de que un turno choque con otro o el trabajo previo tome unos minutos extra, el segundo turno deberá aguardar a que termine el anterior.</strong>
         </div>
 
         <div class="grid-2">
           <div>
             <div class="form-group">
-              <label>1. Elegí el Servicio</label>
+              <label>1. Elegí el Tipo de Corte / Servicio</label>
               <select id="turnoServicio"></select>
             </div>
 
             <div class="form-group">
-              <label>2. Elegí el Día</label>
+              <label>2. Elegí la Fecha</label>
               <input type="date" id="turnoFecha" onchange="renderHorariosDisponibles()" />
             </div>
 
             <div class="form-group">
-              <label>3. Seleccioná el Horario Disponible</label>
+              <label>3. Elegí el Horario que más te convenga</label>
               <div class="slots-grid" id="grillaHorarios"></div>
               <small style="color:var(--text-muted); display:block; margin-top:6px;">
-                * Si elegís un horario que ya tiene un turno agendado, quedarás anotado inmediatamente después en la fila de ese bloque.
+                * Si seleccionás un horario que ya tiene alguien anotado, quedarás en lista inmediatamente después de ese turno.
               </small>
             </div>
           </div>
@@ -769,43 +975,84 @@
           <div>
             <div class="form-group">
               <label>4. Tu Nombre y Apellido</label>
-              <input type="text" id="turnoNombre" placeholder="Ej: Mateo Gómez" />
+              <input type="text" id="turnoNombre" placeholder="Ej: Franco Morales" />
             </div>
 
             <div class="form-group">
-              <label>5. Tu Correo Gmail (Para confirmaciones y avisos)</label>
+              <label>5. Tu Correo Gmail (Para confirmaciones y beneficios)</label>
               <input type="email" id="turnoEmail" placeholder="tuemail@gmail.com" />
             </div>
 
             <div class="form-group">
-              <label>6. Tu Teléfono de Contacto</label>
-              <input type="tel" id="turnoTelefono" placeholder="Ej: 3624000000" />
+              <label>6. Tu Teléfono</label>
+              <input type="tel" id="turnoTelefono" placeholder="Ej: 3624..." />
             </div>
 
             <div class="form-group">
-              <label>Detalle opcional del corte</label>
-              <input type="text" id="turnoNota" placeholder="Ej: Mid fade + perfilado de barba" />
+              <label>Aclaración opcional sobre el corte</label>
+              <input type="text" id="turnoNota" placeholder="Ej: Mid Fade + marcación de barba" />
             </div>
 
             <button class="btn btn-gold btn-cta-large" style="width:100%; justify-content:center; margin-top:8px;" onclick="confirmarReservaTurno()">
-              ✅ Confirmar Turno
+              ✅ Confirmar Reserva en Agenda
             </button>
 
-            <div id="comprobanteTurno" style="display:none; margin-top:16px; padding:16px; background:rgba(16,185,129,0.12); border:1px solid var(--success); border-radius:10px;">
-            </div>
+            <div id="comprobanteTurno" style="display:none; margin-top:16px; padding:16px; background:rgba(16,185,129,0.14); border:1px solid var(--success); border-radius:10px;"></div>
           </div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <div class="card-title">💈 Fila de Turnos del Día Seleccionado</div>
+          <div class="card-title">💈 Orden de Turnos del Día Seleccionado</div>
         </div>
         <div id="vistaPublicaTurnosDia"></div>
       </div>
     </section>
 
-    <!-- 3. SECCIÓN SORTEOS Y BENEFICIOS -->
+    <!-- =====================================================================
+         5. SECCIÓN CURSO DE BARBERÍA (QUÉ TE DA EL CURSO + AULA VIRTUAL)
+         ===================================================================== -->
+    <section id="sec-academia" class="section">
+      <!-- EXPLICACIÓN PÚBLICA DE QUÉ TE DA EL CURSO -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🎓 Academia Fenix Studio — ¿Qué te da nuestro Curso?</div>
+          <span class="status-pill status-espera">Inscripciones Abiertas — Cuota: $75.000</span>
+        </div>
+
+        <p style="color:#e4e4e7; line-height:1.55; margin-bottom:18px;">
+          Nuestro curso está diseñado para llevarte desde cero hasta dominar todas las técnicas de una barbería moderna, combinando clases prácticas presenciales con soporte teórico en nuestra Aula Virtual.
+        </p>
+
+        <div class="grid-3" style="margin-bottom:16px;">
+          <div class="finance-box">
+            <strong style="color:var(--gold); display:block; margin-bottom:6px;">🛠️ Herramientas & Práctica</strong>
+            <span style="font-size:0.85rem; color:var(--text-muted);">Conocimiento completo de máquinas, tijeras, alzadas, navaja y práctica en modelos reales.</span>
+          </div>
+          <div class="finance-box">
+            <strong style="color:var(--gold); display:block; margin-bottom:6px;">✂️ Técnicas Avanzadas</strong>
+            <span style="font-size:0.85rem; color:var(--text-muted);">Degradés limpios (Low, Mid, High Fade), visagismo, perfilado de barba, cejas y atención al cliente.</span>
+          </div>
+          <div class="finance-box">
+            <strong style="color:var(--gold); display:block; margin-bottom:6px;">📜 Diploma + Aula Virtual</strong>
+            <span style="font-size:0.85rem; color:var(--text-muted);">Material digital de apoyo 24/7 con tu usuario de alumno y Certificado Oficial al finalizar.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACCESO AL AULA VIRTUAL -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🔐 Plataforma del Aula Virtual (Exclusivo Alumnos)</div>
+        </div>
+        <div id="contenidoAulaVirtual"></div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         6. SECCIÓN SORTEOS Y BENEFICIOS
+         ===================================================================== -->
     <section id="sec-sorteos" class="section">
       <div class="card">
         <div class="card-header">
@@ -815,18 +1062,9 @@
       </div>
     </section>
 
-    <!-- 4. SECCIÓN CURSO Y AULA VIRTUAL -->
-    <section id="sec-academia" class="section">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">🎓 Academia Fenix Studio — Aula Virtual</div>
-          <span class="status-pill status-espera">Cuota Mensual: $75.000</span>
-        </div>
-        <div id="contenidoAulaVirtual"></div>
-      </div>
-    </section>
-
-    <!-- 5. SECCIÓN MI CUENTA (LOGIN Y REGISTRO) -->
+    <!-- =====================================================================
+         7. SECCIÓN MI CUENTA (CREAR USUARIO / INICIAR SESIÓN)
+         ===================================================================== -->
     <section id="sec-usuarios" class="section">
       <div id="vistaUsuarioLogueado" style="display:none;"></div>
 
@@ -844,7 +1082,7 @@
             <input type="password" id="loginPass" placeholder="••••••••" />
           </div>
           <button class="btn btn-gold" style="width:100%; justify-content:center;" onclick="iniciarSesionUsuario()">
-            Ingresar a mi Cuenta
+            Entrar a mi Cuenta
           </button>
         </div>
 
@@ -865,45 +1103,44 @@
             <input type="tel" id="regTelefono" placeholder="Ej: 3624..." />
           </div>
           <div class="form-group">
-            <label>Tipo de Cuenta</label>
+            <label>¿Para qué te registrás?</label>
             <select id="regRol">
-              <option value="cliente">💈 Cliente de la Barbería (Turnos y Sorteos)</option>
-              <option value="alumno">🎓 Alumno de la Academia (Aula Virtual)</option>
+              <option value="cliente">💈 Cliente de Barbería (Turnos, Sorteos y Beneficios)</option>
+              <option value="alumno">🎓 Alumno del Curso (Acceso al Aula Virtual)</option>
             </select>
           </div>
           <div class="form-group">
-            <label>Elegí un Nombre de Usuario</label>
+            <label>Elegí tu Usuario</label>
             <input type="text" id="regUser" placeholder="Ej: lucas2026" />
           </div>
           <div class="form-group">
-            <label>Elegí una Contraseña</label>
+            <label>Elegí tu Contraseña</label>
             <input type="password" id="regPass" placeholder="Mínimo 4 caracteres" />
           </div>
           <button class="btn btn-gold" style="width:100%; justify-content:center;" onclick="registrarNuevoUsuario()">
-            🚀 Crear mi Cuenta
+            🚀 Crear mi Usuario Ahora
           </button>
         </div>
       </div>
     </section>
 
-    <!-- 6. SECCIÓN PANEL DE PERSONAL (OCULTA PARA CLIENTES) -->
+    <!-- =====================================================================
+         8. SECCIÓN PANEL DE PERSONAL (COMPLETO CON TODO RESTAURADO)
+         ===================================================================== -->
     <section id="sec-admin" class="section">
       
-      <!-- SOLICITUDES DE USUARIOS / ALUMNOS -->
+      <!-- 8.1 SOLICITUDES CON BURBUJA ROJA (ACEPTAR / RECHAZAR) -->
       <div class="card" style="border-color: var(--gold);">
         <div class="card-header">
           <div class="card-title">
-            🔔 Solicitudes de Nuevos Usuarios y Alumnos
+            🔔 Solicitudes de Usuarios / Alumnos para Aceptar o Rechazar
             <span class="badge hidden" id="badgeSolicitudesAdmin">0</span>
           </div>
         </div>
-        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
-          Aceptá o rechazá las cuentas creadas por clientes y alumnos desde sus celulares.
-        </p>
         <div id="listaPendientesAdmin"></div>
       </div>
 
-      <!-- AGENDA DE TURNOS -->
+      <!-- 8.2 AGENDA DE TURNOS -->
       <div class="card">
         <div class="card-header">
           <div class="card-title">
@@ -912,13 +1149,109 @@
           </div>
           <div style="display:flex; gap:8px; align-items:center;">
             <input type="date" id="filtroFechaAdmin" onchange="renderAdminAgenda()" style="width:auto;" />
-            <button class="btn" onclick="verTodosLosTurnosAdmin()">Ver Todos</button>
+            <button class="btn" onclick="renderAdminAgenda(true)">Ver Todos</button>
           </div>
         </div>
         <div id="listaAgendaAdmin"></div>
       </div>
 
-      <!-- MENSAJERÍA GMAIL -->
+      <!-- 8.3 INGRESOS, EGRESOS Y BALANCE NETO (RESTAURADO) -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">💰 Control de Ingresos y Egresos (Caja Completa)</div>
+        </div>
+
+        <div class="finance-summary">
+          <div class="finance-box">
+            <span style="font-size:0.8rem; color:var(--text-muted);">📈 Total Ingresos</span>
+            <strong id="finTotalIngresos" style="display:block; font-size:1.3rem; color:var(--success); margin-top:4px;">$0</strong>
+          </div>
+          <div class="finance-box">
+            <span style="font-size:0.8rem; color:var(--text-muted);">📉 Total Egresos / Gastos</span>
+            <strong id="finTotalEgresos" style="display:block; font-size:1.3rem; color:var(--danger); margin-top:4px;">$0</strong>
+          </div>
+          <div class="finance-box" style="border-color:var(--gold);">
+            <span style="font-size:0.8rem; color:var(--gold);">💵 Balance Neto</span>
+            <strong id="finBalanceNeto" style="display:block; font-size:1.3rem; color:var(--gold); margin-top:4px;">$0</strong>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-bottom:14px;">
+          <input type="text" id="cajaConcepto" placeholder="Concepto (Ej: Corte, Filos, Alquiler...)" />
+          <input type="number" id="cajaMonto" placeholder="Monto en $" />
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-success" style="flex:1; justify-content:center;" onclick="registrarMovimientoFinanciero('ingreso')">➕ Ingreso</button>
+            <button class="btn btn-danger" style="flex:1; justify-content:center;" onclick="registrarMovimientoFinanciero('egreso')">➖ Egreso</button>
+          </div>
+        </div>
+
+        <div id="listaMovimientosFinanzas"></div>
+      </div>
+
+      <!-- 8.4 ADMINISTRAR IMAGEN DE FONDO, IG, UBICACIÓN Y GALERÍA FENIX -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🖼️ Imagen de Fondo, IG y Ubicación</div>
+          </div>
+          <div class="form-group">
+            <label>Cambiar Imagen de Fondo (Pegá un link o subí foto de tu galería)</label>
+            <input type="text" id="cfgBgUrl" placeholder="https://..." />
+            <input type="file" accept="image/*" style="margin-top:6px;" onchange="subirImagenFondoArchivo(event)" />
+          </div>
+          <div class="form-group">
+            <label>Usuario de Instagram (Ej: @fenixstudio)</label>
+            <input type="text" id="cfgIgUser" />
+          </div>
+          <div class="form-group">
+            <label>Enlace completo de Instagram</label>
+            <input type="text" id="cfgIgUrl" />
+          </div>
+          <div class="form-group">
+            <label>Texto de Dirección / Ubicación</label>
+            <input type="text" id="cfgUbiTexto" />
+          </div>
+          <div class="form-group">
+            <label>Enlace de Google Maps</label>
+            <input type="text" id="cfgUbiUrl" />
+          </div>
+          <button class="btn btn-gold" onclick="guardarConfigEstetica()">💾 Guardar Fondo, IG y Ubicación</button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">📸 Administrar Galería Fenix</div>
+          </div>
+          <div class="form-group">
+            <label>Título de la foto (Ej: Mid Fade + Barba)</label>
+            <input type="text" id="nuevaFotoTitulo" placeholder="Descripción del corte" />
+          </div>
+          <div class="form-group">
+            <label>Link de la foto o elegí desde tu celular/PC</label>
+            <input type="text" id="nuevaFotoUrl" placeholder="https://..." />
+            <input type="file" accept="image/*" style="margin-top:6px;" onchange="subirFotoGaleriaArchivo(event)" />
+          </div>
+          <button class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarFotoGaleriaPorUrl()">➕ Agregar a Galería Fenix</button>
+          <div id="listaAdminGaleria" style="max-height:220px; overflow-y:auto;"></div>
+        </div>
+      </div>
+
+      <!-- 8.5 ADMINISTRAR TIPOS DE CORTES Y PRECIOS -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">✂️ Editar Tipos de Cortes y sus Precios</div>
+        </div>
+        <div class="grid-3" style="margin-bottom:14px;">
+          <input type="text" id="nuevoServNombre" placeholder="Nombre del corte" />
+          <input type="number" id="nuevoServPrecio" placeholder="Precio $" />
+          <input type="text" id="nuevoServDesc" placeholder="Descripción breve" />
+          <input type="text" id="nuevoServImg" placeholder="URL de foto (opcional)" />
+          <button class="btn btn-gold" onclick="agregarServicioAdmin()">➕ Agregar Corte</button>
+        </div>
+        <div id="listaServiciosAdmin"></div>
+      </div>
+
+      <!-- 8.6 CENTRO DE CORREOS GMAIL -->
       <div class="card">
         <div class="card-header">
           <div class="card-title">📧 Mensajes Directos o Generales por Gmail</div>
@@ -929,7 +1262,7 @@
               <label>Destinatarios</label>
               <select id="mailDestinatario" onchange="actualizarDestinatariosMail()">
                 <option value="todos">📢 Todos los Usuarios Registrados</option>
-                <option value="alumnos">🎓 Solo Alumnos de la Academia</option>
+                <option value="alumnos">🎓 Solo Alumnos del Curso</option>
                 <option value="clientes">💈 Solo Clientes de la Barbería</option>
               </select>
             </div>
@@ -938,113 +1271,73 @@
               <div style="display:flex; gap:6px; flex-wrap:wrap;">
                 <button class="btn" onclick="cargarPlantillaMail('sorteo')">🎁 Nuevo Sorteo</button>
                 <button class="btn" onclick="cargarPlantillaMail('turnos')">📅 Horarios Abiertos</button>
-                <button class="btn" onclick="cargarPlantillaMail('academia')">🎓 Aviso Academia</button>
+                <button class="btn" onclick="cargarPlantillaMail('academia')">🎓 Aviso Curso</button>
               </div>
             </div>
             <div class="form-group">
-              <label>Correos incluidos</label>
+              <label>Correos seleccionados</label>
               <input type="text" id="mailListaCorreos" readonly style="color:var(--text-muted);" />
             </div>
           </div>
           <div>
             <div class="form-group">
               <label>Asunto</label>
-              <input type="text" id="mailAsunto" placeholder="Asunto del mensaje..." />
+              <input type="text" id="mailAsunto" placeholder="Asunto del correo..." />
             </div>
             <div class="form-group">
               <label>Mensaje</label>
-              <textarea id="mailCuerpo" rows="4" placeholder="Escribí el mensaje para enviar por Gmail..."></textarea>
+              <textarea id="mailCuerpo" rows="4" placeholder="Escribí el mensaje..."></textarea>
             </div>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <button class="btn btn-gold" onclick="dispararGmailWeb()">
-                ✉️ Enviar desde Gmail Web
-              </button>
-              <button class="btn" onclick="dispararMailtoApp()">
-                📱 Abrir en App de Correo
-              </button>
+              <button class="btn btn-gold" onclick="dispararGmailWeb()">✉️ Enviar desde Gmail</button>
+              <button class="btn" onclick="dispararMailtoApp()">📱 Abrir App de Correo</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SORTEOS -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">🎁 Gestión de Sorteos</div>
-        </div>
-        <div class="grid-2">
-          <div>
-            <div class="form-group">
-              <label>Título del Sorteo</label>
-              <input type="text" id="adminSorteoTitulo" />
-            </div>
-            <div class="form-group">
-              <label>Premio</label>
-              <input type="text" id="adminSorteoPremio" />
-            </div>
-            <div class="form-group">
-              <label>Fecha del Sorteo</label>
-              <input type="text" id="adminSorteoFecha" />
-            </div>
-            <button class="btn btn-gold" onclick="guardarConfigSorteo()">💾 Guardar Cambios</button>
-          </div>
-          <div>
-            <p style="font-size:0.9rem; margin-bottom:10px;">
-              Participantes anotados: <strong id="cantParticipantesSorteo" style="color:var(--gold);">0</strong>
-            </p>
-            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
-              <button class="btn btn-success" onclick="sortearGanadorAzar()">🎲 Elegir Ganador al Azar</button>
-              <button class="btn btn-danger" onclick="vaciarParticipantesSorteo()">🔄 Reiniciar Lista</button>
-            </div>
-            <div id="resultadoGanadorAdmin"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ALTA MANUAL Y BASE DE USUARIOS -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">👥 Base de Usuarios y Alta Manual</div>
-        </div>
-        <div class="grid-3" style="margin-bottom:16px; background:var(--bg-main); padding:14px; border-radius:10px;">
-          <input type="text" id="manualNombre" placeholder="Nombre completo" />
-          <input type="email" id="manualEmail" placeholder="Correo Gmail" />
-          <input type="text" id="manualUser" placeholder="Usuario" />
-          <input type="text" id="manualPass" placeholder="Contraseña" />
-          <select id="manualRol">
-            <option value="alumno">🎓 Alumno Academia</option>
-            <option value="cliente">💈 Cliente Barbería</option>
-          </select>
-          <button class="btn btn-gold" onclick="crearUsuarioManualAdmin()">➕ Dar de Alta</button>
-        </div>
-        <div id="listaTodosUsuariosAdmin"></div>
-      </div>
-
-      <!-- CAJA Y TARIFAS -->
+      <!-- 8.7 SORTEOS Y ALTA MANUAL DE USUARIOS -->
       <div class="grid-2">
         <div class="card">
           <div class="card-header">
-            <div class="card-title">💰 Registro de Caja</div>
-            <strong id="totalCajaAdmin" style="color:var(--success); font-size:1.1rem;">$0</strong>
+            <div class="card-title">🎁 Gestionar Sorteos</div>
           </div>
-          <div style="display:flex; gap:8px; margin-bottom:12px;">
-            <input type="text" id="cajaConcepto" placeholder="Concepto" />
-            <input type="number" id="cajaMonto" placeholder="Monto $" style="max-width:130px;" />
-            <button class="btn btn-success" onclick="agregarMovimientoCaja()">+</button>
+          <div class="form-group">
+            <label>Título del Sorteo</label>
+            <input type="text" id="adminSorteoTitulo" />
           </div>
-          <div id="listaCajaAdmin"></div>
+          <div class="form-group">
+            <label>Premio</label>
+            <input type="text" id="adminSorteoPremio" />
+          </div>
+          <div class="form-group">
+            <label>Fecha del Sorteo</label>
+            <input type="text" id="adminSorteoFecha" />
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn btn-gold" onclick="guardarConfigSorteo()">💾 Guardar</button>
+            <button class="btn btn-success" onclick="sortearGanadorAzar()">🎲 Sortear Ganador (<span id="cantParticipantesSorteo">0</span>)</button>
+            <button class="btn btn-danger" onclick="vaciarParticipantesSorteo()">🔄 Reiniciar</button>
+          </div>
+          <div id="resultadoGanadorAdmin"></div>
         </div>
 
         <div class="card">
           <div class="card-header">
-            <div class="card-title">✂️ Servicios y Precios</div>
+            <div class="card-title">👥 Alta Manual y Lista de Usuarios</div>
           </div>
-          <div style="display:flex; gap:8px; margin-bottom:12px;">
-            <input type="text" id="nuevoServNombre" placeholder="Servicio" />
-            <input type="number" id="nuevoServPrecio" placeholder="Precio $" style="max-width:130px;" />
-            <button class="btn btn-gold" onclick="agregarServicioAdmin()">➕</button>
+          <div class="grid-2" style="margin-bottom:10px;">
+            <input type="text" id="manualNombre" placeholder="Nombre" />
+            <input type="email" id="manualEmail" placeholder="Gmail" />
+            <input type="text" id="manualUser" placeholder="Usuario" />
+            <input type="text" id="manualPass" placeholder="Contraseña" />
+            <select id="manualRol">
+              <option value="alumno">🎓 Alumno</option>
+              <option value="cliente">💈 Cliente</option>
+            </select>
+            <button class="btn btn-gold" onclick="crearUsuarioManualAdmin()">➕ Dar de Alta</button>
           </div>
-          <div id="listaServiciosAdmin"></div>
+          <div id="listaTodosUsuariosAdmin" style="max-height:220px; overflow-y:auto;"></div>
         </div>
       </div>
 
@@ -1052,29 +1345,85 @@
 
   </div>
 
-  <!-- PIE DE PÁGINA CON ENLACE SUTIL DE PERSONAL -->
+  <!-- PIE DE PÁGINA CON IG, UBICACIÓN Y ACCESO PERSONAL DISCRETO -->
   <footer>
-    <span>© 2026 Fenix Studio — Barbería & Academia Oficial</span>
+    <span>© 2026 Fenix Studio — Barbería & Academia</span>
+    <span>•</span>
+    <a id="footerIg" href="https://instagram.com" target="_blank">Instagram</a>
+    <span>•</span>
+    <a id="footerUbi" href="https://maps.google.com" target="_blank">Ubicación</a>
     <span>•</span>
     <button onclick="accesoPersonalLogin()">Acceso Personal</button>
   </footer>
 
   <script>
-    const CLAVE_PERSONAL = "1234"; // PIN privado del Personal
+    const CLAVE_PERSONAL = "1234";
     const HORARIOS_BASE = [
       "09:00", "10:00", "11:00", "12:00",
       "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"
     ];
 
     let estado = {
+      config: {
+        bgImage: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=80",
+        igUser: "@fenixstudio",
+        igUrl: "https://instagram.com",
+        ubiTexto: "Resistencia, Chaco",
+        ubiUrl: "https://maps.google.com"
+      },
       servicios: [
-        { id: 1, nombre: "Corte Clásico / Degradé (Fade)", precio: 8000 },
-        { id: 2, nombre: "Perfilado y Arreglo de Barba", precio: 5000 },
-        { id: 3, nombre: "Combo Completo (Corte + Barba + Cejas)", precio: 11500 },
-        { id: 4, nombre: "Diseño Libre / Colorimetría", precio: 14000 }
+        {
+          id: 1,
+          nombre: "Degradé / Fade (Low, Mid o High)",
+          precio: 8000,
+          desc: "Transición limpia a navaja o máquina + peinado con acabado texturizado.",
+          img: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          id: 2,
+          nombre: "Corte Clásico a Tijera y Máquina",
+          precio: 7500,
+          desc: "Estructura tradicional prolija, terminaciones definidas y lavado.",
+          img: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          id: 3,
+          nombre: "Perfilado y Ritual de Barba",
+          precio: 5000,
+          desc: "Diseño simétrico a navaja, rebaje de volumen y hidratación.",
+          img: "https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          id: 4,
+          nombre: "Combo Fenix (Corte + Barba + Cejas)",
+          precio: 11500,
+          desc: "Servicio completo de renovación de imagen sin apuros.",
+          img: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          id: 5,
+          nombre: "Diseño Freestyle / Líneas",
+          precio: 9500,
+          desc: "Corte con diseño artístico a navaja personalizado.",
+          img: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          id: 6,
+          nombre: "Colorimetría / Platinado / Mechas",
+          precio: 16000,
+          desc: "Decoloración cuidada, matizado profesional y corte incluido.",
+          img: "https://images.unsplash.com/photo-1534297635766-a262cdcb8ee4?auto=format&fit=crop&w=700&q=80"
+        }
+      ],
+      galeria: [
+        { id: 101, titulo: "Mid Fade + Textura Superior", url: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80" },
+        { id: 102, titulo: "Perfilado de Barba a Navaja", url: "https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80" },
+        { id: 103, titulo: "Skin Fade Pulido", url: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80" },
+        { id: 104, titulo: "Corte & Estilo Clásico", url: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=80" }
       ],
       turnos: [],
       usuarios: [],
+      finanzas: [],
       sorteo: {
         titulo: "Sorteo Mensual Comunidad Fenix Studio",
         premio: "1 Combo Corte + Barba Gratis + 1 Cera Modeladora",
@@ -1082,11 +1431,11 @@
         participantes: [],
         ultimoGanador: null
       },
-      caja: [],
       clasesAcademia: [
-        { titulo: "Módulo 1: Herramientas, Alzadas y Bioseguridad", descripcion: "Manejo de máquinas profesionales, calibración de cuchillas y desinfección." },
-        { titulo: "Módulo 2: Estructura de Degradé (Low, Mid y High Fade)", descripcion: "Líneas guía, técnica de cuchareo y pulido de transiciones." },
-        { titulo: "Módulo 3: Visagismo y Ritual de Barba", descripcion: "Perfilado a navaja, simetría facial y aplicación de toalla caliente." }
+        { titulo: "Módulo 1: Herramientas, Alzadas y Bioseguridad", descripcion: "Reconocimiento de máquinas (clipper, trimmer, shaver), calibración de cuchillas e higiene." },
+        { titulo: "Módulo 2: Estructura de Degradé (Low, Mid y High Fade)", descripcion: "Marcado de líneas guía, técnica de cuchareo y borrado de líneas sin escalones." },
+        { titulo: "Módulo 3: Manejo de Tijera, Texturizado y Conexiones", descripcion: "Corte en sección superior, tijera sobre peine y entresacado." },
+        { titulo: "Módulo 4: Visagismo, Cejas y Ritual de Barba", descripcion: "Manejo seguro del porta navaja, simetría facial y acabado profesional." }
       ]
     };
 
@@ -1111,7 +1460,7 @@
       renderTodo();
     });
 
-    /* MENÚ DE 3 BARRAS (ABRIR / CERRAR) */
+    /* MENÚ DE 3 BARRAS */
     function abrirMenuLateral() {
       document.getElementById("sideDrawer").classList.add("open");
       document.getElementById("drawerOverlay").classList.add("open");
@@ -1135,7 +1484,6 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    /* ATAJO SECRETO: 3 TOQUES EN EL LOGO "FS" */
     function toqueSecretoLogo() {
       contadorToquesLogo++;
       clearTimeout(timerToquesLogo);
@@ -1150,24 +1498,23 @@
       }
     }
 
-    /* PERSISTENCIA LOCAL + NUBE */
+    /* PERSISTENCIA */
     function cargarDatosLocales() {
-      const guardado = localStorage.getItem("fenix_studio_db_v3");
+      const guardado = localStorage.getItem("fenix_studio_db_v4");
       if (guardado) {
         try {
-          estado = { ...estado, ...JSON.parse(guardado) };
+          const parsed = JSON.parse(guardado);
+          estado = { ...estado, ...parsed };
         } catch (e) {}
       }
       const sesionGuardada = localStorage.getItem("fenix_usuario_sesion");
       if (sesionGuardada) {
-        try {
-          usuarioActual = JSON.parse(sesionGuardada);
-        } catch (e) {}
+        try { usuarioActual = JSON.parse(sesionGuardada); } catch (e) {}
       }
     }
 
     async function guardarDatos() {
-      localStorage.setItem("fenix_studio_db_v3", JSON.stringify(estado));
+      localStorage.setItem("fenix_studio_db_v4", JSON.stringify(estado));
       renderTodo();
 
       if (cloudDbUrl) {
@@ -1177,7 +1524,7 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(estado)
           });
-          document.getElementById("textoNube").innerText = "● Nube Sincronizada";
+          document.getElementById("textoNube").innerText = "● Nube Conectada";
         } catch (err) {
           document.getElementById("textoNube").innerText = "● Modo Local";
         }
@@ -1192,9 +1539,8 @@
           const dataRemota = await res.json();
           if (dataRemota) {
             estado = { ...estado, ...dataRemota };
-            localStorage.setItem("fenix_studio_db_v3", JSON.stringify(estado));
+            localStorage.setItem("fenix_studio_db_v4", JSON.stringify(estado));
             renderTodo();
-            document.getElementById("textoNube").innerText = "● Nube Sincronizada";
           }
         }
       } catch (e) {}
@@ -1202,8 +1548,8 @@
 
     function abrirConfigNube() {
       const nueva = prompt(
-        "☁️ CONECTAR BASE DE DATOS EN LA NUBE:\n\n" +
-        "Pegá la URL de tu Firebase Realtime Database para sincronizar todos los celulares automáticamente:",
+        "☁️ SINCRONIZACIÓN EN LA NUBE:\n\n" +
+        "Pegá la URL de tu base de datos en la nube (Firebase Realtime Database) para que los turnos y usuarios creados en cualquier celular se sincronicen al instante:",
         cloudDbUrl || ""
       );
       if (nueva !== null) {
@@ -1213,7 +1559,7 @@
       }
     }
 
-    /* BURBUJAS DE NOTIFICACIÓN */
+    /* NOTIFICACIONES (BURBUJA ROJA) */
     function actualizarBurbujasNotificacion() {
       const usuariosPendientes = (estado.usuarios || []).filter(u => u.estado === "pendiente").length;
       const turnosEnEspera = (estado.turnos || []).filter(t => t.estado === "espera").length;
@@ -1230,17 +1576,21 @@
         }
       };
 
+      setBadge("badgeMenuHamburguesa", total);
+      setBadge("badgeMenuCurso", usuariosPendientes);
       setBadge("badgeSubtlePersonal", total);
       setBadge("badgeDrawerPersonal", total);
       setBadge("badgeBannerPersonal", total);
       setBadge("badgeSolicitudesAdmin", usuariosPendientes);
       setBadge("badgeTurnosAdmin", turnosEnEspera);
-      setBadge("badgeMenuHamburguesa", esPersonal ? total : 0);
     }
 
+    /* RENDERIZADO GENERAL */
     function renderTodo() {
+      aplicarEsteticaYRedes();
       actualizarBurbujasNotificacion();
-      renderServicios();
+      renderCortesYServicios();
+      renderGaleriaFenix();
       renderHorariosDisponibles();
       renderVistaPublicaTurnosDia();
       renderSorteo();
@@ -1249,41 +1599,222 @@
       if (esPersonal) {
         renderAdminSolicitudes();
         renderAdminAgenda();
+        renderAdminFinanzas();
         renderAdminUsuarios();
-        renderAdminCaja();
         actualizarDestinatariosMail();
       }
     }
 
-    /* SERVICIOS Y TURNERO */
-    function renderServicios() {
-      const contInicio = document.getElementById("listaServiciosInicio");
+    /* IMAGEN DE FONDO, IG Y UBICACIÓN */
+    function aplicarEsteticaYRedes() {
+      const cfg = estado.config || {};
+      if (cfg.bgImage) {
+        document.documentElement.style.setProperty("--hero-bg", `url('${cfg.bgImage}')`);
+      }
+
+      const igUser = cfg.igUser || "@fenixstudio";
+      const igUrl = cfg.igUrl || "https://instagram.com";
+      const ubiTexto = cfg.ubiTexto || "Resistencia, Chaco";
+      const ubiUrl = cfg.ubiUrl || "https://maps.google.com";
+
+      document.getElementById("txtIgDrawer").innerText = igUser;
+      document.getElementById("heroTxtIg").innerText = igUser;
+      document.getElementById("cardTxtInstagram").innerText = `${igUser} — Mirá nuestros cortes y novedades`;
+      document.getElementById("heroTxtUbi").innerText = ubiTexto;
+      document.getElementById("cardTxtDireccion").innerText = ubiTexto;
+
+      ["linkIgDrawer", "btnHeaderIg", "heroBtnIg", "cardBtnIg", "galBtnIg", "footerIg"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.href = igUrl;
+      });
+
+      ["linkUbiDrawer", "btnHeaderUbi", "heroBtnUbi", "cardBtnMapa", "footerUbi"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.href = ubiUrl;
+      });
+
+      if (esPersonal) {
+        const inBg = document.getElementById("cfgBgUrl");
+        if (inBg && !inBg.value) {
+          inBg.value = cfg.bgImage || "";
+          document.getElementById("cfgIgUser").value = igUser;
+          document.getElementById("cfgIgUrl").value = igUrl;
+          document.getElementById("cfgUbiTexto").value = ubiTexto;
+          document.getElementById("cfgUbiUrl").value = ubiUrl;
+        }
+      }
+    }
+
+    function guardarConfigEstetica() {
+      estado.config = {
+        bgImage: document.getElementById("cfgBgUrl").value.trim() || estado.config.bgImage,
+        igUser: document.getElementById("cfgIgUser").value.trim() || "@fenixstudio",
+        igUrl: document.getElementById("cfgIgUrl").value.trim() || "https://instagram.com",
+        ubiTexto: document.getElementById("cfgUbiTexto").value.trim() || "Resistencia, Chaco",
+        ubiUrl: document.getElementById("cfgUbiUrl").value.trim() || "https://maps.google.com"
+      };
+      guardarDatos();
+      alert("✅ Imagen de fondo, Instagram y Ubicación actualizados.");
+    }
+
+    function subirImagenFondoArchivo(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        estado.config.bgImage = evt.target.result;
+        document.getElementById("cfgBgUrl").value = evt.target.result;
+        guardarDatos();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    /* CATÁLOGO DE CORTES Y PRECIOS */
+    function renderCortesYServicios() {
+      const gInicio = document.getElementById("grillaCortesInicio");
+      const gSeccion = document.getElementById("grillaCortesSeccion");
       const selTurno = document.getElementById("turnoServicio");
       const contAdmin = document.getElementById("listaServiciosAdmin");
 
-      contInicio.innerHTML = "";
-      selTurno.innerHTML = "";
-      if (contAdmin) contAdmin.innerHTML = "";
-
-      estado.servicios.forEach(s => {
-        contInicio.innerHTML += `
-          <div class="item-row">
-            <strong>${s.nombre}</strong>
-            <span style="color:var(--gold); font-weight:800;">$${Number(s.precio).toLocaleString("es-AR")}</span>
+      const htmlCards = (estado.servicios || []).map(s => `
+        <div class="cut-card">
+          <img src="${s.img || 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=700&q=80'}" alt="${s.nombre}" />
+          <div class="cut-card-body">
+            <div>
+              <strong style="font-size:1.02rem; display:block; margin-bottom:6px;">${s.nombre}</strong>
+              <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">${s.desc || 'Servicio profesional Fenix Studio.'}</p>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
+              <span class="cut-price">$${Number(s.precio).toLocaleString("es-AR")}</span>
+              <button class="btn btn-gold" onclick="elegirCorteYReservar(${s.id})">Reservar</button>
+            </div>
           </div>
-        `;
-        selTurno.innerHTML += `<option value="${s.id}">${s.nombre} — $${Number(s.precio).toLocaleString("es-AR")}</option>`;
-        if (contAdmin) {
-          contAdmin.innerHTML += `
-            <div class="item-row">
-              <div><strong>${s.nombre}</strong> ($${Number(s.precio).toLocaleString("es-AR")})</div>
+        </div>
+      `).join("");
+
+      if (gInicio) gInicio.innerHTML = htmlCards;
+      if (gSeccion) gSeccion.innerHTML = htmlCards;
+
+      if (selTurno) {
+        selTurno.innerHTML = (estado.servicios || []).map(s =>
+          `<option value="${s.id}">${s.nombre} — $${Number(s.precio).toLocaleString("es-AR")}</option>`
+        ).join("");
+      }
+
+      if (contAdmin) {
+        contAdmin.innerHTML = (estado.servicios || []).map(s => `
+          <div class="item-row">
+            <div>
+              <strong>${s.nombre}</strong> — <span style="color:var(--gold);">$${Number(s.precio).toLocaleString("es-AR")}</span>
+              <div style="font-size:0.8rem; color:var(--text-muted);">${s.desc || ''}</div>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="btn" onclick="cambiarPrecioCortePrompt(${s.id})">✏️ Precio</button>
               <button class="btn btn-danger" onclick="eliminarServicioAdmin(${s.id})">🗑️</button>
             </div>
-          `;
-        }
-      });
+          </div>
+        `).join("");
+      }
     }
 
+    function elegirCorteYReservar(idServicio) {
+      cambiarSeccion("turnos");
+      const sel = document.getElementById("turnoServicio");
+      if (sel) sel.value = idServicio;
+    }
+
+    function cambiarPrecioCortePrompt(id) {
+      const s = estado.servicios.find(x => x.id === id);
+      if (!s) return;
+      const nuevo = prompt(`Nuevo precio para "${s.nombre}":`, s.precio);
+      if (nuevo !== null && !isNaN(Number(nuevo))) {
+        s.precio = Number(nuevo);
+        guardarDatos();
+      }
+    }
+
+    function agregarServicioAdmin() {
+      const nombre = document.getElementById("nuevoServNombre").value.trim();
+      const precio = Number(document.getElementById("nuevoServPrecio").value);
+      const desc = document.getElementById("nuevoServDesc").value.trim();
+      const img = document.getElementById("nuevoServImg").value.trim();
+      if (!nombre || !precio) return alert("Completá al menos el nombre y el precio del corte.");
+
+      estado.servicios.push({
+        id: Date.now(),
+        nombre,
+        precio,
+        desc: desc || "Corte y acabado profesional.",
+        img: img || "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80"
+      });
+
+      document.getElementById("nuevoServNombre").value = "";
+      document.getElementById("nuevoServPrecio").value = "";
+      document.getElementById("nuevoServDesc").value = "";
+      document.getElementById("nuevoServImg").value = "";
+      guardarDatos();
+    }
+
+    function eliminarServicioAdmin(id) {
+      estado.servicios = estado.servicios.filter(s => s.id !== id);
+      guardarDatos();
+    }
+
+    /* GALERÍA FENIX */
+    function renderGaleriaFenix() {
+      const prev = document.getElementById("galeriaPreviewInicio");
+      const full = document.getElementById("galeriaCompletaGrid");
+      const adm = document.getElementById("listaAdminGaleria");
+
+      const htmlGal = (estado.galeria || []).map(f => `
+        <div class="gallery-item">
+          <img src="${f.url}" alt="${f.titulo}" />
+          <div class="gallery-caption">${f.titulo}</div>
+        </div>
+      `).join("");
+
+      if (prev) prev.innerHTML = htmlGal;
+      if (full) full.innerHTML = htmlGal;
+
+      if (adm) {
+        adm.innerHTML = (estado.galeria || []).map(f => `
+          <div class="item-row">
+            <span>📸 ${f.titulo}</span>
+            <button class="btn btn-danger" onclick="eliminarFotoGaleria(${f.id})">🗑️</button>
+          </div>
+        `).join("");
+      }
+    }
+
+    function agregarFotoGaleriaPorUrl() {
+      const titulo = document.getElementById("nuevaFotoTitulo").value.trim() || "Trabajo Fenix Studio";
+      const url = document.getElementById("nuevaFotoUrl").value.trim();
+      if (!url) return alert("Pegá un link de imagen o seleccioná un archivo de tu galería.");
+      estado.galeria.unshift({ id: Date.now(), titulo, url });
+      document.getElementById("nuevaFotoTitulo").value = "";
+      document.getElementById("nuevaFotoUrl").value = "";
+      guardarDatos();
+    }
+
+    function subirFotoGaleriaArchivo(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const titulo = document.getElementById("nuevaFotoTitulo").value.trim() || "Trabajo Fenix Studio";
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        estado.galeria.unshift({ id: Date.now(), titulo, url: evt.target.result });
+        document.getElementById("nuevaFotoTitulo").value = "";
+        guardarDatos();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function eliminarFotoGaleria(id) {
+      estado.galeria = estado.galeria.filter(f => f.id !== id);
+      guardarDatos();
+    }
+
+    /* TURNERO WEB CON AVISO DE FILA FLEXIBLE */
     function renderHorariosDisponibles() {
       const fecha = document.getElementById("turnoFecha").value;
       const grilla = document.getElementById("grillaHorarios");
@@ -1299,7 +1830,7 @@
           <div class="slot-item ${cantEnHora > 0 ? 'occupied' : ''} ${estaSeleccionado ? 'selected' : ''}" onclick="seleccionarHorario('${hora}')">
             <div>${hora} hs</div>
             <small style="font-size:0.7rem; display:block;">
-              ${cantEnHora === 0 ? "Libre" : cantEnHora + " en fila"}
+              ${cantEnHora === 0 ? "Disponible" : cantEnHora + " anotado(s)"}
             </small>
           </div>
         `;
@@ -1323,7 +1854,7 @@
       const nota = document.getElementById("turnoNota").value.trim();
 
       if (!fecha || !horarioSeleccionado || !nombre || !telefono) {
-        alert("Por favor completá tu Nombre, Teléfono, Fecha y Horario.");
+        alert("Completá tu Nombre, Teléfono, Fecha y Horario.");
         return;
       }
 
@@ -1348,12 +1879,12 @@
       const comp = document.getElementById("comprobanteTurno");
       comp.style.display = "block";
       comp.innerHTML = `
-        <h4 style="color:var(--success); margin-bottom:6px;">✅ ¡Turno Agendado!</h4>
-        <p style="font-size:0.9rem; line-height:1.4;">
+        <h4 style="color:var(--success); margin-bottom:6px;">✅ ¡Turno Confirmado en la Agenda!</h4>
+        <p style="font-size:0.9rem; line-height:1.45;">
           <strong>Cliente:</strong> ${nuevoTurno.cliente}<br>
-          <strong>Servicio:</strong> ${nuevoTurno.servicio}<br>
-          <strong>Fecha y Bloque:</strong> ${nuevoTurno.fecha} a las ${nuevoTurno.hora} hs<br>
-          ${choques > 0 ? `<span style="color:#fbbf24;">⚠️ Hay ${choques} turno(s) previo(s) en ese bloque. Serás atendido apenas finalice el corte anterior.</span>` : `<span>✨ Primer lugar en ese bloque horario.</span>`}
+          <strong>Corte / Servicio:</strong> ${nuevoTurno.servicio} ($${Number(nuevoTurno.precio).toLocaleString("es-AR")})<br>
+          <strong>Fecha y Horario:</strong> ${nuevoTurno.fecha} a las ${nuevoTurno.hora} hs<br>
+          ${choques > 0 ? `<span style="color:#fbbf24;">⚠️ Nota: Hay ${choques} turno(s) previo(s) en ese horario. Recordá que como el barbero no corta contra reloj, aguardarás a que finalice el corte anterior.</span>` : `<span>✨ Primer turno reservado en ese bloque horario.</span>`}
         </p>
       `;
       document.getElementById("turnoNota").value = "";
@@ -1369,7 +1900,7 @@
         .sort((a, b) => a.hora.localeCompare(b.hora));
 
       if (lista.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">No hay turnos en espera para esta fecha. ¡Todos los bloques libres!</p>`;
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">No hay turnos anotados para este día todavía. ¡Todos los horarios disponibles!</p>`;
         return;
       }
 
@@ -1380,7 +1911,7 @@
             <span style="color:var(--text-muted); font-size:0.85rem;">(${t.servicio})</span>
           </div>
           <span class="status-pill ${t.estado === 'atendiendo' ? 'status-atendiendo' : t.estado === 'finalizado' ? 'status-listo' : 'status-espera'}">
-            ${t.estado === 'atendiendo' ? '✂️ En Silla' : t.estado === 'finalizado' ? '✅ Finalizado' : '⏳ En Fila'}
+            ${t.estado === 'atendiendo' ? '✂️ Cortando Ahora' : t.estado === 'finalizado' ? '✅ Terminado' : '⏳ En Fila'}
           </span>
         </div>
       `).join("");
@@ -1421,7 +1952,7 @@
       usuarioActual = nuevo;
       localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual));
       guardarDatos();
-      alert("🎉 ¡Cuenta creada! Tu solicitud ya figura en el Panel de Personal para su activación.");
+      alert("🎉 ¡Usuario registrado! Ya apareció la burbuja de solicitud para que el Personal te habilite.");
     }
 
     function iniciarSesionUsuario() {
@@ -1430,10 +1961,7 @@
       const encontrado = (estado.usuarios || []).find(
         u => (u.user.toLowerCase() === iden || u.email.toLowerCase() === iden) && u.pass === pass
       );
-      if (!encontrado) {
-        alert("Datos incorrectos.");
-        return;
-      }
+      if (!encontrado) return alert("Usuario o contraseña incorrectos.");
       usuarioActual = encontrado;
       localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual));
       renderTodo();
@@ -1470,18 +1998,18 @@
         vistaLog.innerHTML = `
           <div class="card">
             <div class="card-header">
-              <div class="card-title">👤 Cuenta de ${usuarioActual.nombre}</div>
+              <div class="card-title">👤 Perfil de ${usuarioActual.nombre}</div>
               <span class="status-pill ${usuarioActual.estado === 'activo' ? 'status-listo' : 'status-espera'}">
-                ${usuarioActual.estado === 'activo' ? '✅ Verificado' : '⏳ Pendiente de Aprobación'}
+                ${usuarioActual.estado === 'activo' ? '✅ Cuenta Habilitada' : '⏳ Pendiente de Aceptación'}
               </span>
             </div>
-            <p style="margin-bottom:8px;"><strong>Usuario:</strong> @${usuarioActual.user} | <strong>Perfil:</strong> ${usuarioActual.rol === 'alumno' ? '🎓 Alumno' : '💈 Cliente'}</p>
+            <p style="margin-bottom:8px;"><strong>Usuario:</strong> @${usuarioActual.user} | <strong>Rol:</strong> ${usuarioActual.rol === 'alumno' ? '🎓 Alumno del Curso' : '💈 Cliente Barbería'}</p>
             <p style="margin-bottom:16px; color:var(--text-muted);"><strong>Gmail:</strong> ${usuarioActual.email}</p>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
               <button class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
-              <button class="btn" onclick="cambiarSeccion('sorteos')">🎁 Sorteos</button>
-              ${usuarioActual.rol === 'alumno' ? `<button class="btn" onclick="cambiarSeccion('academia')">🎓 Aula Virtual</button>` : ``}
-              <button class="btn btn-danger" onclick="cerrarSesionUsuario()">Salir</button>
+              <button class="btn" onclick="cambiarSeccion('sorteos')">🎁 Ir a Sorteos</button>
+              <button class="btn" onclick="cambiarSeccion('academia')">🎓 Aula Virtual</button>
+              <button class="btn btn-danger" onclick="cerrarSesionUsuario()">Cerrar Sesión</button>
             </div>
           </div>
         `;
@@ -1492,6 +2020,46 @@
       }
     }
 
+    /* AULA VIRTUAL */
+    function renderAulaVirtual() {
+      const cont = document.getElementById("contenidoAulaVirtual");
+      if (!cont) return;
+
+      if (!usuarioActual) {
+        cont.innerHTML = `
+          <div class="notice-box">
+            🔒 <strong>Ingresá con tu Usuario de Alumno:</strong> Para acceder a los módulos teóricos y seguimiento de clases, iniciá sesión o creá tu usuario seleccionando "Alumno del Curso".
+          </div>
+          <button class="btn btn-gold" onclick="cambiarSeccion('usuarios')">🔑 Iniciar Sesión / Crear Usuario de Alumno</button>
+        `;
+        return;
+      }
+
+      if (usuarioActual.estado !== "activo") {
+        cont.innerHTML = `
+          <div class="notice-box">
+            ⏳ <strong>Solicitud Enviada:</strong> Hola <strong>${usuarioActual.nombre}</strong>, tu cuenta <strong>@${usuarioActual.user}</strong> está pendiente de aprobación. Apenas el Personal toque "Aceptar", verás los módulos del curso desbloqueados acá mismo.
+          </div>
+        `;
+        return;
+      }
+
+      cont.innerHTML = `
+        <div style="margin-bottom:14px; color:var(--success); font-weight:700;">
+          ✅ Acceso Habilitado — Alumno: ${usuarioActual.nombre} (@${usuarioActual.user})
+        </div>
+        ${(estado.clasesAcademia || []).map((c, i) => `
+          <div class="item-row">
+            <div>
+              <strong style="color:var(--gold);">${c.titulo}</strong>
+              <p style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">${c.descripcion}</p>
+            </div>
+            <span class="status-pill status-listo">Módulo #${i + 1}</span>
+          </div>
+        `).join("")}
+      `;
+    }
+
     /* SORTEOS */
     function renderSorteo() {
       const cont = document.getElementById("contenedorSorteoPublico");
@@ -1500,22 +2068,22 @@
       const yaParticipa = usuarioActual && (s.participantes || []).some(p => p.id === usuarioActual.id);
 
       cont.innerHTML = `
-        <div class="hero" style="margin-bottom:16px; padding:24px;">
-          <span class="status-pill status-listo">SORTEO ACTIVO</span>
-          <h3 style="font-size:1.55rem; color:var(--gold); margin:10px 0;">${s.titulo}</h3>
-          <p style="font-size:1rem; color:#fff; margin-bottom:10px;">🏆 <strong>Premio:</strong> ${s.premio}</p>
-          <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px;">📅 Sorteo: ${s.fecha} | Participantes: <strong>${(s.participantes || []).length}</strong></p>
+        <div style="text-align:center; padding:20px;">
+          <span class="status-pill status-listo">SORTEO EXCLUSIVO COMUNIDAD</span>
+          <h3 style="font-size:1.6rem; color:var(--gold); margin:12px 0;">${s.titulo}</h3>
+          <p style="font-size:1.05rem; margin-bottom:8px;">🏆 <strong>Premio:</strong> ${s.premio}</p>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px;">📅 Fecha: ${s.fecha} | Anotados: <strong>${(s.participantes || []).length}</strong></p>
           ${!usuarioActual ? `
             <button class="btn btn-gold btn-cta-large" onclick="cambiarSeccion('usuarios')">
               🔑 Iniciá Sesión o Creá tu Usuario para Participar
             </button>
           ` : yaParticipa ? `
-            <div style="padding:12px; background:rgba(16,185,129,0.2); border:1px solid var(--success); border-radius:10px; display:inline-block;">
-              ✅ <strong>¡Ya estás participando con @${usuarioActual.user}!</strong>
+            <div style="padding:12px 18px; background:rgba(16,185,129,0.2); border:1px solid var(--success); border-radius:10px; display:inline-block;">
+              ✅ <strong>¡Ya estás participando con tu usuario @${usuarioActual.user}!</strong>
             </div>
           ` : `
             <button class="btn btn-gold btn-cta-large" onclick="participarSorteo()">
-              🎟️ Participar del Sorteo
+              🎟️ Participar del Sorteo Ahora
             </button>
           `}
         </div>
@@ -1550,58 +2118,18 @@
       }
     }
 
-    /* AULA VIRTUAL */
-    function renderAulaVirtual() {
-      const cont = document.getElementById("contenidoAulaVirtual");
-      if (!cont) return;
-
-      if (!usuarioActual) {
-        cont.innerHTML = `
-          <div class="notice-box">
-            🔒 <strong>Acceso para Alumnos:</strong> Iniciá sesión con tu cuenta o registrate como Alumno de la Academia.
-          </div>
-          <button class="btn btn-gold" onclick="cambiarSeccion('usuarios')">Ingresar / Crear Usuario</button>
-        `;
-        return;
-      }
-
-      if (usuarioActual.estado !== "activo") {
-        cont.innerHTML = `
-          <div class="notice-box">
-            ⏳ <strong>Cuenta Pendiente de Habilitación:</strong> Hola <strong>${usuarioActual.nombre}</strong>, tu solicitud ya fue recibida. Apenas el personal la apruebe tendrás acceso a todos los módulos.
-          </div>
-        `;
-        return;
-      }
-
-      cont.innerHTML = `
-        <div style="margin-bottom:16px; color:var(--success); font-weight:700;">
-          ✅ Aula Virtual Activa — Alumno: ${usuarioActual.nombre}
-        </div>
-        ${(estado.clasesAcademia || []).map((c, i) => `
-          <div class="item-row">
-            <div>
-              <strong style="color:var(--gold);">${c.titulo}</strong>
-              <p style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">${c.descripcion}</p>
-            </div>
-            <span class="status-pill status-listo">Módulo #${i + 1}</span>
-          </div>
-        `).join("")}
-      `;
-    }
-
     /* ACCESO PERSONAL (DISCRETO) */
     function accesoPersonalLogin() {
       if (esPersonal) {
         cambiarSeccion("admin");
         return;
       }
-      const pin = prompt("💼 Acceso Personal — Ingresá tu clave de autorización:");
+      const pin = prompt("💼 Acceso Personal — Ingresá tu clave:");
       if (pin === CLAVE_PERSONAL) {
         esPersonal = true;
         document.getElementById("staffBanner").classList.add("active");
         document.getElementById("drawerItemPersonal").classList.remove("hidden");
-        document.getElementById("lblAccesoPersonalDrawer").innerText = "Ir a Panel de Personal";
+        document.getElementById("lblAccesoPersonalDrawer").innerText = "Abrir Panel de Personal";
         renderTodo();
         cambiarSeccion("admin");
       } else if (pin !== null) {
@@ -1618,26 +2146,27 @@
       cambiarSeccion("inicio");
     }
 
+    /* SOLICITUDES EN PANEL DE PERSONAL */
     function renderAdminSolicitudes() {
       const cont = document.getElementById("listaPendientesAdmin");
       if (!cont) return;
       const pendientes = (estado.usuarios || []).filter(u => u.estado === "pendiente");
       if (pendientes.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">✅ No hay solicitudes pendientes en este momento.</p>`;
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">✅ No hay solicitudes pendientes de aprobación.</p>`;
         return;
       }
       cont.innerHTML = pendientes.map(u => `
         <div class="item-row" style="border-color: var(--gold);">
           <div>
             <strong>${u.nombre}</strong> (@${u.user})
-            <span class="status-pill status-pendiente">${u.rol === 'alumno' ? '🎓 Alumno' : '💈 Cliente'}</span>
+            <span class="status-pill status-pendiente">${u.rol === 'alumno' ? '🎓 Solicitud Alumno' : '💈 Nuevo Cliente'}</span>
             <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
               📧 ${u.email} | 📱 ${u.telefono || 'Sin tel'}
             </div>
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <button class="btn btn-success" onclick="aprobarUsuarioAdmin(${u.id})">✅ Aceptar</button>
-            <button class="btn btn-info" onclick="enviarCorreoIndividual('${u.email}', 'Bienvenido a Fenix Studio', 'Hola ${u.nombre}, tu usuario @${u.user} ya fue aprobado en nuestra plataforma.')">📧 Avisar por Gmail</button>
+            <button class="btn btn-info" onclick="enviarCorreoIndividual('${u.email}', 'Cuenta Aprobada - Fenix Studio', 'Hola ${u.nombre}, tu usuario @${u.user} ya fue aprobado.')">📧 Gmail</button>
             <button class="btn btn-danger" onclick="rechazarUsuarioAdmin(${u.id})">❌ Rechazar</button>
           </div>
         </div>
@@ -1646,18 +2175,138 @@
 
     function aprobarUsuarioAdmin(id) {
       const u = estado.usuarios.find(x => x.id === id);
-      if (u) {
-        u.estado = "activo";
-        guardarDatos();
-      }
+      if (u) { u.estado = "activo"; guardarDatos(); }
     }
 
     function rechazarUsuarioAdmin(id) {
-      if (!confirm("¿Eliminar este registro?")) return;
+      if (!confirm("¿Eliminar este usuario?")) return;
       estado.usuarios = estado.usuarios.filter(x => x.id !== id);
       guardarDatos();
     }
 
+    /* FINANZAS COMPLETAS: INGRESOS, EGRESOS Y BALANCE NETO */
+    function registrarMovimientoFinanciero(tipo) {
+      const concepto = document.getElementById("cajaConcepto").value.trim();
+      const monto = Number(document.getElementById("cajaMonto").value);
+      if (!concepto || !monto || monto <= 0) {
+        alert("Ingresá un concepto y un monto válido.");
+        return;
+      }
+      if (!estado.finanzas) estado.finanzas = [];
+      estado.finanzas.push({
+        id: Date.now(),
+        tipo, // 'ingreso' o 'egreso'
+        concepto,
+        monto,
+        fecha: new Date().toLocaleDateString("es-AR") + " " + new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" })
+      });
+      document.getElementById("cajaConcepto").value = "";
+      document.getElementById("cajaMonto").value = "";
+      guardarDatos();
+    }
+
+    function renderAdminFinanzas() {
+      const cont = document.getElementById("listaMovimientosFinanzas");
+      if (!cont) return;
+
+      const movs = estado.finanzas || [];
+      const ingresos = movs.filter(m => m.tipo === "ingreso").reduce((a, b) => a + Number(b.monto), 0);
+      const egresos = movs.filter(m => m.tipo === "egreso").reduce((a, b) => a + Number(b.monto), 0);
+      const neto = ingresos - egresos;
+
+      document.getElementById("finTotalIngresos").innerText = "+$" + ingresos.toLocaleString("es-AR");
+      document.getElementById("finTotalEgresos").innerText = "-$" + egresos.toLocaleString("es-AR");
+      document.getElementById("finBalanceNeto").innerText = "$" + neto.toLocaleString("es-AR");
+
+      if (movs.length === 0) {
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.88rem;">Todavía no hay movimientos de ingresos o egresos registrados.</p>`;
+        return;
+      }
+
+      cont.innerHTML = movs.slice().reverse().map(m => `
+        <div class="item-row">
+          <div>
+            <strong>${m.concepto}</strong>
+            <span class="status-pill ${m.tipo === 'ingreso' ? 'status-listo' : 'status-pendiente'}">${m.tipo}</span>
+            <small style="color:var(--text-muted); display:block;">${m.fecha}</small>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <strong style="color:${m.tipo === 'ingreso' ? 'var(--success)' : 'var(--danger)'};">
+              ${m.tipo === 'ingreso' ? '+' : '-'}$${Number(m.monto).toLocaleString("es-AR")}
+            </strong>
+            <button class="btn btn-danger" onclick="eliminarMovimientoFinanza(${m.id})">🗑️</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function eliminarMovimientoFinanza(id) {
+      estado.finanzas = (estado.finanzas || []).filter(m => m.id !== id);
+      guardarDatos();
+    }
+
+    /* AGENDA EN PANEL DE PERSONAL */
+    function renderAdminAgenda(mostrarTodos = false) {
+      const cont = document.getElementById("listaAgendaAdmin");
+      if (!cont) return;
+      const fechaFiltro = document.getElementById("filtroFechaAdmin").value;
+      let lista = estado.turnos || [];
+      if (!mostrarTodos && fechaFiltro) lista = lista.filter(t => t.fecha === fechaFiltro);
+      lista.sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
+
+      if (lista.length === 0) {
+        cont.innerHTML = `<p style="color:var(--text-muted);">No hay turnos para esta fecha.</p>`;
+        return;
+      }
+
+      cont.innerHTML = lista.map(t => `
+        <div class="item-row">
+          <div>
+            <strong style="color:var(--gold);">${t.fecha} — ${t.hora} hs</strong> | <strong>${t.cliente}</strong>
+            <span class="status-pill ${t.estado === 'atendiendo' ? 'status-atendiendo' : t.estado === 'finalizado' ? 'status-listo' : 'status-espera'}">
+              ${t.estado === 'atendiendo' ? '✂️ En Silla' : t.estado === 'finalizado' ? '✅ Terminado' : '⏳ En Fila'}
+            </span>
+            <div style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">
+              ${t.servicio} ($${Number(t.precio).toLocaleString("es-AR")}) | 📱 ${t.telefono} | 📧 ${t.email || 'Sin email'}
+              ${t.nota ? `<br>📝 Nota: <em>${t.nota}</em>` : ``}
+            </div>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            ${t.estado === 'espera' ? `<button class="btn btn-info" onclick="cambiarEstadoTurno(${t.id}, 'atendiendo')">✂️ Pasar a Silla</button>` : ``}
+            ${t.estado !== 'finalizado' ? `<button class="btn btn-success" onclick="finalizarYCobrarTurno(${t.id})">✅ Terminar (+Ingreso)</button>` : ``}
+            ${t.email ? `<button class="btn" onclick="enviarCorreoIndividual('${t.email}', 'Confirmación de Turno - Fenix Studio', 'Hola ${t.cliente}, te confirmamos tu turno para el ${t.fecha} a las ${t.hora} hs.')">📧 Gmail</button>` : ``}
+            <button class="btn btn-danger" onclick="eliminarTurnoAdmin(${t.id})">🗑️</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function cambiarEstadoTurno(id, nuevoEstado) {
+      const t = estado.turnos.find(x => x.id === id);
+      if (t) { t.estado = nuevoEstado; guardarDatos(); }
+    }
+
+    function finalizarYCobrarTurno(id) {
+      const t = estado.turnos.find(x => x.id === id);
+      if (!t) return;
+      t.estado = "finalizado";
+      if (!estado.finanzas) estado.finanzas = [];
+      estado.finanzas.push({
+        id: Date.now(),
+        tipo: "ingreso",
+        concepto: `Corte/Turno: ${t.servicio} (${t.cliente})`,
+        monto: Number(t.precio),
+        fecha: new Date().toLocaleDateString("es-AR") + " " + new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" })
+      });
+      guardarDatos();
+    }
+
+    function eliminarTurnoAdmin(id) {
+      estado.turnos = estado.turnos.filter(x => x.id !== id);
+      guardarDatos();
+    }
+
+    /* USUARIOS MANUALES Y CUOTA DE ALUMNOS */
     function crearUsuarioManualAdmin() {
       const nombre = document.getElementById("manualNombre").value.trim();
       const email = document.getElementById("manualEmail").value.trim();
@@ -1697,13 +2346,11 @@
           <div>
             <strong>${u.nombre}</strong> (@${u.user} / Clave: <code>${u.pass}</code>)
             <span class="status-pill ${u.estado === 'activo' ? 'status-listo' : 'status-espera'}">${u.estado}</span>
-            <div style="font-size:0.82rem; color:var(--text-muted);">
-              ${u.rol === 'alumno' ? '🎓 Alumno' : '💈 Cliente'} | 📧 ${u.email}
-            </div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">${u.rol === 'alumno' ? '🎓 Alumno' : '💈 Cliente'} | ${u.email}</div>
           </div>
-          <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            ${u.rol === 'alumno' ? `<button class="btn btn-gold" onclick="cobrarCuotaAlumno(${u.id})">💰 Cobrar Mes ($75.000)</button>` : ``}
-            <button class="btn" onclick="enviarCorreoIndividual('${u.email}', 'Mensaje de Fenix Studio', 'Hola ${u.nombre}, te escribimos desde Fenix Studio...')">✉️ Gmail</button>
+          <div style="display:flex; gap:6px;">
+            ${u.rol === 'alumno' ? `<button class="btn btn-gold" onclick="cobrarCuotaAlumno(${u.id})">💰 +Cuota</button>` : ``}
+            <button class="btn" onclick="enviarCorreoIndividual('${u.email}', 'Fenix Studio', 'Hola ${u.nombre}...')">✉️</button>
             <button class="btn btn-danger" onclick="rechazarUsuarioAdmin(${u.id})">🗑️</button>
           </div>
         </div>
@@ -1713,73 +2360,16 @@
     function cobrarCuotaAlumno(id) {
       const u = estado.usuarios.find(x => x.id === id);
       if (!u) return;
-      estado.caja.push({
+      if (!estado.finanzas) estado.finanzas = [];
+      estado.finanzas.push({
         id: Date.now(),
-        concepto: `Cuota Academia - ${u.nombre}`,
+        tipo: "ingreso",
+        concepto: `Cuota Curso Academia - ${u.nombre}`,
         monto: 75000,
-        fecha: new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" })
+        fecha: new Date().toLocaleDateString("es-AR")
       });
       guardarDatos();
-    }
-
-    function renderAdminAgenda(mostrarTodos = false) {
-      const cont = document.getElementById("listaAgendaAdmin");
-      if (!cont) return;
-      const fechaFiltro = document.getElementById("filtroFechaAdmin").value;
-      let lista = estado.turnos || [];
-      if (!mostrarTodos && fechaFiltro) lista = lista.filter(t => t.fecha === fechaFiltro);
-      lista.sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
-
-      if (lista.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted);">No hay turnos para mostrar en esta fecha.</p>`;
-        return;
-      }
-
-      cont.innerHTML = lista.map(t => `
-        <div class="item-row">
-          <div>
-            <strong style="color:var(--gold);">${t.fecha} — ${t.hora} hs</strong> | <strong>${t.cliente}</strong>
-            <span class="status-pill ${t.estado === 'atendiendo' ? 'status-atendiendo' : t.estado === 'finalizado' ? 'status-listo' : 'status-espera'}">
-              ${t.estado === 'atendiendo' ? '✂️ En Silla' : t.estado === 'finalizado' ? '✅ Terminado' : '⏳ En Fila'}
-            </span>
-            <div style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">
-              ${t.servicio} ($${Number(t.precio).toLocaleString("es-AR")}) | 📱 ${t.telefono} | 📧 ${t.email || 'Sin email'}
-              ${t.nota ? `<br>📝 Nota: <em>${t.nota}</em>` : ``}
-            </div>
-          </div>
-          <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            ${t.estado === 'espera' ? `<button class="btn btn-info" onclick="cambiarEstadoTurno(${t.id}, 'atendiendo')">✂️ En Silla</button>` : ``}
-            ${t.estado !== 'finalizado' ? `<button class="btn btn-success" onclick="finalizarYCobrarTurno(${t.id})">✅ Finalizar y Cobrar</button>` : ``}
-            ${t.email ? `<button class="btn" onclick="enviarCorreoIndividual('${t.email}', 'Confirmación de Turno - Fenix Studio', 'Hola ${t.cliente}, te confirmamos tu turno para el ${t.fecha} a las ${t.hora} hs.')">📧 Gmail</button>` : ``}
-            <button class="btn btn-danger" onclick="eliminarTurnoAdmin(${t.id})">🗑️</button>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function verTodosLosTurnosAdmin() { renderAdminAgenda(true); }
-
-    function cambiarEstadoTurno(id, nuevoEstado) {
-      const t = estado.turnos.find(x => x.id === id);
-      if (t) { t.estado = nuevoEstado; guardarDatos(); }
-    }
-
-    function finalizarYCobrarTurno(id) {
-      const t = estado.turnos.find(x => x.id === id);
-      if (!t) return;
-      t.estado = "finalizado";
-      estado.caja.push({
-        id: Date.now(),
-        concepto: `Turno: ${t.servicio} (${t.cliente})`,
-        monto: Number(t.precio),
-        fecha: new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" })
-      });
-      guardarDatos();
-    }
-
-    function eliminarTurnoAdmin(id) {
-      estado.turnos = estado.turnos.filter(x => x.id !== id);
-      guardarDatos();
+      alert(`✅ Ingreso de $75.000 (${u.nombre}) sumado a Finanzas.`);
     }
 
     /* CORREOS GMAIL */
@@ -1796,14 +2386,14 @@
       const asu = document.getElementById("mailAsunto");
       const cue = document.getElementById("mailCuerpo");
       if (tipo === "sorteo") {
-        asu.value = "🎁 ¡Nuevo Sorteo Exclusivo en Fenix Studio!";
-        cue.value = `Hola comunidad de Fenix Studio,\n\nYa está activo el nuevo sorteo por: ${estado.sorteo.premio}.\nIngresá con tu usuario en nuestra web y participá con un clic.\n\n¡Éxitos!\nFenix Studio`;
+        asu.value = "🎁 ¡Nuevo Sorteo Activo en Fenix Studio!";
+        cue.value = `Hola comunidad de Fenix Studio,\n\nYa está disponible el nuevo sorteo por: ${estado.sorteo.premio}.\nIngresá con tu cuenta en nuestra web oficial y participá con un clic.\n\n¡Te esperamos!\nFenix Studio`;
       } else if (tipo === "turnos") {
-        asu.value = "📅 Horarios Disponibles - Fenix Studio";
-        cue.value = `Hola,\n\nYa están habilitados los nuevos horarios en nuestra agenda web para que reserves tu turno directamente.\n\n¡Te esperamos en Fenix Studio!`;
+        asu.value = "📅 Agenda de Turnos Abierta - Fenix Studio";
+        cue.value = `Hola,\n\nYa podés reservar tu horario de esta semana directamente desde nuestra página web sin demoras.\n\nSaludos,\nFenix Studio`;
       } else if (tipo === "academia") {
-        asu.value = "🎓 Aviso de Academia - Fenix Studio";
-        cue.value = `Estimados alumnos,\n\nTienen nuevo contenido disponible en el Aula Virtual. Ingresen con su usuario y clave.\n\nSaludos,\nFenix Studio`;
+        asu.value = "🎓 Novedades del Curso - Academia Fenix Studio";
+        cue.value = `Estimados alumnos,\n\nYa tienen actualizado el material en el Aula Virtual. Ingresen con su usuario y clave.\n\nFenix Studio`;
       }
     }
 
@@ -1844,8 +2434,8 @@
       document.getElementById("resultadoGanadorAdmin").innerHTML = `
         <div class="notice-box" style="margin-top:10px;">
           🎉 <strong>Ganador:</strong> ${ganador.nombre} (@${ganador.user})<br>
-          <button class="btn btn-gold" style="margin-top:8px;" onclick="enviarCorreoIndividual('${ganador.email}', '🏆 ¡Ganaste el Sorteo de Fenix Studio!', '¡Felicitaciones ${ganador.nombre}! Ganaste: ${estado.sorteo.premio}.')">
-            📧 Notificar por Gmail
+          <button class="btn btn-gold" style="margin-top:6px;" onclick="enviarCorreoIndividual('${ganador.email}', '🏆 ¡Ganaste el Sorteo de Fenix Studio!', '¡Felicitaciones ${ganador.nombre}! Ganaste: ${estado.sorteo.premio}.')">
+            📧 Avisar por Gmail
           </button>
         </div>
       `;
@@ -1854,50 +2444,6 @@
     function vaciarParticipantesSorteo() {
       if (!confirm("¿Reiniciar lista de participantes?")) return;
       estado.sorteo.participantes = [];
-      guardarDatos();
-    }
-
-    function agregarMovimientoCaja() {
-      const concepto = document.getElementById("cajaConcepto").value.trim();
-      const monto = Number(document.getElementById("cajaMonto").value);
-      if (!concepto || !monto) return;
-      estado.caja.push({
-        id: Date.now(),
-        concepto,
-        monto,
-        fecha: new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" })
-      });
-      document.getElementById("cajaConcepto").value = "";
-      document.getElementById("cajaMonto").value = "";
-      guardarDatos();
-    }
-
-    function renderAdminCaja() {
-      const cont = document.getElementById("listaCajaAdmin");
-      const totalEl = document.getElementById("totalCajaAdmin");
-      if (!cont) return;
-      const total = (estado.caja || []).reduce((acc, item) => acc + Number(item.monto), 0);
-      totalEl.innerText = "$" + total.toLocaleString("es-AR");
-      cont.innerHTML = (estado.caja || []).slice().reverse().map(c => `
-        <div class="item-row">
-          <div><strong>${c.concepto}</strong> <small style="color:var(--text-muted);">(${c.fecha})</small></div>
-          <span style="color:var(--success); font-weight:700;">+$${Number(c.monto).toLocaleString("es-AR")}</span>
-        </div>
-      `).join("");
-    }
-
-    function agregarServicioAdmin() {
-      const nombre = document.getElementById("nuevoServNombre").value.trim();
-      const precio = Number(document.getElementById("nuevoServPrecio").value);
-      if (!nombre || !precio) return;
-      estado.servicios.push({ id: Date.now(), nombre, precio });
-      document.getElementById("nuevoServNombre").value = "";
-      document.getElementById("nuevoServPrecio").value = "";
-      guardarDatos();
-    }
-
-    function eliminarServicioAdmin(id) {
-      estado.servicios = estado.servicios.filter(s => s.id !== id);
       guardarDatos();
     }
   </script>
