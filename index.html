@@ -43,14 +43,14 @@
       overflow-x: hidden;
     }
 
-    /* CABECERA PRINCIPAL OPTIMIZADA PARA CELULAR Y PC */
+    /* CABECERA PRINCIPAL OPTIMIZADA */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
       background: rgba(9, 9, 12, 0.96);
       border-bottom: 1px solid var(--border);
-      padding: 10px 14px;
+      padding: 9px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -66,19 +66,19 @@
 
     /* BOTÓN DE LAS 3 BARRAS (TAMAÑO FIJO SIN DEFORMARSE) */
     .menu-toggle {
-      width: 42px;
-      height: 42px;
-      min-width: 42px;
-      min-height: 42px;
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      min-height: 40px;
       flex-shrink: 0;
-      border-radius: 10px;
+      border-radius: 9px;
       background: var(--bg-card-alt);
       border: 1px solid var(--gold);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 4px;
       cursor: pointer;
       position: relative;
       user-select: none;
@@ -86,8 +86,8 @@
     }
 
     .menu-toggle .bar {
-      width: 20px;
-      height: 2.5px;
+      width: 19px;
+      height: 2.2px;
       background-color: var(--gold);
       border-radius: 2px;
       pointer-events: none;
@@ -100,10 +100,10 @@
       right: -5px;
       background: var(--danger);
       color: #fff;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 800;
-      min-width: 20px;
-      height: 20px;
+      min-width: 19px;
+      height: 19px;
       padding: 0 5px;
       border-radius: 999px;
       display: flex;
@@ -116,18 +116,18 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
       cursor: pointer;
       user-select: none;
       min-width: 0;
     }
 
-    /* CÍRCULO FS PERFECTAMENTE REDONDO SIEMPRE (NUNCA OVALADO) */
+    /* CÍRCULO FS PERFECTAMENTE REDONDO SIEMPRE */
     .brand-logo {
-      width: 42px;
-      height: 42px;
-      min-width: 42px;
-      min-height: 42px;
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      min-height: 40px;
       flex-shrink: 0;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
@@ -137,7 +137,7 @@
       justify-content: center;
       font-weight: 900;
       color: #000;
-      font-size: 1.05rem;
+      font-size: 1rem;
       box-shadow: 0 0 14px rgba(212, 175, 55, 0.4);
     }
 
@@ -146,7 +146,7 @@
     }
 
     .brand-text h1 {
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       letter-spacing: 0.8px;
       color: var(--gold);
       text-transform: uppercase;
@@ -154,7 +154,7 @@
     }
 
     .brand-text span {
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       color: var(--text-muted);
       display: block;
       white-space: nowrap;
@@ -162,7 +162,6 @@
       text-overflow: ellipsis;
     }
 
-    /* BOTONES SUPERIORES: SOLO RESERVAR TURNO Y MI CUENTA */
     .nav-actions {
       display: flex;
       align-items: center;
@@ -172,21 +171,21 @@
 
     @media (max-width: 480px) {
       header {
-        padding: 10px 10px;
+        padding: 8px 10px;
       }
       .brand-text span {
         display: none;
       }
       .brand-text h1 {
-        font-size: 0.95rem;
+        font-size: 0.92rem;
       }
       .nav-actions .btn {
-        padding: 8px 10px;
-        font-size: 0.78rem;
+        padding: 6px 9px;
+        font-size: 0.74rem;
       }
     }
 
-    /* MENÚ LATERAL DESLIZANTE Y BORDE OSCURO (CIERRE CORREGIDO) */
+    /* MENÚ LATERAL DESLIZANTE Y BORDE OSCURO */
     .drawer-overlay {
       position: fixed;
       top: 0;
@@ -210,7 +209,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 300px;
+      width: 295px;
       max-width: 82vw;
       height: 100vh;
       background: #111117;
@@ -221,7 +220,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 18px 14px;
+      padding: 16px 14px;
       overflow-y: auto;
       box-shadow: 8px 0 30px rgba(0, 0, 0, 0.9);
     }
@@ -234,23 +233,23 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-bottom: 14px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .drawer-close {
       background: var(--bg-card-alt);
       border: 1px solid var(--gold);
       color: var(--gold);
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
-      min-height: 40px;
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      min-height: 36px;
       flex-shrink: 0;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: bold;
       display: flex;
       align-items: center;
@@ -266,17 +265,17 @@
     .drawer-nav {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
 
     .drawer-item {
       background: transparent;
       color: var(--text-main);
       border: 1px solid transparent;
-      padding: 11px 14px;
-      border-radius: 10px;
+      padding: 9px 12px;
+      border-radius: 9px;
       text-align: left;
-      font-size: 0.93rem;
+      font-size: 0.88rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
@@ -299,17 +298,17 @@
     }
 
     .drawer-socials {
-      margin-top: 14px;
-      padding-top: 12px;
+      margin-top: 12px;
+      padding-top: 10px;
       border-top: 1px solid rgba(255,255,255,0.08);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
 
     .drawer-footer {
-      margin-top: 18px;
-      padding-top: 12px;
+      margin-top: 16px;
+      padding-top: 10px;
       border-top: 1px solid rgba(255,255,255,0.08);
       display: flex;
       flex-direction: column;
@@ -320,9 +319,9 @@
       background: transparent;
       border: none;
       color: #52525b;
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       text-align: left;
-      padding: 6px 4px;
+      padding: 5px 4px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -333,14 +332,14 @@
       color: var(--gold);
     }
 
-    /* BOTONES GENERALES */
+    /* BOTONES GENERALES (UN POCO MÁS CHICOS Y ESTILIZADOS) */
     .btn {
       background: var(--bg-card-alt);
       color: var(--text-main);
       border: 1px solid var(--border);
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-size: 0.86rem;
+      padding: 6px 12px;
+      border-radius: 7px;
+      font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
@@ -366,14 +365,23 @@
     .btn-danger { background: var(--danger); color: #fff; border: none; }
     .btn-info { background: var(--info); color: #fff; border: none; }
 
+    /* ÍCONOS SVG DENTRO DE BOTONES */
+    .svg-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
     .badge {
       background: var(--danger);
       color: #fff;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 800;
-      min-width: 20px;
-      height: 20px;
-      padding: 0 6px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
       border-radius: 999px;
       display: inline-flex;
       align-items: center;
@@ -389,7 +397,7 @@
       max-width: 1140px;
       width: 100%;
       margin: 0 auto;
-      padding: 20px 14px;
+      padding: 18px 14px;
       flex: 1;
     }
 
@@ -401,7 +409,7 @@
       display: block;
     }
 
-    /* PORTADA PRINCIPAL LIMPIA CON fondodelapagina.jpeg */
+    /* PORTADA PRINCIPAL CON fondodelapagina.jpeg */
     .hero-banner {
       position: relative;
       background-image:
@@ -411,41 +419,41 @@
       background-size: cover;
       background-position: center;
       border: 1px solid var(--gold);
-      border-radius: 18px;
-      padding: 44px 20px;
+      border-radius: 16px;
+      padding: 38px 18px;
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
     }
 
     .hero-banner h2 {
-      font-size: 2.1rem;
+      font-size: 2rem;
       color: var(--gold);
       text-transform: uppercase;
       letter-spacing: 2px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9);
     }
 
     .hero-banner p {
       color: #f4f4f6;
-      max-width: 660px;
-      margin: 0 auto 22px;
-      font-size: 0.98rem;
+      max-width: 640px;
+      margin: 0 auto 18px;
+      font-size: 0.94rem;
       line-height: 1.5;
     }
 
     .hero-buttons {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       justify-content: center;
       flex-wrap: wrap;
     }
 
     .btn-cta-large {
-      font-size: 0.96rem;
-      padding: 12px 22px;
-      border-radius: 12px;
+      font-size: 0.88rem;
+      padding: 9px 18px;
+      border-radius: 9px;
       white-space: normal;
       text-align: center;
     }
@@ -474,8 +482,8 @@
       backdrop-filter: blur(10px);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 20px;
+      padding: 16px;
+      margin-bottom: 18px;
     }
 
     .card-header {
@@ -490,7 +498,7 @@
     }
 
     .card-title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--gold);
       font-weight: 700;
       display: flex;
@@ -511,14 +519,14 @@
 
     .cut-card img {
       width: 100%;
-      height: 175px;
+      height: 170px;
       object-fit: cover;
       border-bottom: 1px solid var(--border);
       background: #1a1a22;
     }
 
     .cut-card-body {
-      padding: 14px;
+      padding: 13px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -526,7 +534,7 @@
     }
 
     .cut-price {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: var(--gold);
     }
@@ -534,7 +542,7 @@
     /* GALERÍA FENIX */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
       gap: 12px;
     }
 
@@ -560,7 +568,7 @@
       right: 0;
       background: linear-gradient(transparent, rgba(0,0,0,0.9));
       padding: 16px 8px 8px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #fff;
       font-weight: 600;
     }
@@ -569,10 +577,10 @@
     .notice-box {
       background: rgba(212, 175, 55, 0.12);
       border-left: 4px solid var(--gold);
-      padding: 14px 16px;
+      padding: 12px 14px;
       border-radius: 8px;
-      margin-bottom: 18px;
-      font-size: 0.88rem;
+      margin-bottom: 16px;
+      font-size: 0.86rem;
       line-height: 1.48;
       color: #e5e7eb;
     }
@@ -580,41 +588,41 @@
     .notice-box strong { color: var(--gold); }
 
     /* FORMULARIOS Y HORARIOS */
-    .form-group { margin-bottom: 14px; }
+    .form-group { margin-bottom: 12px; }
     .form-group label {
       display: block;
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       font-weight: 600;
     }
 
     input, select, textarea {
       width: 100%;
-      padding: 10px 12px;
+      padding: 9px 11px;
       background: rgba(9, 9, 12, 0.9);
       border: 1px solid var(--border);
       border-radius: 8px;
       color: var(--text-main);
-      font-size: 0.94rem;
+      font-size: 0.9rem;
     }
 
     .slots-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
       gap: 8px;
       margin-top: 8px;
     }
 
     .slot-item {
-      padding: 10px 6px;
+      padding: 8px 6px;
       border-radius: 8px;
       border: 1px solid var(--border);
       background: rgba(9, 9, 12, 0.85);
       text-align: center;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.88rem;
+      font-size: 0.84rem;
     }
 
     .slot-item.selected {
@@ -634,19 +642,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px;
+      padding: 10px 12px;
       background: var(--bg-card-alt);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 10px;
-      gap: 10px;
+      border-radius: 9px;
+      margin-bottom: 8px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .status-pill {
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 999px;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
     }
@@ -658,13 +666,13 @@
 
     .finance-summary {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 12px;
-      margin-bottom: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
     }
 
     .finance-box {
-      padding: 14px;
+      padding: 12px;
       border-radius: 10px;
       border: 1px solid var(--border);
       background: rgba(9, 9, 12, 0.88);
@@ -674,49 +682,47 @@
     .staff-banner {
       background: linear-gradient(90deg, #171721, #231d10);
       border: 1px solid var(--gold);
-      padding: 12px 16px;
-      margin-bottom: 20px;
+      padding: 10px 14px;
+      margin-bottom: 18px;
       border-radius: 12px;
       display: none;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
     .staff-banner.active { display: flex; }
 
-    /* SECCIÓN INFERIOR DE CONTACTO (IG, WP, UBICACIÓN ABAJO) */
+    /* SECCIÓN INFERIOR DE CONTACTO CON LOGOS OFICIALES */
     .bottom-contact-bar {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 18px;
-      margin-top: 10px;
-      margin-bottom: 20px;
+      padding: 16px;
+      margin-top: 8px;
+      margin-bottom: 18px;
     }
 
     .bottom-contact-buttons {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      display: flex;
+      justify-content: center;
       gap: 10px;
+      flex-wrap: wrap;
       margin-top: 12px;
     }
 
     .bottom-contact-buttons a {
-      justify-content: center;
-      padding: 12px 14px;
-      font-size: 0.9rem;
-      white-space: normal;
-      text-align: center;
+      padding: 8px 15px;
+      font-size: 0.82rem;
     }
 
     footer {
       background: rgba(9, 9, 12, 0.96);
       border-top: 1px solid var(--border);
-      padding: 22px 16px;
+      padding: 18px 14px;
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
       display: flex;
       justify-content: center;
@@ -729,18 +735,21 @@
       color: var(--gold);
       text-decoration: none;
       font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
 
     footer button {
       background: none;
       border: none;
       color: #52525b;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       cursor: pointer;
     }
   </style>
 
-  <!-- FUNCIONES DEL MENÚ LATERAL (ABRIR Y CERRAR CON X O TOCANDO AFUERA) -->
+  <!-- FUNCIONES DEL MENÚ LATERAL -->
   <script>
     function abrirMenuLateral() {
       var drawer = document.getElementById("sideDrawer");
@@ -805,7 +814,6 @@
             <span>Menú Interactivo</span>
           </div>
         </div>
-        <!-- BOTÓN X CORREGIDO PARA CERRAR AL INSTANTE -->
         <button type="button" class="drawer-close" onclick="cerrarMenuLateral()" aria-label="Cerrar menú">✕</button>
       </div>
 
@@ -832,36 +840,47 @@
         <button type="button" class="drawer-item" data-sec="sorteos" onclick="cambiarSeccion('sorteos')">
           <span>🎁 Sorteos & Beneficios</span>
         </button>
-        <button type="button" class="drawer-item" data-sec="usuarios" onclick="cambiarSeccion('usuarios')">
-          <span>👤 Mi Cuenta / Crear Usuario</span>
+
+        <!-- Botón de Login en menú lateral: se adapta o desaparece si entra Personal -->
+        <button type="button" class="drawer-item" id="drawerItemUsuarios" data-sec="usuarios" onclick="cambiarSeccion('usuarios')">
+          <span id="txtDrawerUsuarios">👤 Iniciar Sesión / Crear Usuario</span>
         </button>
 
+        <!-- Visible cuando se desbloquea Personal -->
         <button type="button" class="drawer-item hidden" id="drawerItemPersonal" data-sec="admin" onclick="cambiarSeccion('admin')">
           <span style="color:var(--gold);">💼 Panel de Personal</span>
           <span class="badge hidden" id="badgeDrawerPersonal">0</span>
         </button>
       </nav>
 
-      <!-- ACCESOS RÁPIDOS EN EL MENÚ LATERAL -->
+      <!-- REDES CON LOGOS OFICIALES SVG EN EL MENÚ LATERAL -->
       <div class="drawer-socials">
         <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="drawer-item">
-          <span>📸 Instagram</span>
-          <span style="color:var(--gold); font-size:0.8rem;">@fenixstudio25</span>
+          <span style="display:flex; align-items:center; gap:8px;">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            Instagram
+          </span>
+          <span style="color:var(--gold); font-size:0.76rem;">@fenixstudio25</span>
         </a>
         <a href="https://wa.me/543624595042" target="_blank" class="drawer-item">
-          <span>💬 WhatsApp Consultas</span>
-          <span style="color:var(--gold); font-size:0.8rem;">362 4595042</span>
+          <span style="display:flex; align-items:center; gap:8px;">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.124.556 4.119 1.528 5.847l-1.528 5.581 5.713-1.499c1.678.918 3.602 1.444 5.654 1.444 6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+            WhatsApp
+          </span>
         </a>
         <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="drawer-item">
-          <span>📍 C. Ushuaia y Pje. Mansilla</span>
-          <span style="color:var(--gold); font-size:0.78rem;">Mapa</span>
+          <span style="display:flex; align-items:center; gap:8px;">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            C. Ushuaia y Pje. Mansilla
+          </span>
+          <span style="color:var(--gold); font-size:0.75rem;">Mapa</span>
         </a>
       </div>
     </div>
 
     <!-- ACCESO PERSONAL DISCRETO AL FONDO DEL MENÚ -->
     <div class="drawer-footer">
-      <div style="font-size:0.74rem; color:#52525b;" id="textoNube">● Sistema Activo</div>
+      <div style="font-size:0.72rem; color:#52525b;" id="textoNube">● Sistema Activo</div>
       <button type="button" class="staff-subtle-link" onclick="accesoPersonalLogin()">
         <span id="lblAccesoPersonalDrawer">Acceso Personal</span>
         <span class="badge hidden" id="badgeSubtlePersonal">0</span>
@@ -869,7 +888,7 @@
     </div>
   </aside>
 
-  <!-- CABECERA PRINCIPAL LIMPIA: 3 BARRAS + CÍRCULO FS REDONDO + RESERVAR TURNO Y MI CUENTA -->
+  <!-- CABECERA PRINCIPAL -->
   <header>
     <div class="header-left">
       <button type="button" class="menu-toggle" id="btnMenuTresBarras" onclick="toggleMenuLateral()" title="Abrir menú">
@@ -892,34 +911,36 @@
       <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">
         📅 Reservar Turno
       </button>
-      <button type="button" class="btn" onclick="cambiarSeccion('usuarios')">
-        👤 <span id="lblMiCuenta">Mi Cuenta</span>
+      <!-- Este botón desaparece automáticamente al iniciar sesión como Usuario, Alumno o Personal -->
+      <button type="button" class="btn" id="btnHeaderLogin" onclick="cambiarSeccion('usuarios')">
+        👤 <span id="lblMiCuenta">Iniciar Sesión</span>
       </button>
     </div>
   </header>
 
   <div class="container">
 
-    <!-- BARRA DE PERSONAL (SOLO VISIBLE CON CLAVE) -->
+    <!-- BARRA DE PERSONAL (CON BOTÓN DE CAMBIAR CONTRASEÑA RESTAURADO) -->
     <div class="staff-banner" id="staffBanner">
       <div>
         <strong style="color:var(--gold);">💼 Sesión de Personal Activa</strong>
-        <span style="font-size:0.82rem; color:#d1d5db; display:block;">
+        <span style="font-size:0.78rem; color:#d1d5db; display:block;">
           Control de Solicitudes, Agenda de Turnos, Ingresos/Egresos, Stock, Deudores y Correos Gmail.
         </span>
       </div>
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <div style="display:flex; gap:6px; flex-wrap:wrap;">
         <button type="button" class="btn btn-gold" onclick="cambiarSeccion('admin')">
           Panel de Personal
           <span class="badge hidden" id="badgeBannerPersonal">0</span>
         </button>
-        <button type="button" class="btn" onclick="conectarNubeGitHubOFirebase()">☁️ Conectar Nube (GitHub / DB)</button>
+        <button type="button" class="btn" onclick="cambiarClavePersonal()">🔑 Cambiar Contraseña</button>
+        <button type="button" class="btn" onclick="conectarNubeGitHubOFirebase()">☁️ Nube</button>
         <button type="button" class="btn btn-danger" onclick="cerrarSesionPersonal()">Salir</button>
       </div>
     </div>
 
     <!-- =====================================================================
-         1. SECCIÓN INICIO (PORTADA + CORTES + GALERÍA + CURSO + BOTONES IG/WP/UBI ABAJO)
+         1. SECCIÓN INICIO
          ===================================================================== -->
     <section id="sec-inicio" class="section active">
       
@@ -934,13 +955,14 @@
           <button type="button" class="btn btn-cta-large" onclick="cambiarSeccion('academia')">
             🎓 Curso de Barbería y Aula Virtual
           </button>
-          <button type="button" class="btn btn-cta-large" onclick="cambiarSeccion('usuarios')">
+          <!-- Desaparece cuando ya estás logueado como Usuario o Personal -->
+          <button type="button" class="btn btn-cta-large" id="btnHeroCrearUsuario" onclick="cambiarSeccion('usuarios')">
             ✨ Crear mi Usuario
           </button>
         </div>
       </div>
 
-      <!-- TIPOS DE CORTES Y SUS PRECIOS (PRECARGADOS PARA QUE SE VEAN SIEMPRE) -->
+      <!-- TIPOS DE CORTES Y SUS PRECIOS -->
       <div class="card">
         <div class="card-header">
           <div class="card-title">✂️ Tipos de Cortes y sus Precios</div>
@@ -951,10 +973,10 @@
             <img src="corte1.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80';" alt="Degradado (Fade)" />
             <div class="cut-card-body">
               <div>
-                <strong style="font-size:1.04rem; display:block; margin-bottom:6px; color:var(--gold);">Degradado (Fade)</strong>
-                <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">Degradado limpio (Low, Mid, High o Taper Fade) con terminación a navaja y peinado.</p>
+                <strong style="font-size:1rem; display:block; margin-bottom:5px; color:var(--gold);">Degradado (Fade)</strong>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Degradado limpio (Low, Mid, High o Taper Fade) con terminación a navaja y peinado.</p>
               </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:9px;">
                 <span class="cut-price">$15.000</span>
                 <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(1)">Reservar</button>
               </div>
@@ -964,10 +986,10 @@
             <img src="corte2.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80';" alt="Degradado + Barba" />
             <div class="cut-card-body">
               <div>
-                <strong style="font-size:1.04rem; display:block; margin-bottom:6px; color:var(--gold);">Degradado + Barba</strong>
-                <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">Corte degradado completo más perfilado, rebaje y ritual de barba a navaja.</p>
+                <strong style="font-size:1rem; display:block; margin-bottom:5px; color:var(--gold);">Degradado + Barba</strong>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Corte degradado completo más perfilado, rebaje y ritual de barba a navaja.</p>
               </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:9px;">
                 <span class="cut-price">$18.000</span>
                 <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(2)">Reservar</button>
               </div>
@@ -977,10 +999,10 @@
             <img src="corte3.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80';" alt="Diseño Freestyle" />
             <div class="cut-card-body">
               <div>
-                <strong style="font-size:1.04rem; display:block; margin-bottom:6px; color:var(--gold);">Diseño Freestyle</strong>
-                <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">Degradado más diseño artístico Freestyle a mano alzada con navaja.</p>
+                <strong style="font-size:1rem; display:block; margin-bottom:5px; color:var(--gold);">Diseño Freestyle</strong>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Degradado más diseño artístico Freestyle a mano alzada con navaja.</p>
               </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:9px;">
                 <span class="cut-price">$18.000</span>
                 <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(3)">Reservar</button>
               </div>
@@ -990,10 +1012,10 @@
             <img src="corte4.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80';" alt="Corte V.I.P. a Domicilio" />
             <div class="cut-card-body">
               <div>
-                <strong style="font-size:1.04rem; display:block; margin-bottom:6px; color:var(--gold);">Corte V.I.P. a Domicilio</strong>
-                <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">Atención exclusiva y personalizada en tu domicilio con todo el equipamiento profesional.</p>
+                <strong style="font-size:1rem; display:block; margin-bottom:5px; color:var(--gold);">Corte V.I.P. a Domicilio</strong>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Atención exclusiva y personalizada en tu domicilio con todo el equipamiento profesional.</p>
               </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:9px;">
                 <span class="cut-price">$20.000</span>
                 <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(4)">Reservar</button>
               </div>
@@ -1035,14 +1057,14 @@
             <div class="card-title">🎓 ¿Qué te da nuestro Curso de Barbería?</div>
             <span class="status-pill status-espera">3 Meses — $75.000 / mes</span>
           </div>
-          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:12px;">
+          <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:10px;">
             Formación profesional completa de 3 meses con acceso a nuestro Campus / Aula Virtual:
           </p>
           <div class="item-row"><span>✅ Uso correcto de máquinas, tijeras y navaja</span></div>
           <div class="item-row"><span>✅ Ejecución de Degradados (Taper Fade), Freestyle y perfilado</span></div>
           <div class="item-row"><span>✅ Visagismo, ritual de barba y prácticas reales</span></div>
           <div class="item-row"><span>✅ Aula Virtual (Videos, PDFs y guías) + Certificado al finalizar</span></div>
-          <button type="button" class="btn btn-gold" style="width:100%; justify-content:center; margin-top:8px;" onclick="cambiarSeccion('academia')">
+          <button type="button" class="btn btn-gold" style="width:100%; justify-content:center; margin-top:6px;" onclick="cambiarSeccion('academia')">
             Entrar al Apartado del Curso y Aula Virtual
           </button>
         </div>
@@ -1054,36 +1076,39 @@
           </div>
           <div id="resumenProductosInicio">
             <div class="item-row">
-              <div><strong>Cera Modeladora Mate</strong><span style="font-size:0.8rem; color:var(--text-muted); display:block;">Stock disponible: 10 u.</span></div>
+              <div><strong>Cera Modeladora Mate</strong><span style="font-size:0.78rem; color:var(--text-muted); display:block;">Stock disponible: 10 u.</span></div>
               <strong style="color:var(--gold);">$15.000</strong>
             </div>
             <div class="item-row">
-              <div><strong>Polvo Texturizador</strong><span style="font-size:0.8rem; color:var(--text-muted); display:block;">Stock disponible: 12 u.</span></div>
+              <div><strong>Polvo Texturizador</strong><span style="font-size:0.78rem; color:var(--text-muted); display:block;">Stock disponible: 12 u.</span></div>
               <strong style="color:var(--gold);">$7.500</strong>
             </div>
             <div class="item-row">
-              <div><strong>Aceite para Barba</strong><span style="font-size:0.8rem; color:var(--text-muted); display:block;">Stock disponible: 8 u.</span></div>
+              <div><strong>Aceite para Barba</strong><span style="font-size:0.78rem; color:var(--text-muted); display:block;">Stock disponible: 8 u.</span></div>
               <strong style="color:var(--gold);">$5.500</strong>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- BOTONES DE IG, WHATSAPP Y UBICACIÓN MANDADOS HACIA ABAJO COMO PEDISTE -->
+      <!-- SECCIÓN INFERIOR DE REDES Y UBICACIÓN CON LOGOS OFICIALES SVG (SIN NÚMERO EN WHATSAPP) -->
       <div class="bottom-contact-bar">
-        <div class="card-title" style="justify-content:center; margin-bottom:6px;">📍 Contacto, Redes y Ubicación</div>
-        <p style="text-align:center; font-size:0.86rem; color:var(--text-muted);">
-          Encontranos en C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco
+        <div class="card-title" style="justify-content:center; margin-bottom:4px;">Contacto, Redes y Ubicación</div>
+        <p style="text-align:center; font-size:0.84rem; color:var(--text-muted);">
+          C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco
         </p>
         <div class="bottom-contact-buttons">
-          <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn">
-            📸 Instagram: <strong>@fenixstudio25</strong>
+          <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn" title="Instagram @fenixstudio25">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            <span>@fenixstudio25</span>
           </a>
-          <a href="https://wa.me/543624595042" target="_blank" class="btn">
-            💬 WhatsApp: <strong>+54 362 4595042</strong>
+          <a href="https://wa.me/543624595042" target="_blank" class="btn" title="WhatsApp">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.124.556 4.119 1.528 5.847l-1.528 5.581 5.713-1.499c1.678.918 3.602 1.444 5.654 1.444 6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+            <span>WhatsApp</span>
           </a>
-          <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="btn btn-gold">
-            📍 Ubicación: <strong>C. Ushuaia y Pasaje Mansilla</strong>
+          <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="btn btn-gold" title="Ubicación en Google Maps">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Ubicación: C. Ushuaia y Pje. Mansilla</span>
           </a>
         </div>
       </div>
@@ -1121,14 +1146,17 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title">📸 Galería Fenix — Trabajos Realizados</div>
-          <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn">📸 @fenixstudio25</a>
+          <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            @fenixstudio25
+          </a>
         </div>
         <div class="gallery-grid" id="galeriaCompletaGrid"></div>
       </div>
     </section>
 
     <!-- =====================================================================
-         5. SECCIÓN RESERVAR TURNO (SIN WHATSAPP + ACLARACIÓN DE TIEMPO DEL BARBERO)
+         5. SECCIÓN RESERVAR TURNO
          ===================================================================== -->
     <section id="sec-turnos" class="section">
       <div class="card">
@@ -1187,11 +1215,11 @@
               <input type="text" id="turnoNota" placeholder="Ej: Degradado bajo / Dirección si es a domicilio" />
             </div>
 
-            <button type="button" class="btn btn-gold btn-cta-large" style="width:100%; justify-content:center; margin-top:8px;" onclick="confirmarReservaTurno()">
+            <button type="button" class="btn btn-gold btn-cta-large" style="width:100%; justify-content:center; margin-top:6px;" onclick="confirmarReservaTurno()">
               ✅ Confirmar Turno en la Agenda
             </button>
 
-            <div id="comprobanteTurno" style="display:none; margin-top:16px; padding:16px; background:rgba(16,185,129,0.14); border:1px solid var(--success); border-radius:10px;"></div>
+            <div id="comprobanteTurno" style="display:none; margin-top:14px; padding:14px; background:rgba(16,185,129,0.14); border:1px solid var(--success); border-radius:10px;"></div>
           </div>
         </div>
       </div>
@@ -1205,7 +1233,7 @@
     </section>
 
     <!-- =====================================================================
-         6. SECCIÓN CURSO DE BARBERÍA (QUÉ TE DA EL CURSO + AULA VIRTUAL)
+         6. SECCIÓN CURSO DE BARBERÍA
          ===================================================================== -->
     <section id="sec-academia" class="section">
       <div class="card">
@@ -1214,22 +1242,22 @@
           <span class="status-pill status-espera">Duración: 3 Meses | Valor: $75.000 / mes</span>
         </div>
 
-        <p style="color:#e4e4e7; line-height:1.55; margin-bottom:16px;">
+        <p style="color:#e4e4e7; line-height:1.55; margin-bottom:14px; font-size:0.92rem;">
           Formación intensiva de <strong>3 meses</strong> diseñada para que domines el oficio de barbero profesional desde la base hasta las técnicas avanzadas de salón:
         </p>
 
-        <div class="grid-3" style="margin-bottom:16px;">
+        <div class="grid-3" style="margin-bottom:14px;">
           <div class="finance-box">
             <strong style="color:var(--gold); display:block; margin-bottom:6px;">🛠️ Máquinas, Tijeras y Navaja</strong>
-            <span style="font-size:0.85rem; color:var(--text-muted);">Uso correcto y mantenimiento de herramientas, posturas de trabajo, alzadas y bioseguridad.</span>
+            <span style="font-size:0.82rem; color:var(--text-muted);">Uso correcto y mantenimiento de herramientas, posturas de trabajo, alzadas y bioseguridad.</span>
           </div>
           <div class="finance-box">
             <strong style="color:var(--gold); display:block; margin-bottom:6px;">✂️ Degradados (Taper Fade) y Freestyle</strong>
-            <span style="font-size:0.85rem; color:var(--text-muted);">Técnicas limpias de borrado de líneas, Taper Fade, diseño Freestyle, visagismo, perfilado y ritual de barba.</span>
+            <span style="font-size:0.82rem; color:var(--text-muted);">Técnicas limpias de borrado de líneas, Taper Fade, diseño Freestyle, visagismo, perfilado y ritual de barba.</span>
           </div>
           <div class="finance-box">
             <strong style="color:var(--gold); display:block; margin-bottom:6px;">📜 Certificado + Aula Virtual</strong>
-            <span style="font-size:0.85rem; color:var(--text-muted);">Acceso exclusivo a videos, guías de referencia y archivos PDF en el Aula Virtual + Entrega de Certificado al finalizar.</span>
+            <span style="font-size:0.82rem; color:var(--text-muted);">Acceso exclusivo a videos, guías de referencia y archivos PDF en el Aula Virtual + Entrega de Certificado al finalizar.</span>
           </div>
         </div>
       </div>
@@ -1328,6 +1356,7 @@
             🔔 Solicitudes para Aceptar / Rechazar Alumnos y Usuarios
             <span class="badge hidden" id="badgeSolicitudesAdmin">0</span>
           </div>
+          <button type="button" class="btn" onclick="cambiarClavePersonal()">🔑 Cambiar Contraseña de Personal</button>
         </div>
         <div id="listaPendientesAdmin"></div>
       </div>
@@ -1355,16 +1384,16 @@
 
         <div class="finance-summary">
           <div class="finance-box">
-            <span style="font-size:0.8rem; color:var(--text-muted);">📈 Ingresos</span>
-            <strong id="finTotalIngresos" style="display:block; font-size:1.3rem; color:var(--success); margin-top:4px;">$0</strong>
+            <span style="font-size:0.78rem; color:var(--text-muted);">📈 Ingresos</span>
+            <strong id="finTotalIngresos" style="display:block; font-size:1.2rem; color:var(--success); margin-top:4px;">$0</strong>
           </div>
           <div class="finance-box">
-            <span style="font-size:0.8rem; color:var(--text-muted);">📉 Egresos / Gastos</span>
-            <strong id="finTotalEgresos" style="display:block; font-size:1.3rem; color:var(--danger); margin-top:4px;">$0</strong>
+            <span style="font-size:0.78rem; color:var(--text-muted);">📉 Egresos / Gastos</span>
+            <strong id="finTotalEgresos" style="display:block; font-size:1.2rem; color:var(--danger); margin-top:4px;">$0</strong>
           </div>
           <div class="finance-box" style="border-color:var(--gold);">
-            <span style="font-size:0.8rem; color:var(--gold);">💵 Balance Neto</span>
-            <strong id="finBalanceNeto" style="display:block; font-size:1.3rem; color:var(--gold); margin-top:4px;">$0</strong>
+            <span style="font-size:0.78rem; color:var(--gold);">💵 Balance Neto</span>
+            <strong id="finBalanceNeto" style="display:block; font-size:1.2rem; color:var(--gold); margin-top:4px;">$0</strong>
           </div>
         </div>
 
@@ -1534,21 +1563,29 @@
 
   </div>
 
-  <!-- PIE DE PÁGINA CON IG, WHATSAPP, MAPA Y ACCESO PERSONAL SUTIL -->
+  <!-- PIE DE PÁGINA CON LOGOS SVG Y ACCESO PERSONAL SUTIL -->
   <footer>
     <span>© 2026 Fenix Studio — C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco</span>
     <span>•</span>
-    <a href="https://www.instagram.com/fenixstudio25/" target="_blank">@fenixstudio25</a>
+    <a href="https://www.instagram.com/fenixstudio25/" target="_blank">
+      <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      @fenixstudio25
+    </a>
     <span>•</span>
-    <a href="https://wa.me/543624595042" target="_blank">WhatsApp</a>
+    <a href="https://wa.me/543624595042" target="_blank">
+      <svg class="svg-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.124.556 4.119 1.528 5.847l-1.528 5.581 5.713-1.499c1.678.918 3.602 1.444 5.654 1.444 6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+      WhatsApp
+    </a>
     <span>•</span>
-    <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank">Ubicación</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank">
+      <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      Ubicación
+    </a>
     <span>•</span>
     <button type="button" onclick="accesoPersonalLogin()">Acceso Personal</button>
   </footer>
 
   <script>
-    const CLAVE_PERSONAL = localStorage.getItem("fenix_pin_personal") || "1234";
     const HORARIOS_BASE = [
       "09:00", "10:00", "11:00", "12:00",
       "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"
@@ -1603,6 +1640,9 @@
     ];
 
     let estado = {
+      config: {
+        pinPersonal: localStorage.getItem("fenix_pin_personal") || "1234"
+      },
       servicios: SERVICIOS_DEFAULT,
       productos: PRODUCTOS_DEFAULT,
       galeria: GALERIA_DEFAULT,
@@ -1630,6 +1670,33 @@
     let contadorToquesLogo = 0;
     let timerToquesLogo = null;
     let cloudDbUrl = localStorage.getItem("fenix_cloud_url") || "";
+
+    function obtenerClavePersonal() {
+      if (estado.config && estado.config.pinPersonal) {
+        return String(estado.config.pinPersonal);
+      }
+      return localStorage.getItem("fenix_pin_personal") || "1234";
+    }
+
+    function cambiarClavePersonal() {
+      const actual = prompt("🔑 Ingresá tu contraseña actual de Personal:");
+      if (actual === null) return;
+      if (actual !== obtenerClavePersonal()) {
+        alert("❌ La contraseña actual no coincide.");
+        return;
+      }
+      const nueva = prompt("✨ Ingresá la NUEVA contraseña para Acceso Personal:");
+      if (!nueva || nueva.trim().length < 3) {
+        alert("La nueva contraseña debe tener al menos 3 caracteres.");
+        return;
+      }
+      const pinLimpio = nueva.trim();
+      localStorage.setItem("fenix_pin_personal", pinLimpio);
+      if (!estado.config) estado.config = {};
+      estado.config.pinPersonal = pinLimpio;
+      guardarDatos();
+      alert("✅ ¡Contraseña de Personal actualizada correctamente!");
+    }
 
     function inicializarApp() {
       cargarDatosLocales();
@@ -1664,6 +1731,7 @@
     }
 
     function asegurarDatosBase() {
+      if (!estado.config) estado.config = { pinPersonal: localStorage.getItem("fenix_pin_personal") || "1234" };
       if (!Array.isArray(estado.servicios) || estado.servicios.length === 0) estado.servicios = SERVICIOS_DEFAULT;
       if (!Array.isArray(estado.productos) || estado.productos.length === 0) estado.productos = PRODUCTOS_DEFAULT;
       if (!Array.isArray(estado.galeria) || estado.galeria.length === 0) estado.galeria = GALERIA_DEFAULT;
@@ -1691,6 +1759,9 @@
         } catch (e) {}
       }
       asegurarDatosBase();
+      if (estado.config && estado.config.pinPersonal) {
+        localStorage.setItem("fenix_pin_personal", estado.config.pinPersonal);
+      }
       const sesionGuardada = localStorage.getItem("fenix_usuario_sesion");
       if (sesionGuardada) {
         try { usuarioActual = JSON.parse(sesionGuardada); } catch (e) {}
@@ -1804,10 +1875,10 @@
             <img src="${s.img || 'corte1.jpeg'}" data-fb="${fb}" onerror="this.onerror=null; this.src=this.getAttribute('data-fb');" alt="${s.nombre}" />
             <div class="cut-card-body">
               <div>
-                <strong style="font-size:1.04rem; display:block; margin-bottom:6px; color:var(--gold);">${s.nombre}</strong>
-                <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">${s.desc || ''}</p>
+                <strong style="font-size:1rem; display:block; margin-bottom:5px; color:var(--gold);">${s.nombre}</strong>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">${s.desc || ''}</p>
               </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:9px;">
                 <span class="cut-price">$${Number(s.precio).toLocaleString("es-AR")}</span>
                 <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(${s.id})">Reservar</button>
               </div>
@@ -1894,7 +1965,7 @@
           <div class="item-row">
             <div>
               <strong>${p.nombre}</strong>
-              <span style="font-size:0.8rem; color:var(--text-muted); display:block;">Stock disponible: ${p.stock} u.</span>
+              <span style="font-size:0.78rem; color:var(--text-muted); display:block;">Stock disponible: ${p.stock} u.</span>
             </div>
             <strong style="color:var(--gold);">$${Number(p.precio).toLocaleString("es-AR")}</strong>
           </div>
@@ -1904,8 +1975,8 @@
       if (pubGrid) {
         pubGrid.innerHTML = (estado.productos || []).map(p => `
           <div class="card" style="margin-bottom:0;">
-            <strong style="font-size:1.08rem; color:var(--gold); display:block; margin-bottom:6px;">${p.nombre}</strong>
-            <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">Disponibles en local: <strong>${p.stock} unidades</strong></p>
+            <strong style="font-size:1.04rem; color:var(--gold); display:block; margin-bottom:6px;">${p.nombre}</strong>
+            <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">Disponibles en local: <strong>${p.stock} unidades</strong></p>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span class="cut-price">$${Number(p.precio).toLocaleString("es-AR")}</span>
               <span class="status-pill ${p.stock > 0 ? 'status-listo' : 'status-pendiente'}">${p.stock > 0 ? 'En Stock' : 'Sin Stock'}</span>
@@ -1919,7 +1990,7 @@
           <div class="item-row">
             <div>
               <strong>${p.nombre}</strong> ($${Number(p.precio).toLocaleString("es-AR")})
-              <div style="font-size:0.8rem; color:var(--text-muted);">Stock actual: <strong>${p.stock}</strong></div>
+              <div style="font-size:0.78rem; color:var(--text-muted);">Stock actual: <strong>${p.stock}</strong></div>
             </div>
             <div style="display:flex; gap:6px; flex-wrap:wrap;">
               <button type="button" class="btn btn-success" onclick="venderProductoStock(${p.id})">💰 Vender 1 (+Caja)</button>
@@ -2039,7 +2110,7 @@
         grilla.innerHTML += `
           <div class="slot-item ${cantEnHora > 0 ? 'occupied' : ''} ${estaSeleccionado ? 'selected' : ''}" onclick="seleccionarHorario('${hora}')">
             <div>${hora} hs</div>
-            <small style="font-size:0.7rem; display:block;">
+            <small style="font-size:0.68rem; display:block;">
               ${cantEnHora === 0 ? "Disponible" : cantEnHora + " anotado(s)"}
             </small>
           </div>
@@ -2090,7 +2161,7 @@
       comp.style.display = "block";
       comp.innerHTML = `
         <h4 style="color:var(--success); margin-bottom:6px;">✅ ¡Turno Registrado en la Agenda!</h4>
-        <p style="font-size:0.9rem; line-height:1.45;">
+        <p style="font-size:0.88rem; line-height:1.45;">
           <strong>Cliente:</strong> ${nuevoTurno.cliente}<br>
           <strong>Corte:</strong> ${nuevoTurno.servicio} ($${Number(nuevoTurno.precio).toLocaleString("es-AR")})<br>
           <strong>Fecha y Hora:</strong> ${nuevoTurno.fecha} a las ${nuevoTurno.hora} hs<br>
@@ -2112,7 +2183,7 @@
         .sort((a, b) => a.hora.localeCompare(b.hora));
 
       if (lista.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">No hay turnos anotados para esta fecha todavía. ¡Todos los horarios disponibles!</p>`;
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.88rem;">No hay turnos anotados para esta fecha todavía. ¡Todos los horarios disponibles!</p>`;
         return;
       }
 
@@ -2120,7 +2191,7 @@
         <div class="item-row">
           <div>
             <strong>#${idx + 1} — ${t.hora} hs</strong> | ${t.cliente.split(" ")[0]}
-            <span style="color:var(--text-muted); font-size:0.85rem;">(${t.servicio})</span>
+            <span style="color:var(--text-muted); font-size:0.82rem;">(${t.servicio})</span>
           </div>
           <span class="status-pill ${t.estado === 'atendiendo' ? 'status-atendiendo' : t.estado === 'finalizado' ? 'status-listo' : 'status-espera'}">
             ${t.estado === 'atendiendo' ? '✂️ Cortando Ahora' : t.estado === 'finalizado' ? '✅ Terminado' : '⏳ En Espera'}
@@ -2182,10 +2253,15 @@
       usuarioActual = null;
       localStorage.removeItem("fenix_usuario_sesion");
       renderTodo();
+      cambiarSeccion("inicio");
     }
 
+    /* OCULTAR BOTONES DE LOGIN CUANDO ENTRÁS COMO USUARIO/ALUMNO O PERSONAL */
     function renderSesionUsuario() {
-      const lbl = document.getElementById("lblMiCuenta");
+      const btnHeaderLogin = document.getElementById("btnHeaderLogin");
+      const btnHeroCrearUsuario = document.getElementById("btnHeroCrearUsuario");
+      const drawerItemUsuarios = document.getElementById("drawerItemUsuarios");
+      const txtDrawerUsuarios = document.getElementById("txtDrawerUsuarios");
       const vistaLog = document.getElementById("vistaUsuarioLogueado");
       const vistaAuth = document.getElementById("vistaFormulariosAuth");
 
@@ -2197,8 +2273,20 @@
         }
       }
 
+      const haySesionActiva = Boolean(usuarioActual || esPersonal);
+
+      // Si está logueado el usuario/alumno o el admin/personal, desaparece el botón de login de arriba y de la portada
+      if (btnHeaderLogin) {
+        btnHeaderLogin.classList.toggle("hidden", haySesionActiva);
+      }
+      if (btnHeroCrearUsuario) {
+        btnHeroCrearUsuario.classList.toggle("hidden", haySesionActiva);
+      }
+
       if (usuarioActual) {
-        lbl.innerText = usuarioActual.nombre.split(" ")[0];
+        if (drawerItemUsuarios) drawerItemUsuarios.classList.remove("hidden");
+        if (txtDrawerUsuarios) txtDrawerUsuarios.innerText = "👤 Mi Perfil (" + usuarioActual.nombre.split(" ")[0] + ")";
+
         if (!document.getElementById("turnoNombre").value) {
           document.getElementById("turnoNombre").value = usuarioActual.nombre;
           document.getElementById("turnoEmail").value = usuarioActual.email || "";
@@ -2214,26 +2302,81 @@
                 ${usuarioActual.estado === 'activo' ? '✅ Habilitado' : '⏳ Pendiente de Aceptación'}
               </span>
             </div>
-            <p style="margin-bottom:8px;"><strong>Usuario:</strong> @${usuarioActual.user} | <strong>Categoría:</strong> ${usuarioActual.rol === 'alumno' ? '🎓 Alumno del Curso' : '💈 Cliente Barbería'}</p>
-            <p style="margin-bottom:16px; color:var(--text-muted);"><strong>Gmail:</strong> ${usuarioActual.email}</p>
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <p style="margin-bottom:8px; font-size:0.9rem;"><strong>Usuario:</strong> @${usuarioActual.user} | <strong>Categoría:</strong> ${usuarioActual.rol === 'alumno' ? '🎓 Alumno del Curso' : '💈 Cliente Barbería'}</p>
+            <p style="margin-bottom:14px; font-size:0.86rem; color:var(--text-muted);"><strong>Gmail:</strong> ${usuarioActual.email}</p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
               <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
               <button type="button" class="btn" onclick="cambiarSeccion('sorteos')">🎁 Sorteos</button>
               <button type="button" class="btn" onclick="cambiarSeccion('academia')">🎓 Aula Virtual</button>
+              <button type="button" class="btn" onclick="cambiarPassUsuarioLogueado()">🔑 Cambiar mi Contraseña</button>
               <button type="button" class="btn btn-danger" onclick="cerrarSesionUsuario()">Cerrar Sesión</button>
             </div>
           </div>
         `;
+      } else if (esPersonal) {
+        // Si entró como Personal, ocultamos también el ítem de login de cliente del menú lateral
+        if (drawerItemUsuarios) drawerItemUsuarios.classList.add("hidden");
+        vistaAuth.style.display = "none";
+        vistaLog.style.display = "block";
+        vistaLog.innerHTML = `
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">💼 Sesión de Personal Activa</div>
+            </div>
+            <p style="margin-bottom:12px; font-size:0.9rem; color:var(--text-muted);">Estás operando como Administrador / Personal de Fenix Studio.</p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-gold" onclick="cambiarSeccion('admin')">Ir al Panel de Personal</button>
+              <button type="button" class="btn" onclick="cambiarClavePersonal()">🔑 Cambiar Contraseña</button>
+              <button type="button" class="btn btn-danger" onclick="cerrarSesionPersonal()">Salir de Personal</button>
+            </div>
+          </div>
+        `;
       } else {
-        lbl.innerText = "Mi Cuenta";
+        if (drawerItemUsuarios) drawerItemUsuarios.classList.remove("hidden");
+        if (txtDrawerUsuarios) txtDrawerUsuarios.innerText = "👤 Iniciar Sesión / Crear Usuario";
         vistaAuth.style.display = "grid";
         vistaLog.style.display = "none";
       }
     }
 
+    function cambiarPassUsuarioLogueado() {
+      if (!usuarioActual) return;
+      const nueva = prompt("🔑 Ingresá tu nueva contraseña de usuario:");
+      if (!nueva || nueva.trim().length < 4) {
+        alert("La contraseña debe tener al menos 4 caracteres.");
+        return;
+      }
+      usuarioActual.pass = nueva.trim();
+      const idx = (estado.usuarios || []).findIndex(u => u.id === usuarioActual.id);
+      if (idx !== -1) {
+        estado.usuarios[idx].pass = usuarioActual.pass;
+      }
+      localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual));
+      guardarDatos();
+      alert("✅ Tu contraseña ha sido actualizada.");
+    }
+
     function renderAulaVirtual() {
       const cont = document.getElementById("contenidoAulaVirtual");
       if (!cont) return;
+
+      if (esPersonal) {
+        cont.innerHTML = `
+          <div style="margin-bottom:12px; color:var(--gold); font-weight:700;">
+            💼 Vista de Personal — Módulos del Aula Virtual Activos:
+          </div>
+          ${(estado.clasesAcademia || []).map((c, i) => `
+            <div class="item-row">
+              <div>
+                <strong style="color:var(--gold);">${c.titulo}</strong>
+                <p style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">${c.descripcion}</p>
+              </div>
+              <span class="status-pill status-listo">Módulo #${i + 1}</span>
+            </div>
+          `).join("")}
+        `;
+        return;
+      }
 
       if (!usuarioActual) {
         cont.innerHTML = `
@@ -2262,7 +2405,7 @@
           <div class="item-row">
             <div>
               <strong style="color:var(--gold);">${c.titulo}</strong>
-              <p style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">${c.descripcion}</p>
+              <p style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">${c.descripcion}</p>
             </div>
             <span class="status-pill status-listo">Módulo #${i + 1} Activo</span>
           </div>
@@ -2277,17 +2420,17 @@
       const yaParticipa = usuarioActual && (s.participantes || []).some(p => p.id === usuarioActual.id);
 
       cont.innerHTML = `
-        <div style="text-align:center; padding:20px;">
+        <div style="text-align:center; padding:16px;">
           <span class="status-pill status-listo">SORTEO ACTIVO</span>
-          <h3 style="font-size:1.6rem; color:var(--gold); margin:12px 0;">${s.titulo}</h3>
-          <p style="font-size:1.05rem; margin-bottom:8px;">🏆 <strong>Premio:</strong> ${s.premio}</p>
-          <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px;">📅 Fecha: ${s.fecha} | Participantes: <strong>${(s.participantes || []).length}</strong></p>
+          <h3 style="font-size:1.45rem; color:var(--gold); margin:10px 0;">${s.titulo}</h3>
+          <p style="font-size:0.98rem; margin-bottom:8px;">🏆 <strong>Premio:</strong> ${s.premio}</p>
+          <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:16px;">📅 Fecha: ${s.fecha} | Participantes: <strong>${(s.participantes || []).length}</strong></p>
           ${!usuarioActual ? `
             <button type="button" class="btn btn-gold btn-cta-large" onclick="cambiarSeccion('usuarios')">
               🔑 Iniciá Sesión o Creá tu Usuario para Participar
             </button>
           ` : yaParticipa ? `
-            <div style="padding:12px 18px; background:rgba(16,185,129,0.2); border:1px solid var(--success); border-radius:10px; display:inline-block;">
+            <div style="padding:10px 16px; background:rgba(16,185,129,0.2); border:1px solid var(--success); border-radius:10px; display:inline-block; font-size:0.88rem;">
               ✅ <strong>¡Ya estás participando con @${usuarioActual.user}!</strong>
             </div>
           ` : `
@@ -2333,7 +2476,7 @@
         return;
       }
       const pin = prompt("💼 Acceso Personal — Ingresá tu clave:");
-      if (pin === CLAVE_PERSONAL) {
+      if (pin === obtenerClavePersonal()) {
         esPersonal = true;
         document.getElementById("staffBanner").classList.add("active");
         document.getElementById("drawerItemPersonal").classList.remove("hidden");
@@ -2359,7 +2502,7 @@
       if (!cont) return;
       const pendientes = (estado.usuarios || []).filter(u => u.estado === "pendiente");
       if (pendientes.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">✅ No hay solicitudes pendientes en este momento.</p>`;
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.86rem;">✅ No hay solicitudes pendientes en este momento.</p>`;
         return;
       }
       cont.innerHTML = pendientes.map(u => `
@@ -2367,12 +2510,12 @@
           <div>
             <strong>${u.nombre}</strong> (@${u.user})
             <span class="status-pill status-pendiente">${u.rol === 'alumno' ? '🎓 Solicitud Alumno' : '💈 Nuevo Cliente'}</span>
-            <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">
               📧 ${u.email} | 📱 ${u.telefono || 'Sin tel'}
             </div>
           </div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button type="button" class="btn btn-success" onclick="aprobarUsuarioAdmin(${u.id})">✅ Aceptar Alumno/Usuario</button>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button type="button" class="btn btn-success" onclick="aprobarUsuarioAdmin(${u.id})">✅ Aceptar</button>
             <button type="button" class="btn btn-info" onclick="enviarCorreoIndividual('${u.email}', 'Bienvenido a Fenix Studio', 'Hola ${u.nombre}, tu cuenta @${u.user} ya fue aceptada y habilitada.')">📧 Avisar por Gmail</button>
             <button type="button" class="btn btn-danger" onclick="rechazarUsuarioAdmin(${u.id})">❌ Rechazar</button>
           </div>
@@ -2421,7 +2564,7 @@
       document.getElementById("finBalanceNeto").innerText = "$" + neto.toLocaleString("es-AR");
 
       if (movs.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.88rem;">Sin movimientos cargados.</p>`;
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.86rem;">Sin movimientos cargados.</p>`;
         return;
       }
 
@@ -2432,7 +2575,7 @@
             <span class="status-pill ${m.tipo === 'ingreso' ? 'status-listo' : 'status-pendiente'}">${m.tipo}</span>
             <small style="color:var(--text-muted); display:block;">${m.fecha}</small>
           </div>
-          <div style="display:flex; align-items:center; gap:10px;">
+          <div style="display:flex; align-items:center; gap:8px;">
             <strong style="color:${m.tipo === 'ingreso' ? 'var(--success)' : 'var(--danger)'};">
               ${m.tipo === 'ingreso' ? '+' : '-'}$${Number(m.monto).toLocaleString("es-AR")}
             </strong>
@@ -2465,14 +2608,14 @@
       if (!cont) return;
       const lista = estado.deudores || [];
       if (lista.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.85rem;">No hay deudores registrados.</p>`;
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.84rem;">No hay deudores registrados.</p>`;
         return;
       }
       cont.innerHTML = lista.map(d => `
         <div class="item-row">
           <div>
             <strong>${d.nombre}</strong> — <span style="color:var(--danger); font-weight:700;">$${Number(d.monto).toLocaleString("es-AR")}</span>
-            <div style="font-size:0.8rem; color:var(--text-muted);">${d.detalle}</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">${d.detalle}</div>
           </div>
           <div style="display:flex; gap:6px;">
             <button type="button" class="btn btn-success" onclick="saldarDeudor(${d.id})">✅ Cobrar (+Ingreso)</button>
@@ -2510,7 +2653,7 @@
       lista.sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
 
       if (lista.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted);">No hay turnos agendados para esta fecha.</p>`;
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.86rem;">No hay turnos agendados para esta fecha.</p>`;
         return;
       }
 
@@ -2521,7 +2664,7 @@
             <span class="status-pill ${t.estado === 'atendiendo' ? 'status-atendiendo' : t.estado === 'finalizado' ? 'status-listo' : 'status-espera'}">
               ${t.estado === 'atendiendo' ? '✂️ En Silla' : t.estado === 'finalizado' ? '✅ Terminado' : '⏳ En Espera'}
             </span>
-            <div style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">
               ${t.servicio} ($${Number(t.precio).toLocaleString("es-AR")}) | 📱 ${t.telefono} | 📧 ${t.email || 'Sin email'}
               ${t.nota ? `<br>📝 Nota: <em>${t.nota}</em>` : ``}
             </div>
@@ -2591,7 +2734,7 @@
       const cont = document.getElementById("listaTodosUsuariosAdmin");
       if (!cont) return;
       if (!estado.usuarios || estado.usuarios.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted);">Sin usuarios registrados.</p>`;
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.84rem;">Sin usuarios registrados.</p>`;
         return;
       }
       cont.innerHTML = estado.usuarios.map(u => `
@@ -2599,7 +2742,7 @@
           <div>
             <strong>${u.nombre}</strong> (@${u.user} / Clave: <code>${u.pass}</code>)
             <span class="status-pill ${u.estado === 'activo' ? 'status-listo' : 'status-espera'}">${u.estado}</span>
-            <div style="font-size:0.8rem; color:var(--text-muted);">${u.rol === 'alumno' ? '🎓 Alumno' : '💈 Cliente'} | ${u.email}</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">${u.rol === 'alumno' ? '🎓 Alumno' : '💈 Cliente'} | ${u.email}</div>
           </div>
           <div style="display:flex; gap:6px;">
             ${u.rol === 'alumno' ? `<button type="button" class="btn btn-gold" onclick="cobrarCuotaAlumno(${u.id})">💰 Cobrar Mes ($75.000)</button>` : ``}
@@ -2698,7 +2841,6 @@
       guardarDatos();
     }
 
-    // Ejecutar también de inmediato por si el DOM ya estaba listo
     inicializarApp();
   </script>
 </body>
