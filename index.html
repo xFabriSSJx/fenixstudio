@@ -17,7 +17,6 @@
       --success: #10b981;
       --info: #3b82f6;
       --border: rgba(212, 175, 55, 0.25);
-      /* Usa tu archivo fondodelapagina.jpeg por defecto */
       --hero-bg: url('fondodelapagina.jpeg');
     }
 
@@ -41,15 +40,20 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* INTERRUPTOR NATIVO OCULTO PARA LAS 3 BARRAS (INFALIBLE) */
+    #chkMenu {
+      display: none !important;
     }
 
     /* CABECERA PRINCIPAL CON LAS 3 BARRAS */
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(9, 9, 12, 0.92);
-      backdrop-filter: blur(12px);
+      z-index: 1000;
+      background: rgba(9, 9, 12, 0.95);
       border-bottom: 1px solid var(--border);
       padding: 12px 20px;
       display: flex;
@@ -66,11 +70,11 @@
 
     /* BOTÓN DE LAS 3 BARRAS INTERACTIVO */
     .menu-toggle {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       border-radius: 10px;
       background: var(--bg-card-alt);
-      border: 1px solid var(--border);
+      border: 1px solid var(--gold);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -78,12 +82,16 @@
       gap: 5px;
       cursor: pointer;
       position: relative;
+      z-index: 1002;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
       transition: 0.2s;
     }
 
-    .menu-toggle:hover {
-      border-color: var(--gold);
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    .menu-toggle:hover,
+    .menu-toggle:active {
+      background: rgba(212, 175, 55, 0.2);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.45);
     }
 
     .menu-toggle .bar {
@@ -91,6 +99,8 @@
       height: 2.5px;
       background-color: var(--gold);
       border-radius: 2px;
+      pointer-events: none;
+      display: block;
     }
 
     .menu-dot {
@@ -109,6 +119,7 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 0 8px rgba(239, 68, 68, 0.9);
+      pointer-events: none;
       animation: pulse 1.5s infinite;
     }
 
@@ -159,44 +170,51 @@
       flex-wrap: wrap;
     }
 
-    /* MENÚ LATERAL INTERACTIVO DE 3 BARRAS */
+    /* MENÚ LATERAL DESLIZANTE (SE ACTIVA POR CSS :checked Y POR CLASE .open) */
     .drawer-overlay {
       position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.72);
-      backdrop-filter: blur(4px);
-      z-index: 200;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 2000;
+      display: none;
       opacity: 0;
-      pointer-events: none;
+      cursor: pointer;
       transition: opacity 0.25s ease;
-    }
-
-    .drawer-overlay.open {
-      opacity: 1;
-      pointer-events: auto;
     }
 
     .side-drawer {
       position: fixed;
       top: 0;
       left: 0;
-      bottom: 0;
       width: 310px;
-      max-width: 86vw;
+      max-width: 85vw;
+      height: 100vh;
       background: #111117;
-      border-right: 1px solid var(--border);
-      z-index: 210;
-      transform: translateX(-100%);
+      border-right: 1px solid var(--gold);
+      z-index: 2001;
+      transform: translateX(-105%);
       transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 20px 16px;
       overflow-y: auto;
+      box-shadow: 8px 0 30px rgba(0, 0, 0, 0.85);
     }
 
+    /* Regla directa: cuando se tocan las 3 barras, el menú se desliza sí o sí */
+    #chkMenu:checked ~ .drawer-overlay,
+    .drawer-overlay.open {
+      display: block !important;
+      opacity: 1 !important;
+    }
+
+    #chkMenu:checked ~ .side-drawer,
     .side-drawer.open {
-      transform: translateX(0);
+      transform: translateX(0%) !important;
     }
 
     .drawer-header {
@@ -209,14 +227,18 @@
     }
 
     .drawer-close {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      width: 34px;
-      height: 34px;
+      background: var(--bg-card-alt);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      width: 36px;
+      height: 36px;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .drawer-nav {
@@ -240,6 +262,7 @@
       justify-content: space-between;
       transition: 0.2s;
       text-decoration: none;
+      width: 100%;
     }
 
     .drawer-item:hover {
@@ -543,7 +566,8 @@
     .gallery-caption {
       position: absolute;
       bottom: 0;
-      inset-inline: 0;
+      left: 0;
+      right: 0;
       background: linear-gradient(transparent, rgba(0,0,0,0.9));
       padding: 18px 10px 8px;
       font-size: 0.84rem;
@@ -709,12 +733,59 @@
 
     footer button:hover { color: var(--gold); }
   </style>
+
+  <!-- FUNCIONES PRINCIPALES DEL MENÚ EN HEAD PARA QUE ESTÉN ACTIVAS AL INSTANTE -->
+  <script>
+    function abrirMenuLateral() {
+      var chk = document.getElementById("chkMenu");
+      if (chk) chk.checked = true;
+      var drawer = document.getElementById("sideDrawer");
+      var overlay = document.getElementById("drawerOverlay");
+      if (drawer) drawer.classList.add("open");
+      if (overlay) overlay.classList.add("open");
+    }
+
+    function cerrarMenuLateral() {
+      var chk = document.getElementById("chkMenu");
+      if (chk) chk.checked = false;
+      var drawer = document.getElementById("sideDrawer");
+      var overlay = document.getElementById("drawerOverlay");
+      if (drawer) drawer.classList.remove("open");
+      if (overlay) overlay.classList.remove("open");
+    }
+
+    function cambiarSeccion(id) {
+      var secciones = document.querySelectorAll(".section");
+      for (var i = 0; i < secciones.length; i++) {
+        secciones[i].classList.remove("active");
+      }
+      var target = document.getElementById("sec-" + id);
+      if (target) target.classList.add("active");
+
+      var botones = document.querySelectorAll(".drawer-item");
+      for (var j = 0; j < botones.length; j++) {
+        var b = botones[j];
+        if (b.getAttribute("data-sec") === id) {
+          b.classList.add("active");
+        } else {
+          b.classList.remove("active");
+        }
+      }
+
+      cerrarMenuLateral();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  </script>
 </head>
 <body>
 
-  <!-- OVERLAY Y MENÚ LATERAL INTERACTIVO DE 3 BARRAS -->
-  <div class="drawer-overlay" id="drawerOverlay" onclick="cerrarMenuLateral()"></div>
+  <!-- CHECKBOX NATIVO QUE CONTROLA LAS 3 BARRAS SIN FALLAR JAMÁS -->
+  <input type="checkbox" id="chkMenu" aria-hidden="true" />
 
+  <!-- FONDO OSCURO AL ABRIR EL MENÚ (TOCAR AFUERA CIERRA EL MENÚ) -->
+  <label for="chkMenu" class="drawer-overlay" id="drawerOverlay" onclick="cerrarMenuLateral()"></label>
+
+  <!-- MENÚ LATERAL DESLIZANTE DE LAS 3 BARRAS -->
   <aside class="side-drawer" id="sideDrawer">
     <div>
       <div class="drawer-header">
@@ -725,38 +796,38 @@
             <span>Menú Interactivo</span>
           </div>
         </div>
-        <button class="drawer-close" onclick="cerrarMenuLateral()">✕</button>
+        <label for="chkMenu" class="drawer-close" onclick="cerrarMenuLateral()">✕</label>
       </div>
 
       <nav class="drawer-nav">
-        <button class="drawer-item active" data-sec="inicio" onclick="cambiarSeccion('inicio')">
+        <button type="button" class="drawer-item active" data-sec="inicio" onclick="cambiarSeccion('inicio')">
           <span>🏠 Inicio & Principal</span>
         </button>
-        <button class="drawer-item" data-sec="cortes" onclick="cambiarSeccion('cortes')">
+        <button type="button" class="drawer-item" data-sec="cortes" onclick="cambiarSeccion('cortes')">
           <span>✂️ Tipos de Cortes y Precios</span>
         </button>
-        <button class="drawer-item" data-sec="productos" onclick="cambiarSeccion('productos')">
+        <button type="button" class="drawer-item" data-sec="productos" onclick="cambiarSeccion('productos')">
           <span>🧴 Productos de Barbería</span>
         </button>
-        <button class="drawer-item" data-sec="galeria" onclick="cambiarSeccion('galeria')">
+        <button type="button" class="drawer-item" data-sec="galeria" onclick="cambiarSeccion('galeria')">
           <span>📸 Galería Fenix</span>
         </button>
-        <button class="drawer-item" data-sec="turnos" onclick="cambiarSeccion('turnos')">
+        <button type="button" class="drawer-item" data-sec="turnos" onclick="cambiarSeccion('turnos')">
           <span>📅 Reservar Turno</span>
         </button>
-        <button class="drawer-item" data-sec="academia" onclick="cambiarSeccion('academia')">
+        <button type="button" class="drawer-item" data-sec="academia" onclick="cambiarSeccion('academia')">
           <span>🎓 Curso (3 Meses) y Aula Virtual</span>
           <span class="badge hidden" id="badgeMenuCurso">0</span>
         </button>
-        <button class="drawer-item" data-sec="sorteos" onclick="cambiarSeccion('sorteos')">
+        <button type="button" class="drawer-item" data-sec="sorteos" onclick="cambiarSeccion('sorteos')">
           <span>🎁 Sorteos & Beneficios</span>
         </button>
-        <button class="drawer-item" data-sec="usuarios" onclick="cambiarSeccion('usuarios')">
+        <button type="button" class="drawer-item" data-sec="usuarios" onclick="cambiarSeccion('usuarios')">
           <span>👤 Mi Cuenta / Crear Usuario</span>
         </button>
 
         <!-- Visible solo cuando se desbloquea Personal -->
-        <button class="drawer-item hidden" id="drawerItemPersonal" data-sec="admin" onclick="cambiarSeccion('admin')">
+        <button type="button" class="drawer-item hidden" id="drawerItemPersonal" data-sec="admin" onclick="cambiarSeccion('admin')">
           <span style="color:var(--gold);">💼 Panel de Personal</span>
           <span class="badge hidden" id="badgeDrawerPersonal">0</span>
         </button>
@@ -778,7 +849,7 @@
     <!-- ACCESO PERSONAL DISCRETO AL FONDO DEL MENÚ -->
     <div class="drawer-footer">
       <div style="font-size:0.74rem; color:#52525b;" id="textoNube">● Sistema Activo</div>
-      <button class="staff-subtle-link" onclick="accesoPersonalLogin()">
+      <button type="button" class="staff-subtle-link" onclick="accesoPersonalLogin()">
         <span id="lblAccesoPersonalDrawer">Acceso Personal</span>
         <span class="badge hidden" id="badgeSubtlePersonal">0</span>
       </button>
@@ -788,12 +859,13 @@
   <!-- CABECERA PRINCIPAL -->
   <header>
     <div class="header-left">
-      <button class="menu-toggle" onclick="abrirMenuLateral()" aria-label="Abrir menú">
+      <!-- BOTÓN DE LAS 3 BARRAS VINCULADO NATIVAMENTE A #chkMenu -->
+      <label for="chkMenu" class="menu-toggle" id="btnMenuTresBarras" title="Abrir menú">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="menu-dot hidden" id="badgeMenuHamburguesa">0</span>
-      </button>
+      </label>
 
       <div class="brand" onclick="toqueSecretoLogo()">
         <div class="brand-logo">FS</div>
@@ -807,10 +879,10 @@
     <div class="nav-actions">
       <a id="btnHeaderIg" href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn">📸 @fenixstudio25</a>
       <a id="btnHeaderUbi" href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="btn">📍 Ubicación</a>
-      <button class="btn btn-gold" onclick="cambiarSeccion('turnos')">
+      <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">
         📅 Reservar Turno
       </button>
-      <button class="btn" onclick="cambiarSeccion('usuarios')">
+      <button type="button" class="btn" onclick="cambiarSeccion('usuarios')">
         👤 <span id="lblMiCuenta">Mi Cuenta</span>
       </button>
     </div>
@@ -827,12 +899,12 @@
         </span>
       </div>
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <button class="btn btn-gold" onclick="cambiarSeccion('admin')">
+        <button type="button" class="btn btn-gold" onclick="cambiarSeccion('admin')">
           Panel de Personal
           <span class="badge hidden" id="badgeBannerPersonal">0</span>
         </button>
-        <button class="btn" onclick="conectarNubeGitHubOFirebase()">☁️ Conectar Nube (GitHub / DB)</button>
-        <button class="btn btn-danger" onclick="cerrarSesionPersonal()">Salir</button>
+        <button type="button" class="btn" onclick="conectarNubeGitHubOFirebase()">☁️ Conectar Nube (GitHub / DB)</button>
+        <button type="button" class="btn btn-danger" onclick="cerrarSesionPersonal()">Salir</button>
       </div>
     </div>
 
@@ -846,13 +918,13 @@
         <h2>Fenix Studio</h2>
         <p>Barbería & Academia de Estilo en Resistencia, Chaco. Reservá tu horario en nuestra agenda online, conocé nuestro curso profesional de 3 meses o sumate a la comunidad para sorteos y beneficios.</p>
         <div class="hero-buttons">
-          <button class="btn btn-gold btn-cta-large" onclick="cambiarSeccion('turnos')">
+          <button type="button" class="btn btn-gold btn-cta-large" onclick="cambiarSeccion('turnos')">
             📅 RESERVAR TURNO
           </button>
-          <button class="btn btn-cta-large" onclick="cambiarSeccion('academia')">
+          <button type="button" class="btn btn-cta-large" onclick="cambiarSeccion('academia')">
             🎓 Curso de Barbería y Aula Virtual
           </button>
-          <button class="btn btn-cta-large" onclick="cambiarSeccion('usuarios')">
+          <button type="button" class="btn btn-cta-large" onclick="cambiarSeccion('usuarios')">
             ✨ Crear mi Usuario
           </button>
         </div>
@@ -871,7 +943,7 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title">✂️ Tipos de Cortes y sus Precios</div>
-          <button class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
+          <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
         </div>
         <div class="grid-4" id="grillaCortesInicio"></div>
       </div>
@@ -880,7 +952,7 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title">📸 Galería Fenix — Fotos de Nuestros Trabajos</div>
-          <button class="btn" onclick="cambiarSeccion('galeria')">Ver Galería Completa</button>
+          <button type="button" class="btn" onclick="cambiarSeccion('galeria')">Ver Galería Completa</button>
         </div>
         <div class="gallery-grid" id="galeriaPreviewInicio"></div>
       </div>
@@ -899,7 +971,7 @@
           <div class="item-row"><span>✅ Ejecución de Degradados (Taper Fade), Freestyle y perfilado</span></div>
           <div class="item-row"><span>✅ Visagismo, ritual de barba y prácticas reales</span></div>
           <div class="item-row"><span>✅ Aula Virtual (Videos, PDFs y guías) + Certificado al finalizar</span></div>
-          <button class="btn btn-gold" style="width:100%; justify-content:center; margin-top:8px;" onclick="cambiarSeccion('academia')">
+          <button type="button" class="btn btn-gold" style="width:100%; justify-content:center; margin-top:8px;" onclick="cambiarSeccion('academia')">
             Entrar al Apartado del Curso y Aula Virtual
           </button>
         </div>
@@ -907,7 +979,7 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title">🧴 Productos Oficiales & Ubicación</div>
-            <button class="btn" onclick="cambiarSeccion('productos')">Ver Stock</button>
+            <button type="button" class="btn" onclick="cambiarSeccion('productos')">Ver Stock</button>
           </div>
           <div id="resumenProductosInicio"></div>
 
@@ -938,7 +1010,7 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title">✂️ Tipos de Cortes que realizamos y sus Precios</div>
-          <button class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
+          <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
         </div>
         <div class="grid-4" id="grillaCortesSeccion"></div>
       </div>
@@ -1024,7 +1096,7 @@
               <input type="text" id="turnoNota" placeholder="Ej: Degradado bajo / Dirección si es a domicilio" />
             </div>
 
-            <button class="btn btn-gold btn-cta-large" style="width:100%; justify-content:center; margin-top:8px;" onclick="confirmarReservaTurno()">
+            <button type="button" class="btn btn-gold btn-cta-large" style="width:100%; justify-content:center; margin-top:8px;" onclick="confirmarReservaTurno()">
               ✅ Confirmar Turno en la Agenda
             </button>
 
@@ -1110,7 +1182,7 @@
             <label>Contraseña</label>
             <input type="password" id="loginPass" placeholder="••••••••" />
           </div>
-          <button class="btn btn-gold" style="width:100%; justify-content:center;" onclick="iniciarSesionUsuario()">
+          <button type="button" class="btn btn-gold" style="width:100%; justify-content:center;" onclick="iniciarSesionUsuario()">
             Ingresar a mi Cuenta
           </button>
         </div>
@@ -1146,7 +1218,7 @@
             <label>Elegí tu Contraseña</label>
             <input type="password" id="regPass" placeholder="Mínimo 4 caracteres" />
           </div>
-          <button class="btn btn-gold" style="width:100%; justify-content:center;" onclick="registrarNuevoUsuario()">
+          <button type="button" class="btn btn-gold" style="width:100%; justify-content:center;" onclick="registrarNuevoUsuario()">
             🚀 Crear Usuario
           </button>
         </div>
@@ -1178,7 +1250,7 @@
           </div>
           <div style="display:flex; gap:8px; align-items:center;">
             <input type="date" id="filtroFechaAdmin" onchange="renderAdminAgenda()" style="width:auto;" />
-            <button class="btn" onclick="renderAdminAgenda(true)">Ver Todos</button>
+            <button type="button" class="btn" onclick="renderAdminAgenda(true)">Ver Todos</button>
           </div>
         </div>
         <div id="listaAgendaAdmin"></div>
@@ -1209,8 +1281,8 @@
           <input type="text" id="cajaConcepto" placeholder="Concepto (Ej: Corte Degradado, Insumos, Navajas...)" />
           <input type="number" id="cajaMonto" placeholder="Monto $" />
           <div style="display:flex; gap:8px;">
-            <button class="btn btn-success" style="flex:1; justify-content:center;" onclick="registrarMovimientoFinanciero('ingreso')">➕ Ingreso</button>
-            <button class="btn btn-danger" style="flex:1; justify-content:center;" onclick="registrarMovimientoFinanciero('egreso')">➖ Egreso</button>
+            <button type="button" class="btn btn-success" style="flex:1; justify-content:center;" onclick="registrarMovimientoFinanciero('ingreso')">➕ Ingreso</button>
+            <button type="button" class="btn btn-danger" style="flex:1; justify-content:center;" onclick="registrarMovimientoFinanciero('egreso')">➖ Egreso</button>
           </div>
         </div>
 
@@ -1228,7 +1300,7 @@
             <input type="number" id="prodPrecio" placeholder="Precio $" />
             <input type="number" id="prodStock" placeholder="Stock inicial" />
           </div>
-          <button class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarProductoAdmin()">➕ Agregar Producto</button>
+          <button type="button" class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarProductoAdmin()">➕ Agregar Producto</button>
           <div id="listaProductosAdmin"></div>
         </div>
 
@@ -1241,7 +1313,7 @@
             <input type="text" id="deudorDetalle" placeholder="Motivo (Ej: Resto cuota / Corte)" />
             <input type="number" id="deudorMonto" placeholder="Monto $" />
           </div>
-          <button class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarDeudorAdmin()">➕ Anotar Deudor</button>
+          <button type="button" class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarDeudorAdmin()">➕ Anotar Deudor</button>
           <div id="listaDeudoresAdmin"></div>
         </div>
       </div>
@@ -1264,9 +1336,9 @@
             <div class="form-group">
               <label>Plantillas Rápidas</label>
               <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button class="btn" onclick="cargarPlantillaMail('sorteo')">🎁 Nuevo Sorteo</button>
-                <button class="btn" onclick="cargarPlantillaMail('turnos')">📅 Agenda Abierta</button>
-                <button class="btn" onclick="cargarPlantillaMail('academia')">🎓 Aviso Curso</button>
+                <button type="button" class="btn" onclick="cargarPlantillaMail('sorteo')">🎁 Nuevo Sorteo</button>
+                <button type="button" class="btn" onclick="cargarPlantillaMail('turnos')">📅 Agenda Abierta</button>
+                <button type="button" class="btn" onclick="cargarPlantillaMail('academia')">🎓 Aviso Curso</button>
               </div>
             </div>
             <div class="form-group">
@@ -1284,8 +1356,8 @@
               <textarea id="mailCuerpo" rows="4" placeholder="Escribí el mensaje..."></textarea>
             </div>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <button class="btn btn-gold" onclick="dispararGmailWeb()">✉️ Enviar desde Gmail</button>
-              <button class="btn" onclick="dispararMailtoApp()">📱 App de Correo</button>
+              <button type="button" class="btn btn-gold" onclick="dispararGmailWeb()">✉️ Enviar desde Gmail</button>
+              <button type="button" class="btn" onclick="dispararMailtoApp()">📱 App de Correo</button>
             </div>
           </div>
         </div>
@@ -1303,7 +1375,7 @@
             <input type="text" id="nuevoServDesc" placeholder="Descripción" />
             <input type="text" id="nuevoServImg" placeholder="Archivo o URL (Ej: corte1.jpeg)" />
           </div>
-          <button class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarServicioAdmin()">➕ Sumar Corte</button>
+          <button type="button" class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarServicioAdmin()">➕ Sumar Corte</button>
           <div id="listaServiciosAdmin"></div>
         </div>
 
@@ -1317,7 +1389,7 @@
             <input type="text" id="nuevaFotoUrl" placeholder="Nombre de archivo (ej: corte1.jpeg) o link" />
             <input type="file" accept="image/*" style="margin-top:6px;" onchange="subirFotoGaleriaArchivo(event)" />
           </div>
-          <button class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarFotoGaleriaPorUrl()">➕ Agregar a Galería</button>
+          <button type="button" class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarFotoGaleriaPorUrl()">➕ Agregar a Galería</button>
           <div id="listaAdminGaleria" style="max-height:180px; overflow-y:auto;"></div>
         </div>
       </div>
@@ -1341,9 +1413,9 @@
             <input type="text" id="adminSorteoFecha" />
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button class="btn btn-gold" onclick="guardarConfigSorteo()">💾 Guardar</button>
-            <button class="btn btn-success" onclick="sortearGanadorAzar()">🎲 Sortear Ganador (<span id="cantParticipantesSorteo">0</span>)</button>
-            <button class="btn btn-danger" onclick="vaciarParticipantesSorteo()">🔄 Reiniciar</button>
+            <button type="button" class="btn btn-gold" onclick="guardarConfigSorteo()">💾 Guardar</button>
+            <button type="button" class="btn btn-success" onclick="sortearGanadorAzar()">🎲 Sortear Ganador (<span id="cantParticipantesSorteo">0</span>)</button>
+            <button type="button" class="btn btn-danger" onclick="vaciarParticipantesSorteo()">🔄 Reiniciar</button>
           </div>
           <div id="resultadoGanadorAdmin"></div>
         </div>
@@ -1361,7 +1433,7 @@
               <option value="alumno">🎓 Alumno ($75.000/mes)</option>
               <option value="cliente">💈 Cliente</option>
             </select>
-            <button class="btn btn-gold" onclick="crearUsuarioManualAdmin()">➕ Dar de Alta</button>
+            <button type="button" class="btn btn-gold" onclick="crearUsuarioManualAdmin()">➕ Dar de Alta</button>
           </div>
           <div id="listaTodosUsuariosAdmin" style="max-height:220px; overflow-y:auto;"></div>
         </div>
@@ -1379,7 +1451,7 @@
     <span>•</span>
     <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank">Mapa</a>
     <span>•</span>
-    <button onclick="accesoPersonalLogin()">Acceso Personal</button>
+    <button type="button" onclick="accesoPersonalLogin()">Acceso Personal</button>
   </footer>
 
   <script>
@@ -1472,4 +1544,851 @@
     window.addEventListener("DOMContentLoaded", async () => {
       cargarDatosLocales();
       const hoy = new Date().toISOString().split("T")[0];
-      document.getElementById("turnoFecha").value = hoy
+      const inTurnoFecha = document.getElementById("turnoFecha");
+      const inFiltroFecha = document.getElementById("filtroFechaAdmin");
+      if (inTurnoFecha) inTurnoFecha.value = hoy;
+      if (inFiltroFecha) inFiltroFecha.value = hoy;
+
+      if (cloudDbUrl) {
+        await descargarDesdeNube();
+        setInterval(descargarDesdeNube, 12000);
+      }
+
+      renderTodo();
+    });
+
+    function toqueSecretoLogo() {
+      contadorToquesLogo++;
+      clearTimeout(timerToquesLogo);
+      if (contadorToquesLogo >= 3) {
+        contadorToquesLogo = 0;
+        accesoPersonalLogin();
+      } else {
+        timerToquesLogo = setTimeout(() => {
+          if (contadorToquesLogo === 1) cambiarSeccion("inicio");
+          contadorToquesLogo = 0;
+        }, 450);
+      }
+    }
+
+    /* PERSISTENCIA Y SINCRONIZACIÓN */
+    function cargarDatosLocales() {
+      const guardado = localStorage.getItem("fenix_studio_real_v5");
+      if (guardado) {
+        try {
+          const parsed = JSON.parse(guardado);
+          estado = { ...estado, ...parsed };
+        } catch (e) {}
+      }
+      const sesionGuardada = localStorage.getItem("fenix_usuario_sesion");
+      if (sesionGuardada) {
+        try { usuarioActual = JSON.parse(sesionGuardada); } catch (e) {}
+      }
+    }
+
+    async function guardarDatos() {
+      localStorage.setItem("fenix_studio_real_v5", JSON.stringify(estado));
+      renderTodo();
+
+      if (cloudDbUrl) {
+        try {
+          await fetch(cloudDbUrl.replace(/\/$/, "") + "/fenix_db.json", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(estado)
+          });
+          document.getElementById("textoNube").innerText = "● Nube Sincronizada";
+        } catch (err) {
+          document.getElementById("textoNube").innerText = "● Guardado Local";
+        }
+      }
+    }
+
+    async function descargarDesdeNube() {
+      if (!cloudDbUrl) return;
+      try {
+        const res = await fetch(cloudDbUrl.replace(/\/$/, "") + "/fenix_db.json");
+        if (res.ok) {
+          const dataRemota = await res.json();
+          if (dataRemota) {
+            estado = { ...estado, ...dataRemota };
+            localStorage.setItem("fenix_studio_real_v5", JSON.stringify(estado));
+            renderTodo();
+          }
+        }
+      } catch (e) {}
+    }
+
+    function conectarNubeGitHubOFirebase() {
+      const valor = prompt(
+        "☁️ CONECTAR BASE EN LA NUBE:\n\n" +
+        "Pegá la URL de tu base en la nube (Firebase) o Token de sincronización:",
+        cloudDbUrl || ""
+      );
+      if (valor !== null) {
+        cloudDbUrl = valor.trim();
+        localStorage.setItem("fenix_cloud_url", cloudDbUrl);
+        if (cloudDbUrl.startsWith("http")) guardarDatos();
+        alert("✅ Configuración guardada.");
+      }
+    }
+
+    /* BURBUJAS ROJAS DE NOTIFICACIÓN */
+    function actualizarBurbujasNotificacion() {
+      const usuariosPendientes = (estado.usuarios || []).filter(u => u.estado === "pendiente").length;
+      const turnosEnEspera = (estado.turnos || []).filter(t => t.estado === "espera").length;
+      const total = usuariosPendientes + turnosEnEspera;
+
+      const setBadge = (id, cant) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (cant > 0) {
+          el.innerText = cant;
+          el.classList.remove("hidden");
+        } else {
+          el.classList.add("hidden");
+        }
+      };
+
+      setBadge("badgeMenuHamburguesa", total);
+      setBadge("badgeMenuCurso", usuariosPendientes);
+      setBadge("badgeSubtlePersonal", total);
+      setBadge("badgeDrawerPersonal", total);
+      setBadge("badgeBannerPersonal", total);
+      setBadge("badgeSolicitudesAdmin", usuariosPendientes);
+      setBadge("badgeTurnosAdmin", turnosEnEspera);
+    }
+
+    /* RENDERIZADO GENERAL */
+    function renderTodo() {
+      try {
+        actualizarBurbujasNotificacion();
+        renderCortesYServicios();
+        renderProductos();
+        renderGaleriaFenix();
+        renderHorariosDisponibles();
+        renderVistaPublicaTurnosDia();
+        renderSorteo();
+        renderAulaVirtual();
+        renderSesionUsuario();
+        if (esPersonal) {
+          renderAdminSolicitudes();
+          renderAdminAgenda();
+          renderAdminFinanzas();
+          renderAdminDeudores();
+          renderAdminUsuarios();
+          actualizarDestinatariosMail();
+        }
+      } catch (err) {
+        console.error("Error en renderTodo:", err);
+      }
+    }
+
+    /* TIPOS DE CORTES Y PRECIOS ($15.000 a $20.000) */
+    function renderCortesYServicios() {
+      const gInicio = document.getElementById("grillaCortesInicio");
+      const gSeccion = document.getElementById("grillaCortesSeccion");
+      const selTurno = document.getElementById("turnoServicio");
+      const contAdmin = document.getElementById("listaServiciosAdmin");
+
+      const htmlCards = (estado.servicios || []).map(s => `
+        <div class="cut-card">
+          <img src="${s.img}" onerror="this.onerror=null; this.src='${s.fallbackImg || 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80'}';" alt="${s.nombre}" />
+          <div class="cut-card-body">
+            <div>
+              <strong style="font-size:1.04rem; display:block; margin-bottom:6px; color:var(--gold);">${s.nombre}</strong>
+              <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">${s.desc || ''}</p>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:10px;">
+              <span class="cut-price">$${Number(s.precio).toLocaleString("es-AR")}</span>
+              <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(${s.id})">Reservar</button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+      if (gInicio) gInicio.innerHTML = htmlCards;
+      if (gSeccion) gSeccion.innerHTML = htmlCards;
+
+      if (selTurno) {
+        selTurno.innerHTML = (estado.servicios || []).map(s =>
+          `<option value="${s.id}">${s.nombre} — $${Number(s.precio).toLocaleString("es-AR")}</option>`
+        ).join("");
+      }
+
+      if (contAdmin) {
+        contAdmin.innerHTML = (estado.servicios || []).map(s => `
+          <div class="item-row">
+            <div>
+              <strong>${s.nombre}</strong> — <span style="color:var(--gold);">$${Number(s.precio).toLocaleString("es-AR")}</span>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button type="button" class="btn" onclick="cambiarPrecioCortePrompt(${s.id})">✏️ Precio</button>
+              <button type="button" class="btn btn-danger" onclick="eliminarServicioAdmin(${s.id})">🗑️</button>
+            </div>
+          </div>
+        `).join("");
+      }
+    }
+
+    function elegirCorteYReservar(idServicio) {
+      cambiarSeccion("turnos");
+      const sel = document.getElementById("turnoServicio");
+      if (sel) sel.value = idServicio;
+    }
+
+    function cambiarPrecioCortePrompt(id) {
+      const s = estado.servicios.find(x => x.id === id);
+      if (!s) return;
+      const nuevo = prompt(`Nuevo precio para "${s.nombre}":`, s.precio);
+      if (nuevo !== null && !isNaN(Number(nuevo))) {
+        s.precio = Number(nuevo);
+        guardarDatos();
+      }
+    }
+
+    function agregarServicioAdmin() {
+      const nombre = document.getElementById("nuevoServNombre").value.trim();
+      const precio = Number(document.getElementById("nuevoServPrecio").value);
+      const desc = document.getElementById("nuevoServDesc").value.trim();
+      const img = document.getElementById("nuevoServImg").value.trim() || "corte1.jpeg";
+      if (!nombre || !precio) return alert("Completá nombre y precio.");
+
+      estado.servicios.push({
+        id: Date.now(),
+        nombre,
+        precio,
+        desc: desc || "Servicio profesional Fenix Studio.",
+        img,
+        fallbackImg: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80"
+      });
+
+      document.getElementById("nuevoServNombre").value = "";
+      document.getElementById("nuevoServPrecio").value = "";
+      document.getElementById("nuevoServDesc").value = "";
+      document.getElementById("nuevoServImg").value = "";
+      guardarDatos();
+    }
+
+    function eliminarServicioAdmin(id) {
+      estado.servicios = estado.servicios.filter(s => s.id !== id);
+      guardarDatos();
+    }
+
+    /* PRODUCTOS Y CONTROL DE STOCK (Cera $15.000, Polvo $7.500, Aceite $5.500) */
+    function renderProductos() {
+      const resIni = document.getElementById("resumenProductosInicio");
+      const pubGrid = document.getElementById("grillaProductosPublica");
+      const admList = document.getElementById("listaProductosAdmin");
+
+      if (resIni) {
+        resIni.innerHTML = (estado.productos || []).map(p => `
+          <div class="item-row">
+            <div>
+              <strong>${p.nombre}</strong>
+              <span style="font-size:0.8rem; color:var(--text-muted); display:block;">Stock disponible: ${p.stock} u.</span>
+            </div>
+            <strong style="color:var(--gold);">$${Number(p.precio).toLocaleString("es-AR")}</strong>
+          </div>
+        `).join("");
+      }
+
+      if (pubGrid) {
+        pubGrid.innerHTML = (estado.productos || []).map(p => `
+          <div class="card" style="margin-bottom:0;">
+            <strong style="font-size:1.08rem; color:var(--gold); display:block; margin-bottom:6px;">${p.nombre}</strong>
+            <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">Disponibles en local: <strong>${p.stock} unidades</strong></p>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="cut-price">$${Number(p.precio).toLocaleString("es-AR")}</span>
+              <span class="status-pill ${p.stock > 0 ? 'status-listo' : 'status-pendiente'}">${p.stock > 0 ? 'En Stock' : 'Sin Stock'}</span>
+            </div>
+          </div>
+        `).join("");
+      }
+
+      if (admList) {
+        admList.innerHTML = (estado.productos || []).map(p => `
+          <div class="item-row">
+            <div>
+              <strong>${p.nombre}</strong> ($${Number(p.precio).toLocaleString("es-AR")})
+              <div style="font-size:0.8rem; color:var(--text-muted);">Stock actual: <strong>${p.stock}</strong></div>
+            </div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-success" onclick="venderProductoStock(${p.id})">💰 Vender 1 (+Caja)</button>
+              <button type="button" class="btn" onclick="sumarStockProducto(${p.id})">+1 Stock</button>
+              <button type="button" class="btn btn-danger" onclick="eliminarProductoAdmin(${p.id})">🗑️</button>
+            </div>
+          </div>
+        `).join("");
+      }
+    }
+
+    function venderProductoStock(id) {
+      const p = estado.productos.find(x => x.id === id);
+      if (!p) return;
+      if (p.stock <= 0) return alert("No queda stock de este producto.");
+      p.stock -= 1;
+      estado.finanzas.push({
+        id: Date.now(),
+        tipo: "ingreso",
+        concepto: `Venta Producto: ${p.nombre}`,
+        monto: Number(p.precio),
+        fecha: new Date().toLocaleDateString("es-AR") + " " + new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" })
+      });
+      guardarDatos();
+    }
+
+    function sumarStockProducto(id) {
+      const p = estado.productos.find(x => x.id === id);
+      if (p) { p.stock += 1; guardarDatos(); }
+    }
+
+    function agregarProductoAdmin() {
+      const nombre = document.getElementById("prodNombre").value.trim();
+      const precio = Number(document.getElementById("prodPrecio").value);
+      const stock = Number(document.getElementById("prodStock").value) || 1;
+      if (!nombre || !precio) return alert("Completá nombre y precio del producto.");
+      estado.productos.push({ id: Date.now(), nombre, precio, stock });
+      document.getElementById("prodNombre").value = "";
+      document.getElementById("prodPrecio").value = "";
+      document.getElementById("prodStock").value = "";
+      guardarDatos();
+    }
+
+    function eliminarProductoAdmin(id) {
+      estado.productos = estado.productos.filter(p => p.id !== id);
+      guardarDatos();
+    }
+
+    /* GALERÍA FENIX */
+    function renderGaleriaFenix() {
+      const prev = document.getElementById("galeriaPreviewInicio");
+      const full = document.getElementById("galeriaCompletaGrid");
+      const adm = document.getElementById("listaAdminGaleria");
+
+      const htmlGal = (estado.galeria || []).map(f => `
+        <div class="gallery-item">
+          <img src="${f.url}" onerror="this.onerror=null; this.src='${f.fallback || 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80'}';" alt="${f.titulo}" />
+          <div class="gallery-caption">${f.titulo}</div>
+        </div>
+      `).join("");
+
+      if (prev) prev.innerHTML = htmlGal;
+      if (full) full.innerHTML = htmlGal;
+
+      if (adm) {
+        adm.innerHTML = (estado.galeria || []).map(f => `
+          <div class="item-row">
+            <span>📸 ${f.titulo} (<small>${f.url.slice(0, 22)}</small>)</span>
+            <button type="button" class="btn btn-danger" onclick="eliminarFotoGaleria(${f.id})">🗑️</button>
+          </div>
+        `).join("");
+      }
+    }
+
+    function agregarFotoGaleriaPorUrl() {
+      const titulo = document.getElementById("nuevaFotoTitulo").value.trim() || "Trabajo Fenix Studio";
+      const url = document.getElementById("nuevaFotoUrl").value.trim();
+      if (!url) return alert("Escribí el nombre del archivo (ej: corte1.jpeg) o seleccioná una foto.");
+      estado.galeria.unshift({ id: Date.now(), titulo, url });
+      document.getElementById("nuevaFotoTitulo").value = "";
+      document.getElementById("nuevaFotoUrl").value = "";
+      guardarDatos();
+    }
+
+    function subirFotoGaleriaArchivo(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const titulo = document.getElementById("nuevaFotoTitulo").value.trim() || "Trabajo Fenix Studio";
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        estado.galeria.unshift({ id: Date.now(), titulo, url: evt.target.result });
+        document.getElementById("nuevaFotoTitulo").value = "";
+        guardarDatos();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function eliminarFotoGaleria(id) {
+      estado.galeria = estado.galeria.filter(f => f.id !== id);
+      guardarDatos();
+    }
+
+    /* TURNERO WEB SIN WHATSAPP */
+    function renderHorariosDisponibles() {
+      const inFecha = document.getElementById("turnoFecha");
+      const fecha = inFecha ? inFecha.value : "";
+      const grilla = document.getElementById("grillaHorarios");
+      if (!grilla) return;
+      grilla.innerHTML = "";
+
+      const turnosDeEseDia = (estado.turnos || []).filter(t => t.fecha === fecha && t.estado !== "finalizado");
+
+      HORARIOS_BASE.forEach(hora => {
+        const cantEnHora = turnosDeEseDia.filter(t => t.hora === hora).length;
+        const estaSeleccionado = horarioSeleccionado === hora;
+        grilla.innerHTML += `
+          <div class="slot-item ${cantEnHora > 0 ? 'occupied' : ''} ${estaSeleccionado ? 'selected' : ''}" onclick="seleccionarHorario('${hora}')">
+            <div>${hora} hs</div>
+            <small style="font-size:0.7rem; display:block;">
+              ${cantEnHora === 0 ? "Disponible" : cantEnHora + " anotado(s)"}
+            </small>
+          </div>
+        `;
+      });
+
+      renderVistaPublicaTurnosDia();
+    }
+
+    function seleccionarHorario(hora) {
+      horarioSeleccionado = hora;
+      renderHorariosDisponibles();
+    }
+
+    function confirmarReservaTurno() {
+      const idServ = Number(document.getElementById("turnoServicio").value);
+      const servObj = estado.servicios.find(s => s.id === idServ) || estado.servicios[0];
+      const fecha = document.getElementById("turnoFecha").value;
+      const nombre = document.getElementById("turnoNombre").value.trim();
+      const email = document.getElementById("turnoEmail").value.trim();
+      const telefono = document.getElementById("turnoTelefono").value.trim();
+      const nota = document.getElementById("turnoNota").value.trim();
+
+      if (!fecha || !horarioSeleccionado || !nombre || !telefono) {
+        alert("Por favor completá tu Nombre, Teléfono, Fecha y Horario.");
+        return;
+      }
+
+      const choques = (estado.turnos || []).filter(t => t.fecha === fecha && t.hora === horarioSeleccionado && t.estado !== "finalizado").length;
+
+      const nuevoTurno = {
+        id: Date.now(),
+        fecha,
+        hora: horarioSeleccionado,
+        servicio: servObj.nombre,
+        precio: servObj.precio,
+        cliente: nombre,
+        email,
+        telefono,
+        nota,
+        estado: "espera"
+      };
+
+      estado.turnos.push(nuevoTurno);
+      guardarDatos();
+
+      const comp = document.getElementById("comprobanteTurno");
+      comp.style.display = "block";
+      comp.innerHTML = `
+        <h4 style="color:var(--success); margin-bottom:6px;">✅ ¡Turno Registrado en la Agenda!</h4>
+        <p style="font-size:0.9rem; line-height:1.45;">
+          <strong>Cliente:</strong> ${nuevoTurno.cliente}<br>
+          <strong>Corte:</strong> ${nuevoTurno.servicio} ($${Number(nuevoTurno.precio).toLocaleString("es-AR")})<br>
+          <strong>Fecha y Hora:</strong> ${nuevoTurno.fecha} a las ${nuevoTurno.hora} hs<br>
+          <strong>Lugar:</strong> C. Ushuaia y Pasaje Mansilla, Resistencia<br>
+          ${choques > 0 ? `<span style="color:#fbbf24;">⚠️ Hay ${choques} turno(s) previo(s) en ese horario. Recordá que como el barbero no corta contra reloj, aguardarás a que termine el corte anterior.</span>` : `<span>✨ Primer lugar reservado en ese horario.</span>`}
+        </p>
+      `;
+      document.getElementById("turnoNota").value = "";
+    }
+
+    function renderVistaPublicaTurnosDia() {
+      const inFecha = document.getElementById("turnoFecha");
+      const fecha = inFecha ? inFecha.value : "";
+      const cont = document.getElementById("vistaPublicaTurnosDia");
+      if (!cont) return;
+
+      const lista = (estado.turnos || [])
+        .filter(t => t.fecha === fecha)
+        .sort((a, b) => a.hora.localeCompare(b.hora));
+
+      if (lista.length === 0) {
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">No hay turnos anotados para esta fecha todavía. ¡Todos los horarios disponibles!</p>`;
+        return;
+      }
+
+      cont.innerHTML = lista.map((t, idx) => `
+        <div class="item-row">
+          <div>
+            <strong>#${idx + 1} — ${t.hora} hs</strong> | ${t.cliente.split(" ")[0]}
+            <span style="color:var(--text-muted); font-size:0.85rem;">(${t.servicio})</span>
+          </div>
+          <span class="status-pill ${t.estado === 'atendiendo' ? 'status-atendiendo' : t.estado === 'finalizado' ? 'status-listo' : 'status-espera'}">
+            ${t.estado === 'atendiendo' ? '✂️ Cortando Ahora' : t.estado === 'finalizado' ? '✅ Terminado' : '⏳ En Espera'}
+          </span>
+        </div>
+      `).join("");
+    }
+
+    /* USUARIOS Y ALUMNOS */
+    function registrarNuevoUsuario() {
+      const nombre = document.getElementById("regNombre").value.trim();
+      const email = document.getElementById("regEmail").value.trim();
+      const telefono = document.getElementById("regTelefono").value.trim();
+      const rol = document.getElementById("regRol").value;
+      const user = document.getElementById("regUser").value.trim().toLowerCase();
+      const pass = document.getElementById("regPass").value.trim();
+
+      if (!nombre || !email || !user || !pass) {
+        alert("Completá Nombre, Correo Gmail, Usuario y Contraseña.");
+        return;
+      }
+
+      if ((estado.usuarios || []).some(u => u.user.toLowerCase() === user || u.email.toLowerCase() === email.toLowerCase())) {
+        alert("Ese usuario o correo ya existe.");
+        return;
+      }
+
+      const nuevo = {
+        id: Date.now(),
+        nombre,
+        email,
+        telefono,
+        rol,
+        user,
+        pass,
+        estado: "pendiente",
+        fechaAlta: new Date().toLocaleDateString("es-AR")
+      };
+
+      estado.usuarios.push(nuevo);
+      usuarioActual = nuevo;
+      localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual));
+      guardarDatos();
+      alert("🎉 ¡Usuario creado! Ya se activó la burbuja de notificación para que el Personal apruebe tu cuenta.");
+    }
+
+    function iniciarSesionUsuario() {
+      const iden = document.getElementById("loginUser").value.trim().toLowerCase();
+      const pass = document.getElementById("loginPass").value.trim();
+      const encontrado = (estado.usuarios || []).find(
+        u => (u.user.toLowerCase() === iden || u.email.toLowerCase() === iden) && u.pass === pass
+      );
+      if (!encontrado) return alert("Usuario o contraseña incorrectos.");
+      usuarioActual = encontrado;
+      localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual));
+      renderTodo();
+    }
+
+    function cerrarSesionUsuario() {
+      usuarioActual = null;
+      localStorage.removeItem("fenix_usuario_sesion");
+      renderTodo();
+    }
+
+    function renderSesionUsuario() {
+      const lbl = document.getElementById("lblMiCuenta");
+      const vistaLog = document.getElementById("vistaUsuarioLogueado");
+      const vistaAuth = document.getElementById("vistaFormulariosAuth");
+
+      if (usuarioActual && estado.usuarios) {
+        const act = estado.usuarios.find(u => u.id === usuarioActual.id);
+        if (act) {
+          usuarioActual = act;
+          localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual));
+        }
+      }
+
+      if (usuarioActual) {
+        lbl.innerText = usuarioActual.nombre.split(" ")[0];
+        if (!document.getElementById("turnoNombre").value) {
+          document.getElementById("turnoNombre").value = usuarioActual.nombre;
+          document.getElementById("turnoEmail").value = usuarioActual.email || "";
+          document.getElementById("turnoTelefono").value = usuarioActual.telefono || "";
+        }
+        vistaAuth.style.display = "none";
+        vistaLog.style.display = "block";
+        vistaLog.innerHTML = `
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">👤 Cuenta de ${usuarioActual.nombre}</div>
+              <span class="status-pill ${usuarioActual.estado === 'activo' ? 'status-listo' : 'status-espera'}">
+                ${usuarioActual.estado === 'activo' ? '✅ Habilitado' : '⏳ Pendiente de Aceptación'}
+              </span>
+            </div>
+            <p style="margin-bottom:8px;"><strong>Usuario:</strong> @${usuarioActual.user} | <strong>Categoría:</strong> ${usuarioActual.rol === 'alumno' ? '🎓 Alumno del Curso' : '💈 Cliente Barbería'}</p>
+            <p style="margin-bottom:16px; color:var(--text-muted);"><strong>Gmail:</strong> ${usuarioActual.email}</p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
+              <button type="button" class="btn" onclick="cambiarSeccion('sorteos')">🎁 Sorteos</button>
+              <button type="button" class="btn" onclick="cambiarSeccion('academia')">🎓 Aula Virtual</button>
+              <button type="button" class="btn btn-danger" onclick="cerrarSesionUsuario()">Cerrar Sesión</button>
+            </div>
+          </div>
+        `;
+      } else {
+        lbl.innerText = "Mi Cuenta";
+        vistaAuth.style.display = "grid";
+        vistaLog.style.display = "none";
+      }
+    }
+
+    /* AULA VIRTUAL */
+    function renderAulaVirtual() {
+      const cont = document.getElementById("contenidoAulaVirtual");
+      if (!cont) return;
+
+      if (!usuarioActual) {
+        cont.innerHTML = `
+          <div class="notice-box">
+            🔒 <strong>Acceso al Campus Virtual:</strong> Iniciá sesión con tu usuario de alumno o creá tu cuenta seleccionando "Alumno del Curso" para desbloquear los videos, PDFs y guías.
+          </div>
+          <button type="button" class="btn btn-gold" onclick="cambiarSeccion('usuarios')">🔑 Iniciar Sesión / Crear Usuario de Alumno</button>
+        `;
+        return;
+      }
+
+      if (usuarioActual.estado !== "activo") {
+        cont.innerHTML = `
+          <div class="notice-box">
+            ⏳ <strong>Solicitud Pendiente:</strong> Hola <strong>${usuarioActual.nombre}</strong>, tu usuario <strong>@${usuarioActual.user}</strong> ya le figura al Personal con una notificación. Apenas acepten tu solicitud tendrás acceso completo a los módulos acá mismo.
+          </div>
+        `;
+        return;
+      }
+
+      cont.innerHTML = `
+        <div style="margin-bottom:14px; color:var(--success); font-weight:700;">
+          ✅ Aula Virtual Desbloqueada — Alumno: ${usuarioActual.nombre} (@${usuarioActual.user})
+        </div>
+        ${(estado.clasesAcademia || []).map((c, i) => `
+          <div class="item-row">
+            <div>
+              <strong style="color:var(--gold);">${c.titulo}</strong>
+              <p style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">${c.descripcion}</p>
+            </div>
+            <span class="status-pill status-listo">Módulo #${i + 1} Activo</span>
+          </div>
+        `).join("")}
+      `;
+    }
+
+    /* SORTEOS */
+    function renderSorteo() {
+      const cont = document.getElementById("contenedorSorteoPublico");
+      if (!cont) return;
+      const s = estado.sorteo;
+      const yaParticipa = usuarioActual && (s.participantes || []).some(p => p.id === usuarioActual.id);
+
+      cont.innerHTML = `
+        <div style="text-align:center; padding:20px;">
+          <span class="status-pill status-listo">SORTEO ACTIVO</span>
+          <h3 style="font-size:1.6rem; color:var(--gold); margin:12px 0;">${s.titulo}</h3>
+          <p style="font-size:1.05rem; margin-bottom:8px;">🏆 <strong>Premio:</strong> ${s.premio}</p>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px;">📅 Fecha: ${s.fecha} | Participantes: <strong>${(s.participantes || []).length}</strong></p>
+          ${!usuarioActual ? `
+            <button type="button" class="btn btn-gold btn-cta-large" onclick="cambiarSeccion('usuarios')">
+              🔑 Iniciá Sesión o Creá tu Usuario para Participar
+            </button>
+          ` : yaParticipa ? `
+            <div style="padding:12px 18px; background:rgba(16,185,129,0.2); border:1px solid var(--success); border-radius:10px; display:inline-block;">
+              ✅ <strong>¡Ya estás participando con @${usuarioActual.user}!</strong>
+            </div>
+          ` : `
+            <button type="button" class="btn btn-gold btn-cta-large" onclick="participarSorteo()">
+              🎟️ Participar del Sorteo con 1 Clic
+            </button>
+          `}
+        </div>
+        ${s.ultimoGanador ? `
+          <div class="notice-box">
+            🎉 <strong>Último Ganador:</strong> Felicitaciones a <strong>${s.ultimoGanador.nombre} (@${s.ultimoGanador.user})</strong>.
+          </div>
+        ` : ``}
+      `;
+
+      const inTit = document.getElementById("adminSorteoTitulo");
+      if (inTit && !inTit.value) {
+        inTit.value = s.titulo;
+        document.getElementById("adminSorteoPremio").value = s.premio;
+        document.getElementById("adminSorteoFecha").value = s.fecha;
+      }
+      const cantEl = document.getElementById("cantParticipantesSorteo");
+      if (cantEl) cantEl.innerText = (s.participantes || []).length;
+    }
+
+    function participarSorteo() {
+      if (!usuarioActual) return cambiarSeccion("usuarios");
+      if (!estado.sorteo.participantes) estado.sorteo.participantes = [];
+      if (!estado.sorteo.participantes.some(p => p.id === usuarioActual.id)) {
+        estado.sorteo.participantes.push({
+          id: usuarioActual.id,
+          nombre: usuarioActual.nombre,
+          user: usuarioActual.user,
+          email: usuarioActual.email
+        });
+        guardarDatos();
+      }
+    }
+
+    /* ACCESO PERSONAL (DISCRETO) */
+    function accesoPersonalLogin() {
+      if (esPersonal) {
+        cambiarSeccion("admin");
+        return;
+      }
+      const pin = prompt("💼 Acceso Personal — Ingresá tu clave:");
+      if (pin === CLAVE_PERSONAL) {
+        esPersonal = true;
+        document.getElementById("staffBanner").classList.add("active");
+        document.getElementById("drawerItemPersonal").classList.remove("hidden");
+        document.getElementById("lblAccesoPersonalDrawer").innerText = "Ir a Panel de Personal";
+        renderTodo();
+        cambiarSeccion("admin");
+      } else if (pin !== null) {
+        alert("Clave incorrecta.");
+      }
+    }
+
+    function cerrarSesionPersonal() {
+      esPersonal = false;
+      document.getElementById("staffBanner").classList.remove("active");
+      document.getElementById("drawerItemPersonal").classList.add("hidden");
+      document.getElementById("lblAccesoPersonalDrawer").innerText = "Acceso Personal";
+      renderTodo();
+      cambiarSeccion("inicio");
+    }
+
+    /* ACEPTAR / RECHAZAR SOLICITUDES */
+    function renderAdminSolicitudes() {
+      const cont = document.getElementById("listaPendientesAdmin");
+      if (!cont) return;
+      const pendientes = (estado.usuarios || []).filter(u => u.estado === "pendiente");
+      if (pendientes.length === 0) {
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">✅ No hay solicitudes pendientes en este momento.</p>`;
+        return;
+      }
+      cont.innerHTML = pendientes.map(u => `
+        <div class="item-row" style="border-color: var(--gold);">
+          <div>
+            <strong>${u.nombre}</strong> (@${u.user})
+            <span class="status-pill status-pendiente">${u.rol === 'alumno' ? '🎓 Solicitud Alumno' : '💈 Nuevo Cliente'}</span>
+            <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+              📧 ${u.email} | 📱 ${u.telefono || 'Sin tel'}
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button type="button" class="btn btn-success" onclick="aprobarUsuarioAdmin(${u.id})">✅ Aceptar Alumno/Usuario</button>
+            <button type="button" class="btn btn-info" onclick="enviarCorreoIndividual('${u.email}', 'Bienvenido a Fenix Studio', 'Hola ${u.nombre}, tu cuenta @${u.user} ya fue aceptada y habilitada.')">📧 Avisar por Gmail</button>
+            <button type="button" class="btn btn-danger" onclick="rechazarUsuarioAdmin(${u.id})">❌ Rechazar</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function aprobarUsuarioAdmin(id) {
+      const u = estado.usuarios.find(x => x.id === id);
+      if (u) { u.estado = "activo"; guardarDatos(); }
+    }
+
+    function rechazarUsuarioAdmin(id) {
+      if (!confirm("¿Rechazar y eliminar este usuario?")) return;
+      estado.usuarios = estado.usuarios.filter(x => x.id !== id);
+      guardarDatos();
+    }
+
+    /* FINANZAS: INGRESOS, EGRESOS Y BALANCE */
+    function registrarMovimientoFinanciero(tipo) {
+      const concepto = document.getElementById("cajaConcepto").value.trim();
+      const monto = Number(document.getElementById("cajaMonto").value);
+      if (!concepto || !monto || monto <= 0) return alert("Ingresá concepto y monto.");
+      if (!estado.finanzas) estado.finanzas = [];
+      estado.finanzas.push({
+        id: Date.now(),
+        tipo,
+        concepto,
+        monto,
+        fecha: new Date().toLocaleDateString("es-AR") + " " + new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" })
+      });
+      document.getElementById("cajaConcepto").value = "";
+      document.getElementById("cajaMonto").value = "";
+      guardarDatos();
+    }
+
+    function renderAdminFinanzas() {
+      const cont = document.getElementById("listaMovimientosFinanzas");
+      if (!cont) return;
+      const movs = estado.finanzas || [];
+      const ingresos = movs.filter(m => m.tipo === "ingreso").reduce((a, b) => a + Number(b.monto), 0);
+      const egresos = movs.filter(m => m.tipo === "egreso").reduce((a, b) => a + Number(b.monto), 0);
+      const neto = ingresos - egresos;
+
+      document.getElementById("finTotalIngresos").innerText = "+$" + ingresos.toLocaleString("es-AR");
+      document.getElementById("finTotalEgresos").innerText = "-$" + egresos.toLocaleString("es-AR");
+      document.getElementById("finBalanceNeto").innerText = "$" + neto.toLocaleString("es-AR");
+
+      if (movs.length === 0) {
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.88rem;">Sin movimientos cargados.</p>`;
+        return;
+      }
+
+      cont.innerHTML = movs.slice().reverse().map(m => `
+        <div class="item-row">
+          <div>
+            <strong>${m.concepto}</strong>
+            <span class="status-pill ${m.tipo === 'ingreso' ? 'status-listo' : 'status-pendiente'}">${m.tipo}</span>
+            <small style="color:var(--text-muted); display:block;">${m.fecha}</small>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <strong style="color:${m.tipo === 'ingreso' ? 'var(--success)' : 'var(--danger)'};">
+              ${m.tipo === 'ingreso' ? '+' : '-'}$${Number(m.monto).toLocaleString("es-AR")}
+            </strong>
+            <button type="button" class="btn btn-danger" onclick="eliminarMovimientoFinanza(${m.id})">🗑️</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function eliminarMovimientoFinanza(id) {
+      estado.finanzas = (estado.finanzas || []).filter(m => m.id !== id);
+      guardarDatos();
+    }
+
+    /* DEUDORES */
+    function agregarDeudorAdmin() {
+      const nombre = document.getElementById("deudorNombre").value.trim();
+      const detalle = document.getElementById("deudorDetalle").value.trim();
+      const monto = Number(document.getElementById("deudorMonto").value);
+      if (!nombre || !monto) return alert("Completá nombre y monto adeudado.");
+      if (!estado.deudores) estado.deudores = [];
+      estado.deudores.push({ id: Date.now(), nombre, detalle: detalle || "Pendiente", monto });
+      document.getElementById("deudorNombre").value = "";
+      document.getElementById("deudorDetalle").value = "";
+      document.getElementById("deudorMonto").value = "";
+      guardarDatos();
+    }
+
+    function renderAdminDeudores() {
+      const cont = document.getElementById("listaDeudoresAdmin");
+      if (!cont) return;
+      const lista = estado.deudores || [];
+      if (lista.length === 0) {
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.85rem;">No hay deudores registrados.</p>`;
+        return;
+      }
+      cont.innerHTML = lista.map(d => `
+        <div class="item-row">
+          <div>
+            <strong>${d.nombre}</strong> — <span style="color:var(--danger); font-weight:700;">$${Number(d.monto).toLocaleString("es-AR")}</span>
+            <div style="font-size:0.8rem; color:var(--text-muted);">${d.detalle}</div>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <button type="button" class="btn btn-success" onclick="saldarDeudor(${d.id})">✅ Cobrar (+Ingreso)</button>
+            <button type="button" class="btn btn-danger" onclick="eliminarDeudor(${d.id})">🗑️</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function saldarDeudor(id) {
+      const d = (estado.deudores || []).find(x => x.id === id);
+      if (!d) return;
+      estado.finanzas.push({
+        id: Date.now(),
+        tipo: "ingreso",
+        concepto: `Deuda saldada: ${d.nombre} (${d.detalle})`,
+        monto: Number(d.monto),
+        fecha: new Date().toLocaleDateString("es-AR")
+      });
+      estado.deudores = estado.deudores.filter(x => x.id !== id);
+      guardarDatos
