@@ -9,7 +9,7 @@
     <style>
         :root {
             --bg-dark: #0d0d0f;
-            --bg-card: rgba(22, 22, 26, 0.90);
+            --bg-card: rgba(22, 22, 26, 0.92);
             --bg-input: #202026;
             --accent-gold: #e5a93c;
             --accent-green: #25D366;
@@ -38,7 +38,7 @@
             line-height: 1.5;
         }
 
-        /* --- BARRA SUPERIOR Y MENÚ DE 3 BARRITAS --- */
+        /* --- BARRA SUPERIOR --- */
         .navbar {
             position: fixed;
             top: 0;
@@ -99,7 +99,7 @@
             background: rgba(229, 169, 60, 0.12);
         }
 
-        /* --- MENÚ LATERAL DESPLEGABLE --- */
+        /* --- MENÚ LATERAL --- */
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -124,15 +124,16 @@
             left: -290px;
             width: 280px;
             height: 100%;
-            background-color: #16161acc;
+            background-color: #16161aee;
             backdrop-filter: blur(12px);
             border-right: 1px solid var(--border-subtle);
             z-index: 1002;
             padding: 25px 18px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             transition: 0.3s ease;
+            overflow-y: auto;
         }
 
         .sidebar.open {
@@ -167,14 +168,14 @@
             border: 1px solid transparent;
             color: var(--text-main);
             text-align: left;
-            padding: 14px 16px;
+            padding: 13px 16px;
             border-radius: 12px;
             font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: space-between;
             transition: 0.2s;
         }
 
@@ -182,6 +183,15 @@
             background: rgba(229, 169, 60, 0.12);
             border-color: var(--border-subtle);
             color: var(--accent-gold);
+        }
+
+        .badge-count {
+            background: var(--accent-red);
+            color: #fff;
+            font-size: 0.72rem;
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-weight: 700;
         }
 
         /* --- CONTENEDOR PRINCIPAL --- */
@@ -206,6 +216,7 @@
             background: linear-gradient(135deg, var(--accent-gold), #8a5a10);
             box-shadow: 0 8px 25px rgba(229, 169, 60, 0.2);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .logo-wrapper:hover {
@@ -220,28 +231,54 @@
             background-color: var(--bg-dark);
         }
 
-        /* BARRA DE CAMBIO DE CLAVE CUANDO SOS ADMIN */
+        /* BARRA DE HERRAMIENTAS DE ADMIN Y SINCRONIZACIÓN */
         .admin-bar {
-            background: rgba(229, 169, 60, 0.15);
+            background: rgba(22, 22, 26, 0.95);
             border: 1px solid var(--accent-gold);
-            border-radius: 12px;
-            padding: 10px 14px;
-            margin-bottom: 20px;
-            justify-content: space-between;
-            align-items: center;
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 22px;
+            flex-direction: column;
+            gap: 10px;
             font-size: 0.85rem;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
         }
 
-        .btn-change-pin {
+        .admin-bar-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .admin-bar-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .btn-small-action {
+            background: var(--bg-input);
+            color: var(--text-main);
+            border: 1px solid rgba(255,255,255,0.18);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.76rem;
+            cursor: pointer;
+        }
+
+        .btn-small-action.gold {
             background: var(--accent-gold);
             color: #0d0d0f;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 8px;
+            border-color: var(--accent-gold);
             font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
+        }
+
+        .sync-status {
+            font-size: 0.75rem;
+            color: var(--text-muted);
         }
 
         .section-view {
@@ -268,7 +305,7 @@
             text-transform: uppercase;
         }
 
-        /* --- GALERÍA CON ANIMACIONES AL PASAR EL CURSOR --- */
+        /* --- GALERÍA --- */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
@@ -319,52 +356,49 @@
             padding: 3px 8px;
             border-radius: 5px;
             margin-bottom: 5px;
-            transform: translateY(6px);
-            opacity: 0.85;
-            transition: all 0.35s ease;
         }
 
         .gallery-title {
             font-size: 0.98rem;
             font-weight: 700;
             color: #ffffff;
-            transform: translateY(4px);
-            transition: all 0.35s ease;
         }
 
         .gallery-sub {
             font-size: 0.78rem;
             color: #d1d1d6;
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.35s ease;
+            margin-top: 3px;
         }
 
         .gallery-card:hover {
-            transform: translateY(-7px);
+            transform: translateY(-6px);
             border-color: var(--accent-gold);
             box-shadow: 0 14px 30px rgba(229, 169, 60, 0.28);
         }
 
         .gallery-card:hover img {
-            transform: scale(1.13) rotate(1deg);
-            filter: brightness(1.05);
+            transform: scale(1.1);
+            filter: brightness(1.03);
         }
 
-        .gallery-card:hover .gallery-tag,
-        .gallery-card:hover .gallery-title {
-            transform: translateY(0);
-            opacity: 1;
+        .btn-del-photo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(231, 76, 60, 0.9);
+            color: #fff;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 10;
+            align-items: center;
+            justify-content: center;
         }
 
-        .gallery-card:hover .gallery-sub {
-            opacity: 1;
-            max-height: 40px;
-            margin-top: 4px;
-        }
-
-        /* --- ACCESOS RÁPIDOS EN INICIO --- */
+        /* --- ACCESOS RÁPIDOS --- */
         .quick-nav {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -392,7 +426,7 @@
             transform: translateY(-3px);
         }
 
-        /* --- TARJETAS DE SERVICIOS Y PRODUCTOS --- */
+        /* --- TARJETAS --- */
         .card-list {
             display: flex;
             flex-direction: column;
@@ -410,12 +444,6 @@
             justify-content: space-between;
             align-items: center;
             gap: 12px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateX(4px);
-            border-color: var(--border-subtle);
         }
 
         .card-info {
@@ -424,8 +452,8 @@
         }
 
         .card-title {
-            font-size: 1.05rem;
-            font-weight: 600;
+            font-size: 1.02rem;
+            font-weight: 700;
             color: var(--text-main);
         }
 
@@ -468,7 +496,7 @@
             white-space: nowrap;
         }
 
-        /* --- OCULTAR TODO LO DE ADMIN A LOS CLIENTES --- */
+        /* --- OCULTAR LO DE ADMIN --- */
         .admin-only {
             display: none !important;
         }
@@ -514,7 +542,7 @@
             background: rgba(37, 211, 102, 0.2);
             border: 1px solid #25D366;
             color: #2ecc71;
-            padding: 4px 10px;
+            padding: 5px 10px;
             border-radius: 7px;
             font-size: 0.75rem;
             font-weight: 600;
@@ -522,7 +550,7 @@
         }
 
         .admin-box {
-            background: rgba(27, 27, 34, 0.92);
+            background: rgba(27, 27, 34, 0.94);
             backdrop-filter: blur(8px);
             border: 1px dashed var(--accent-gold);
             border-radius: 14px;
@@ -534,7 +562,7 @@
 
         .admin-box h4 {
             color: var(--accent-gold);
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             margin-bottom: 4px;
         }
 
@@ -580,7 +608,7 @@
         .course-banner h3 {
             font-family: 'Cinzel', serif;
             color: var(--accent-gold);
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             margin-bottom: 8px;
         }
 
@@ -594,12 +622,12 @@
             color: var(--text-main);
         }
 
-        /* --- SECCIÓN CAJA Y FINANZAS --- */
+        /* --- SECCIÓN CAJA Y PROMEDIOS MENSUALES --- */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
         }
 
         .stat-card {
@@ -612,13 +640,13 @@
         }
 
         .stat-label {
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
             text-transform: uppercase;
         }
 
         .stat-val {
-            font-size: 1.05rem;
+            font-size: 1.02rem;
             font-weight: 700;
             margin-top: 4px;
         }
@@ -626,6 +654,35 @@
         .val-in { color: #2ecc71; }
         .val-out { color: var(--accent-red); }
         .val-net { color: var(--accent-gold); }
+
+        .monthly-summary-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+        }
+
+        .monthly-summary-box h4 {
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            font-size: 0.92rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
 
         .tx-item {
             background: var(--bg-card);
@@ -689,7 +746,7 @@
 </head>
 <body>
 
-    <!-- BARRA SUPERIOR CON LAS 3 BARRITAS -->
+    <!-- BARRA SUPERIOR -->
     <nav class="navbar">
         <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">
             <span></span>
@@ -707,14 +764,20 @@
             <h3>MENÚ FÉNIX</h3>
             <button class="close-btn" onclick="toggleMenu()">×</button>
         </div>
-        <button class="nav-item active" id="nav-inicio" onclick="showSection('inicio', this)">Inicio</button>
-        <button class="nav-item" id="nav-book" onclick="showSection('book', this)">Galería Fénix</button>
-        <button class="nav-item" id="nav-cortes" onclick="showSection('cortes', this)">Precios de Cortes</button>
-        <button class="nav-item" id="nav-productos" onclick="showSection('productos', this)">Productos en Stock</button>
-        <button class="nav-item" id="nav-curso" onclick="showSection('curso', this)">Curso de Barbería</button>
+        <button class="nav-item active" id="nav-inicio" onclick="showSection('inicio', this)"><span>Inicio</span></button>
+        <button class="nav-item" id="nav-book" onclick="showSection('book', this)"><span>Galería Fénix</span></button>
+        <button class="nav-item" id="nav-cortes" onclick="showSection('cortes', this)"><span>Precios de Cortes</span></button>
+        <button class="nav-item" id="nav-productos" onclick="showSection('productos', this)"><span>Productos en Stock</span></button>
+        <button class="nav-item" id="nav-curso" onclick="showSection('curso', this)"><span>Curso de Barbería</span></button>
         
-        <!-- ESTA OPCIÓN DE CAJA SOLO APARECE SI PUSISTE LA CLAVE DE ADMIN -->
-        <button class="nav-item admin-only" id="nav-finanzas" onclick="showSection('finanzas', this)">Caja (Ingresos / Egresos)</button>
+        <!-- OPCIONES PRIVADAS DE ADMINISTRADOR -->
+        <button class="nav-item admin-only" id="nav-deudores" onclick="showSection('deudores', this)">
+            <span>📒 Deudores / Fiados</span>
+            <span class="badge-count" id="deudores-badge">0</span>
+        </button>
+        <button class="nav-item admin-only" id="nav-finanzas" onclick="showSection('finanzas', this)">
+            <span>💰 Caja y Promedios</span>
+        </button>
     </aside>
 
     <div class="container">
@@ -725,96 +788,52 @@
             </div>
         </div>
 
-        <!-- BARRA PARA CAMBIAR CLAVE (SOLO VISIBLE EN MODO ADMIN) -->
+        <!-- PANEL DE CONTROL Y SINCRONIZACIÓN ENTRE DISPOSITIVOS (SOLO ADMIN) -->
         <div class="admin-bar admin-only">
-            <span>🔓 Modo Admin Activo</span>
-            <button class="btn-change-pin" onclick="changeAdminPin()">🔑 Cambiar Clave</button>
+            <div class="admin-bar-top">
+                <strong>🔓 Panel de Control Admin</strong>
+                <span class="sync-status" id="sync-status">💾 Guardado en este dispositivo</span>
+            </div>
+            <div class="admin-bar-actions">
+                <button class="btn-small-action gold" onclick="changeAdminPin()">🔑 Cambiar Clave</button>
+                <button class="btn-small-action" onclick="configCloudSync()">☁️ Conectar Nube (GitHub)</button>
+                <button class="btn-small-action" onclick="exportBackup()">📤 Copiar Datos a otro Celu</button>
+                <button class="btn-small-action" onclick="importBackup()">📥 Pegar Datos</button>
+            </div>
         </div>
 
         <!-- SECCIÓN PRINCIPAL (INICIO) -->
         <section id="sec-inicio" class="section-view active">
-            
             <div class="quick-nav">
                 <div class="quick-card" onclick="showSection('book')">Ver Galería</div>
                 <div class="quick-card" onclick="showSection('cortes')">Precios y Turnos</div>
             </div>
 
             <h2 class="section-title">Destacados Fénix</h2>
-            <div class="gallery-grid">
-                <div class="gallery-card" onclick="showSection('book')">
-                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80" alt="Taper Fade">
-                    <div class="gallery-overlay">
-                        <span class="gallery-tag">Tendencia</span>
-                        <div class="gallery-title">Taper Fade & Textura</div>
-                        <div class="gallery-sub">Tocá para ver más en la galería</div>
-                    </div>
-                </div>
-
-                <div class="gallery-card" onclick="showSection('book')">
-                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=80" alt="Academia">
-                    <div class="gallery-overlay">
-                        <span class="gallery-tag">Academia Fénix</span>
-                        <div class="gallery-title">Egresados & Prácticas</div>
-                        <div class="gallery-sub">Conocé los trabajos de los alumnos</div>
-                    </div>
-                </div>
-            </div>
+            <div class="gallery-grid" id="destacados-grid"></div>
         </section>
 
-        <!-- SECCIÓN: GALERÍA FÉNIX -->
+        <!-- SECCIÓN: GALERÍA FÉNIX CON BOTÓN PARA SUBIR FOTOS -->
         <section id="sec-book" class="section-view">
             <h2 class="section-title">Galería Fénix</h2>
             <p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Explorá nuestros mejores cortes, estilos y momentos de la academia.</p>
             
-            <div class="gallery-grid">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80" alt="Corte 1">
-                    <div class="gallery-overlay">
-                        <span class="gallery-tag">Estilo</span>
-                        <div class="gallery-title">Taper Fade</div>
-                        <div class="gallery-sub">Terminación impecable a navaja</div>
-                    </div>
+            <!-- CAJA PARA SUBIR FOTOS FÁCILMENTE DESDE EL CELULAR (SOLO ADMIN) -->
+            <div class="admin-box admin-only">
+                <h4>📸 Subir Nueva Foto a Galería Fénix</h4>
+                <input type="file" id="photo-file" accept="image/*">
+                <div class="input-group">
+                    <input type="text" id="photo-tag" placeholder="Etiqueta (ej: Tendencia, Fade, Academia)">
+                    <input type="text" id="photo-title" placeholder="Título (ej: Mid Fade)">
                 </div>
-
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80" alt="Corte 2">
-                    <div class="gallery-overlay">
-                        <span class="gallery-tag">Barba</span>
-                        <div class="gallery-title">Ritual de Barba</div>
-                        <div class="gallery-sub">Perfilado y simetría profesional</div>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=600&q=80" alt="Corte 3">
-                    <div class="gallery-overlay">
-                        <span class="gallery-tag">Fade</span>
-                        <div class="gallery-title">High Fade</div>
-                        <div class="gallery-sub">Degradado alto de precisión</div>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=80" alt="Egresados 1">
-                    <div class="gallery-overlay">
-                        <span class="gallery-tag">Academia</span>
-                        <div class="gallery-title">Entrega de Diplomas</div>
-                        <div class="gallery-sub">Nuevos profesionales recibidos</div>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80" alt="Práctica">
-                    <div class="gallery-overlay">
-                        <span class="gallery-tag">Clases</span>
-                        <div class="gallery-title">Práctica en Vivo</div>
-                        <div class="gallery-sub">Aprendizaje real en el salón</div>
-                    </div>
-                </div>
+                <input type="text" id="photo-sub" placeholder="Descripción corta (ej: Degradado limpio a navaja)">
+                <button class="btn-gold" onclick="addPhotoFromDevice()">➕ Subir Foto al Instante</button>
             </div>
+
+            <div class="gallery-grid" id="book-grid"></div>
         </section>
 
-        <!-- SECCIÓN 1: CORTES DE PELO -->
+        <!-- SECCIÓN 1: CORTES DE PELO (ORDENADOS DE MENOR A MAYOR) -->
         <section id="sec-cortes" class="section-view">
             <h2 class="section-title">Precios de Cortes</h2>
             <div class="card-list" id="cortes-list"></div>
@@ -844,6 +863,7 @@
                 <h3>Formación Profesional (Duración: 3 Meses)</h3>
                 <p style="color: var(--text-muted); font-size: 0.9rem;">Aprendé desde cero las técnicas más pedidas hoy en día con práctica real y salida laboral inmediata.</p>
                 <ul class="course-list">
+                    <li>✅ Duración total del curso: 3 meses intensivos</li>
                     <li>✅ Uso correcto de máquinas, tijeras y navaja</li>
                     <li>✅ Técnicas limpias de Degradados y Freestyle</li>
                     <li>✅ Perfilado, visagismo y ritual de barba</li>
@@ -851,12 +871,12 @@
                 </ul>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); flex-wrap:wrap; gap:10px;">
                     <div>
-                        <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Valor por mes</span>
-                        <strong style="font-size:1.3rem; color:var(--accent-gold);" id="curso-price-display">$75.000</strong>
+                        <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Valor mensual (3 meses)</span>
+                        <strong style="font-size:1.3rem; color:var(--accent-gold);" id="curso-price-display">$75.000 / mes</strong>
                     </div>
                     <div class="stock-controls admin-only">
                         <button class="btn-edit-price" onclick="editCursoPrice()">✏️ Precio</button>
-                        <button class="btn-sell" onclick="cobrarCurso()">+ Cobrar Cuota</button>
+                        <button class="btn-sell" onclick="cobrarCurso()">+ Cobrar Mes</button>
                     </div>
                 </div>
             </div>
@@ -865,10 +885,44 @@
             </a>
         </section>
 
-        <!-- SECCIÓN 4: CONTROL DE CAJA (SOLO ACCESIBLE EN MODO ADMIN) -->
-        <section id="sec-finanzas" class="section-view">
-            <h2 class="section-title">Control Privado de Caja</h2>
+        <!-- SECCIÓN 4 (NUEVA): AGENDA DE DEUDORES / PENDIENTES DE PAGO (SOLO ADMIN) -->
+        <section id="sec-deudores" class="section-view">
+            <h2 class="section-title">📒 Agenda de Deudores / Fiados</h2>
             
+            <div class="stat-card" style="margin-bottom: 18px;">
+                <div class="stat-label">Total Pendiente por Cobrar</div>
+                <div class="stat-val val-out" id="tot-deuda">$0</div>
+            </div>
+
+            <div class="admin-box admin-only">
+                <h4>📝 Anotar Cliente que Debe / Falta Pagar</h4>
+                <input type="text" id="debt-client" placeholder="Nombre del Cliente (ej: Juan Pérez)">
+                <div class="input-group">
+                    <select id="debt-cat">
+                        <option value="Corte">✂️ Debe un Corte</option>
+                        <option value="Producto">📦 Debe un Producto</option>
+                        <option value="Curso">🎓 Debe Cuota del Curso</option>
+                    </select>
+                    <input type="number" id="debt-amount" placeholder="Monto que debe ($)">
+                </div>
+                <input type="text" id="debt-desc" placeholder="Detalle (ej: Le faltó pagar $5.000 del Fade, o Cera Mate)">
+                <button class="btn-gold" onclick="addDebtor()">Agendar Deuda</button>
+            </div>
+
+            <div class="card-list" id="deudores-list"></div>
+        </section>
+
+        <!-- SECCIÓN 5: CONTROL DE CAJA Y PROMEDIOS MENSUALES (SOLO ADMIN) -->
+        <section id="sec-finanzas" class="section-view">
+            <h2 class="section-title">💰 Caja y Estadísticas Mensuales</h2>
+            
+            <div style="margin-bottom: 14px;">
+                <label style="font-size: 0.8rem; color: var(--text-muted); display:block; margin-bottom:4px;">Seleccionar Mes a Analizar:</label>
+                <select id="month-filter" onchange="renderFinanzas()">
+                    <option value="all">📊 Todos los movimientos (Histórico)</option>
+                </select>
+            </div>
+
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-label">Ingresos</div>
@@ -881,6 +935,30 @@
                 <div class="stat-card">
                     <div class="stat-label">Caja Neta</div>
                     <div class="stat-val val-net" id="tot-net">$0</div>
+                </div>
+            </div>
+
+            <!-- CUADRO DE PROMEDIOS Y EQUIVALENCIAS DE FIN DE MES -->
+            <div class="monthly-summary-box">
+                <h4>
+                    <span>📈 Promedios y Equivalencias del Período</span>
+                    <span id="summary-count" style="font-size:0.75rem; color:var(--text-muted);">0 mov.</span>
+                </h4>
+                <div class="summary-row">
+                    <span style="color:var(--text-muted);">Promedio de ingreso por día (30 días):</span>
+                    <strong id="avg-daily" style="color:#2ecc71;">$0 / día</strong>
+                </div>
+                <div class="summary-row">
+                    <span style="color:var(--text-muted);">Ticket promedio por ingreso cobrado:</span>
+                    <strong id="avg-ticket" style="color:var(--accent-gold);">$0</strong>
+                </div>
+                <div class="summary-row">
+                    <span style="color:var(--text-muted);">Equivalencia por rubro (Cortes / Prod. / Cursos):</span>
+                    <strong id="cat-breakdown" style="font-size:0.78rem;">$0 / $0 / $0</strong>
+                </div>
+                <div class="summary-row">
+                    <span style="color:var(--text-muted);">Margen de ganancia libre (Ingresos vs Gastos):</span>
+                    <strong id="profit-margin" style="color:var(--accent-gold);">0% libre</strong>
                 </div>
             </div>
 
@@ -907,7 +985,7 @@
             <div class="card-list" id="tx-list"></div>
         </section>
 
-        <!-- BOTONES DE CONTACTO FIJOS (SE OCULTAN AUTOMÁTICAMENTE EN CAJA) -->
+        <!-- BOTONES DE CONTACTO FIJOS (SE OCULTAN EN CAJA Y DEUDORES) -->
         <div id="public-actions" style="margin-top: 25px;">
             <a href="https://wa.me/5493624595042?text=Hola%20Fenix%20Studio!%20Quisiera%20consultar%20por%20un%20turno." target="_blank" class="btn btn-whatsapp">
                 Reservar Turno por WhatsApp
@@ -918,14 +996,20 @@
         </div>
 
         <footer>
-            <div>📍 C. Ushuaia y Pasaje Mansilla - Resistencia, Chaco</div>
+            <div>📍 C. USHUAIA y PASAJE MANSILLA - Resistencia, Chaco</div>
             <div>📞 Tel: +54 362 4595042</div>
             <div style="font-size: 0.75rem; opacity: 0.6; margin-top: 6px;">© 2026 Fenix Studio - Todos los derechos reservados</div>
         </footer>
     </div>
 
     <script>
+        // =========================================================================
+        // CONFIGURACIÓN BASE Y VERSIÓN (Actualiza precios sin borrar tu historial)
+        // =========================================================================
+        const VERSION_CATALOGO = "v2_2026_precios";
         const CLAVE_POR_DEFECTO = "1234";
+        const GITHUB_REPO = "xFabriSSJx/fenixstudio";
+        const GITHUB_DATA_FILE = "datos_fenix.json";
 
         const defaultCortes = [
             { id: 1, name: "DEGRADADO (FADE)", desc: "Corte completo con transición limpia", price: 15000 },
@@ -940,30 +1024,176 @@
             { id: 103, name: "Aceite para Barba", price: 5500, stock: 4 }
         ];
 
+        const defaultGaleria = [
+            { id: 1, tag: "Estilo", title: "Taper Fade", sub: "Terminación impecable a navaja", img: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80" },
+            { id: 2, tag: "Barba", title: "Ritual de Barba", sub: "Perfilado y simetría profesional", img: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80" },
+            { id: 3, tag: "Fade", title: "High Fade", sub: "Degradado alto de precisión", img: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=600&q=80" },
+            { id: 4, tag: "Academia", title: "Entrega de Diplomas", sub: "Nuevos profesionales recibidos", img: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=80" },
+            { id: 5, tag: "Clases", title: "Práctica en Vivo", sub: "Aprendizaje real en el salón", img: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80" }
+        ];
+
+        // Si es la primera vez que abre esta versión, aplicamos los nuevos precios oficiales sin borrar caja ni deudores
+        if (localStorage.getItem('fenix_version') !== VERSION_CATALOGO) {
+            localStorage.setItem('fenix_cortes', JSON.stringify(defaultCortes));
+            localStorage.setItem('fenix_curso_precio', '75000');
+            let prodsGuardados = JSON.parse(localStorage.getItem('fenix_productos'));
+            if (prodsGuardados && prodsGuardados.length > 0) {
+                prodsGuardados.forEach(p => {
+                    if (p.name.toLowerCase().includes('cera')) p.price = 15000;
+                });
+                localStorage.setItem('fenix_productos', JSON.stringify(prodsGuardados));
+            } else {
+                localStorage.setItem('fenix_productos', JSON.stringify(defaultProductos));
+            }
+            localStorage.setItem('fenix_version', VERSION_CATALOGO);
+        }
+
         let cortes = JSON.parse(localStorage.getItem('fenix_cortes')) || defaultCortes;
         let productos = JSON.parse(localStorage.getItem('fenix_productos')) || defaultProductos;
         let cursoPrecio = parseFloat(localStorage.getItem('fenix_curso_precio')) || 75000;
         let finanzas = JSON.parse(localStorage.getItem('fenix_finanzas')) || [];
+        let deudores = JSON.parse(localStorage.getItem('fenix_deudores')) || [];
+        let galeria = JSON.parse(localStorage.getItem('fenix_galeria')) || defaultGaleria;
+        let adminPin = localStorage.getItem('fenix_pin') || CLAVE_POR_DEFECTO;
         let isAdmin = false;
 
-        function getAdminPin() {
-            return localStorage.getItem('fenix_pin') || CLAVE_POR_DEFECTO;
-        }
-
-        function changeAdminPin() {
-            if (!isAdmin) return;
-            const nueva = prompt("Escribí tu nueva contraseña de Administrador:");
-            if (nueva && nueva.trim().length > 0) {
-                localStorage.setItem('fenix_pin', nueva.trim());
-                alert("✅ ¡Listo! Tu nueva contraseña se guardó como: " + nueva.trim());
+        // =========================================================================
+        // SINCRONIZACIÓN EN LA NUBE (GITHUB) PARA TODOS LOS DISPOSITIVOS
+        // =========================================================================
+        async function loadFromCloud() {
+            try {
+                const res = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${GITHUB_DATA_FILE}?t=${Date.now()}`);
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.cortes) cortes = data.cortes;
+                if (data.productos) productos = data.productos;
+                if (data.cursoPrecio) cursoPrecio = data.cursoPrecio;
+                if (data.finanzas) finanzas = data.finanzas;
+                if (data.deudores) deudores = data.deudores;
+                if (data.galeria) galeria = data.galeria;
+                if (data.adminPin) adminPin = data.adminPin;
+                saveLocalOnly();
+                renderAll();
+                updateSyncStatus("☁️ Sincronizado con la nube");
+            } catch (e) {
+                // Si todavía no se creó el archivo en la nube, usa los datos locales
             }
         }
 
-        function saveData() {
+        function saveLocalOnly() {
             localStorage.setItem('fenix_cortes', JSON.stringify(cortes));
             localStorage.setItem('fenix_productos', JSON.stringify(productos));
             localStorage.setItem('fenix_curso_precio', cursoPrecio);
             localStorage.setItem('fenix_finanzas', JSON.stringify(finanzas));
+            localStorage.setItem('fenix_deudores', JSON.stringify(deudores));
+            localStorage.setItem('fenix_galeria', JSON.stringify(galeria));
+            localStorage.setItem('fenix_pin', adminPin);
+        }
+
+        async function saveData() {
+            saveLocalOnly();
+            const token = localStorage.getItem('fenix_gh_token');
+            if (!token) {
+                updateSyncStatus("💾 Guardado en este dispositivo");
+                return;
+            }
+            updateSyncStatus("⏳ Guardando en todos los dispositivos...");
+            try {
+                const payload = { cortes, productos, cursoPrecio, finanzas, deudores, galeria, adminPin, updatedAt: Date.now() };
+                const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+                const apiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_DATA_FILE}`;
+                
+                let sha = null;
+                const getRes = await fetch(apiUrl, { headers: { Authorization: `token ${token}` } });
+                if (getRes.ok) {
+                    const fileInfo = await getRes.json();
+                    sha = fileInfo.sha;
+                }
+
+                const putRes = await fetch(apiUrl, {
+                    method: 'PUT',
+                    headers: {
+                        Authorization: `token ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: "Actualización automática Fenix Studio",
+                        content: contentBase64,
+                        sha: sha || undefined
+                    })
+                });
+
+                if (putRes.ok) {
+                    updateSyncStatus("☁️ Guardado en todos los dispositivos");
+                } else {
+                    updateSyncStatus("⚠️ Error de Token Nube (guardado local)");
+                }
+            } catch (err) {
+                updateSyncStatus("⚠️ Sin conexión a nube (guardado local)");
+            }
+        }
+
+        function updateSyncStatus(text) {
+            const el = document.getElementById('sync-status');
+            if (el) el.innerText = text;
+        }
+
+        function configCloudSync() {
+            const actual = localStorage.getItem('fenix_gh_token') || '';
+            const token = prompt("Para que los cambios de un dispositivo se vean automáticamente en todos los demás, pegá tu Token Personal de GitHub (empieza con ghp_ o github_pat_). Dejalo vacío para usar solo memoria local:", actual);
+            if (token !== null) {
+                if (token.trim() === '') {
+                    localStorage.removeItem('fenix_gh_token');
+                    alert("Sincronización en nube desactivada.");
+                } else {
+                    localStorage.setItem('fenix_gh_token', token.trim());
+                    saveData();
+                    alert("☁️ ¡Conectado! Ahora todo lo que modifiques se guardará en tu GitHub y se verá en todos los dispositivos.");
+                }
+            }
+        }
+
+        function exportBackup() {
+            const payload = { cortes, productos, cursoPrecio, finanzas, deudores, galeria, adminPin };
+            const code = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+            navigator.clipboard.writeText(code).then(() => {
+                alert("✅ ¡Datos copiados al portapapeles! Mandátelos por WhatsApp al otro dispositivo y tocá 'Pegar Datos'.");
+            }).catch(() => {
+                prompt("Copiá este código y pegalo en tu otro dispositivo:", code);
+            });
+        }
+
+        function importBackup() {
+            const code = prompt("Pegá acá el código de datos que copiaste de tu otro dispositivo:");
+            if (!code) return;
+            try {
+                const data = JSON.parse(decodeURIComponent(escape(atob(code.trim()))));
+                if (data.cortes) cortes = data.cortes;
+                if (data.productos) productos = data.productos;
+                if (data.cursoPrecio) cursoPrecio = data.cursoPrecio;
+                if (data.finanzas) finanzas = data.finanzas;
+                if (data.deudores) deudores = data.deudores;
+                if (data.galeria) galeria = data.galeria;
+                if (data.adminPin) adminPin = data.adminPin;
+                saveData();
+                renderAll();
+                alert("✅ ¡Todos los datos, fotos, precios y contraseñas se actualizaron con éxito!");
+            } catch (e) {
+                alert("❌ El código pegado no es válido.");
+            }
+        }
+
+        // =========================================================================
+        // NAVEGACIÓN Y MODO ADMIN
+        // =========================================================================
+        function changeAdminPin() {
+            if (!isAdmin) return;
+            const nueva = prompt("Escribí tu nueva contraseña de Administrador:", adminPin);
+            if (nueva && nueva.trim().length > 0) {
+                adminPin = nueva.trim();
+                saveData();
+                alert("✅ ¡Listo! Tu nueva contraseña se guardó como: " + adminPin);
+            }
         }
 
         function toggleMenu() {
@@ -972,8 +1202,8 @@
         }
 
         function showSection(secName, btnElement) {
-            if (secName === 'finanzas' && !isAdmin) {
-                alert("🔒 Necesitás iniciar sesión como Administrador para ver la Caja.");
+            if ((secName === 'finanzas' || secName === 'deudores') && !isAdmin) {
+                alert("🔒 Necesitás iniciar sesión como Administrador.");
                 return;
             }
 
@@ -985,7 +1215,7 @@
             if (activeNav) activeNav.classList.add('active');
 
             const publicActions = document.getElementById('public-actions');
-            if (secName === 'finanzas') {
+            if (secName === 'finanzas' || secName === 'deudores') {
                 publicActions.style.display = 'none';
             } else {
                 publicActions.style.display = 'block';
@@ -1000,7 +1230,7 @@
         function toggleAdmin() {
             if (!isAdmin) {
                 const pin = prompt("Ingresá tu clave de Administrador:");
-                if (pin === getAdminPin()) {
+                if (pin === adminPin) {
                     isAdmin = true;
                     document.body.classList.add('is-admin');
                     document.getElementById('adminBtn').classList.add('active');
@@ -1011,15 +1241,110 @@
             } else {
                 isAdmin = false;
                 document.body.classList.remove('is-admin');
-                document.getElementById('adminBtn').classList.add('active');
+                document.getElementById('adminBtn').classList.remove('active');
                 document.getElementById('adminBtn').innerText = "🔒 Admin";
-                if (document.getElementById('sec-finanzas').classList.contains('active')) {
+                if (document.getElementById('sec-finanzas').classList.contains('active') || 
+                    document.getElementById('sec-deudores').classList.contains('active')) {
                     showSection('inicio');
                 }
             }
         }
 
+        // =========================================================================
+        // GALERÍA FÉNIX Y SUBIDA DE FOTOS DESDE EL CELULAR
+        // =========================================================================
+        function renderGaleria() {
+            const bookContainer = document.getElementById('book-grid');
+            const destContainer = document.getElementById('destacados-grid');
+
+            bookContainer.innerHTML = galeria.map(g => `
+                <div class="gallery-card">
+                    <button class="btn-del-photo admin-only" onclick="deletePhoto(${g.id})">×</button>
+                    <img src="${g.img}" alt="${g.title}">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">${g.tag}</span>
+                        <div class="gallery-title">${g.title}</div>
+                        <div class="gallery-sub">${g.sub}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            const primerosDos = galeria.slice(0, 2);
+            destContainer.innerHTML = primerosDos.map(g => `
+                <div class="gallery-card" onclick="showSection('book')">
+                    <img src="${g.img}" alt="${g.title}">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">${g.tag}</span>
+                        <div class="gallery-title">${g.title}</div>
+                        <div class="gallery-sub">Tocá para abrir Galería Fénix</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addPhotoFromDevice() {
+            if (!isAdmin) return;
+            const fileInput = document.getElementById('photo-file');
+            const tag = document.getElementById('photo-tag').value.trim() || "Fénix Studio";
+            const title = document.getElementById('photo-title').value.trim() || "Trabajo Profesional";
+            const sub = document.getElementById('photo-sub').value.trim() || "Calidad y detalle";
+
+            if (!fileInput.files || !fileInput.files[0]) {
+                alert("Seleccioná una foto de tu celular o computadora primero.");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    // Comprimir imagen automáticamente para que cargue rápido y no llene la memoria
+                    const canvas = document.createElement('canvas');
+                    const maxSize = 750;
+                    let width = img.width;
+                    let height = img.height;
+                    if (width > height && width > maxSize) {
+                        height *= maxSize / width;
+                        width = maxSize;
+                    } else if (height > maxSize) {
+                        width *= maxSize / height;
+                        height = maxSize;
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.78);
+
+                    galeria.unshift({ id: Date.now(), tag, title, sub, img: compressedDataUrl });
+                    saveData();
+                    renderGaleria();
+
+                    fileInput.value = '';
+                    document.getElementById('photo-tag').value = '';
+                    document.getElementById('photo-title').value = '';
+                    document.getElementById('photo-sub').value = '';
+                    alert("📸 ¡Foto agregada a la Galería Fénix!");
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+
+        function deletePhoto(id) {
+            if (!isAdmin) return;
+            if (confirm("¿Eliminar esta foto de la galería?")) {
+                galeria = galeria.filter(g => g.id !== id);
+                saveData();
+                renderGaleria();
+            }
+        }
+
+        // =========================================================================
+        // CORTES (SIEMPRE ORDENADOS DE MENOR PRECIO A MAYOR PRECIO)
+        // =========================================================================
         function renderCortes() {
+            cortes.sort((a, b) => a.price - b.price);
             const container = document.getElementById('cortes-list');
             container.innerHTML = cortes.map(c => `
                 <div class="card">
@@ -1051,7 +1376,11 @@
             }
         }
 
+        // =========================================================================
+        // PRODUCTOS Y STOCK (ORDENADOS DE MENOR A MAYOR PRECIO)
+        // =========================================================================
         function renderProductos() {
+            productos.sort((a, b) => a.price - b.price);
             const container = document.getElementById('productos-list');
             container.innerHTML = productos.map(p => `
                 <div class="card">
@@ -1138,8 +1467,11 @@
             }
         }
 
+        // =========================================================================
+        // CURSO DE BARBERÍA
+        // =========================================================================
         function renderCurso() {
-            document.getElementById('curso-price-display').innerText = `$${cursoPrecio.toLocaleString('es-AR')}`;
+            document.getElementById('curso-price-display').innerText = `$${cursoPrecio.toLocaleString('es-AR')} / mes`;
         }
 
         function editCursoPrice() {
@@ -1155,13 +1487,97 @@
 
         function cobrarCurso() {
             if (!isAdmin) return;
-            quickRegister('Ingreso', 'Curso', 'Cuota Curso de Barbería (3 Meses)', cursoPrecio);
+            quickRegister('Ingreso', 'Curso', 'Cuota Mensual Curso de Barbería', cursoPrecio);
+        }
+
+        // =========================================================================
+        // AGENDA DE DEUDORES / FIADOS (SOLO ADMIN)
+        // =========================================================================
+        function addDebtor() {
+            if (!isAdmin) return;
+            const client = document.getElementById('debt-client').value.trim();
+            const category = document.getElementById('debt-cat').value;
+            const amount = parseFloat(document.getElementById('debt-amount').value);
+            const desc = document.getElementById('debt-desc').value.trim() || category;
+
+            if (!client || isNaN(amount) || amount <= 0) {
+                alert("Ingresá el nombre del cliente y el monto que debe.");
+                return;
+            }
+
+            const fecha = new Date().toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit' });
+            deudores.unshift({ id: Date.now(), client, category, amount, desc, fecha });
+            document.getElementById('debt-client').value = '';
+            document.getElementById('debt-amount').value = '';
+            document.getElementById('debt-desc').value = '';
+            saveData();
+            renderDeudores();
+        }
+
+        function settleDebt(id) {
+            if (!isAdmin) return;
+            const d = deudores.find(item => item.id === id);
+            if (!d) return;
+            if (confirm(`¿Confirmás que ${d.client} pagó $${d.amount.toLocaleString('es-AR')}? Se sumará automáticamente a la Caja.`)) {
+                quickRegister('Ingreso', d.category, `Pago deuda: ${d.client} (${d.desc})`, d.amount, true);
+                deudores = deudores.filter(item => item.id !== id);
+                saveData();
+                renderDeudores();
+                alert(`✅ ¡Deuda saldada! Se sumaron $${d.amount.toLocaleString('es-AR')} a los ingresos.`);
+            }
+        }
+
+        function deleteDebt(id) {
+            if (!isAdmin) return;
+            if (confirm("¿Borrar este registro de deuda sin cobrarlo?")) {
+                deudores = deudores.filter(item => item.id !== id);
+                saveData();
+                renderDeudores();
+            }
+        }
+
+        function renderDeudores() {
+            const totalDeuda = deudores.reduce((acc, d) => acc + d.amount, 0);
+            document.getElementById('tot-deuda').innerText = `$${totalDeuda.toLocaleString('es-AR')}`;
+            document.getElementById('deudores-badge').innerText = deudores.length;
+
+            const list = document.getElementById('deudores-list');
+            if (deudores.length === 0) {
+                list.innerHTML = `<div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:15px;">🎉 Nadie debe nada por el momento.</div>`;
+                return;
+            }
+
+            list.innerHTML = deudores.map(d => `
+                <div class="card" style="border-left: 4px solid var(--accent-red);">
+                    <div class="card-info">
+                        <div class="card-title">${d.client}</div>
+                        <div class="card-desc">${d.category}: ${d.desc} • Anotado el ${d.fecha}</div>
+                    </div>
+                    <div class="card-right">
+                        <div class="price-tag" style="color:var(--accent-red);">Debe $${d.amount.toLocaleString('es-AR')}</div>
+                        <div class="stock-controls">
+                            <button class="btn-sell" onclick="settleDebt(${d.id})">✅ Cobrar y pasar a Caja</button>
+                            <button class="btn-mini" style="color:#e74c3c;" onclick="deleteDebt(${d.id})">×</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // =========================================================================
+        // CAJA, INGRESOS/EGRESOS Y PROMEDIOS DE FIN DE MES
+        // =========================================================================
+        function getMonthKey(dateObj) {
+            const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            return `${meses[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
         }
 
         function quickRegister(type, category, desc, amount, silent = false) {
             if (!isAdmin) return;
-            const fecha = new Date().toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-            finanzas.unshift({ id: Date.now(), type, category, desc, amount, fecha });
+            const now = new Date();
+            const fecha = now.toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+            const mesKey = getMonthKey(now);
+            finanzas.unshift({ id: Date.now(), type, category, desc, amount, fecha, mesKey });
             saveData();
             renderFinanzas();
             if (!silent) alert(`💰 Registrado en Caja: ${desc} ($${amount.toLocaleString('es-AR')})`);
@@ -1189,25 +1605,66 @@
             renderFinanzas();
         }
 
+        function updateMonthDropdown() {
+            const select = document.getElementById('month-filter');
+            const currentVal = select.value;
+            const mesesUnicos = [...new Set(finanzas.map(t => t.mesKey || "Mes Actual"))];
+            
+            select.innerHTML = `<option value="all">📊 Todos los movimientos (Histórico)</option>` +
+                mesesUnicos.map(m => `<option value="${m}">🗓️ ${m}</option>`).join('');
+            
+            if (mesesUnicos.includes(currentVal)) {
+                select.value = currentVal;
+            }
+        }
+
         function renderFinanzas() {
+            updateMonthDropdown();
+            const filtroMes = document.getElementById('month-filter').value;
+            const listaFiltrada = filtroMes === 'all' 
+                ? finanzas 
+                : finanzas.filter(t => (t.mesKey || "Mes Actual") === filtroMes);
+
             let totalIn = 0;
             let totalOut = 0;
-            finanzas.forEach(t => {
-                if (t.type === 'Ingreso') totalIn += t.amount;
-                else totalOut += t.amount;
+            let countIn = 0;
+            let inCortes = 0, inProd = 0, inCurso = 0;
+
+            listaFiltrada.forEach(t => {
+                if (t.type === 'Ingreso') {
+                    totalIn += t.amount;
+                    countIn++;
+                    if (t.category === 'Corte') inCortes += t.amount;
+                    else if (t.category === 'Producto') inProd += t.amount;
+                    else if (t.category === 'Curso') inCurso += t.amount;
+                } else {
+                    totalOut += t.amount;
+                }
             });
 
+            const net = totalIn - totalOut;
             document.getElementById('tot-in').innerText = `$${totalIn.toLocaleString('es-AR')}`;
             document.getElementById('tot-out').innerText = `$${totalOut.toLocaleString('es-AR')}`;
-            document.getElementById('tot-net').innerText = `$${(totalIn - totalOut).toLocaleString('es-AR')}`;
+            document.getElementById('tot-net').innerText = `$${net.toLocaleString('es-AR')}`;
+
+            // Cálculos de Promedio y Equivalencias de Fin de Mes
+            const promedioDiario = Math.round(totalIn / 30);
+            const ticketPromedio = countIn > 0 ? Math.round(totalIn / countIn) : 0;
+            const margenPorcentaje = totalIn > 0 ? Math.round((net / totalIn) * 100) : 0;
+
+            document.getElementById('summary-count').innerText = `${listaFiltrada.length} mov.`;
+            document.getElementById('avg-daily').innerText = `$${promedioDiario.toLocaleString('es-AR')} / día`;
+            document.getElementById('avg-ticket').innerText = `$${ticketPromedio.toLocaleString('es-AR')} (${countIn} cobros)`;
+            document.getElementById('cat-breakdown').innerText = `✂️$${inCortes.toLocaleString('es-AR')} | 📦$${inProd.toLocaleString('es-AR')} | 🎓$${inCurso.toLocaleString('es-AR')}`;
+            document.getElementById('profit-margin').innerText = `${margenPorcentaje}% de ganancia neta`;
 
             const list = document.getElementById('tx-list');
-            if (finanzas.length === 0) {
-                list.innerHTML = `<div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:15px;">Todavía no hay movimientos anotados.</div>`;
+            if (listaFiltrada.length === 0) {
+                list.innerHTML = `<div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:15px;">Todavía no hay movimientos anotados en este período.</div>`;
                 return;
             }
 
-            list.innerHTML = finanzas.map(t => `
+            list.innerHTML = listaFiltrada.map(t => `
                 <div class="tx-item ${t.type === 'Ingreso' ? 'ingreso' : 'egreso'}">
                     <div>
                         <strong>${t.desc}</strong>
@@ -1223,10 +1680,17 @@
             `).join('');
         }
 
-        renderCortes();
-        renderProductos();
-        renderCurso();
-        renderFinanzas();
+        function renderAll() {
+            renderGaleria();
+            renderCortes();
+            renderProductos();
+            renderCurso();
+            renderDeudores();
+            renderFinanzas();
+        }
+
+        renderAll();
+        loadFromCloud();
     </script>
 </body>
 </html>
