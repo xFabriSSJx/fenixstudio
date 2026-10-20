@@ -43,33 +43,33 @@
       overflow-x: hidden;
     }
 
-    /* CABECERA PRINCIPAL OPTIMIZADA */
+    /* CABECERA PRINCIPAL ANTI-CHOQUES EN CELULAR */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
       background: rgba(9, 9, 12, 0.96);
       border-bottom: 1px solid var(--border);
-      padding: 9px 14px;
+      padding: 8px 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
     }
 
     .header-left {
       display: flex;
       align-items: center;
-      gap: 10px;
-      min-width: 0;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
-    /* BOTÓN DE LAS 3 BARRAS (TAMAÑO FIJO SIN DEFORMARSE) */
+    /* BOTÓN DE LAS 3 BARRAS */
     .menu-toggle {
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
-      min-height: 40px;
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      min-height: 38px;
       flex-shrink: 0;
       border-radius: 9px;
       background: var(--bg-card-alt);
@@ -86,7 +86,7 @@
     }
 
     .menu-toggle .bar {
-      width: 19px;
+      width: 18px;
       height: 2.2px;
       background-color: var(--gold);
       border-radius: 2px;
@@ -100,11 +100,11 @@
       right: -5px;
       background: var(--danger);
       color: #fff;
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 800;
-      min-width: 19px;
-      height: 19px;
-      padding: 0 5px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 4px;
       border-radius: 999px;
       display: flex;
       align-items: center;
@@ -116,18 +116,18 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 7px;
       cursor: pointer;
       user-select: none;
-      min-width: 0;
+      flex-shrink: 0;
     }
 
     /* CÍRCULO FS PERFECTAMENTE REDONDO SIEMPRE */
     .brand-logo {
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
-      min-height: 40px;
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      min-height: 38px;
       flex-shrink: 0;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
@@ -137,29 +137,23 @@
       justify-content: center;
       font-weight: 900;
       color: #000;
-      font-size: 1rem;
-      box-shadow: 0 0 14px rgba(212, 175, 55, 0.4);
-    }
-
-    .brand-text {
-      min-width: 0;
+      font-size: 0.95rem;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
     }
 
     .brand-text h1 {
-      font-size: 1.02rem;
-      letter-spacing: 0.8px;
+      font-size: 0.92rem;
+      letter-spacing: 0.6px;
       color: var(--gold);
       text-transform: uppercase;
-      line-height: 1.15;
+      line-height: 1.08;
+      font-weight: 800;
     }
 
     .brand-text span {
-      font-size: 0.66rem;
+      font-size: 0.64rem;
       color: var(--text-muted);
       display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .nav-actions {
@@ -169,19 +163,45 @@
       flex-shrink: 0;
     }
 
-    @media (max-width: 480px) {
+    /* AJUSTE ESPECIAL PARA TELÉFONOS PARA QUE NUNCA CHOQUEN LAS LETRAS CON LOS BOTONES */
+    @media (max-width: 520px) {
       header {
-        padding: 8px 10px;
+        padding: 8px 8px;
+        gap: 6px;
+      }
+      .header-left {
+        gap: 6px;
+      }
+      .menu-toggle {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        min-height: 35px;
+      }
+      .brand-logo {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        min-height: 35px;
+        font-size: 0.88rem;
       }
       .brand-text span {
         display: none;
       }
       .brand-text h1 {
-        font-size: 0.92rem;
+        font-size: 0.76rem;
+        line-height: 1.05;
+        max-width: 54px;
+        word-wrap: break-word;
+      }
+      .nav-actions {
+        gap: 5px;
       }
       .nav-actions .btn {
-        padding: 6px 9px;
-        font-size: 0.74rem;
+        padding: 6px 8px;
+        font-size: 0.71rem;
+        border-radius: 6px;
+        gap: 4px;
       }
     }
 
@@ -209,7 +229,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 295px;
+      width: 290px;
       max-width: 82vw;
       height: 100vh;
       background: #111117;
@@ -275,7 +295,7 @@
       padding: 9px 12px;
       border-radius: 9px;
       text-align: left;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
@@ -332,19 +352,19 @@
       color: var(--gold);
     }
 
-    /* BOTONES GENERALES (UN POCO MÁS CHICOS Y ESTILIZADOS) */
+    /* BOTONES GENERALES */
     .btn {
       background: var(--bg-card-alt);
       color: var(--text-main);
       border: 1px solid var(--border);
-      padding: 6px 12px;
+      padding: 6px 11px;
       border-radius: 7px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       transition: all 0.2s ease;
       text-decoration: none;
       white-space: nowrap;
@@ -367,8 +387,8 @@
 
     /* ÍCONOS SVG DENTRO DE BOTONES */
     .svg-icon {
-      width: 16px;
-      height: 16px;
+      width: 17px;
+      height: 17px;
       flex-shrink: 0;
       display: inline-block;
       vertical-align: middle;
@@ -397,7 +417,7 @@
       max-width: 1140px;
       width: 100%;
       margin: 0 auto;
-      padding: 18px 14px;
+      padding: 16px 12px;
       flex: 1;
     }
 
@@ -420,14 +440,14 @@
       background-position: center;
       border: 1px solid var(--gold);
       border-radius: 16px;
-      padding: 38px 18px;
+      padding: 32px 16px;
       text-align: center;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
     }
 
     .hero-banner h2 {
-      font-size: 2rem;
+      font-size: 1.85rem;
       color: var(--gold);
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -437,10 +457,10 @@
 
     .hero-banner p {
       color: #f4f4f6;
-      max-width: 640px;
-      margin: 0 auto 18px;
-      font-size: 0.94rem;
-      line-height: 1.5;
+      max-width: 620px;
+      margin: 0 auto 16px;
+      font-size: 0.9rem;
+      line-height: 1.48;
     }
 
     .hero-buttons {
@@ -451,9 +471,9 @@
     }
 
     .btn-cta-large {
-      font-size: 0.88rem;
-      padding: 9px 18px;
-      border-radius: 9px;
+      font-size: 0.84rem;
+      padding: 8px 16px;
+      border-radius: 8px;
       white-space: normal;
       text-align: center;
     }
@@ -461,20 +481,28 @@
     /* GRILLAS Y TARJETAS */
     .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
     }
 
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
     }
 
+    /* CUADRÍCULA DE CORTES: 4 EN PC, 2 POR FILA EN CELULAR (FOTOS MÁS CHICAS Y VISIBLES) */
     .grid-4 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 820px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
     }
 
     .card {
@@ -482,7 +510,7 @@
       backdrop-filter: blur(10px);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 16px;
+      padding: 15px;
       margin-bottom: 18px;
     }
 
@@ -490,27 +518,27 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 14px;
-      padding-bottom: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 9px;
       border-bottom: 1px solid var(--border);
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .card-title {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--gold);
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
-    /* TARJETAS DE CORTES Y PRODUCTOS */
+    /* TARJETAS DE CORTES COMPACTAS EN CUADRÍCULA */
     .cut-card {
       background: var(--bg-card-alt);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -519,46 +547,109 @@
 
     .cut-card img {
       width: 100%;
-      height: 170px;
+      height: 125px;
       object-fit: cover;
+      object-position: center;
       border-bottom: 1px solid var(--border);
       background: #1a1a22;
     }
 
     .cut-card-body {
-      padding: 13px;
+      padding: 10px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
+    .cut-card-title {
+      font-size: 0.88rem;
+      display: block;
+      margin-bottom: 4px;
+      color: var(--gold);
+      line-height: 1.2;
+    }
+
+    .cut-card-desc {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .cut-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
     .cut-price {
-      font-size: 1.15rem;
+      font-size: 0.96rem;
       font-weight: 800;
       color: var(--gold);
     }
 
-    /* GALERÍA FENIX */
+    @media (max-width: 480px) {
+      .cut-card img {
+        height: 105px;
+      }
+      .cut-card-body {
+        padding: 8px;
+      }
+      .cut-card-title {
+        font-size: 0.8rem;
+      }
+      .cut-card-desc {
+        font-size: 0.68rem;
+        margin-bottom: 6px;
+      }
+      .cut-price {
+        font-size: 0.86rem;
+      }
+      .cut-card-footer .btn {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+      }
+    }
+
+    /* GALERÍA FENIX EN CUADRÍCULA COMPACTA (2x2 EN CELULAR, 4 EN PC) */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 9px;
+      }
     }
 
     .gallery-item {
       position: relative;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
       border: 1px solid var(--border);
-      aspect-ratio: 1 / 1;
+      height: 135px;
       background: #121217;
+    }
+
+    @media (max-width: 480px) {
+      .gallery-item {
+        height: 115px;
+      }
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
     }
 
     .gallery-caption {
@@ -566,11 +657,12 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.9));
-      padding: 16px 8px 8px;
-      font-size: 0.78rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.92));
+      padding: 14px 6px 5px;
+      font-size: 0.72rem;
       color: #fff;
       font-weight: 600;
+      text-align: center;
     }
 
     /* AVISOS */
@@ -580,8 +672,8 @@
       padding: 12px 14px;
       border-radius: 8px;
       margin-bottom: 16px;
-      font-size: 0.86rem;
-      line-height: 1.48;
+      font-size: 0.85rem;
+      line-height: 1.45;
       color: #e5e7eb;
     }
 
@@ -591,7 +683,7 @@
     .form-group { margin-bottom: 12px; }
     .form-group label {
       display: block;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       margin-bottom: 5px;
       font-weight: 600;
@@ -599,17 +691,17 @@
 
     input, select, textarea {
       width: 100%;
-      padding: 9px 11px;
+      padding: 8px 10px;
       background: rgba(9, 9, 12, 0.9);
       border: 1px solid var(--border);
       border-radius: 8px;
       color: var(--text-main);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
 
     .slots-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
       gap: 8px;
       margin-top: 8px;
     }
@@ -622,7 +714,7 @@
       text-align: center;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.84rem;
+      font-size: 0.82rem;
     }
 
     .slot-item.selected {
@@ -642,19 +734,20 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 12px;
+      padding: 9px 11px;
       background: var(--bg-card-alt);
       border: 1px solid var(--border);
       border-radius: 9px;
       margin-bottom: 8px;
       gap: 8px;
       flex-wrap: wrap;
+      font-size: 0.85rem;
     }
 
     .status-pill {
-      padding: 3px 9px;
+      padding: 3px 8px;
       border-radius: 999px;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       text-transform: uppercase;
     }
@@ -666,7 +759,7 @@
 
     .finance-summary {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
       margin-bottom: 14px;
     }
@@ -699,7 +792,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 16px;
+      padding: 15px;
       margin-top: 8px;
       margin-bottom: 18px;
     }
@@ -707,27 +800,27 @@
     .bottom-contact-buttons {
       display: flex;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-top: 12px;
+      margin-top: 10px;
     }
 
     .bottom-contact-buttons a {
-      padding: 8px 15px;
-      font-size: 0.82rem;
+      padding: 7px 13px;
+      font-size: 0.8rem;
     }
 
     footer {
       background: rgba(9, 9, 12, 0.96);
       border-top: 1px solid var(--border);
-      padding: 18px 14px;
+      padding: 16px 12px;
       text-align: center;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--text-muted);
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
@@ -744,7 +837,7 @@
       background: none;
       border: none;
       color: #52525b;
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       cursor: pointer;
     }
   </style>
@@ -841,30 +934,31 @@
           <span>🎁 Sorteos & Beneficios</span>
         </button>
 
-        <!-- Botón de Login en menú lateral: se adapta o desaparece si entra Personal -->
         <button type="button" class="drawer-item" id="drawerItemUsuarios" data-sec="usuarios" onclick="cambiarSeccion('usuarios')">
           <span id="txtDrawerUsuarios">👤 Iniciar Sesión / Crear Usuario</span>
         </button>
 
-        <!-- Visible cuando se desbloquea Personal -->
         <button type="button" class="drawer-item hidden" id="drawerItemPersonal" data-sec="admin" onclick="cambiarSeccion('admin')">
           <span style="color:var(--gold);">💼 Panel de Personal</span>
           <span class="badge hidden" id="badgeDrawerPersonal">0</span>
         </button>
       </nav>
 
-      <!-- REDES CON LOGOS OFICIALES SVG EN EL MENÚ LATERAL -->
+      <!-- REDES CON LOGOS OFICIALES SVG (TELÉFONO BLANCO NÍTIDO EN WHATSAPP) -->
       <div class="drawer-socials">
         <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="drawer-item">
           <span style="display:flex; align-items:center; gap:8px;">
             <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             Instagram
           </span>
-          <span style="color:var(--gold); font-size:0.76rem;">@fenixstudio25</span>
+          <span style="color:var(--gold); font-size:0.75rem;">@fenixstudio25</span>
         </a>
         <a href="https://wa.me/543624595042" target="_blank" class="drawer-item">
           <span style="display:flex; align-items:center; gap:8px;">
-            <svg class="svg-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.124.556 4.119 1.528 5.847l-1.528 5.581 5.713-1.499c1.678.918 3.602 1.444 5.654 1.444 6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+            <svg class="svg-icon" viewBox="0 0 24 24">
+              <path fill="#25D366" d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.15-1.35C8.58 21.51 10.24 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+              <path fill="#FFFFFF" d="M16.6 14.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.7.8-.1.1-.2.2-.4.1-.9-.4-1.6-1-2.2-1.8-.1-.2 0-.3.1-.4.1-.1.2-.3.3-.4.1-.1.1-.2.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.2-.7-1.6-.2-.4-.3-.3-.5-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.4 1.5.6 2.1.5 2.5.4.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3z"/>
+            </svg>
             WhatsApp
           </span>
         </a>
@@ -873,7 +967,7 @@
             <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
             C. Ushuaia y Pje. Mansilla
           </span>
-          <span style="color:var(--gold); font-size:0.75rem;">Mapa</span>
+          <span style="color:var(--gold); font-size:0.74rem;">Mapa</span>
         </a>
       </div>
     </div>
@@ -911,7 +1005,6 @@
       <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">
         📅 Reservar Turno
       </button>
-      <!-- Este botón desaparece automáticamente al iniciar sesión como Usuario, Alumno o Personal -->
       <button type="button" class="btn" id="btnHeaderLogin" onclick="cambiarSeccion('usuarios')">
         👤 <span id="lblMiCuenta">Iniciar Sesión</span>
       </button>
@@ -920,11 +1013,11 @@
 
   <div class="container">
 
-    <!-- BARRA DE PERSONAL (CON BOTÓN DE CAMBIAR CONTRASEÑA RESTAURADO) -->
+    <!-- BARRA DE PERSONAL -->
     <div class="staff-banner" id="staffBanner">
       <div>
         <strong style="color:var(--gold);">💼 Sesión de Personal Activa</strong>
-        <span style="font-size:0.78rem; color:#d1d5db; display:block;">
+        <span style="font-size:0.76rem; color:#d1d5db; display:block;">
           Control de Solicitudes, Agenda de Turnos, Ingresos/Egresos, Stock, Deudores y Correos Gmail.
         </span>
       </div>
@@ -955,14 +1048,13 @@
           <button type="button" class="btn btn-cta-large" onclick="cambiarSeccion('academia')">
             🎓 Curso de Barbería y Aula Virtual
           </button>
-          <!-- Desaparece cuando ya estás logueado como Usuario o Personal -->
           <button type="button" class="btn btn-cta-large" id="btnHeroCrearUsuario" onclick="cambiarSeccion('usuarios')">
             ✨ Crear mi Usuario
           </button>
         </div>
       </div>
 
-      <!-- TIPOS DE CORTES Y SUS PRECIOS -->
+      <!-- TIPOS DE CORTES EN CUADRÍCULA COMPACTA (2x2 EN CELULAR) -->
       <div class="card">
         <div class="card-header">
           <div class="card-title">✂️ Tipos de Cortes y sus Precios</div>
@@ -973,10 +1065,10 @@
             <img src="corte1.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80';" alt="Degradado (Fade)" />
             <div class="cut-card-body">
               <div>
-                <strong style="font-size:1rem; display:block; margin-bottom:5px; color:var(--gold);">Degradado (Fade)</strong>
-                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Degradado limpio (Low, Mid, High o Taper Fade) con terminación a navaja y peinado.</p>
+                <strong class="cut-card-title">Degradado (Fade)</strong>
+                <p class="cut-card-desc">Low, Mid, High o Taper Fade a navaja.</p>
               </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:9px;">
+              <div class="cut-card-footer">
                 <span class="cut-price">$15.000</span>
                 <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(1)">Reservar</button>
               </div>
@@ -986,10 +1078,10 @@
             <img src="corte2.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80';" alt="Degradado + Barba" />
             <div class="cut-card-body">
               <div>
-                <strong style="font-size:1rem; display:block; margin-bottom:5px; color:var(--gold);">Degradado + Barba</strong>
-                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Corte degradado completo más perfilado, rebaje y ritual de barba a navaja.</p>
+                <strong class="cut-card-title">Degradado + Barba</strong>
+                <p class="cut-card-desc">Degradado completo + perfilado de barba.</p>
               </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:9px;">
+              <div class="cut-card-footer">
                 <span class="cut-price">$18.000</span>
                 <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(2)">Reservar</button>
               </div>
@@ -999,10 +1091,10 @@
             <img src="corte3.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80';" alt="Diseño Freestyle" />
             <div class="cut-card-body">
               <div>
-                <strong style="font-size:1rem; display:block; margin-bottom:5px; color:var(--gold);">Diseño Freestyle</strong>
-                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Degradado más diseño artístico Freestyle a mano alzada con navaja.</p>
+                <strong class="cut-card-title">Diseño Freestyle</strong>
+                <p class="cut-card-desc">Degradado + diseño artístico a navaja.</p>
               </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:9px;">
+              <div class="cut-card-footer">
                 <span class="cut-price">$18.000</span>
                 <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(3)">Reservar</button>
               </div>
@@ -1012,10 +1104,10 @@
             <img src="corte4.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80';" alt="Corte V.I.P. a Domicilio" />
             <div class="cut-card-body">
               <div>
-                <strong style="font-size:1rem; display:block; margin-bottom:5px; color:var(--gold);">Corte V.I.P. a Domicilio</strong>
-                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Atención exclusiva y personalizada en tu domicilio con todo el equipamiento profesional.</p>
+                <strong class="cut-card-title">Corte V.I.P. Domicilio</strong>
+                <p class="cut-card-desc">Atención exclusiva en tu domicilio.</p>
               </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:9px;">
+              <div class="cut-card-footer">
                 <span class="cut-price">$20.000</span>
                 <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(4)">Reservar</button>
               </div>
@@ -1024,11 +1116,11 @@
         </div>
       </div>
 
-      <!-- GALERÍA FENIX EN LA PÁGINA PRINCIPAL -->
+      <!-- GALERÍA FENIX EN CUADRÍCULA COMPACTA (2x2 EN CELULAR) -->
       <div class="card">
         <div class="card-header">
-          <div class="card-title">📸 Galería Fenix — Fotos de Nuestros Trabajos</div>
-          <button type="button" class="btn" onclick="cambiarSeccion('galeria')">Ver Galería Completa</button>
+          <div class="card-title">📸 Galería Fenix — Nuestros Trabajos</div>
+          <button type="button" class="btn" onclick="cambiarSeccion('galeria')">Ver Galería</button>
         </div>
         <div class="gallery-grid" id="galeriaPreviewInicio">
           <div class="gallery-item">
@@ -1037,15 +1129,15 @@
           </div>
           <div class="gallery-item">
             <img src="corte2.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80';" alt="Degradado + Barba" />
-            <div class="gallery-caption">Degradado + Perfilado de Barba</div>
+            <div class="gallery-caption">Degradado + Barba</div>
           </div>
           <div class="gallery-item">
             <img src="corte3.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80';" alt="Diseño Freestyle" />
-            <div class="gallery-caption">Diseño Freestyle Profesional</div>
+            <div class="gallery-caption">Diseño Freestyle</div>
           </div>
           <div class="gallery-item">
             <img src="foto1.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=80';" alt="Fenix Studio" />
-            <div class="gallery-caption">Trabajo en Fenix Studio</div>
+            <div class="gallery-caption">Trabajo Fenix Studio</div>
           </div>
         </div>
       </div>
@@ -1057,7 +1149,7 @@
             <div class="card-title">🎓 ¿Qué te da nuestro Curso de Barbería?</div>
             <span class="status-pill status-espera">3 Meses — $75.000 / mes</span>
           </div>
-          <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:10px;">
+          <p style="color:var(--text-muted); font-size:0.84rem; margin-bottom:10px;">
             Formación profesional completa de 3 meses con acceso a nuestro Campus / Aula Virtual:
           </p>
           <div class="item-row"><span>✅ Uso correcto de máquinas, tijeras y navaja</span></div>
@@ -1076,25 +1168,25 @@
           </div>
           <div id="resumenProductosInicio">
             <div class="item-row">
-              <div><strong>Cera Modeladora Mate</strong><span style="font-size:0.78rem; color:var(--text-muted); display:block;">Stock disponible: 10 u.</span></div>
+              <div><strong>Cera Modeladora Mate</strong><span style="font-size:0.76rem; color:var(--text-muted); display:block;">Stock disponible: 10 u.</span></div>
               <strong style="color:var(--gold);">$15.000</strong>
             </div>
             <div class="item-row">
-              <div><strong>Polvo Texturizador</strong><span style="font-size:0.78rem; color:var(--text-muted); display:block;">Stock disponible: 12 u.</span></div>
+              <div><strong>Polvo Texturizador</strong><span style="font-size:0.76rem; color:var(--text-muted); display:block;">Stock disponible: 12 u.</span></div>
               <strong style="color:var(--gold);">$7.500</strong>
             </div>
             <div class="item-row">
-              <div><strong>Aceite para Barba</strong><span style="font-size:0.78rem; color:var(--text-muted); display:block;">Stock disponible: 8 u.</span></div>
+              <div><strong>Aceite para Barba</strong><span style="font-size:0.76rem; color:var(--text-muted); display:block;">Stock disponible: 8 u.</span></div>
               <strong style="color:var(--gold);">$5.500</strong>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SECCIÓN INFERIOR DE REDES Y UBICACIÓN CON LOGOS OFICIALES SVG (SIN NÚMERO EN WHATSAPP) -->
+      <!-- SECCIÓN INFERIOR DE REDES Y UBICACIÓN CON LOGOS NÍTIDOS -->
       <div class="bottom-contact-bar">
         <div class="card-title" style="justify-content:center; margin-bottom:4px;">Contacto, Redes y Ubicación</div>
-        <p style="text-align:center; font-size:0.84rem; color:var(--text-muted);">
+        <p style="text-align:center; font-size:0.82rem; color:var(--text-muted);">
           C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco
         </p>
         <div class="bottom-contact-buttons">
@@ -1103,7 +1195,10 @@
             <span>@fenixstudio25</span>
           </a>
           <a href="https://wa.me/543624595042" target="_blank" class="btn" title="WhatsApp">
-            <svg class="svg-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.124.556 4.119 1.528 5.847l-1.528 5.581 5.713-1.499c1.678.918 3.602 1.444 5.654 1.444 6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+            <svg class="svg-icon" viewBox="0 0 24 24">
+              <path fill="#25D366" d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.15-1.35C8.58 21.51 10.24 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+              <path fill="#FFFFFF" d="M16.6 14.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.7.8-.1.1-.2.2-.4.1-.9-.4-1.6-1-2.2-1.8-.1-.2 0-.3.1-.4.1-.1.2-.3.3-.4.1-.1.1-.2.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.2-.7-1.6-.2-.4-.3-.3-.5-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.4 1.5.6 2.1.5 2.5.4.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3z"/>
+            </svg>
             <span>WhatsApp</span>
           </a>
           <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="btn btn-gold" title="Ubicación en Google Maps">
@@ -1242,22 +1337,22 @@
           <span class="status-pill status-espera">Duración: 3 Meses | Valor: $75.000 / mes</span>
         </div>
 
-        <p style="color:#e4e4e7; line-height:1.55; margin-bottom:14px; font-size:0.92rem;">
+        <p style="color:#e4e4e7; line-height:1.55; margin-bottom:14px; font-size:0.9rem;">
           Formación intensiva de <strong>3 meses</strong> diseñada para que domines el oficio de barbero profesional desde la base hasta las técnicas avanzadas de salón:
         </p>
 
         <div class="grid-3" style="margin-bottom:14px;">
           <div class="finance-box">
             <strong style="color:var(--gold); display:block; margin-bottom:6px;">🛠️ Máquinas, Tijeras y Navaja</strong>
-            <span style="font-size:0.82rem; color:var(--text-muted);">Uso correcto y mantenimiento de herramientas, posturas de trabajo, alzadas y bioseguridad.</span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Uso correcto y mantenimiento de herramientas, posturas de trabajo, alzadas y bioseguridad.</span>
           </div>
           <div class="finance-box">
             <strong style="color:var(--gold); display:block; margin-bottom:6px;">✂️ Degradados (Taper Fade) y Freestyle</strong>
-            <span style="font-size:0.82rem; color:var(--text-muted);">Técnicas limpias de borrado de líneas, Taper Fade, diseño Freestyle, visagismo, perfilado y ritual de barba.</span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Técnicas limpias de borrado de líneas, Taper Fade, diseño Freestyle, visagismo, perfilado y ritual de barba.</span>
           </div>
           <div class="finance-box">
             <strong style="color:var(--gold); display:block; margin-bottom:6px;">📜 Certificado + Aula Virtual</strong>
-            <span style="font-size:0.82rem; color:var(--text-muted);">Acceso exclusivo a videos, guías de referencia y archivos PDF en el Aula Virtual + Entrega de Certificado al finalizar.</span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Acceso exclusivo a videos, guías de referencia y archivos PDF en el Aula Virtual + Entrega de Certificado al finalizar.</span>
           </div>
         </div>
       </div>
@@ -1573,7 +1668,10 @@
     </a>
     <span>•</span>
     <a href="https://wa.me/543624595042" target="_blank">
-      <svg class="svg-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.124.556 4.119 1.528 5.847l-1.528 5.581 5.713-1.499c1.678.918 3.602 1.444 5.654 1.444 6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+      <svg class="svg-icon" viewBox="0 0 24 24">
+        <path fill="#25D366" d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.15-1.35C8.58 21.51 10.24 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+        <path fill="#FFFFFF" d="M16.6 14.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.7.8-.1.1-.2.2-.4.1-.9-.4-1.6-1-2.2-1.8-.1-.2 0-.3.1-.4.1-.1.2-.3.3-.4.1-.1.1-.2.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.2-.7-1.6-.2-.4-.3-.3-.5-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.4 1.5.6 2.1.5 2.5.4.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3z"/>
+      </svg>
       WhatsApp
     </a>
     <span>•</span>
@@ -1596,7 +1694,7 @@
         id: 1,
         nombre: "Degradado (Fade)",
         precio: 15000,
-        desc: "Degradado limpio (Low, Mid, High o Taper Fade) con terminación a navaja y peinado.",
+        desc: "Low, Mid, High o Taper Fade a navaja.",
         img: "corte1.jpeg",
         fallbackImg: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80"
       },
@@ -1604,7 +1702,7 @@
         id: 2,
         nombre: "Degradado + Barba",
         precio: 18000,
-        desc: "Corte degradado completo más perfilado, rebaje y ritual de barba a navaja.",
+        desc: "Degradado completo + perfilado de barba.",
         img: "corte2.jpeg",
         fallbackImg: "https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80"
       },
@@ -1612,15 +1710,15 @@
         id: 3,
         nombre: "Diseño Freestyle",
         precio: 18000,
-        desc: "Degradado más diseño artístico Freestyle a mano alzada con navaja.",
+        desc: "Degradado + diseño artístico a navaja.",
         img: "corte3.jpeg",
         fallbackImg: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80"
       },
       {
         id: 4,
-        nombre: "Corte V.I.P. a Domicilio",
+        nombre: "Corte V.I.P. Domicilio",
         precio: 20000,
-        desc: "Atención exclusiva y personalizada en tu domicilio con todo el equipamiento profesional.",
+        desc: "Atención exclusiva en tu domicilio.",
         img: "corte4.jpeg",
         fallbackImg: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80"
       }
@@ -1634,9 +1732,9 @@
 
     const GALERIA_DEFAULT = [
       { id: 101, titulo: "Degradado / Taper Fade", url: "corte1.jpeg", fallback: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80" },
-      { id: 102, titulo: "Degradado + Perfilado de Barba", url: "corte2.jpeg", fallback: "https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80" },
-      { id: 103, titulo: "Diseño Freestyle Profesional", url: "corte3.jpeg", fallback: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80" },
-      { id: 104, titulo: "Trabajo en Fenix Studio", url: "foto1.jpeg", fallback: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=80" }
+      { id: 102, titulo: "Degradado + Barba", url: "corte2.jpeg", fallback: "https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80" },
+      { id: 103, titulo: "Diseño Freestyle", url: "corte3.jpeg", fallback: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80" },
+      { id: 104, titulo: "Trabajo Fenix Studio", url: "foto1.jpeg", fallback: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=80" }
     ];
 
     let estado = {
@@ -1875,10 +1973,10 @@
             <img src="${s.img || 'corte1.jpeg'}" data-fb="${fb}" onerror="this.onerror=null; this.src=this.getAttribute('data-fb');" alt="${s.nombre}" />
             <div class="cut-card-body">
               <div>
-                <strong style="font-size:1rem; display:block; margin-bottom:5px; color:var(--gold);">${s.nombre}</strong>
-                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">${s.desc || ''}</p>
+                <strong class="cut-card-title">${s.nombre}</strong>
+                <p class="cut-card-desc">${s.desc || ''}</p>
               </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:9px;">
+              <div class="cut-card-footer">
                 <span class="cut-price">$${Number(s.precio).toLocaleString("es-AR")}</span>
                 <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(${s.id})">Reservar</button>
               </div>
@@ -1965,7 +2063,7 @@
           <div class="item-row">
             <div>
               <strong>${p.nombre}</strong>
-              <span style="font-size:0.78rem; color:var(--text-muted); display:block;">Stock disponible: ${p.stock} u.</span>
+              <span style="font-size:0.76rem; color:var(--text-muted); display:block;">Stock disponible: ${p.stock} u.</span>
             </div>
             <strong style="color:var(--gold);">$${Number(p.precio).toLocaleString("es-AR")}</strong>
           </div>
@@ -1975,8 +2073,8 @@
       if (pubGrid) {
         pubGrid.innerHTML = (estado.productos || []).map(p => `
           <div class="card" style="margin-bottom:0;">
-            <strong style="font-size:1.04rem; color:var(--gold); display:block; margin-bottom:6px;">${p.nombre}</strong>
-            <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">Disponibles en local: <strong>${p.stock} unidades</strong></p>
+            <strong style="font-size:1rem; color:var(--gold); display:block; margin-bottom:6px;">${p.nombre}</strong>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Disponibles en local: <strong>${p.stock} unidades</strong></p>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span class="cut-price">$${Number(p.precio).toLocaleString("es-AR")}</span>
               <span class="status-pill ${p.stock > 0 ? 'status-listo' : 'status-pendiente'}">${p.stock > 0 ? 'En Stock' : 'Sin Stock'}</span>
@@ -1990,7 +2088,7 @@
           <div class="item-row">
             <div>
               <strong>${p.nombre}</strong> ($${Number(p.precio).toLocaleString("es-AR")})
-              <div style="font-size:0.78rem; color:var(--text-muted);">Stock actual: <strong>${p.stock}</strong></div>
+              <div style="font-size:0.76rem; color:var(--text-muted);">Stock actual: <strong>${p.stock}</strong></div>
             </div>
             <div style="display:flex; gap:6px; flex-wrap:wrap;">
               <button type="button" class="btn btn-success" onclick="venderProductoStock(${p.id})">💰 Vender 1 (+Caja)</button>
@@ -2110,7 +2208,7 @@
         grilla.innerHTML += `
           <div class="slot-item ${cantEnHora > 0 ? 'occupied' : ''} ${estaSeleccionado ? 'selected' : ''}" onclick="seleccionarHorario('${hora}')">
             <div>${hora} hs</div>
-            <small style="font-size:0.68rem; display:block;">
+            <small style="font-size:0.66rem; display:block;">
               ${cantEnHora === 0 ? "Disponible" : cantEnHora + " anotado(s)"}
             </small>
           </div>
@@ -2161,7 +2259,7 @@
       comp.style.display = "block";
       comp.innerHTML = `
         <h4 style="color:var(--success); margin-bottom:6px;">✅ ¡Turno Registrado en la Agenda!</h4>
-        <p style="font-size:0.88rem; line-height:1.45;">
+        <p style="font-size:0.86rem; line-height:1.45;">
           <strong>Cliente:</strong> ${nuevoTurno.cliente}<br>
           <strong>Corte:</strong> ${nuevoTurno.servicio} ($${Number(nuevoTurno.precio).toLocaleString("es-AR")})<br>
           <strong>Fecha y Hora:</strong> ${nuevoTurno.fecha} a las ${nuevoTurno.hora} hs<br>
@@ -2183,7 +2281,7 @@
         .sort((a, b) => a.hora.localeCompare(b.hora));
 
       if (lista.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.88rem;">No hay turnos anotados para esta fecha todavía. ¡Todos los horarios disponibles!</p>`;
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.86rem;">No hay turnos anotados para esta fecha todavía. ¡Todos los horarios disponibles!</p>`;
         return;
       }
 
@@ -2191,7 +2289,7 @@
         <div class="item-row">
           <div>
             <strong>#${idx + 1} — ${t.hora} hs</strong> | ${t.cliente.split(" ")[0]}
-            <span style="color:var(--text-muted); font-size:0.82rem;">(${t.servicio})</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">(${t.servicio})</span>
           </div>
           <span class="status-pill ${t.estado === 'atendiendo' ? 'status-atendiendo' : t.estado === 'finalizado' ? 'status-listo' : 'status-espera'}">
             ${t.estado === 'atendiendo' ? '✂️ Cortando Ahora' : t.estado === 'finalizado' ? '✅ Terminado' : '⏳ En Espera'}
@@ -2256,7 +2354,6 @@
       cambiarSeccion("inicio");
     }
 
-    /* OCULTAR BOTONES DE LOGIN CUANDO ENTRÁS COMO USUARIO/ALUMNO O PERSONAL */
     function renderSesionUsuario() {
       const btnHeaderLogin = document.getElementById("btnHeaderLogin");
       const btnHeroCrearUsuario = document.getElementById("btnHeroCrearUsuario");
@@ -2275,7 +2372,6 @@
 
       const haySesionActiva = Boolean(usuarioActual || esPersonal);
 
-      // Si está logueado el usuario/alumno o el admin/personal, desaparece el botón de login de arriba y de la portada
       if (btnHeaderLogin) {
         btnHeaderLogin.classList.toggle("hidden", haySesionActiva);
       }
@@ -2302,8 +2398,8 @@
                 ${usuarioActual.estado === 'activo' ? '✅ Habilitado' : '⏳ Pendiente de Aceptación'}
               </span>
             </div>
-            <p style="margin-bottom:8px; font-size:0.9rem;"><strong>Usuario:</strong> @${usuarioActual.user} | <strong>Categoría:</strong> ${usuarioActual.rol === 'alumno' ? '🎓 Alumno del Curso' : '💈 Cliente Barbería'}</p>
-            <p style="margin-bottom:14px; font-size:0.86rem; color:var(--text-muted);"><strong>Gmail:</strong> ${usuarioActual.email}</p>
+            <p style="margin-bottom:8px; font-size:0.88rem;"><strong>Usuario:</strong> @${usuarioActual.user} | <strong>Categoría:</strong> ${usuarioActual.rol === 'alumno' ? '🎓 Alumno del Curso' : '💈 Cliente Barbería'}</p>
+            <p style="margin-bottom:14px; font-size:0.84rem; color:var(--text-muted);"><strong>Gmail:</strong> ${usuarioActual.email}</p>
             <div style="display:flex; gap:8px; flex-wrap:wrap;">
               <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
               <button type="button" class="btn" onclick="cambiarSeccion('sorteos')">🎁 Sorteos</button>
@@ -2314,7 +2410,6 @@
           </div>
         `;
       } else if (esPersonal) {
-        // Si entró como Personal, ocultamos también el ítem de login de cliente del menú lateral
         if (drawerItemUsuarios) drawerItemUsuarios.classList.add("hidden");
         vistaAuth.style.display = "none";
         vistaLog.style.display = "block";
@@ -2323,7 +2418,7 @@
             <div class="card-header">
               <div class="card-title">💼 Sesión de Personal Activa</div>
             </div>
-            <p style="margin-bottom:12px; font-size:0.9rem; color:var(--text-muted);">Estás operando como Administrador / Personal de Fenix Studio.</p>
+            <p style="margin-bottom:12px; font-size:0.88rem; color:var(--text-muted);">Estás operando como Administrador / Personal de Fenix Studio.</p>
             <div style="display:flex; gap:8px; flex-wrap:wrap;">
               <button type="button" class="btn btn-gold" onclick="cambiarSeccion('admin')">Ir al Panel de Personal</button>
               <button type="button" class="btn" onclick="cambiarClavePersonal()">🔑 Cambiar Contraseña</button>
@@ -2369,7 +2464,7 @@
             <div class="item-row">
               <div>
                 <strong style="color:var(--gold);">${c.titulo}</strong>
-                <p style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">${c.descripcion}</p>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">${c.descripcion}</p>
               </div>
               <span class="status-pill status-listo">Módulo #${i + 1}</span>
             </div>
@@ -2405,7 +2500,7 @@
           <div class="item-row">
             <div>
               <strong style="color:var(--gold);">${c.titulo}</strong>
-              <p style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">${c.descripcion}</p>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">${c.descripcion}</p>
             </div>
             <span class="status-pill status-listo">Módulo #${i + 1} Activo</span>
           </div>
@@ -2422,15 +2517,15 @@
       cont.innerHTML = `
         <div style="text-align:center; padding:16px;">
           <span class="status-pill status-listo">SORTEO ACTIVO</span>
-          <h3 style="font-size:1.45rem; color:var(--gold); margin:10px 0;">${s.titulo}</h3>
-          <p style="font-size:0.98rem; margin-bottom:8px;">🏆 <strong>Premio:</strong> ${s.premio}</p>
-          <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:16px;">📅 Fecha: ${s.fecha} | Participantes: <strong>${(s.participantes || []).length}</strong></p>
+          <h3 style="font-size:1.4rem; color:var(--gold); margin:10px 0;">${s.titulo}</h3>
+          <p style="font-size:0.95rem; margin-bottom:8px;">🏆 <strong>Premio:</strong> ${s.premio}</p>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:16px;">📅 Fecha: ${s.fecha} | Participantes: <strong>${(s.participantes || []).length}</strong></p>
           ${!usuarioActual ? `
             <button type="button" class="btn btn-gold btn-cta-large" onclick="cambiarSeccion('usuarios')">
               🔑 Iniciá Sesión o Creá tu Usuario para Participar
             </button>
           ` : yaParticipa ? `
-            <div style="padding:10px 16px; background:rgba(16,185,129,0.2); border:1px solid var(--success); border-radius:10px; display:inline-block; font-size:0.88rem;">
+            <div style="padding:10px 16px; background:rgba(16,185,129,0.2); border:1px solid var(--success); border-radius:10px; display:inline-block; font-size:0.86rem;">
               ✅ <strong>¡Ya estás participando con @${usuarioActual.user}!</strong>
             </div>
           ` : `
@@ -2502,7 +2597,7 @@
       if (!cont) return;
       const pendientes = (estado.usuarios || []).filter(u => u.estado === "pendiente");
       if (pendientes.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.86rem;">✅ No hay solicitudes pendientes en este momento.</p>`;
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.84rem;">✅ No hay solicitudes pendientes en este momento.</p>`;
         return;
       }
       cont.innerHTML = pendientes.map(u => `
@@ -2510,7 +2605,7 @@
           <div>
             <strong>${u.nombre}</strong> (@${u.user})
             <span class="status-pill status-pendiente">${u.rol === 'alumno' ? '🎓 Solicitud Alumno' : '💈 Nuevo Cliente'}</span>
-            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">
+            <div style="font-size:0.78rem; color:var(--text-muted); margin-top:4px;">
               📧 ${u.email} | 📱 ${u.telefono || 'Sin tel'}
             </div>
           </div>
@@ -2564,7 +2659,7 @@
       document.getElementById("finBalanceNeto").innerText = "$" + neto.toLocaleString("es-AR");
 
       if (movs.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.86rem;">Sin movimientos cargados.</p>`;
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.84rem;">Sin movimientos cargados.</p>`;
         return;
       }
 
@@ -2615,7 +2710,7 @@
         <div class="item-row">
           <div>
             <strong>${d.nombre}</strong> — <span style="color:var(--danger); font-weight:700;">$${Number(d.monto).toLocaleString("es-AR")}</span>
-            <div style="font-size:0.78rem; color:var(--text-muted);">${d.detalle}</div>
+            <div style="font-size:0.76rem; color:var(--text-muted);">${d.detalle}</div>
           </div>
           <div style="display:flex; gap:6px;">
             <button type="button" class="btn btn-success" onclick="saldarDeudor(${d.id})">✅ Cobrar (+Ingreso)</button>
@@ -2653,7 +2748,7 @@
       lista.sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
 
       if (lista.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.86rem;">No hay turnos agendados para esta fecha.</p>`;
+        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.84rem;">No hay turnos agendados para esta fecha.</p>`;
         return;
       }
 
@@ -2664,7 +2759,7 @@
             <span class="status-pill ${t.estado === 'atendiendo' ? 'status-atendiendo' : t.estado === 'finalizado' ? 'status-listo' : 'status-espera'}">
               ${t.estado === 'atendiendo' ? '✂️ En Silla' : t.estado === 'finalizado' ? '✅ Terminado' : '⏳ En Espera'}
             </span>
-            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">
+            <div style="font-size:0.78rem; color:var(--text-muted); margin-top:4px;">
               ${t.servicio} ($${Number(t.precio).toLocaleString("es-AR")}) | 📱 ${t.telefono} | 📧 ${t.email || 'Sin email'}
               ${t.nota ? `<br>📝 Nota: <em>${t.nota}</em>` : ``}
             </div>
@@ -2742,7 +2837,7 @@
           <div>
             <strong>${u.nombre}</strong> (@${u.user} / Clave: <code>${u.pass}</code>)
             <span class="status-pill ${u.estado === 'activo' ? 'status-listo' : 'status-espera'}">${u.estado}</span>
-            <div style="font-size:0.78rem; color:var(--text-muted);">${u.rol === 'alumno' ? '🎓 Alumno' : '💈 Cliente'} | ${u.email}</div>
+            <div style="font-size:0.76rem; color:var(--text-muted);">${u.rol === 'alumno' ? '🎓 Alumno' : '💈 Cliente'} | ${u.email}</div>
           </div>
           <div style="display:flex; gap:6px;">
             ${u.rol === 'alumno' ? `<button type="button" class="btn btn-gold" onclick="cobrarCuotaAlumno(${u.id})">💰 Cobrar Mes ($75.000)</button>` : ``}
