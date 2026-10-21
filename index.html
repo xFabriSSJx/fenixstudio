@@ -3,889 +3,206 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fenix Studio | Barbería & Academia Oficial</title>
+  <title>Fenix Studio | Barbería & Academia</title>
   <style>
     :root {
-      --bg-main: #09090c;
-      --bg-card: rgba(18, 18, 24, 0.92);
-      --bg-card-alt: rgba(28, 28, 36, 0.95);
-      --gold: #d4af37;
-      --gold-light: #f5d76e;
-      --text-main: #f4f4f6;
-      --text-muted: #a1a1aa;
-      --danger: #ef4444;
-      --success: #10b981;
-      --info: #3b82f6;
-      --border: rgba(212, 175, 55, 0.25);
+      --bg-main: #09090b; --bg-card: rgba(15, 15, 19, 0.93); --bg-card-alt: rgba(23, 23, 29, 0.96);
+      --gold: #c8a44d; --gold-light: #dfc072; --text-main: #f4f4f6; --text-muted: #9ca3af;
+      --danger: #dc2626; --success: #059669; --info: #2563eb;
+      --border: rgba(255, 255, 255, 0.08); --border-gold: rgba(200, 164, 77, 0.35);
       --hero-bg: url('fondodelapagina.jpeg');
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
     body {
       background-color: var(--bg-main);
-      background-image:
-        linear-gradient(to bottom, rgba(9, 9, 12, 0.78), rgba(9, 9, 12, 0.93)),
-        var(--hero-bg),
-        url('fondodelapagina.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
+      background-image: linear-gradient(to bottom, rgba(9,9,11,0.84), rgba(9,9,11,0.96)), var(--hero-bg), url('fondodelapagina.jpg');
+      background-size: cover; background-position: center; background-attachment: fixed;
+      color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden;
     }
-
-    /* CABECERA PRINCIPAL ANTI-CHOQUES EN CELULAR */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(9, 9, 12, 0.96);
-      border-bottom: 1px solid var(--border);
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+      position: sticky; top: 0; z-index: 1000; background: rgba(9, 9, 11, 0.95);
+      backdrop-filter: blur(14px); border-bottom: 1px solid var(--border);
+      padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; gap: 8px;
     }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    /* BOTÓN DE LAS 3 BARRAS */
+    .header-left { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
     .menu-toggle {
-      width: 38px;
-      height: 38px;
-      min-width: 38px;
-      min-height: 38px;
-      flex-shrink: 0;
-      border-radius: 9px;
-      background: var(--bg-card-alt);
-      border: 1px solid var(--gold);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      cursor: pointer;
-      position: relative;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
+      width: 38px; height: 38px; min-width: 38px; min-height: 38px; flex-shrink: 0;
+      border-radius: 6px; background: transparent; border: 1px solid var(--border-gold);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 4px; cursor: pointer; position: relative; user-select: none; -webkit-tap-highlight-color: transparent;
     }
-
-    .menu-toggle .bar {
-      width: 18px;
-      height: 2.2px;
-      background-color: var(--gold);
-      border-radius: 2px;
-      pointer-events: none;
-      display: block;
-    }
-
+    .menu-toggle .bar { width: 17px; height: 1.8px; background-color: var(--gold); border-radius: 1px; pointer-events: none; display: block; }
     .menu-dot {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background: var(--danger);
-      color: #fff;
-      font-size: 0.66rem;
-      font-weight: 800;
-      min-width: 18px;
-      height: 18px;
-      padding: 0 4px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 8px rgba(239, 68, 68, 0.9);
-      pointer-events: none;
+      position: absolute; top: -4px; right: -4px; background: var(--danger); color: #fff;
+      font-size: 0.64rem; font-weight: 700; min-width: 17px; height: 17px; padding: 0 4px;
+      border-radius: 999px; display: flex; align-items: center; justify-content: center; pointer-events: none;
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      cursor: pointer;
-      user-select: none;
-      flex-shrink: 0;
-    }
-
-    /* CÍRCULO FS PERFECTAMENTE REDONDO SIEMPRE */
+    .brand { display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; flex-shrink: 0; }
     .brand-logo {
-      width: 38px;
-      height: 38px;
-      min-width: 38px;
-      min-height: 38px;
-      flex-shrink: 0;
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), #8a6d1b);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      color: #000;
-      font-size: 0.95rem;
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+      width: 36px; height: 36px; min-width: 36px; min-height: 36px; flex-shrink: 0; aspect-ratio: 1/1;
+      border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center;
+      font-weight: 800; color: #09090b; font-size: 0.86rem; letter-spacing: 0.5px;
     }
+    .brand-text h1 { font-size: 0.9rem; letter-spacing: 1.6px; color: var(--text-main); text-transform: uppercase; line-height: 1.1; font-weight: 700; }
+    .brand-text span { font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); display: block; margin-top: 2px; }
+    .nav-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 
-    .brand-text h1 {
-      font-size: 0.92rem;
-      letter-spacing: 0.6px;
-      color: var(--gold);
-      text-transform: uppercase;
-      line-height: 1.08;
-      font-weight: 800;
-    }
-
-    .brand-text span {
-      font-size: 0.64rem;
-      color: var(--text-muted);
-      display: block;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-
-    /* AJUSTE ESPECIAL PARA TELÉFONOS PARA QUE NUNCA CHOQUEN LAS LETRAS CON LOS BOTONES */
     @media (max-width: 520px) {
-      header {
-        padding: 8px 8px;
-        gap: 6px;
-      }
-      .header-left {
-        gap: 6px;
-      }
-      .menu-toggle {
-        width: 35px;
-        height: 35px;
-        min-width: 35px;
-        min-height: 35px;
-      }
-      .brand-logo {
-        width: 35px;
-        height: 35px;
-        min-width: 35px;
-        min-height: 35px;
-        font-size: 0.88rem;
-      }
-      .brand-text span {
-        display: none;
-      }
-      .brand-text h1 {
-        font-size: 0.76rem;
-        line-height: 1.05;
-        max-width: 54px;
-        word-wrap: break-word;
-      }
-      .nav-actions {
-        gap: 5px;
-      }
-      .nav-actions .btn {
-        padding: 6px 8px;
-        font-size: 0.71rem;
-        border-radius: 6px;
-        gap: 4px;
-      }
+      header { padding: 8px 8px; gap: 5px; }
+      .header-left { gap: 6px; }
+      .menu-toggle, .brand-logo { width: 34px; height: 34px; min-width: 34px; min-height: 34px; font-size: 0.8rem; }
+      .brand-text span { display: none; }
+      .brand-text h1 { font-size: 0.72rem; letter-spacing: 0.8px; line-height: 1.05; max-width: 55px; }
+      .nav-actions { gap: 4px; }
+      .nav-actions .btn { padding: 6px 8px; font-size: 0.69rem; }
     }
 
-    /* MENÚ LATERAL DESLIZANTE Y BORDE OSCURO */
     .drawer-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.78);
-      z-index: 3000;
-      display: none;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
+      position: fixed; inset: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(3px); z-index: 3000; display: none; cursor: pointer; -webkit-tap-highlight-color: transparent;
     }
-
-    .drawer-overlay.open {
-      display: block !important;
-    }
-
+    .drawer-overlay.open { display: block !important; }
     .side-drawer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 290px;
-      max-width: 82vw;
-      height: 100vh;
-      background: #111117;
-      border-right: 1px solid var(--gold);
-      z-index: 3001;
-      transform: translateX(-105%);
-      transition: transform 0.26s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 16px 14px;
-      overflow-y: auto;
-      box-shadow: 8px 0 30px rgba(0, 0, 0, 0.9);
+      position: fixed; top: 0; left: 0; width: 285px; max-width: 82vw; height: 100vh;
+      background: #0d0d11; border-right: 1px solid var(--border); z-index: 3001;
+      transform: translateX(-105%); transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 18px 14px; overflow-y: auto; box-shadow: 10px 0 35px rgba(0,0,0,0.9);
     }
-
-    .side-drawer.open {
-      transform: translateX(0%) !important;
-    }
-
-    .drawer-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 10px;
-    }
-
+    .side-drawer.open { transform: translateX(0%) !important; }
+    .drawer-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 10px; }
     .drawer-close {
-      background: var(--bg-card-alt);
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
-      min-height: 36px;
-      flex-shrink: 0;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1.05rem;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      -webkit-tap-highlight-color: transparent;
+      background: transparent; border: 1px solid var(--border); color: var(--text-muted);
+      width: 34px; height: 34px; min-width: 34px; min-height: 34px; border-radius: 6px;
+      cursor: pointer; font-size: 0.95rem; display: flex; align-items: center; justify-content: center;
     }
-
-    .drawer-close:active {
-      background: var(--gold);
-      color: #000;
-    }
-
-    .drawer-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
+    .drawer-close:active { border-color: var(--gold); color: var(--gold); }
+    .drawer-nav { display: flex; flex-direction: column; gap: 3px; }
     .drawer-item {
-      background: transparent;
-      color: var(--text-main);
-      border: 1px solid transparent;
-      padding: 9px 12px;
-      border-radius: 9px;
-      text-align: left;
-      font-size: 0.86rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: 0.2s;
-      text-decoration: none;
-      width: 100%;
+      background: transparent; color: #d4d4d8; border: 1px solid transparent; padding: 10px 12px;
+      border-radius: 6px; text-align: left; font-size: 0.83rem; font-weight: 500; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; text-decoration: none; width: 100%;
     }
+    .drawer-item:hover { background: rgba(255,255,255,0.03); color: #fff; }
+    .drawer-item.active { background: rgba(200,164,77,0.1); color: var(--gold); border-left: 2px solid var(--gold); font-weight: 600; }
+    .drawer-socials { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; }
+    .drawer-footer { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+    .staff-subtle-link { background: transparent; border: none; color: #52525b; font-size: 0.72rem; text-align: left; padding: 4px 2px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
 
-    .drawer-item:hover {
-      background: var(--bg-card-alt);
-      border-color: var(--border);
-    }
-
-    .drawer-item.active {
-      background: rgba(212, 175, 55, 0.16);
-      color: var(--gold);
-      border-color: var(--gold);
-    }
-
-    .drawer-socials {
-      margin-top: 12px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .drawer-footer {
-      margin-top: 16px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .staff-subtle-link {
-      background: transparent;
-      border: none;
-      color: #52525b;
-      font-size: 0.74rem;
-      text-align: left;
-      padding: 5px 4px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .staff-subtle-link:hover {
-      color: var(--gold);
-    }
-
-    /* BOTONES GENERALES */
     .btn {
-      background: var(--bg-card-alt);
-      color: var(--text-main);
-      border: 1px solid var(--border);
-      padding: 6px 11px;
-      border-radius: 7px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      white-space: nowrap;
+      background: var(--bg-card-alt); color: var(--text-main); border: 1px solid var(--border);
+      padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.3px;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; white-space: nowrap; transition: 0.2s;
     }
-
-    .btn:hover {
-      border-color: var(--gold);
-    }
-
-    .btn-gold {
-      background: linear-gradient(135deg, var(--gold), #b58d22);
-      color: #000;
-      border: none;
-      font-weight: 700;
-    }
-
+    .btn:hover { border-color: var(--border-gold); }
+    .btn-gold { background: var(--gold); color: #09090b; border: 1px solid var(--gold); font-weight: 700; }
+    .btn-gold:hover { background: var(--gold-light); }
     .btn-success { background: var(--success); color: #fff; border: none; }
     .btn-danger { background: var(--danger); color: #fff; border: none; }
     .btn-info { background: var(--info); color: #fff; border: none; }
+    .svg-icon { width: 16px; height: 16px; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+    .badge { background: var(--danger); color: #fff; font-size: 0.65rem; font-weight: 700; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; }
+    .hidden { display: none !important; }
 
-    /* ÍCONOS SVG DENTRO DE BOTONES */
-    .svg-icon {
-      width: 17px;
-      height: 17px;
-      flex-shrink: 0;
-      display: inline-block;
-      vertical-align: middle;
-    }
+    .container { max-width: 1120px; width: 100%; margin: 0 auto; padding: 18px 12px; flex: 1; }
+    .section { display: none; }
+    .section.active { display: block; }
 
-    .badge {
-      background: var(--danger);
-      color: #fff;
-      font-size: 0.68rem;
-      font-weight: 800;
-      min-width: 18px;
-      height: 18px;
-      padding: 0 5px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    /* CONTENEDOR PRINCIPAL */
-    .container {
-      max-width: 1140px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 16px 12px;
-      flex: 1;
-    }
-
-    .section {
-      display: none;
-    }
-
-    .section.active {
-      display: block;
-    }
-
-    /* PORTADA PRINCIPAL CON fondodelapagina.jpeg */
     .hero-banner {
-      position: relative;
-      background-image:
-        linear-gradient(180deg, rgba(9, 9, 12, 0.45) 0%, rgba(9, 9, 12, 0.92) 100%),
-        var(--hero-bg),
-        url('fondodelapagina.jpg');
-      background-size: cover;
-      background-position: center;
-      border: 1px solid var(--gold);
-      border-radius: 16px;
-      padding: 32px 16px;
-      text-align: center;
-      margin-bottom: 20px;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
+      background-image: linear-gradient(180deg, rgba(9,9,11,0.52) 0%, rgba(9,9,11,0.94) 100%), var(--hero-bg), url('fondodelapagina.jpg');
+      background-size: cover; background-position: center; border: 1px solid var(--border);
+      border-radius: 10px; padding: 40px 18px; text-align: center; margin-bottom: 20px;
     }
+    .hero-subtitle { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 3px; color: var(--gold); display: block; margin-bottom: 8px; font-weight: 600; }
+    .hero-banner h2 { font-size: 1.9rem; color: #fff; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 10px; }
+    .hero-banner p { color: #d4d4d8; max-width: 580px; margin: 0 auto 20px; font-size: 0.86rem; line-height: 1.55; }
+    .hero-buttons { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-large { font-size: 0.78rem; padding: 9px 16px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.7px; white-space: normal; text-align: center; }
 
-    .hero-banner h2 {
-      font-size: 1.85rem;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9);
-    }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    @media (max-width: 820px) { .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 9px; } }
 
-    .hero-banner p {
-      color: #f4f4f6;
-      max-width: 620px;
-      margin: 0 auto 16px;
-      font-size: 0.9rem;
-      line-height: 1.48;
-    }
+    .card { background: var(--bg-card); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 18px; }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 9px; border-bottom: 1px solid var(--border); gap: 8px; flex-wrap: wrap; }
+    .card-title { font-size: 0.85rem; color: var(--text-main); font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px; display: flex; align-items: center; gap: 8px; }
+    .card-title::before { content: ""; display: inline-block; width: 3px; height: 13px; background: var(--gold); border-radius: 1px; }
 
-    .hero-buttons {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-cta-large {
-      font-size: 0.84rem;
-      padding: 8px 16px;
-      border-radius: 8px;
-      white-space: normal;
-      text-align: center;
-    }
-
-    /* GRILLAS Y TARJETAS */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 14px;
-    }
-
-    /* CUADRÍCULA DE CORTES: 4 EN PC, 2 POR FILA EN CELULAR (FOTOS MÁS CHICAS Y VISIBLES) */
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    @media (max-width: 820px) {
-      .grid-4 {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-    }
-
-    .card {
-      background: var(--bg-card);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 15px;
-      margin-bottom: 18px;
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      padding-bottom: 9px;
-      border-bottom: 1px solid var(--border);
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .card-title {
-      font-size: 1rem;
-      color: var(--gold);
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* TARJETAS DE CORTES COMPACTAS EN CUADRÍCULA */
-    .cut-card {
-      background: var(--bg-card-alt);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .cut-card img {
-      width: 100%;
-      height: 125px;
-      object-fit: cover;
-      object-position: center;
-      border-bottom: 1px solid var(--border);
-      background: #1a1a22;
-    }
-
-    .cut-card-body {
-      padding: 10px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .cut-card-title {
-      font-size: 0.88rem;
-      display: block;
-      margin-bottom: 4px;
-      color: var(--gold);
-      line-height: 1.2;
-    }
-
-    .cut-card-desc {
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-
-    .cut-card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--border);
-      padding-top: 8px;
-      gap: 4px;
-      flex-wrap: wrap;
-    }
-
-    .cut-price {
-      font-size: 0.96rem;
-      font-weight: 800;
-      color: var(--gold);
-    }
+    .cut-card { background: var(--bg-card-alt); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+    .cut-card img { width: 100%; height: 125px; object-fit: cover; border-bottom: 1px solid var(--border); background: #141419; }
+    .cut-card-body { padding: 10px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .cut-card-title { font-size: 0.84rem; display: block; margin-bottom: 4px; color: var(--text-main); font-weight: 600; }
+    .cut-card-desc { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; line-height: 1.3; }
+    .cut-card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 8px; gap: 4px; flex-wrap: wrap; }
+    .cut-price { font-size: 0.9rem; font-weight: 700; color: var(--gold); }
 
     @media (max-width: 480px) {
-      .cut-card img {
-        height: 105px;
-      }
-      .cut-card-body {
-        padding: 8px;
-      }
-      .cut-card-title {
-        font-size: 0.8rem;
-      }
-      .cut-card-desc {
-        font-size: 0.68rem;
-        margin-bottom: 6px;
-      }
-      .cut-price {
-        font-size: 0.86rem;
-      }
-      .cut-card-footer .btn {
-        padding: 4px 8px;
-        font-size: 0.7rem;
-      }
+      .cut-card img { height: 104px; }
+      .cut-card-body { padding: 8px; }
+      .cut-card-title { font-size: 0.76rem; }
+      .cut-card-desc { font-size: 0.66rem; margin-bottom: 6px; }
+      .cut-price { font-size: 0.82rem; }
+      .cut-card-footer .btn { padding: 4px 7px; font-size: 0.66rem; }
     }
 
-    /* GALERÍA FENIX EN CUADRÍCULA COMPACTA (2x2 EN CELULAR, 4 EN PC) */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    @media (max-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; } }
+    .gallery-item { position: relative; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); height: 135px; background: #121217; }
+    @media (max-width: 480px) { .gallery-item { height: 112px; } }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); padding: 14px 6px 5px; font-size: 0.7rem; color: #e4e4e7; text-align: center; }
 
-    @media (max-width: 768px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 9px;
-      }
-    }
-
-    .gallery-item {
-      position: relative;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      height: 135px;
-      background: #121217;
-    }
-
-    @media (max-width: 480px) {
-      .gallery-item {
-        height: 115px;
-      }
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .gallery-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.92));
-      padding: 14px 6px 5px;
-      font-size: 0.72rem;
-      color: #fff;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    /* AVISOS */
-    .notice-box {
-      background: rgba(212, 175, 55, 0.12);
-      border-left: 4px solid var(--gold);
-      padding: 12px 14px;
-      border-radius: 8px;
-      margin-bottom: 16px;
-      font-size: 0.85rem;
-      line-height: 1.45;
-      color: #e5e7eb;
-    }
-
+    .notice-box { background: rgba(200,164,77,0.08); border-left: 2px solid var(--gold); padding: 12px 14px; border-radius: 6px; margin-bottom: 14px; font-size: 0.82rem; line-height: 1.48; color: #d4d4d8; }
     .notice-box strong { color: var(--gold); }
-
-    /* FORMULARIOS Y HORARIOS */
     .form-group { margin-bottom: 12px; }
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
+    .form-group label { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 5px; font-weight: 600; }
+    input, select, textarea { width: 100%; padding: 8px 10px; background: rgba(9,9,11,0.9); border: 1px solid var(--border); border-radius: 6px; color: var(--text-main); font-size: 0.85rem; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); }
 
-    input, select, textarea {
-      width: 100%;
-      padding: 8px 10px;
-      background: rgba(9, 9, 12, 0.9);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text-main);
-      font-size: 0.88rem;
-    }
+    .slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; margin-top: 8px; }
+    .slot-item { padding: 8px 6px; border-radius: 6px; border: 1px solid var(--border); background: rgba(9,9,11,0.85); text-align: center; cursor: pointer; font-weight: 600; font-size: 0.78rem; }
+    .slot-item.selected { background: var(--gold); color: #09090b; border-color: var(--gold); font-weight: 700; }
+    .slot-item.occupied { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.4); color: #fcd34d; }
 
-    .slots-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
-      gap: 8px;
-      margin-top: 8px;
-    }
+    .item-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 11px; background: var(--bg-card-alt); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 7px; gap: 8px; flex-wrap: wrap; font-size: 0.82rem; }
+    .status-pill { padding: 3px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase; }
+    .status-espera { background: rgba(245,158,11,0.15); color: #fbbf24; }
+    .status-atendiendo { background: rgba(59,130,246,0.15); color: #60a5fa; }
+    .status-listo { background: rgba(16,185,129,0.15); color: #34d399; }
+    .status-pendiente { background: rgba(239,68,68,0.15); color: #f87171; }
 
-    .slot-item {
-      padding: 8px 6px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: rgba(9, 9, 12, 0.85);
-      text-align: center;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.82rem;
-    }
-
-    .slot-item.selected {
-      background: var(--gold);
-      color: #000;
-      border-color: var(--gold);
-      font-weight: 800;
-    }
-
-    .slot-item.occupied {
-      background: rgba(245, 158, 11, 0.15);
-      border-color: #f59e0b;
-      color: #fcd34d;
-    }
-
-    .item-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 9px 11px;
-      background: var(--bg-card-alt);
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      margin-bottom: 8px;
-      gap: 8px;
-      flex-wrap: wrap;
-      font-size: 0.85rem;
-    }
-
-    .status-pill {
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .status-espera { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-    .status-atendiendo { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
-    .status-listo { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-    .status-pendiente { background: rgba(239, 68, 68, 0.2); color: #f87171; }
-
-    .finance-summary {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .finance-box {
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: rgba(9, 9, 12, 0.88);
-      text-align: center;
-    }
-
-    .staff-banner {
-      background: linear-gradient(90deg, #171721, #231d10);
-      border: 1px solid var(--gold);
-      padding: 10px 14px;
-      margin-bottom: 18px;
-      border-radius: 12px;
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
+    .finance-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 14px; }
+    .finance-box { padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: rgba(9,9,11,0.85); text-align: center; }
+    .staff-banner { background: rgba(20,20,26,0.95); border: 1px solid var(--border-gold); padding: 10px 14px; margin-bottom: 16px; border-radius: 8px; display: none; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
     .staff-banner.active { display: flex; }
 
-    /* SECCIÓN INFERIOR DE CONTACTO CON LOGOS OFICIALES */
-    .bottom-contact-bar {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 15px;
-      margin-top: 8px;
-      margin-bottom: 18px;
-    }
-
-    .bottom-contact-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    .bottom-contact-buttons a {
-      padding: 7px 13px;
-      font-size: 0.8rem;
-    }
-
-    footer {
-      background: rgba(9, 9, 12, 0.96);
-      border-top: 1px solid var(--border);
-      padding: 16px 12px;
-      text-align: center;
-      font-size: 0.76rem;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    footer a {
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    footer button {
-      background: none;
-      border: none;
-      color: #52525b;
-      font-size: 0.72rem;
-      cursor: pointer;
-    }
+    .bottom-contact-bar { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-top: 8px; margin-bottom: 16px; text-align: center; }
+    .bottom-contact-buttons { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    footer { background: rgba(9,9,11,0.98); border-top: 1px solid var(--border); padding: 16px 12px; text-align: center; font-size: 0.73rem; color: var(--text-muted); display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+    footer a { color: #d4d4d8; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+    footer button { background: none; border: none; color: #52525b; font-size: 0.7rem; cursor: pointer; }
   </style>
-
-  <!-- FUNCIONES DEL MENÚ LATERAL -->
   <script>
     function abrirMenuLateral() {
-      var drawer = document.getElementById("sideDrawer");
-      var overlay = document.getElementById("drawerOverlay");
-      if (drawer) drawer.classList.add("open");
-      if (overlay) overlay.classList.add("open");
+      document.getElementById("sideDrawer").classList.add("open");
+      document.getElementById("drawerOverlay").classList.add("open");
     }
-
     function cerrarMenuLateral() {
-      var drawer = document.getElementById("sideDrawer");
-      var overlay = document.getElementById("drawerOverlay");
-      if (drawer) drawer.classList.remove("open");
-      if (overlay) overlay.classList.remove("open");
+      document.getElementById("sideDrawer").classList.remove("open");
+      document.getElementById("drawerOverlay").classList.remove("open");
     }
-
     function toggleMenuLateral() {
-      var drawer = document.getElementById("sideDrawer");
-      if (!drawer) return;
-      if (drawer.classList.contains("open")) {
-        cerrarMenuLateral();
-      } else {
-        abrirMenuLateral();
-      }
+      var d = document.getElementById("sideDrawer");
+      if (d.classList.contains("open")) cerrarMenuLateral(); else abrirMenuLateral();
     }
-
     function cambiarSeccion(id) {
-      var secciones = document.querySelectorAll(".section");
-      for (var i = 0; i < secciones.length; i++) {
-        secciones[i].classList.remove("active");
-      }
-      var target = document.getElementById("sec-" + id);
-      if (target) target.classList.add("active");
-
-      var botones = document.querySelectorAll(".drawer-item");
-      for (var j = 0; j < botones.length; j++) {
-        var b = botones[j];
-        if (b.getAttribute("data-sec") === id) {
-          b.classList.add("active");
-        } else {
-          b.classList.remove("active");
-        }
-      }
-
+      document.querySelectorAll(".section").forEach(function(s) { s.classList.remove("active"); });
+      var t = document.getElementById("sec-" + id);
+      if (t) t.classList.add("active");
+      document.querySelectorAll(".drawer-item").forEach(function(b) {
+        b.classList.toggle("active", b.getAttribute("data-sec") === id);
+      });
       cerrarMenuLateral();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -893,88 +210,61 @@
 </head>
 <body>
 
-  <!-- BORDE OSCURO EXTERIOR: AL TOCARLO SE CIERRA EL MENÚ -->
   <div class="drawer-overlay" id="drawerOverlay" onclick="cerrarMenuLateral()"></div>
 
-  <!-- MENÚ LATERAL DESLIZANTE DE LAS 3 BARRAS -->
   <aside class="side-drawer" id="sideDrawer">
     <div>
       <div class="drawer-header">
         <div class="brand" onclick="cambiarSeccion('inicio')">
           <div class="brand-logo">FS</div>
-          <div class="brand-text">
-            <h1>Fenix Studio</h1>
-            <span>Menú Interactivo</span>
-          </div>
+          <div class="brand-text"><h1>Fenix Studio</h1><span>Navegación</span></div>
         </div>
-        <button type="button" class="drawer-close" onclick="cerrarMenuLateral()" aria-label="Cerrar menú">✕</button>
+        <button type="button" class="drawer-close" onclick="cerrarMenuLateral()">✕</button>
       </div>
 
       <nav class="drawer-nav">
-        <button type="button" class="drawer-item active" data-sec="inicio" onclick="cambiarSeccion('inicio')">
-          <span>🏠 Inicio & Principal</span>
-        </button>
-        <button type="button" class="drawer-item" data-sec="cortes" onclick="cambiarSeccion('cortes')">
-          <span>✂️ Tipos de Cortes y Precios</span>
-        </button>
-        <button type="button" class="drawer-item" data-sec="productos" onclick="cambiarSeccion('productos')">
-          <span>🧴 Productos de Barbería</span>
-        </button>
-        <button type="button" class="drawer-item" data-sec="galeria" onclick="cambiarSeccion('galeria')">
-          <span>📸 Galería Fenix</span>
-        </button>
-        <button type="button" class="drawer-item" data-sec="turnos" onclick="cambiarSeccion('turnos')">
-          <span>📅 Reservar Turno</span>
-        </button>
+        <button type="button" class="drawer-item active" data-sec="inicio" onclick="cambiarSeccion('inicio')"><span>Inicio</span></button>
+        <button type="button" class="drawer-item" data-sec="cortes" onclick="cambiarSeccion('cortes')"><span>Tipos de Cortes y Precios</span></button>
+        <button type="button" class="drawer-item" data-sec="productos" onclick="cambiarSeccion('productos')"><span>Productos de Barbería</span></button>
+        <button type="button" class="drawer-item" data-sec="galeria" onclick="cambiarSeccion('galeria')"><span>Galería Fenix</span></button>
+        <button type="button" class="drawer-item" data-sec="turnos" onclick="cambiarSeccion('turnos')"><span>Reservar Turno</span></button>
         <button type="button" class="drawer-item" data-sec="academia" onclick="cambiarSeccion('academia')">
-          <span>🎓 Curso (3 Meses) y Aula Virtual</span>
-          <span class="badge hidden" id="badgeMenuCurso">0</span>
+          <span>Curso (3 Meses) y Aula Virtual</span><span class="badge hidden" id="badgeMenuCurso">0</span>
         </button>
-        <button type="button" class="drawer-item" data-sec="sorteos" onclick="cambiarSeccion('sorteos')">
-          <span>🎁 Sorteos & Beneficios</span>
-        </button>
-
+        <button type="button" class="drawer-item" data-sec="sorteos" onclick="cambiarSeccion('sorteos')"><span>Sorteos y Beneficios</span></button>
         <button type="button" class="drawer-item" id="drawerItemUsuarios" data-sec="usuarios" onclick="cambiarSeccion('usuarios')">
-          <span id="txtDrawerUsuarios">👤 Iniciar Sesión / Crear Usuario</span>
+          <span id="txtDrawerUsuarios">Iniciar Sesión / Registro</span>
         </button>
-
         <button type="button" class="drawer-item hidden" id="drawerItemPersonal" data-sec="admin" onclick="cambiarSeccion('admin')">
-          <span style="color:var(--gold);">💼 Panel de Personal</span>
-          <span class="badge hidden" id="badgeDrawerPersonal">0</span>
+          <span style="color:var(--gold);">Panel de Personal</span><span class="badge hidden" id="badgeDrawerPersonal">0</span>
         </button>
       </nav>
 
-      <!-- REDES CON LOGOS OFICIALES SVG (TELÉFONO BLANCO NÍTIDO EN WHATSAPP) -->
       <div class="drawer-socials">
         <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="drawer-item">
-          <span style="display:flex; align-items:center; gap:8px;">
+          <span style="display:flex;align-items:center;gap:8px;">
             <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             Instagram
           </span>
-          <span style="color:var(--gold); font-size:0.75rem;">@fenixstudio25</span>
+          <span style="color:var(--gold);font-size:0.74rem;">@fenixstudio25</span>
         </a>
         <a href="https://wa.me/543624595042" target="_blank" class="drawer-item">
-          <span style="display:flex; align-items:center; gap:8px;">
-            <svg class="svg-icon" viewBox="0 0 24 24">
-              <path fill="#25D366" d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.15-1.35C8.58 21.51 10.24 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
-              <path fill="#FFFFFF" d="M16.6 14.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.7.8-.1.1-.2.2-.4.1-.9-.4-1.6-1-2.2-1.8-.1-.2 0-.3.1-.4.1-.1.2-.3.3-.4.1-.1.1-.2.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.2-.7-1.6-.2-.4-.3-.3-.5-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.4 1.5.6 2.1.5 2.5.4.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3z"/>
-            </svg>
+          <span style="display:flex;align-items:center;gap:8px;">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path fill="#25D366" d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.15-1.35C8.58 21.51 10.24 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/><path fill="#FFFFFF" d="M16.6 14.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.7.8-.1.1-.2.2-.4.1-.9-.4-1.6-1-2.2-1.8-.1-.2 0-.3.1-.4.1-.1.2-.3.3-.4.1-.1.1-.2.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.2-.7-1.6-.2-.4-.3-.3-.5-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.4 1.5.6 2.1.5 2.5.4.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3z"/></svg>
             WhatsApp
           </span>
         </a>
         <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="drawer-item">
-          <span style="display:flex; align-items:center; gap:8px;">
-            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span style="display:flex;align-items:center;gap:8px;">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#c8a44d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
             C. Ushuaia y Pje. Mansilla
           </span>
-          <span style="color:var(--gold); font-size:0.74rem;">Mapa</span>
         </a>
       </div>
     </div>
 
-    <!-- ACCESO PERSONAL DISCRETO AL FONDO DEL MENÚ -->
     <div class="drawer-footer">
-      <div style="font-size:0.72rem; color:#52525b;" id="textoNube">● Sistema Activo</div>
+      <div style="font-size:0.7rem;color:#52525b;" id="textoNube">● Sistema Activo</div>
       <button type="button" class="staff-subtle-link" onclick="accesoPersonalLogin()">
         <span id="lblAccesoPersonalDrawer">Acceso Personal</span>
         <span class="badge hidden" id="badgeSubtlePersonal">0</span>
@@ -982,754 +272,398 @@
     </div>
   </aside>
 
-  <!-- CABECERA PRINCIPAL -->
   <header>
     <div class="header-left">
-      <button type="button" class="menu-toggle" id="btnMenuTresBarras" onclick="toggleMenuLateral()" title="Abrir menú">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+      <button type="button" class="menu-toggle" onclick="toggleMenuLateral()" title="Abrir menú">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         <span class="menu-dot hidden" id="badgeMenuHamburguesa">0</span>
       </button>
-
       <div class="brand" onclick="toqueSecretoLogo()">
         <div class="brand-logo">FS</div>
-        <div class="brand-text">
-          <h1>Fenix Studio</h1>
-          <span>Barbería & Academia</span>
-        </div>
+        <div class="brand-text"><h1>Fenix Studio</h1><span>Barbería & Academia</span></div>
       </div>
     </div>
-
     <div class="nav-actions">
-      <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">
-        📅 Reservar Turno
-      </button>
-      <button type="button" class="btn" id="btnHeaderLogin" onclick="cambiarSeccion('usuarios')">
-        👤 <span id="lblMiCuenta">Iniciar Sesión</span>
-      </button>
+      <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">Reservar Turno</button>
+      <button type="button" class="btn" id="btnHeaderLogin" onclick="cambiarSeccion('usuarios')"><span id="lblMiCuenta">Iniciar Sesión</span></button>
     </div>
   </header>
 
   <div class="container">
-
-    <!-- BARRA DE PERSONAL -->
     <div class="staff-banner" id="staffBanner">
       <div>
-        <strong style="color:var(--gold);">💼 Sesión de Personal Activa</strong>
-        <span style="font-size:0.76rem; color:#d1d5db; display:block;">
-          Control de Solicitudes, Agenda de Turnos, Ingresos/Egresos, Stock, Deudores y Correos Gmail.
-        </span>
+        <strong style="color:var(--gold);font-size:0.84rem;text-transform:uppercase;">Sesión de Personal Activa</strong>
+        <span style="font-size:0.74rem;color:#a1a1aa;display:block;">Gestión de Solicitudes, Agenda, Caja, Stock, Deudores y Gmail.</span>
       </div>
-      <div style="display:flex; gap:6px; flex-wrap:wrap;">
-        <button type="button" class="btn btn-gold" onclick="cambiarSeccion('admin')">
-          Panel de Personal
-          <span class="badge hidden" id="badgeBannerPersonal">0</span>
-        </button>
-        <button type="button" class="btn" onclick="cambiarClavePersonal()">🔑 Cambiar Contraseña</button>
-        <button type="button" class="btn" onclick="conectarNubeGitHubOFirebase()">☁️ Nube</button>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <button type="button" class="btn btn-gold" onclick="cambiarSeccion('admin')">Panel de Personal <span class="badge hidden" id="badgeBannerPersonal">0</span></button>
+        <button type="button" class="btn" onclick="cambiarClavePersonal()">Cambiar Contraseña</button>
+        <button type="button" class="btn" onclick="conectarNubeGitHubOFirebase()">Nube</button>
         <button type="button" class="btn btn-danger" onclick="cerrarSesionPersonal()">Salir</button>
       </div>
     </div>
 
-    <!-- =====================================================================
-         1. SECCIÓN INICIO
-         ===================================================================== -->
+    <!-- 1. INICIO -->
     <section id="sec-inicio" class="section active">
-      
-      <!-- PORTADA PRINCIPAL -->
       <div class="hero-banner">
+        <span class="hero-subtitle">Resistencia • Chaco</span>
         <h2>Fenix Studio</h2>
-        <p>Barbería & Academia de Estilo en Resistencia, Chaco. Reservá tu horario en nuestra agenda online, conocé nuestro curso profesional de 3 meses o sumate a la comunidad para sorteos y beneficios.</p>
+        <p>Barbería & Academia de Estilo. Reservá tu horario en nuestra agenda online, formáte en nuestro curso profesional de 3 meses o sumate a la comunidad exclusiva.</p>
         <div class="hero-buttons">
-          <button type="button" class="btn btn-gold btn-cta-large" onclick="cambiarSeccion('turnos')">
-            📅 RESERVAR TURNO
-          </button>
-          <button type="button" class="btn btn-cta-large" onclick="cambiarSeccion('academia')">
-            🎓 Curso de Barbería y Aula Virtual
-          </button>
-          <button type="button" class="btn btn-cta-large" id="btnHeroCrearUsuario" onclick="cambiarSeccion('usuarios')">
-            ✨ Crear mi Usuario
-          </button>
+          <button type="button" class="btn btn-gold btn-cta-large" onclick="cambiarSeccion('turnos')">Reservar Turno</button>
+          <button type="button" class="btn btn-cta-large" onclick="cambiarSeccion('academia')">Curso y Aula Virtual</button>
+          <button type="button" class="btn btn-cta-large" id="btnHeroCrearUsuario" onclick="cambiarSeccion('usuarios')">Crear mi Usuario</button>
         </div>
       </div>
 
-      <!-- TIPOS DE CORTES EN CUADRÍCULA COMPACTA (2x2 EN CELULAR) -->
       <div class="card">
         <div class="card-header">
-          <div class="card-title">✂️ Tipos de Cortes y sus Precios</div>
-          <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
+          <div class="card-title">Tipos de Cortes y Precios</div>
+          <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">Reservar Turno</button>
         </div>
-        <div class="grid-4" id="grillaCortesInicio">
-          <div class="cut-card">
-            <img src="corte1.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80';" alt="Degradado (Fade)" />
-            <div class="cut-card-body">
-              <div>
-                <strong class="cut-card-title">Degradado (Fade)</strong>
-                <p class="cut-card-desc">Low, Mid, High o Taper Fade a navaja.</p>
-              </div>
-              <div class="cut-card-footer">
-                <span class="cut-price">$15.000</span>
-                <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(1)">Reservar</button>
-              </div>
-            </div>
-          </div>
-          <div class="cut-card">
-            <img src="corte2.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80';" alt="Degradado + Barba" />
-            <div class="cut-card-body">
-              <div>
-                <strong class="cut-card-title">Degradado + Barba</strong>
-                <p class="cut-card-desc">Degradado completo + perfilado de barba.</p>
-              </div>
-              <div class="cut-card-footer">
-                <span class="cut-price">$18.000</span>
-                <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(2)">Reservar</button>
-              </div>
-            </div>
-          </div>
-          <div class="cut-card">
-            <img src="corte3.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80';" alt="Diseño Freestyle" />
-            <div class="cut-card-body">
-              <div>
-                <strong class="cut-card-title">Diseño Freestyle</strong>
-                <p class="cut-card-desc">Degradado + diseño artístico a navaja.</p>
-              </div>
-              <div class="cut-card-footer">
-                <span class="cut-price">$18.000</span>
-                <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(3)">Reservar</button>
-              </div>
-            </div>
-          </div>
-          <div class="cut-card">
-            <img src="corte4.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80';" alt="Corte V.I.P. a Domicilio" />
-            <div class="cut-card-body">
-              <div>
-                <strong class="cut-card-title">Corte V.I.P. Domicilio</strong>
-                <p class="cut-card-desc">Atención exclusiva en tu domicilio.</p>
-              </div>
-              <div class="cut-card-footer">
-                <span class="cut-price">$20.000</span>
-                <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(4)">Reservar</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="grid-4" id="grillaCortesInicio"></div>
       </div>
 
-      <!-- GALERÍA FENIX EN CUADRÍCULA COMPACTA (2x2 EN CELULAR) -->
       <div class="card">
         <div class="card-header">
-          <div class="card-title">📸 Galería Fenix — Nuestros Trabajos</div>
+          <div class="card-title">Galería Fenix</div>
           <button type="button" class="btn" onclick="cambiarSeccion('galeria')">Ver Galería</button>
         </div>
-        <div class="gallery-grid" id="galeriaPreviewInicio">
-          <div class="gallery-item">
-            <img src="corte1.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80';" alt="Degradado / Taper Fade" />
-            <div class="gallery-caption">Degradado / Taper Fade</div>
-          </div>
-          <div class="gallery-item">
-            <img src="corte2.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80';" alt="Degradado + Barba" />
-            <div class="gallery-caption">Degradado + Barba</div>
-          </div>
-          <div class="gallery-item">
-            <img src="corte3.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80';" alt="Diseño Freestyle" />
-            <div class="gallery-caption">Diseño Freestyle</div>
-          </div>
-          <div class="gallery-item">
-            <img src="foto1.jpeg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=80';" alt="Fenix Studio" />
-            <div class="gallery-caption">Trabajo Fenix Studio</div>
-          </div>
-        </div>
+        <div class="gallery-grid" id="galeriaPreviewInicio"></div>
       </div>
 
-      <!-- QUÉ TE DA EL CURSO (3 MESES - $75.000) + PRODUCTOS -->
       <div class="grid-2">
         <div class="card">
           <div class="card-header">
-            <div class="card-title">🎓 ¿Qué te da nuestro Curso de Barbería?</div>
+            <div class="card-title">¿Qué te da nuestro Curso?</div>
             <span class="status-pill status-espera">3 Meses — $75.000 / mes</span>
           </div>
-          <p style="color:var(--text-muted); font-size:0.84rem; margin-bottom:10px;">
-            Formación profesional completa de 3 meses con acceso a nuestro Campus / Aula Virtual:
-          </p>
-          <div class="item-row"><span>✅ Uso correcto de máquinas, tijeras y navaja</span></div>
-          <div class="item-row"><span>✅ Ejecución de Degradados (Taper Fade), Freestyle y perfilado</span></div>
-          <div class="item-row"><span>✅ Visagismo, ritual de barba y prácticas reales</span></div>
-          <div class="item-row"><span>✅ Aula Virtual (Videos, PDFs y guías) + Certificado al finalizar</span></div>
-          <button type="button" class="btn btn-gold" style="width:100%; justify-content:center; margin-top:6px;" onclick="cambiarSeccion('academia')">
-            Entrar al Apartado del Curso y Aula Virtual
-          </button>
+          <p style="color:var(--text-muted);font-size:0.82rem;margin-bottom:10px;">Formación profesional de 3 meses con prácticas reales y Aula Virtual:</p>
+          <div class="item-row"><span>• Uso correcto de máquinas, tijeras y navaja</span></div>
+          <div class="item-row"><span>• Degradados (Taper Fade), Freestyle y perfilado</span></div>
+          <div class="item-row"><span>• Visagismo, ritual de barba y atención en salón</span></div>
+          <div class="item-row"><span>• Aula Virtual (Videos, PDFs y guías) + Certificado</span></div>
+          <button type="button" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:6px;" onclick="cambiarSeccion('academia')">Ver Programa y Aula Virtual</button>
         </div>
 
         <div class="card">
           <div class="card-header">
-            <div class="card-title">🧴 Productos Oficiales en Stock</div>
-            <button type="button" class="btn" onclick="cambiarSeccion('productos')">Ver Catálogo</button>
+            <div class="card-title">Productos Profesionales</div>
+            <button type="button" class="btn" onclick="cambiarSeccion('productos')">Ver Stock</button>
           </div>
-          <div id="resumenProductosInicio">
-            <div class="item-row">
-              <div><strong>Cera Modeladora Mate</strong><span style="font-size:0.76rem; color:var(--text-muted); display:block;">Stock disponible: 10 u.</span></div>
-              <strong style="color:var(--gold);">$15.000</strong>
-            </div>
-            <div class="item-row">
-              <div><strong>Polvo Texturizador</strong><span style="font-size:0.76rem; color:var(--text-muted); display:block;">Stock disponible: 12 u.</span></div>
-              <strong style="color:var(--gold);">$7.500</strong>
-            </div>
-            <div class="item-row">
-              <div><strong>Aceite para Barba</strong><span style="font-size:0.76rem; color:var(--text-muted); display:block;">Stock disponible: 8 u.</span></div>
-              <strong style="color:var(--gold);">$5.500</strong>
-            </div>
-          </div>
+          <div id="resumenProductosInicio"></div>
         </div>
       </div>
 
-      <!-- SECCIÓN INFERIOR DE REDES Y UBICACIÓN CON LOGOS NÍTIDOS -->
       <div class="bottom-contact-bar">
-        <div class="card-title" style="justify-content:center; margin-bottom:4px;">Contacto, Redes y Ubicación</div>
-        <p style="text-align:center; font-size:0.82rem; color:var(--text-muted);">
-          C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco
-        </p>
+        <div class="card-title" style="justify-content:center;margin-bottom:6px;">Contacto y Ubicación</div>
+        <p style="font-size:0.8rem;color:var(--text-muted);">C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco</p>
         <div class="bottom-contact-buttons">
-          <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn" title="Instagram @fenixstudio25">
+          <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn">
             <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             <span>@fenixstudio25</span>
           </a>
-          <a href="https://wa.me/543624595042" target="_blank" class="btn" title="WhatsApp">
-            <svg class="svg-icon" viewBox="0 0 24 24">
-              <path fill="#25D366" d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.15-1.35C8.58 21.51 10.24 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
-              <path fill="#FFFFFF" d="M16.6 14.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.7.8-.1.1-.2.2-.4.1-.9-.4-1.6-1-2.2-1.8-.1-.2 0-.3.1-.4.1-.1.2-.3.3-.4.1-.1.1-.2.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.2-.7-1.6-.2-.4-.3-.3-.5-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.4 1.5.6 2.1.5 2.5.4.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3z"/>
-            </svg>
+          <a href="https://wa.me/543624595042" target="_blank" class="btn">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path fill="#25D366" d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.15-1.35C8.58 21.51 10.24 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/><path fill="#FFFFFF" d="M16.6 14.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.7.8-.1.1-.2.2-.4.1-.9-.4-1.6-1-2.2-1.8-.1-.2 0-.3.1-.4.1-.1.2-.3.3-.4.1-.1.1-.2.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.2-.7-1.6-.2-.4-.3-.3-.5-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.4 1.5.6 2.1.5 2.5.4.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3z"/></svg>
             <span>WhatsApp</span>
           </a>
-          <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="btn btn-gold" title="Ubicación en Google Maps">
-            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank" class="btn btn-gold">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#09090b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
             <span>Ubicación: C. Ushuaia y Pje. Mansilla</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- =====================================================================
-         2. SECCIÓN TIPOS DE CORTES Y PRECIOS
-         ===================================================================== -->
+    <!-- 2. CORTES -->
     <section id="sec-cortes" class="section">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">✂️ Tipos de Cortes que realizamos y sus Precios</div>
-          <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
+          <div class="card-title">Tipos de Cortes y Precios</div>
+          <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">Reservar Turno</button>
         </div>
         <div class="grid-4" id="grillaCortesSeccion"></div>
       </div>
     </section>
 
-    <!-- =====================================================================
-         3. SECCIÓN PRODUCTOS DE BARBERÍA
-         ===================================================================== -->
+    <!-- 3. PRODUCTOS -->
     <section id="sec-productos" class="section">
       <div class="card">
-        <div class="card-header">
-          <div class="card-title">🧴 Productos Profesionales en Stock</div>
-        </div>
+        <div class="card-header"><div class="card-title">Productos Profesionales en Stock</div></div>
         <div class="grid-3" id="grillaProductosPublica"></div>
       </div>
     </section>
 
-    <!-- =====================================================================
-         4. SECCIÓN GALERÍA FENIX
-         ===================================================================== -->
+    <!-- 4. GALERÍA -->
     <section id="sec-galeria" class="section">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">📸 Galería Fenix — Trabajos Realizados</div>
-          <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn">
-            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-            @fenixstudio25
-          </a>
+          <div class="card-title">Galería Fenix</div>
+          <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn">@fenixstudio25</a>
         </div>
         <div class="gallery-grid" id="galeriaCompletaGrid"></div>
       </div>
     </section>
 
-    <!-- =====================================================================
-         5. SECCIÓN RESERVAR TURNO
-         ===================================================================== -->
+    <!-- 5. TURNOS -->
     <section id="sec-turnos" class="section">
       <div class="card">
-        <div class="card-header">
-          <div class="card-title">📅 Reservar Turno Online</div>
-        </div>
-
+        <div class="card-header"><div class="card-title">Reservar Turno Online</div></div>
         <div class="notice-box">
-          ⏱️ <strong>Importante sobre los horarios:</strong> El barbero no corta por tiempo fijo ni apurado; cada tipo de corte no tiene un tiempo definido porque priorizamos la perfección del detalle. <strong>En caso de que haya un turno que choque con otro o el trabajo previo demore más, el segundo turno deberá esperar a que termine el anterior.</strong>
+          <strong>Importante sobre los horarios:</strong> El barbero no corta por tiempo fijo; cada corte lleva el detalle que requiere. <strong>En caso de que un turno choque con otro o el corte previo tome más tiempo, el segundo turno deberá aguardar a que finalice el anterior.</strong>
         </div>
-
         <div class="grid-2">
           <div>
+            <div class="form-group"><label>1. Tipo de Corte</label><select id="turnoServicio"></select></div>
+            <div class="form-group"><label>2. Fecha</label><input type="date" id="turnoFecha" onchange="renderHorariosDisponibles()" /></div>
             <div class="form-group">
-              <label>1. Seleccioná el Tipo de Corte</label>
-              <select id="turnoServicio">
-                <option value="1">Degradado (Fade) — $15.000</option>
-                <option value="2">Degradado + Barba — $18.000</option>
-                <option value="3">Diseño Freestyle — $18.000</option>
-                <option value="4">Corte V.I.P. a Domicilio — $20.000</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>2. Seleccioná el Día</label>
-              <input type="date" id="turnoFecha" onchange="renderHorariosDisponibles()" />
-            </div>
-
-            <div class="form-group">
-              <label>3. Elegí el Horario que más te convenga</label>
+              <label>3. Horario Disponible</label>
               <div class="slots-grid" id="grillaHorarios"></div>
-              <small style="color:var(--text-muted); display:block; margin-top:6px;">
-                * Si el horario figura con turno agendado, podés anotarte igual sabiendo que aguardarás a que termine el turno anterior.
-              </small>
             </div>
           </div>
-
           <div>
-            <div class="form-group">
-              <label>4. Tu Nombre y Apellido</label>
-              <input type="text" id="turnoNombre" placeholder="Tu nombre completo" />
-            </div>
-
-            <div class="form-group">
-              <label>5. Tu Correo Gmail (Para confirmaciones y avisos)</label>
-              <input type="email" id="turnoEmail" placeholder="tuemail@gmail.com" />
-            </div>
-
-            <div class="form-group">
-              <label>6. Tu Teléfono</label>
-              <input type="tel" id="turnoTelefono" placeholder="Ej: 3624..." />
-            </div>
-
-            <div class="form-group">
-              <label>Detalle o aclaración (Si elegís Corte V.I.P. a domicilio, indicá tu dirección acá)</label>
-              <input type="text" id="turnoNota" placeholder="Ej: Degradado bajo / Dirección si es a domicilio" />
-            </div>
-
-            <button type="button" class="btn btn-gold btn-cta-large" style="width:100%; justify-content:center; margin-top:6px;" onclick="confirmarReservaTurno()">
-              ✅ Confirmar Turno en la Agenda
-            </button>
-
-            <div id="comprobanteTurno" style="display:none; margin-top:14px; padding:14px; background:rgba(16,185,129,0.14); border:1px solid var(--success); border-radius:10px;"></div>
+            <div class="form-group"><label>4. Nombre y Apellido</label><input type="text" id="turnoNombre" placeholder="Tu nombre completo" /></div>
+            <div class="form-group"><label>5. Correo Gmail</label><input type="email" id="turnoEmail" placeholder="tuemail@gmail.com" /></div>
+            <div class="form-group"><label>6. Teléfono</label><input type="tel" id="turnoTelefono" placeholder="Ej: 3624..." /></div>
+            <div class="form-group"><label>Aclaración (O dirección si es V.I.P. a domicilio)</label><input type="text" id="turnoNota" placeholder="Opcional" /></div>
+            <button type="button" class="btn btn-gold btn-cta-large" style="width:100%;justify-content:center;" onclick="confirmarReservaTurno()">Confirmar Turno</button>
+            <div id="comprobanteTurno" style="display:none;margin-top:12px;padding:12px;background:rgba(16,185,129,0.1);border:1px solid var(--success);border-radius:8px;"></div>
           </div>
         </div>
       </div>
-
       <div class="card">
-        <div class="card-header">
-          <div class="card-title">💈 Agenda del Día Seleccionado</div>
-        </div>
+        <div class="card-header"><div class="card-title">Agenda del Día Seleccionado</div></div>
         <div id="vistaPublicaTurnosDia"></div>
       </div>
     </section>
 
-    <!-- =====================================================================
-         6. SECCIÓN CURSO DE BARBERÍA
-         ===================================================================== -->
+    <!-- 6. ACADEMIA -->
     <section id="sec-academia" class="section">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">🎓 Academia Fenix Studio — ¿Qué te da el Curso?</div>
-          <span class="status-pill status-espera">Duración: 3 Meses | Valor: $75.000 / mes</span>
+          <div class="card-title">Academia Fenix Studio — ¿Qué te da el Curso?</div>
+          <span class="status-pill status-espera">Duración: 3 Meses | $75.000 / mes</span>
         </div>
-
-        <p style="color:#e4e4e7; line-height:1.55; margin-bottom:14px; font-size:0.9rem;">
-          Formación intensiva de <strong>3 meses</strong> diseñada para que domines el oficio de barbero profesional desde la base hasta las técnicas avanzadas de salón:
-        </p>
-
-        <div class="grid-3" style="margin-bottom:14px;">
+        <div class="grid-3">
           <div class="finance-box">
-            <strong style="color:var(--gold); display:block; margin-bottom:6px;">🛠️ Máquinas, Tijeras y Navaja</strong>
-            <span style="font-size:0.8rem; color:var(--text-muted);">Uso correcto y mantenimiento de herramientas, posturas de trabajo, alzadas y bioseguridad.</span>
+            <strong style="color:var(--gold);display:block;margin-bottom:6px;font-size:0.82rem;">MÁQUINAS, TIJERAS Y NAVAJA</strong>
+            <span style="font-size:0.78rem;color:var(--text-muted);">Uso correcto de herramientas, posturas, alzadas y bioseguridad.</span>
           </div>
           <div class="finance-box">
-            <strong style="color:var(--gold); display:block; margin-bottom:6px;">✂️ Degradados (Taper Fade) y Freestyle</strong>
-            <span style="font-size:0.8rem; color:var(--text-muted);">Técnicas limpias de borrado de líneas, Taper Fade, diseño Freestyle, visagismo, perfilado y ritual de barba.</span>
+            <strong style="color:var(--gold);display:block;margin-bottom:6px;font-size:0.82rem;">DEGRADADOS Y FREESTYLE</strong>
+            <span style="font-size:0.78rem;color:var(--text-muted);">Taper Fade, borrado de líneas, Freestyle, visagismo y ritual de barba.</span>
           </div>
           <div class="finance-box">
-            <strong style="color:var(--gold); display:block; margin-bottom:6px;">📜 Certificado + Aula Virtual</strong>
-            <span style="font-size:0.8rem; color:var(--text-muted);">Acceso exclusivo a videos, guías de referencia y archivos PDF en el Aula Virtual + Entrega de Certificado al finalizar.</span>
+            <strong style="color:var(--gold);display:block;margin-bottom:6px;font-size:0.82rem;">CERTIFICADO + AULA VIRTUAL</strong>
+            <span style="font-size:0.78rem;color:var(--text-muted);">Videos, guías y archivos PDF en el Aula Virtual + Certificado al finalizar.</span>
           </div>
         </div>
       </div>
-
       <div class="card">
-        <div class="card-header">
-          <div class="card-title">🔐 Campus / Aula Virtual (Videos, Guías y PDFs)</div>
-        </div>
+        <div class="card-header"><div class="card-title">Campus / Aula Virtual</div></div>
         <div id="contenidoAulaVirtual"></div>
       </div>
     </section>
 
-    <!-- =====================================================================
-         7. SECCIÓN SORTEOS Y BENEFICIOS
-         ===================================================================== -->
+    <!-- 7. SORTEOS -->
     <section id="sec-sorteos" class="section">
       <div class="card">
-        <div class="card-header">
-          <div class="card-title">🎁 Sorteos y Beneficios para Usuarios Registrados</div>
-        </div>
+        <div class="card-header"><div class="card-title">Sorteos y Beneficios</div></div>
         <div id="contenedorSorteoPublico"></div>
       </div>
     </section>
 
-    <!-- =====================================================================
-         8. SECCIÓN MI CUENTA (CREAR USUARIO / INICIAR SESIÓN)
-         ===================================================================== -->
+    <!-- 8. USUARIOS -->
     <section id="sec-usuarios" class="section">
       <div id="vistaUsuarioLogueado" style="display:none;"></div>
-
       <div class="grid-2" id="vistaFormulariosAuth">
         <div class="card">
-          <div class="card-header">
-            <div class="card-title">🔑 Iniciar Sesión</div>
-          </div>
-          <div class="form-group">
-            <label>Usuario o Correo Gmail</label>
-            <input type="text" id="loginUser" placeholder="Tu usuario o email" />
-          </div>
-          <div class="form-group">
-            <label>Contraseña</label>
-            <input type="password" id="loginPass" placeholder="••••••••" />
-          </div>
-          <button type="button" class="btn btn-gold" style="width:100%; justify-content:center;" onclick="iniciarSesionUsuario()">
-            Ingresar a mi Cuenta
-          </button>
+          <div class="card-header"><div class="card-title">Iniciar Sesión</div></div>
+          <div class="form-group"><label>Usuario o Gmail</label><input type="text" id="loginUser" /></div>
+          <div class="form-group"><label>Contraseña</label><input type="password" id="loginPass" /></div>
+          <button type="button" class="btn btn-gold" style="width:100%;justify-content:center;" onclick="iniciarSesionUsuario()">Ingresar</button>
         </div>
-
         <div class="card">
-          <div class="card-header">
-            <div class="card-title">✨ Crear mi Usuario</div>
-          </div>
+          <div class="card-header"><div class="card-title">Crear mi Usuario</div></div>
+          <div class="form-group"><label>Nombre y Apellido</label><input type="text" id="regNombre" /></div>
+          <div class="form-group"><label>Correo Gmail</label><input type="email" id="regEmail" /></div>
+          <div class="form-group"><label>Teléfono</label><input type="tel" id="regTelefono" /></div>
           <div class="form-group">
-            <label>Nombre y Apellido</label>
-            <input type="text" id="regNombre" placeholder="Tu nombre completo" />
-          </div>
-          <div class="form-group">
-            <label>Correo Gmail (Para avisos, turnos y sorteos)</label>
-            <input type="email" id="regEmail" placeholder="tuemail@gmail.com" />
-          </div>
-          <div class="form-group">
-            <label>Teléfono</label>
-            <input type="tel" id="regTelefono" placeholder="Ej: 3624..." />
-          </div>
-          <div class="form-group">
-            <label>Tipo de Usuario</label>
+            <label>Tipo de Cuenta</label>
             <select id="regRol">
-              <option value="cliente">💈 Cliente de Barbería (Turnos, Sorteos y Beneficios)</option>
-              <option value="alumno">🎓 Alumno del Curso (Acceso al Aula Virtual)</option>
+              <option value="cliente">Cliente de Barbería (Turnos y Sorteos)</option>
+              <option value="alumno">Alumno del Curso (Aula Virtual)</option>
             </select>
           </div>
-          <div class="form-group">
-            <label>Elegí tu Usuario</label>
-            <input type="text" id="regUser" placeholder="Ej: facu25" />
-          </div>
-          <div class="form-group">
-            <label>Elegí tu Contraseña</label>
-            <input type="password" id="regPass" placeholder="Mínimo 4 caracteres" />
-          </div>
-          <button type="button" class="btn btn-gold" style="width:100%; justify-content:center;" onclick="registrarNuevoUsuario()">
-            🚀 Crear Usuario
-          </button>
+          <div class="form-group"><label>Usuario</label><input type="text" id="regUser" /></div>
+          <div class="form-group"><label>Contraseña</label><input type="password" id="regPass" /></div>
+          <button type="button" class="btn btn-gold" style="width:100%;justify-content:center;" onclick="registrarNuevoUsuario()">Crear Usuario</button>
         </div>
       </div>
     </section>
 
-    <!-- =====================================================================
-         9. PANEL DE PERSONAL COMPLETO
-         ===================================================================== -->
+    <!-- 9. PANEL DE PERSONAL -->
     <section id="sec-admin" class="section">
-
-      <!-- 9.1 ACEPTAR / RECHAZAR ALUMNOS Y USUARIOS (CON BURBUJA ROJA) -->
-      <div class="card" style="border-color: var(--gold);">
+      <div class="card" style="border-color:var(--border-gold);">
         <div class="card-header">
-          <div class="card-title">
-            🔔 Solicitudes para Aceptar / Rechazar Alumnos y Usuarios
-            <span class="badge hidden" id="badgeSolicitudesAdmin">0</span>
-          </div>
-          <button type="button" class="btn" onclick="cambiarClavePersonal()">🔑 Cambiar Contraseña de Personal</button>
+          <div class="card-title">Solicitudes de Alumnos y Usuarios <span class="badge hidden" id="badgeSolicitudesAdmin">0</span></div>
+          <button type="button" class="btn" onclick="cambiarClavePersonal()">Cambiar Contraseña</button>
         </div>
         <div id="listaPendientesAdmin"></div>
       </div>
 
-      <!-- 9.2 AGENDA DE TURNOS -->
       <div class="card">
         <div class="card-header">
-          <div class="card-title">
-            📅 Agenda de Turnos
-            <span class="badge hidden" id="badgeTurnosAdmin">0</span>
-          </div>
-          <div style="display:flex; gap:8px; align-items:center;">
-            <input type="date" id="filtroFechaAdmin" onchange="renderAdminAgenda()" style="width:auto;" />
-            <button type="button" class="btn" onclick="renderAdminAgenda(true)">Ver Todos</button>
-          </div>
+          <div class="card-title">Agenda de Turnos <span class="badge hidden" id="badgeTurnosAdmin">0</span></div>
+          <div style="display:flex;gap:6px;"><input type="date" id="filtroFechaAdmin" onchange="renderAdminAgenda()" style="width:auto;" /><button type="button" class="btn" onclick="renderAdminAgenda(true)">Ver Todos</button></div>
         </div>
         <div id="listaAgendaAdmin"></div>
       </div>
 
-      <!-- 9.3 CONTROL DE CAJA: INGRESOS, EGRESOS Y BALANCE NETO -->
       <div class="card">
-        <div class="card-header">
-          <div class="card-title">💰 Control de Caja — Ingresos, Egresos y Balance</div>
-        </div>
-
+        <div class="card-header"><div class="card-title">Control de Caja — Ingresos, Egresos y Balance</div></div>
         <div class="finance-summary">
-          <div class="finance-box">
-            <span style="font-size:0.78rem; color:var(--text-muted);">📈 Ingresos</span>
-            <strong id="finTotalIngresos" style="display:block; font-size:1.2rem; color:var(--success); margin-top:4px;">$0</strong>
-          </div>
-          <div class="finance-box">
-            <span style="font-size:0.78rem; color:var(--text-muted);">📉 Egresos / Gastos</span>
-            <strong id="finTotalEgresos" style="display:block; font-size:1.2rem; color:var(--danger); margin-top:4px;">$0</strong>
-          </div>
-          <div class="finance-box" style="border-color:var(--gold);">
-            <span style="font-size:0.78rem; color:var(--gold);">💵 Balance Neto</span>
-            <strong id="finBalanceNeto" style="display:block; font-size:1.2rem; color:var(--gold); margin-top:4px;">$0</strong>
-          </div>
+          <div class="finance-box"><span style="font-size:0.72rem;color:var(--text-muted);">INGRESOS</span><strong id="finTotalIngresos" style="display:block;font-size:1.1rem;color:var(--success);">$0</strong></div>
+          <div class="finance-box"><span style="font-size:0.72rem;color:var(--text-muted);">EGRESOS</span><strong id="finTotalEgresos" style="display:block;font-size:1.1rem;color:var(--danger);">$0</strong></div>
+          <div class="finance-box"><span style="font-size:0.72rem;color:var(--gold);">BALANCE NETO</span><strong id="finBalanceNeto" style="display:block;font-size:1.1rem;color:var(--gold);">$0</strong></div>
         </div>
-
-        <div class="grid-3" style="margin-bottom:14px;">
-          <input type="text" id="cajaConcepto" placeholder="Concepto (Ej: Corte Degradado, Insumos, Navajas...)" />
+        <div class="grid-3" style="margin-bottom:12px;">
+          <input type="text" id="cajaConcepto" placeholder="Concepto" />
           <input type="number" id="cajaMonto" placeholder="Monto $" />
-          <div style="display:flex; gap:8px;">
-            <button type="button" class="btn btn-success" style="flex:1; justify-content:center;" onclick="registrarMovimientoFinanciero('ingreso')">➕ Ingreso</button>
-            <button type="button" class="btn btn-danger" style="flex:1; justify-content:center;" onclick="registrarMovimientoFinanciero('egreso')">➖ Egreso</button>
+          <div style="display:flex;gap:6px;">
+            <button type="button" class="btn btn-success" style="flex:1;justify-content:center;" onclick="registrarMovimientoFinanciero('ingreso')">+ Ingreso</button>
+            <button type="button" class="btn btn-danger" style="flex:1;justify-content:center;" onclick="registrarMovimientoFinanciero('egreso')">- Egreso</button>
           </div>
         </div>
-
         <div id="listaMovimientosFinanzas"></div>
       </div>
 
-      <!-- 9.4 GESTIÓN DE STOCK DE PRODUCTOS Y REGISTRO DE DEUDORES -->
       <div class="grid-2">
         <div class="card">
-          <div class="card-header">
-            <div class="card-title">🧴 Control de Stock y Venta de Productos</div>
+          <div class="card-header"><div class="card-title">Stock y Productos</div></div>
+          <div class="grid-3" style="margin-bottom:10px;">
+            <input type="text" id="prodNombre" placeholder="Producto" /><input type="number" id="prodPrecio" placeholder="Precio $" /><input type="number" id="prodStock" placeholder="Stock" />
           </div>
-          <div class="grid-3" style="margin-bottom:12px;">
-            <input type="text" id="prodNombre" placeholder="Producto" />
-            <input type="number" id="prodPrecio" placeholder="Precio $" />
-            <input type="number" id="prodStock" placeholder="Stock inicial" />
-          </div>
-          <button type="button" class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarProductoAdmin()">➕ Agregar Producto</button>
+          <button type="button" class="btn btn-gold" style="margin-bottom:10px;" onclick="agregarProductoAdmin()">Agregar Producto</button>
           <div id="listaProductosAdmin"></div>
         </div>
-
         <div class="card">
-          <div class="card-header">
-            <div class="card-title">📒 Registro de Deudores / Pendientes de Pago</div>
+          <div class="card-header"><div class="card-title">Deudores</div></div>
+          <div class="grid-3" style="margin-bottom:10px;">
+            <input type="text" id="deudorNombre" placeholder="Nombre" /><input type="text" id="deudorDetalle" placeholder="Motivo" /><input type="number" id="deudorMonto" placeholder="Monto $" />
           </div>
-          <div class="grid-3" style="margin-bottom:12px;">
-            <input type="text" id="deudorNombre" placeholder="Nombre" />
-            <input type="text" id="deudorDetalle" placeholder="Motivo (Ej: Resto cuota / Corte)" />
-            <input type="number" id="deudorMonto" placeholder="Monto $" />
-          </div>
-          <button type="button" class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarDeudorAdmin()">➕ Anotar Deudor</button>
+          <button type="button" class="btn btn-gold" style="margin-bottom:10px;" onclick="agregarDeudorAdmin()">Anotar Deudor</button>
           <div id="listaDeudoresAdmin"></div>
         </div>
       </div>
 
-      <!-- 9.5 MENSAJES DIRECTOS O GENERALES POR GMAIL -->
       <div class="card">
-        <div class="card-header">
-          <div class="card-title">📧 Enviar Mensajes Directos o Generales por Gmail</div>
-        </div>
+        <div class="card-header"><div class="card-title">Mensajes Directos o Generales por Gmail</div></div>
         <div class="grid-2">
           <div>
             <div class="form-group">
               <label>Destinatarios</label>
               <select id="mailDestinatario" onchange="actualizarDestinatariosMail()">
-                <option value="todos">📢 Todos los Usuarios Registrados</option>
-                <option value="alumnos">🎓 Solo Alumnos del Curso</option>
-                <option value="clientes">💈 Solo Clientes de la Barbería</option>
+                <option value="todos">Todos los Usuarios Registrados</option>
+                <option value="alumnos">Solo Alumnos del Curso</option>
+                <option value="clientes">Solo Clientes de Barbería</option>
               </select>
             </div>
-            <div class="form-group">
-              <label>Plantillas Rápidas</label>
-              <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button type="button" class="btn" onclick="cargarPlantillaMail('sorteo')">🎁 Nuevo Sorteo</button>
-                <button type="button" class="btn" onclick="cargarPlantillaMail('turnos')">📅 Agenda Abierta</button>
-                <button type="button" class="btn" onclick="cargarPlantillaMail('academia')">🎓 Aviso Curso</button>
-              </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
+              <button type="button" class="btn" onclick="cargarPlantillaMail('sorteo')">Plantilla Sorteo</button>
+              <button type="button" class="btn" onclick="cargarPlantillaMail('turnos')">Plantilla Turnos</button>
+              <button type="button" class="btn" onclick="cargarPlantillaMail('academia')">Plantilla Curso</button>
             </div>
-            <div class="form-group">
-              <label>Correos seleccionados</label>
-              <input type="text" id="mailListaCorreos" readonly style="color:var(--text-muted);" />
-            </div>
+            <input type="text" id="mailListaCorreos" readonly style="color:var(--text-muted);" />
           </div>
           <div>
-            <div class="form-group">
-              <label>Asunto</label>
-              <input type="text" id="mailAsunto" placeholder="Asunto del mensaje..." />
-            </div>
-            <div class="form-group">
-              <label>Mensaje</label>
-              <textarea id="mailCuerpo" rows="4" placeholder="Escribí el mensaje..."></textarea>
-            </div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <button type="button" class="btn btn-gold" onclick="dispararGmailWeb()">✉️ Enviar desde Gmail</button>
-              <button type="button" class="btn" onclick="dispararMailtoApp()">📱 App de Correo</button>
+            <div class="form-group"><label>Asunto</label><input type="text" id="mailAsunto" /></div>
+            <div class="form-group"><label>Mensaje</label><textarea id="mailCuerpo" rows="3"></textarea></div>
+            <div style="display:flex;gap:8px;">
+              <button type="button" class="btn btn-gold" onclick="dispararGmailWeb()">Enviar desde Gmail</button>
+              <button type="button" class="btn" onclick="dispararMailtoApp()">App de Correo</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 9.6 TIPOS DE CORTES, GALERÍA FENIX Y FONDO -->
       <div class="grid-2">
         <div class="card">
-          <div class="card-header">
-            <div class="card-title">✂️ Editar Tipos de Cortes y Precios</div>
+          <div class="card-header"><div class="card-title">Editar Cortes y Precios</div></div>
+          <div class="grid-2" style="margin-bottom:8px;">
+            <input type="text" id="nuevoServNombre" placeholder="Nombre" /><input type="number" id="nuevoServPrecio" placeholder="Precio $" />
+            <input type="text" id="nuevoServDesc" placeholder="Descripción" /><input type="text" id="nuevoServImg" placeholder="Imagen (ej: corte1.jpeg)" />
           </div>
-          <div class="grid-2" style="margin-bottom:10px;">
-            <input type="text" id="nuevoServNombre" placeholder="Nombre del corte" />
-            <input type="number" id="nuevoServPrecio" placeholder="Precio $" />
-            <input type="text" id="nuevoServDesc" placeholder="Descripción" />
-            <input type="text" id="nuevoServImg" placeholder="Archivo o URL (Ej: corte1.jpeg)" />
-          </div>
-          <button type="button" class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarServicioAdmin()">➕ Sumar Corte</button>
+          <button type="button" class="btn btn-gold" style="margin-bottom:10px;" onclick="agregarServicioAdmin()">Sumar Corte</button>
           <div id="listaServiciosAdmin"></div>
         </div>
-
         <div class="card">
-          <div class="card-header">
-            <div class="card-title">📸 Administrar Galería Fenix & Fondo</div>
-          </div>
-          <div class="form-group">
-            <label>Agregar foto a Galería Fenix (Archivo como corte1.jpeg o subir foto)</label>
-            <input type="text" id="nuevaFotoTitulo" placeholder="Título (Ej: Taper Fade)" style="margin-bottom:6px;" />
-            <input type="text" id="nuevaFotoUrl" placeholder="Nombre de archivo (ej: corte1.jpeg) o link" />
-            <input type="file" accept="image/*" style="margin-top:6px;" onchange="subirFotoGaleriaArchivo(event)" />
-          </div>
-          <button type="button" class="btn btn-gold" style="margin-bottom:12px;" onclick="agregarFotoGaleriaPorUrl()">➕ Agregar a Galería</button>
-          <div id="listaAdminGaleria" style="max-height:180px; overflow-y:auto;"></div>
+          <div class="card-header"><div class="card-title">Administrar Galería Fenix</div></div>
+          <input type="text" id="nuevaFotoTitulo" placeholder="Título" style="margin-bottom:6px;" />
+          <input type="text" id="nuevaFotoUrl" placeholder="Archivo (ej: corte1.jpeg) o URL" style="margin-bottom:6px;" />
+          <input type="file" accept="image/*" style="margin-bottom:8px;" onchange="subirFotoGaleriaArchivo(event)" />
+          <button type="button" class="btn btn-gold" style="margin-bottom:10px;" onclick="agregarFotoGaleriaPorUrl()">Agregar a Galería</button>
+          <div id="listaAdminGaleria" style="max-height:160px;overflow-y:auto;"></div>
         </div>
       </div>
 
-      <!-- 9.7 SORTEOS Y ALTA MANUAL DE ALUMNOS/USUARIOS -->
       <div class="grid-2">
         <div class="card">
-          <div class="card-header">
-            <div class="card-title">🎁 Sorteos de la Comunidad</div>
-          </div>
-          <div class="form-group">
-            <label>Título del Sorteo</label>
-            <input type="text" id="adminSorteoTitulo" />
-          </div>
-          <div class="form-group">
-            <label>Premio</label>
-            <input type="text" id="adminSorteoPremio" />
-          </div>
-          <div class="form-group">
-            <label>Fecha</label>
-            <input type="text" id="adminSorteoFecha" />
-          </div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button type="button" class="btn btn-gold" onclick="guardarConfigSorteo()">💾 Guardar</button>
-            <button type="button" class="btn btn-success" onclick="sortearGanadorAzar()">🎲 Sortear Ganador (<span id="cantParticipantesSorteo">0</span>)</button>
-            <button type="button" class="btn btn-danger" onclick="vaciarParticipantesSorteo()">🔄 Reiniciar</button>
+          <div class="card-header"><div class="card-title">Sorteos</div></div>
+          <div class="form-group"><label>Título</label><input type="text" id="adminSorteoTitulo" /></div>
+          <div class="form-group"><label>Premio</label><input type="text" id="adminSorteoPremio" /></div>
+          <div class="form-group"><label>Fecha</label><input type="text" id="adminSorteoFecha" /></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button type="button" class="btn btn-gold" onclick="guardarConfigSorteo()">Guardar</button>
+            <button type="button" class="btn btn-success" onclick="sortearGanadorAzar()">Sortear (<span id="cantParticipantesSorteo">0</span>)</button>
+            <button type="button" class="btn btn-danger" onclick="vaciarParticipantesSorteo()">Reiniciar</button>
           </div>
           <div id="resultadoGanadorAdmin"></div>
         </div>
-
         <div class="card">
-          <div class="card-header">
-            <div class="card-title">👥 Base de Usuarios / Alumnos y Alta Manual</div>
+          <div class="card-header"><div class="card-title">Usuarios / Alumnos y Alta Manual</div></div>
+          <div class="grid-2" style="margin-bottom:8px;">
+            <input type="text" id="manualNombre" placeholder="Nombre" /><input type="email" id="manualEmail" placeholder="Gmail" />
+            <input type="text" id="manualUser" placeholder="Usuario" /><input type="text" id="manualPass" placeholder="Contraseña" />
+            <select id="manualRol"><option value="alumno">Alumno ($75.000/mes)</option><option value="cliente">Cliente</option></select>
+            <button type="button" class="btn btn-gold" onclick="crearUsuarioManualAdmin()">Dar de Alta</button>
           </div>
-          <div class="grid-2" style="margin-bottom:10px;">
-            <input type="text" id="manualNombre" placeholder="Nombre" />
-            <input type="email" id="manualEmail" placeholder="Gmail" />
-            <input type="text" id="manualUser" placeholder="Usuario" />
-            <input type="text" id="manualPass" placeholder="Contraseña" />
-            <select id="manualRol">
-              <option value="alumno">🎓 Alumno ($75.000/mes)</option>
-              <option value="cliente">💈 Cliente</option>
-            </select>
-            <button type="button" class="btn btn-gold" onclick="crearUsuarioManualAdmin()">➕ Dar de Alta</button>
-          </div>
-          <div id="listaTodosUsuariosAdmin" style="max-height:220px; overflow-y:auto;"></div>
+          <div id="listaTodosUsuariosAdmin" style="max-height:180px;overflow-y:auto;"></div>
         </div>
       </div>
-
     </section>
-
   </div>
 
-  <!-- PIE DE PÁGINA CON LOGOS SVG Y ACCESO PERSONAL SUTIL -->
   <footer>
     <span>© 2026 Fenix Studio — C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco</span>
     <span>•</span>
-    <a href="https://www.instagram.com/fenixstudio25/" target="_blank">
-      <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-      @fenixstudio25
-    </a>
+    <a href="https://www.instagram.com/fenixstudio25/" target="_blank">@fenixstudio25</a>
     <span>•</span>
-    <a href="https://wa.me/543624595042" target="_blank">
-      <svg class="svg-icon" viewBox="0 0 24 24">
-        <path fill="#25D366" d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.15-1.35C8.58 21.51 10.24 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
-        <path fill="#FFFFFF" d="M16.6 14.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.7.8-.1.1-.2.2-.4.1-.9-.4-1.6-1-2.2-1.8-.1-.2 0-.3.1-.4.1-.1.2-.3.3-.4.1-.1.1-.2.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.2-.7-1.6-.2-.4-.3-.3-.5-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.4 1.5.6 2.1.5 2.5.4.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3z"/>
-      </svg>
-      WhatsApp
-    </a>
+    <a href="https://wa.me/543624595042" target="_blank">WhatsApp</a>
     <span>•</span>
-    <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank">
-      <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-      Ubicación
-    </a>
+    <a href="https://www.google.com/maps/search/?api=1&query=C.+Ushuaia+y+Pasaje+Mansilla,+Resistencia,+Chaco" target="_blank">Ubicación</a>
     <span>•</span>
     <button type="button" onclick="accesoPersonalLogin()">Acceso Personal</button>
   </footer>
 
   <script>
-    const HORARIOS_BASE = [
-      "09:00", "10:00", "11:00", "12:00",
-      "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"
-    ];
+    function sanitizar(t) {
+      if (t === null || t === undefined) return "";
+      return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+    }
 
+    const HORARIOS_BASE = ["09:00","10:00","11:00","12:00","16:00","17:00","18:00","19:00","20:00","21:00"];
     const SERVICIOS_DEFAULT = [
-      {
-        id: 1,
-        nombre: "Degradado (Fade)",
-        precio: 15000,
-        desc: "Low, Mid, High o Taper Fade a navaja.",
-        img: "corte1.jpeg",
-        fallbackImg: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 2,
-        nombre: "Degradado + Barba",
-        precio: 18000,
-        desc: "Degradado completo + perfilado de barba.",
-        img: "corte2.jpeg",
-        fallbackImg: "https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 3,
-        nombre: "Diseño Freestyle",
-        precio: 18000,
-        desc: "Degradado + diseño artístico a navaja.",
-        img: "corte3.jpeg",
-        fallbackImg: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 4,
-        nombre: "Corte V.I.P. Domicilio",
-        precio: 20000,
-        desc: "Atención exclusiva en tu domicilio.",
-        img: "corte4.jpeg",
-        fallbackImg: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80"
-      }
+      { id: 1, nombre: "Degradado (Fade)", precio: 15000, desc: "Low, Mid, High o Taper Fade a navaja.", img: "corte1.jpeg", fallbackImg: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80" },
+      { id: 2, nombre: "Degradado + Barba", precio: 18000, desc: "Degradado completo + perfilado de barba.", img: "corte2.jpeg", fallbackImg: "https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80" },
+      { id: 3, nombre: "Diseño Freestyle", precio: 18000, desc: "Degradado + diseño artístico a navaja.", img: "corte3.jpeg", fallbackImg: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=80" },
+      { id: 4, nombre: "Corte V.I.P. Domicilio", precio: 20000, desc: "Atención exclusiva en tu domicilio.", img: "corte4.jpeg", fallbackImg: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80" }
     ];
-
     const PRODUCTOS_DEFAULT = [
       { id: 201, nombre: "Cera Modeladora Mate", precio: 15000, stock: 10 },
       { id: 202, nombre: "Polvo Texturizador", precio: 7500, stock: 12 },
       { id: 203, nombre: "Aceite para Barba", precio: 5500, stock: 8 }
     ];
-
     const GALERIA_DEFAULT = [
       { id: 101, titulo: "Degradado / Taper Fade", url: "corte1.jpeg", fallback: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80" },
       { id: 102, titulo: "Degradado + Barba", url: "corte2.jpeg", fallback: "https://images.unsplash.com/photo-1517832607067-4db24a2ae47c?auto=format&fit=crop&w=700&q=80" },
@@ -1738,23 +672,10 @@
     ];
 
     let estado = {
-      config: {
-        pinPersonal: localStorage.getItem("fenix_pin_personal") || "1234"
-      },
-      servicios: SERVICIOS_DEFAULT,
-      productos: PRODUCTOS_DEFAULT,
-      galeria: GALERIA_DEFAULT,
-      turnos: [],
-      usuarios: [],
-      finanzas: [],
-      deudores: [],
-      sorteo: {
-        titulo: "Sorteo Oficial Comunidad Fenix Studio",
-        premio: "1 Corte Degradado + Barba Gratis + 1 Cera Modeladora",
-        fecha: "Fin de mes",
-        participantes: [],
-        ultimoGanador: null
-      },
+      config: { pinPersonal: localStorage.getItem("fenix_pin_personal") || "1234" },
+      servicios: SERVICIOS_DEFAULT, productos: PRODUCTOS_DEFAULT, galeria: GALERIA_DEFAULT,
+      turnos: [], usuarios: [], finanzas: [], deudores: [],
+      sorteo: { titulo: "Sorteo Oficial Comunidad Fenix Studio", premio: "1 Corte Degradado + Barba Gratis + 1 Cera Modeladora", fecha: "Fin de mes", participantes: [], ultimoGanador: null },
       clasesAcademia: [
         { titulo: "Mes 1: Uso de Máquinas, Tijeras, Navaja y Bioseguridad", descripcion: "Reconocimiento de herramientas, posturas, manejo de navaja, peines guía y prácticas iniciales." },
         { titulo: "Mes 2: Técnicas de Degradados (Taper Fade, Low, Mid y High Fade)", descripcion: "Marcado de líneas guía, borrado limpio sin escalones, conexión con tijera y pulido." },
@@ -1762,1148 +683,444 @@
       ]
     };
 
-    let esPersonal = false;
-    let usuarioActual = null;
-    let horarioSeleccionado = "17:00";
-    let contadorToquesLogo = 0;
-    let timerToquesLogo = null;
+    let esPersonal = false, usuarioActual = null, horarioSeleccionado = "17:00", contadorToquesLogo = 0, timerToquesLogo = null;
     let cloudDbUrl = localStorage.getItem("fenix_cloud_url") || "";
 
     function obtenerClavePersonal() {
-      if (estado.config && estado.config.pinPersonal) {
-        return String(estado.config.pinPersonal);
-      }
-      return localStorage.getItem("fenix_pin_personal") || "1234";
+      return (estado.config && estado.config.pinPersonal) ? String(estado.config.pinPersonal) : (localStorage.getItem("fenix_pin_personal") || "1234");
     }
 
     function cambiarClavePersonal() {
-      const actual = prompt("🔑 Ingresá tu contraseña actual de Personal:");
+      const actual = prompt("Ingresá tu contraseña actual de Personal:");
       if (actual === null) return;
-      if (actual !== obtenerClavePersonal()) {
-        alert("❌ La contraseña actual no coincide.");
-        return;
-      }
-      const nueva = prompt("✨ Ingresá la NUEVA contraseña para Acceso Personal:");
-      if (!nueva || nueva.trim().length < 3) {
-        alert("La nueva contraseña debe tener al menos 3 caracteres.");
-        return;
-      }
-      const pinLimpio = nueva.trim();
-      localStorage.setItem("fenix_pin_personal", pinLimpio);
+      if (actual !== obtenerClavePersonal()) return alert("La contraseña actual no coincide.");
+      const nueva = prompt("Ingresá la NUEVA contraseña para Acceso Personal:");
+      if (!nueva || nueva.trim().length < 3) return alert("Mínimo 3 caracteres.");
+      localStorage.setItem("fenix_pin_personal", nueva.trim());
       if (!estado.config) estado.config = {};
-      estado.config.pinPersonal = pinLimpio;
+      estado.config.pinPersonal = nueva.trim();
       guardarDatos();
-      alert("✅ ¡Contraseña de Personal actualizada correctamente!");
+      alert("Contraseña actualizada correctamente.");
     }
-
-    function inicializarApp() {
-      cargarDatosLocales();
-      const hoy = new Date().toISOString().split("T")[0];
-      const inTurnoFecha = document.getElementById("turnoFecha");
-      const inFiltroFecha = document.getElementById("filtroFechaAdmin");
-      if (inTurnoFecha && !inTurnoFecha.value) inTurnoFecha.value = hoy;
-      if (inFiltroFecha && !inFiltroFecha.value) inFiltroFecha.value = hoy;
-
-      renderTodo();
-
-      if (cloudDbUrl && cloudDbUrl.startsWith("http")) {
-        descargarDesdeNube();
-        setInterval(descargarDesdeNube, 12000);
-      }
-    }
-
-    window.addEventListener("DOMContentLoaded", inicializarApp);
 
     function toqueSecretoLogo() {
       contadorToquesLogo++;
       clearTimeout(timerToquesLogo);
-      if (contadorToquesLogo >= 3) {
-        contadorToquesLogo = 0;
-        accesoPersonalLogin();
-      } else {
-        timerToquesLogo = setTimeout(() => {
-          if (contadorToquesLogo === 1) cambiarSeccion("inicio");
-          contadorToquesLogo = 0;
-        }, 450);
-      }
+      if (contadorToquesLogo >= 3) { contadorToquesLogo = 0; accesoPersonalLogin(); }
+      else { timerToquesLogo = setTimeout(() => { if (contadorToquesLogo === 1) cambiarSeccion("inicio"); contadorToquesLogo = 0; }, 450); }
     }
 
     function asegurarDatosBase() {
       if (!estado.config) estado.config = { pinPersonal: localStorage.getItem("fenix_pin_personal") || "1234" };
-      if (!Array.isArray(estado.servicios) || estado.servicios.length === 0) estado.servicios = SERVICIOS_DEFAULT;
-      if (!Array.isArray(estado.productos) || estado.productos.length === 0) estado.productos = PRODUCTOS_DEFAULT;
-      if (!Array.isArray(estado.galeria) || estado.galeria.length === 0) estado.galeria = GALERIA_DEFAULT;
+      if (!Array.isArray(estado.servicios) || !estado.servicios.length) estado.servicios = SERVICIOS_DEFAULT;
+      if (!Array.isArray(estado.productos) || !estado.productos.length) estado.productos = PRODUCTOS_DEFAULT;
+      if (!Array.isArray(estado.galeria) || !estado.galeria.length) estado.galeria = GALERIA_DEFAULT;
       if (!Array.isArray(estado.turnos)) estado.turnos = [];
       if (!Array.isArray(estado.usuarios)) estado.usuarios = [];
       if (!Array.isArray(estado.finanzas)) estado.finanzas = [];
       if (!Array.isArray(estado.deudores)) estado.deudores = [];
-      if (!estado.sorteo) {
-        estado.sorteo = {
-          titulo: "Sorteo Oficial Comunidad Fenix Studio",
-          premio: "1 Corte Degradado + Barba Gratis + 1 Cera Modeladora",
-          fecha: "Fin de mes",
-          participantes: [],
-          ultimoGanador: null
-        };
-      }
+      if (!estado.sorteo) estado.sorteo = { titulo: "Sorteo Oficial Fenix Studio", premio: "1 Corte + Barba Gratis", fecha: "Fin de mes", participantes: [], ultimoGanador: null };
     }
 
     function cargarDatosLocales() {
-      const guardado = localStorage.getItem("fenix_studio_real_v6");
-      if (guardado) {
-        try {
-          const parsed = JSON.parse(guardado);
-          estado = { ...estado, ...parsed };
-        } catch (e) {}
-      }
+      try {
+        const g = localStorage.getItem("fenix_studio_real_v6");
+        if (g) estado = { ...estado, ...JSON.parse(g) };
+      } catch (e) {}
       asegurarDatosBase();
-      if (estado.config && estado.config.pinPersonal) {
-        localStorage.setItem("fenix_pin_personal", estado.config.pinPersonal);
-      }
-      const sesionGuardada = localStorage.getItem("fenix_usuario_sesion");
-      if (sesionGuardada) {
-        try { usuarioActual = JSON.parse(sesionGuardada); } catch (e) {}
-      }
+      if (estado.config && estado.config.pinPersonal) localStorage.setItem("fenix_pin_personal", estado.config.pinPersonal);
+      try {
+        const s = localStorage.getItem("fenix_usuario_sesion");
+        if (s) usuarioActual = JSON.parse(s);
+      } catch (e) {}
     }
 
     async function guardarDatos() {
       asegurarDatosBase();
       localStorage.setItem("fenix_studio_real_v6", JSON.stringify(estado));
       renderTodo();
-
       if (cloudDbUrl && cloudDbUrl.startsWith("http")) {
         try {
-          await fetch(cloudDbUrl.replace(/\/$/, "") + "/fenix_db.json", {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(estado)
-          });
+          await fetch(cloudDbUrl.replace(/\/$/, "") + "/fenix_db.json", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(estado) });
           document.getElementById("textoNube").innerText = "● Nube Sincronizada";
-        } catch (err) {
-          document.getElementById("textoNube").innerText = "● Guardado Local";
-        }
+        } catch (e) { document.getElementById("textoNube").innerText = "● Guardado Local"; }
       }
     }
 
     async function descargarDesdeNube() {
       if (!cloudDbUrl || !cloudDbUrl.startsWith("http")) return;
       try {
-        const res = await fetch(cloudDbUrl.replace(/\/$/, "") + "/fenix_db.json");
-        if (res.ok) {
-          const dataRemota = await res.json();
-          if (dataRemota) {
-            estado = { ...estado, ...dataRemota };
-            asegurarDatosBase();
-            localStorage.setItem("fenix_studio_real_v6", JSON.stringify(estado));
-            renderTodo();
-          }
+        const r = await fetch(cloudDbUrl.replace(/\/$/, "") + "/fenix_db.json");
+        if (r.ok) {
+          const d = await r.json();
+          if (d) { estado = { ...estado, ...d }; asegurarDatosBase(); localStorage.setItem("fenix_studio_real_v6", JSON.stringify(estado)); renderTodo(); }
         }
       } catch (e) {}
     }
 
     function conectarNubeGitHubOFirebase() {
-      const valor = prompt(
-        "☁️ CONECTAR BASE EN LA NUBE:\n\n" +
-        "Pegá la URL de tu base en la nube (Firebase) o Token de sincronización:",
-        cloudDbUrl || ""
-      );
-      if (valor !== null) {
-        cloudDbUrl = valor.trim();
-        localStorage.setItem("fenix_cloud_url", cloudDbUrl);
-        if (cloudDbUrl.startsWith("http")) guardarDatos();
-        alert("✅ Configuración guardada.");
-      }
+      const v = prompt("Pegá la URL de tu base en la nube (Firebase):", cloudDbUrl || "");
+      if (v !== null) { cloudDbUrl = v.trim(); localStorage.setItem("fenix_cloud_url", cloudDbUrl); if (cloudDbUrl.startsWith("http")) guardarDatos(); }
     }
 
     function actualizarBurbujasNotificacion() {
-      const usuariosPendientes = (estado.usuarios || []).filter(u => u.estado === "pendiente").length;
-      const turnosEnEspera = (estado.turnos || []).filter(t => t.estado === "espera").length;
-      const total = usuariosPendientes + turnosEnEspera;
-
-      const setBadge = (id, cant) => {
+      const uPend = (estado.usuarios || []).filter(u => u.estado === "pendiente").length;
+      const tEsp = (estado.turnos || []).filter(t => t.estado === "espera").length;
+      const tot = uPend + tEsp;
+      const setB = (id, c) => {
         const el = document.getElementById(id);
-        if (!el) return;
-        if (cant > 0) {
-          el.innerText = cant;
-          el.classList.remove("hidden");
-        } else {
-          el.classList.add("hidden");
-        }
+        if (el) { el.innerText = c; el.classList.toggle("hidden", c <= 0); }
       };
-
-      setBadge("badgeMenuHamburguesa", total);
-      setBadge("badgeMenuCurso", usuariosPendientes);
-      setBadge("badgeSubtlePersonal", total);
-      setBadge("badgeDrawerPersonal", total);
-      setBadge("badgeBannerPersonal", total);
-      setBadge("badgeSolicitudesAdmin", usuariosPendientes);
-      setBadge("badgeTurnosAdmin", turnosEnEspera);
-    }
-
-    function renderTodo() {
-      try { actualizarBurbujasNotificacion(); } catch (e) {}
-      try { renderCortesYServicios(); } catch (e) {}
-      try { renderProductos(); } catch (e) {}
-      try { renderGaleriaFenix(); } catch (e) {}
-      try { renderHorariosDisponibles(); } catch (e) {}
-      try { renderVistaPublicaTurnosDia(); } catch (e) {}
-      try { renderSorteo(); } catch (e) {}
-      try { renderAulaVirtual(); } catch (e) {}
-      try { renderSesionUsuario(); } catch (e) {}
-      if (esPersonal) {
-        try { renderAdminSolicitudes(); } catch (e) {}
-        try { renderAdminAgenda(); } catch (e) {}
-        try { renderAdminFinanzas(); } catch (e) {}
-        try { renderAdminDeudores(); } catch (e) {}
-        try { renderAdminUsuarios(); } catch (e) {}
-        try { actualizarDestinatariosMail(); } catch (e) {}
-      }
+      setB("badgeMenuHamburguesa", tot); setB("badgeMenuCurso", uPend);
+      setB("badgeSubtlePersonal", tot); setB("badgeDrawerPersonal", tot);
+      setB("badgeBannerPersonal", tot); setB("badgeSolicitudesAdmin", uPend); setB("badgeTurnosAdmin", tEsp);
     }
 
     function renderCortesYServicios() {
-      const gInicio = document.getElementById("grillaCortesInicio");
-      const gSeccion = document.getElementById("grillaCortesSeccion");
-      const selTurno = document.getElementById("turnoServicio");
-      const contAdmin = document.getElementById("listaServiciosAdmin");
-
-      const htmlCards = (estado.servicios || []).map(s => {
+      const html = (estado.servicios || []).map(s => {
         const fb = s.fallbackImg || "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80";
-        return `
-          <div class="cut-card">
-            <img src="${s.img || 'corte1.jpeg'}" data-fb="${fb}" onerror="this.onerror=null; this.src=this.getAttribute('data-fb');" alt="${s.nombre}" />
-            <div class="cut-card-body">
-              <div>
-                <strong class="cut-card-title">${s.nombre}</strong>
-                <p class="cut-card-desc">${s.desc || ''}</p>
-              </div>
-              <div class="cut-card-footer">
-                <span class="cut-price">$${Number(s.precio).toLocaleString("es-AR")}</span>
-                <button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(${s.id})">Reservar</button>
-              </div>
-            </div>
+        return `<div class="cut-card">
+          <img src="${sanitizar(s.img || 'corte1.jpeg')}" data-fb="${fb}" onerror="this.onerror=null;this.src=this.getAttribute('data-fb');" alt="${sanitizar(s.nombre)}" />
+          <div class="cut-card-body">
+            <div><strong class="cut-card-title">${sanitizar(s.nombre)}</strong><p class="cut-card-desc">${sanitizar(s.desc || '')}</p></div>
+            <div class="cut-card-footer"><span class="cut-price">$${Number(s.precio).toLocaleString("es-AR")}</span><button type="button" class="btn btn-gold" onclick="elegirCorteYReservar(${Number(s.id)})">Reservar</button></div>
           </div>
-        `;
+        </div>`;
       }).join("");
-
-      if (gInicio && htmlCards) gInicio.innerHTML = htmlCards;
-      if (gSeccion && htmlCards) gSeccion.innerHTML = htmlCards;
-
-      if (selTurno) {
-        selTurno.innerHTML = (estado.servicios || []).map(s =>
-          `<option value="${s.id}">${s.nombre} — $${Number(s.precio).toLocaleString("es-AR")}</option>`
-        ).join("");
-      }
-
-      if (contAdmin) {
-        contAdmin.innerHTML = (estado.servicios || []).map(s => `
+      document.getElementById("grillaCortesInicio").innerHTML = html;
+      document.getElementById("grillaCortesSeccion").innerHTML = html;
+      document.getElementById("turnoServicio").innerHTML = (estado.servicios || []).map(s => `<option value="${Number(s.id)}">${sanitizar(s.nombre)} — $${Number(s.precio).toLocaleString("es-AR")}</option>`).join("");
+      if (esPersonal) {
+        document.getElementById("listaServiciosAdmin").innerHTML = (estado.servicios || []).map(s => `
           <div class="item-row">
-            <div>
-              <strong>${s.nombre}</strong> — <span style="color:var(--gold);">$${Number(s.precio).toLocaleString("es-AR")}</span>
-            </div>
-            <div style="display:flex; gap:6px;">
-              <button type="button" class="btn" onclick="cambiarPrecioCortePrompt(${s.id})">✏️ Precio</button>
-              <button type="button" class="btn btn-danger" onclick="eliminarServicioAdmin(${s.id})">🗑️</button>
-            </div>
-          </div>
-        `).join("");
+            <div><strong>${sanitizar(s.nombre)}</strong> — <span style="color:var(--gold);">$${Number(s.precio).toLocaleString("es-AR")}</span></div>
+            <div style="display:flex;gap:6px;"><button type="button" class="btn" onclick="cambiarPrecioCortePrompt(${Number(s.id)})">Precio</button><button type="button" class="btn btn-danger" onclick="eliminarServicioAdmin(${Number(s.id)})">Eliminar</button></div>
+          </div>`).join("");
       }
     }
 
-    function elegirCorteYReservar(idServicio) {
-      cambiarSeccion("turnos");
-      const sel = document.getElementById("turnoServicio");
-      if (sel) sel.value = idServicio;
-    }
-
+    function elegirCorteYReservar(id) { cambiarSeccion("turnos"); document.getElementById("turnoServicio").value = id; }
     function cambiarPrecioCortePrompt(id) {
       const s = estado.servicios.find(x => x.id === id);
       if (!s) return;
-      const nuevo = prompt(`Nuevo precio para "${s.nombre}":`, s.precio);
-      if (nuevo !== null && !isNaN(Number(nuevo))) {
-        s.precio = Number(nuevo);
-        guardarDatos();
-      }
+      const n = prompt(`Nuevo precio para "${s.nombre}":`, s.precio);
+      if (n !== null && !isNaN(Number(n))) { s.precio = Number(n); guardarDatos(); }
     }
-
     function agregarServicioAdmin() {
-      const nombre = document.getElementById("nuevoServNombre").value.trim();
-      const precio = Number(document.getElementById("nuevoServPrecio").value);
-      const desc = document.getElementById("nuevoServDesc").value.trim();
-      const img = document.getElementById("nuevoServImg").value.trim() || "corte1.jpeg";
+      const nombre = document.getElementById("nuevoServNombre").value.trim(), precio = Number(document.getElementById("nuevoServPrecio").value);
+      const desc = document.getElementById("nuevoServDesc").value.trim(), img = document.getElementById("nuevoServImg").value.trim() || "corte1.jpeg";
       if (!nombre || !precio) return alert("Completá nombre y precio.");
-
-      estado.servicios.push({
-        id: Date.now(),
-        nombre,
-        precio,
-        desc: desc || "Servicio profesional Fenix Studio.",
-        img,
-        fallbackImg: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80"
-      });
-
-      document.getElementById("nuevoServNombre").value = "";
-      document.getElementById("nuevoServPrecio").value = "";
-      document.getElementById("nuevoServDesc").value = "";
-      document.getElementById("nuevoServImg").value = "";
+      estado.servicios.push({ id: Date.now(), nombre, precio, desc: desc || "Servicio profesional.", img, fallbackImg: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80" });
       guardarDatos();
     }
-
-    function eliminarServicioAdmin(id) {
-      estado.servicios = estado.servicios.filter(s => s.id !== id);
-      guardarDatos();
-    }
+    function eliminarServicioAdmin(id) { estado.servicios = estado.servicios.filter(s => s.id !== id); guardarDatos(); }
 
     function renderProductos() {
-      const resIni = document.getElementById("resumenProductosInicio");
-      const pubGrid = document.getElementById("grillaProductosPublica");
-      const admList = document.getElementById("listaProductosAdmin");
-
-      if (resIni) {
-        resIni.innerHTML = (estado.productos || []).map(p => `
-          <div class="item-row">
-            <div>
-              <strong>${p.nombre}</strong>
-              <span style="font-size:0.76rem; color:var(--text-muted); display:block;">Stock disponible: ${p.stock} u.</span>
-            </div>
-            <strong style="color:var(--gold);">$${Number(p.precio).toLocaleString("es-AR")}</strong>
-          </div>
-        `).join("");
-      }
-
-      if (pubGrid) {
-        pubGrid.innerHTML = (estado.productos || []).map(p => `
-          <div class="card" style="margin-bottom:0;">
-            <strong style="font-size:1rem; color:var(--gold); display:block; margin-bottom:6px;">${p.nombre}</strong>
-            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Disponibles en local: <strong>${p.stock} unidades</strong></p>
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span class="cut-price">$${Number(p.precio).toLocaleString("es-AR")}</span>
-              <span class="status-pill ${p.stock > 0 ? 'status-listo' : 'status-pendiente'}">${p.stock > 0 ? 'En Stock' : 'Sin Stock'}</span>
-            </div>
-          </div>
-        `).join("");
-      }
-
-      if (admList) {
-        admList.innerHTML = (estado.productos || []).map(p => `
-          <div class="item-row">
-            <div>
-              <strong>${p.nombre}</strong> ($${Number(p.precio).toLocaleString("es-AR")})
-              <div style="font-size:0.76rem; color:var(--text-muted);">Stock actual: <strong>${p.stock}</strong></div>
-            </div>
-            <div style="display:flex; gap:6px; flex-wrap:wrap;">
-              <button type="button" class="btn btn-success" onclick="venderProductoStock(${p.id})">💰 Vender 1 (+Caja)</button>
-              <button type="button" class="btn" onclick="sumarStockProducto(${p.id})">+1 Stock</button>
-              <button type="button" class="btn btn-danger" onclick="eliminarProductoAdmin(${p.id})">🗑️</button>
-            </div>
-          </div>
-        `).join("");
+      document.getElementById("resumenProductosInicio").innerHTML = (estado.productos || []).map(p => `
+        <div class="item-row"><div><strong>${sanitizar(p.nombre)}</strong><span style="font-size:0.74rem;color:var(--text-muted);display:block;">Disponibles: ${Number(p.stock)} u.</span></div><strong style="color:var(--gold);">$${Number(p.precio).toLocaleString("es-AR")}</strong></div>`).join("");
+      document.getElementById("grillaProductosPublica").innerHTML = (estado.productos || []).map(p => `
+        <div class="card" style="margin-bottom:0;"><strong style="font-size:0.95rem;display:block;margin-bottom:6px;">${sanitizar(p.nombre)}</strong><p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:10px;">Stock: <strong>${Number(p.stock)} u.</strong></p><div style="display:flex;justify-content:space-between;align-items:center;"><span class="cut-price">$${Number(p.precio).toLocaleString("es-AR")}</span><span class="status-pill ${p.stock > 0 ? 'status-listo' : 'status-pendiente'}">${p.stock > 0 ? 'En Stock' : 'Sin Stock'}</span></div></div>`).join("");
+      if (esPersonal) {
+        document.getElementById("listaProductosAdmin").innerHTML = (estado.productos || []).map(p => `
+          <div class="item-row"><div><strong>${sanitizar(p.nombre)}</strong> ($${Number(p.precio).toLocaleString("es-AR")}) — Stock: ${Number(p.stock)}</div>
+          <div style="display:flex;gap:6px;"><button type="button" class="btn btn-success" onclick="venderProductoStock(${Number(p.id)})">Vender 1</button><button type="button" class="btn" onclick="sumarStockProducto(${Number(p.id)})">+1</button><button type="button" class="btn btn-danger" onclick="eliminarProductoAdmin(${Number(p.id)})">Eliminar</button></div></div>`).join("");
       }
     }
-
     function venderProductoStock(id) {
       const p = estado.productos.find(x => x.id === id);
-      if (!p) return;
-      if (p.stock <= 0) return alert("No queda stock de este producto.");
+      if (!p || p.stock <= 0) return alert("Sin stock.");
       p.stock -= 1;
-      estado.finanzas.push({
-        id: Date.now(),
-        tipo: "ingreso",
-        concepto: `Venta Producto: ${p.nombre}`,
-        monto: Number(p.precio),
-        fecha: new Date().toLocaleDateString("es-AR") + " " + new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" })
-      });
+      estado.finanzas.push({ id: Date.now(), tipo: "ingreso", concepto: `Producto: ${p.nombre}`, monto: Number(p.precio), fecha: new Date().toLocaleDateString("es-AR") });
       guardarDatos();
     }
-
-    function sumarStockProducto(id) {
-      const p = estado.productos.find(x => x.id === id);
-      if (p) { p.stock += 1; guardarDatos(); }
-    }
-
+    function sumarStockProducto(id) { const p = estado.productos.find(x => x.id === id); if (p) { p.stock += 1; guardarDatos(); } }
     function agregarProductoAdmin() {
-      const nombre = document.getElementById("prodNombre").value.trim();
-      const precio = Number(document.getElementById("prodPrecio").value);
-      const stock = Number(document.getElementById("prodStock").value) || 1;
-      if (!nombre || !precio) return alert("Completá nombre y precio del producto.");
-      estado.productos.push({ id: Date.now(), nombre, precio, stock });
-      document.getElementById("prodNombre").value = "";
-      document.getElementById("prodPrecio").value = "";
-      document.getElementById("prodStock").value = "";
-      guardarDatos();
+      const nombre = document.getElementById("prodNombre").value.trim(), precio = Number(document.getElementById("prodPrecio").value), stock = Number(document.getElementById("prodStock").value) || 1;
+      if (!nombre || !precio) return;
+      estado.productos.push({ id: Date.now(), nombre, precio, stock }); guardarDatos();
     }
-
-    function eliminarProductoAdmin(id) {
-      estado.productos = estado.productos.filter(p => p.id !== id);
-      guardarDatos();
-    }
+    function eliminarProductoAdmin(id) { estado.productos = estado.productos.filter(p => p.id !== id); guardarDatos(); }
 
     function renderGaleriaFenix() {
-      const prev = document.getElementById("galeriaPreviewInicio");
-      const full = document.getElementById("galeriaCompletaGrid");
-      const adm = document.getElementById("listaAdminGaleria");
-
-      const htmlGal = (estado.galeria || []).map(f => {
+      const html = (estado.galeria || []).map(f => {
         const fb = f.fallback || "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80";
-        return `
-          <div class="gallery-item">
-            <img src="${f.url || 'corte1.jpeg'}" data-fb="${fb}" onerror="this.onerror=null; this.src=this.getAttribute('data-fb');" alt="${f.titulo}" />
-            <div class="gallery-caption">${f.titulo}</div>
-          </div>
-        `;
+        return `<div class="gallery-item"><img src="${sanitizar(f.url || 'corte1.jpeg')}" data-fb="${fb}" onerror="this.onerror=null;this.src=this.getAttribute('data-fb');" alt="${sanitizar(f.titulo)}" /><div class="gallery-caption">${sanitizar(f.titulo)}</div></div>`;
       }).join("");
-
-      if (prev && htmlGal) prev.innerHTML = htmlGal;
-      if (full && htmlGal) full.innerHTML = htmlGal;
-
-      if (adm) {
-        adm.innerHTML = (estado.galeria || []).map(f => `
-          <div class="item-row">
-            <span>📸 ${f.titulo}</span>
-            <button type="button" class="btn btn-danger" onclick="eliminarFotoGaleria(${f.id})">🗑️</button>
-          </div>
-        `).join("");
+      document.getElementById("galeriaPreviewInicio").innerHTML = html;
+      document.getElementById("galeriaCompletaGrid").innerHTML = html;
+      if (esPersonal) {
+        document.getElementById("listaAdminGaleria").innerHTML = (estado.galeria || []).map(f => `<div class="item-row"><span>${sanitizar(f.titulo)}</span><button type="button" class="btn btn-danger" onclick="eliminarFotoGaleria(${Number(f.id)})">Eliminar</button></div>`).join("");
       }
     }
-
     function agregarFotoGaleriaPorUrl() {
-      const titulo = document.getElementById("nuevaFotoTitulo").value.trim() || "Trabajo Fenix Studio";
-      const url = document.getElementById("nuevaFotoUrl").value.trim();
-      if (!url) return alert("Escribí el nombre del archivo (ej: corte1.jpeg) o seleccioná una foto.");
-      estado.galeria.unshift({ id: Date.now(), titulo, url });
-      document.getElementById("nuevaFotoTitulo").value = "";
-      document.getElementById("nuevaFotoUrl").value = "";
-      guardarDatos();
+      const titulo = document.getElementById("nuevaFotoTitulo").value.trim() || "Trabajo Fenix Studio", url = document.getElementById("nuevaFotoUrl").value.trim();
+      if (!url) return;
+      estado.galeria.unshift({ id: Date.now(), titulo, url }); guardarDatos();
     }
-
     function subirFotoGaleriaArchivo(e) {
-      const file = e.target.files[0];
-      if (!file) return;
+      const file = e.target.files[0]; if (!file) return;
       const titulo = document.getElementById("nuevaFotoTitulo").value.trim() || "Trabajo Fenix Studio";
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        estado.galeria.unshift({ id: Date.now(), titulo, url: evt.target.result });
-        document.getElementById("nuevaFotoTitulo").value = "";
-        guardarDatos();
-      };
-      reader.readAsDataURL(file);
+      const r = new FileReader();
+      r.onload = evt => { estado.galeria.unshift({ id: Date.now(), titulo, url: evt.target.result }); guardarDatos(); };
+      r.readAsDataURL(file);
     }
-
-    function eliminarFotoGaleria(id) {
-      estado.galeria = estado.galeria.filter(f => f.id !== id);
-      guardarDatos();
-    }
+    function eliminarFotoGaleria(id) { estado.galeria = estado.galeria.filter(f => f.id !== id); guardarDatos(); }
 
     function renderHorariosDisponibles() {
-      const inFecha = document.getElementById("turnoFecha");
-      const fecha = inFecha ? inFecha.value : "";
-      const grilla = document.getElementById("grillaHorarios");
-      if (!grilla) return;
-      grilla.innerHTML = "";
-
-      const turnosDeEseDia = (estado.turnos || []).filter(t => t.fecha === fecha && t.estado !== "finalizado");
-
-      HORARIOS_BASE.forEach(hora => {
-        const cantEnHora = turnosDeEseDia.filter(t => t.hora === hora).length;
-        const estaSeleccionado = horarioSeleccionado === hora;
-        grilla.innerHTML += `
-          <div class="slot-item ${cantEnHora > 0 ? 'occupied' : ''} ${estaSeleccionado ? 'selected' : ''}" onclick="seleccionarHorario('${hora}')">
-            <div>${hora} hs</div>
-            <small style="font-size:0.66rem; display:block;">
-              ${cantEnHora === 0 ? "Disponible" : cantEnHora + " anotado(s)"}
-            </small>
-          </div>
-        `;
-      });
-
+      const fecha = document.getElementById("turnoFecha").value;
+      const delDia = (estado.turnos || []).filter(t => t.fecha === fecha && t.estado !== "finalizado");
+      document.getElementById("grillaHorarios").innerHTML = HORARIOS_BASE.map(h => {
+        const c = delDia.filter(t => t.hora === h).length;
+        return `<div class="slot-item ${c > 0 ? 'occupied' : ''} ${horarioSeleccionado === h ? 'selected' : ''}" onclick="seleccionarHorario('${h}')"><div>${h} hs</div><small style="font-size:0.64rem;display:block;">${c === 0 ? "Libre" : c + " en fila"}</small></div>`;
+      }).join("");
       renderVistaPublicaTurnosDia();
     }
-
-    function seleccionarHorario(hora) {
-      horarioSeleccionado = hora;
-      renderHorariosDisponibles();
-    }
+    function seleccionarHorario(h) { horarioSeleccionado = h; renderHorariosDisponibles(); }
 
     function confirmarReservaTurno() {
       const idServ = Number(document.getElementById("turnoServicio").value);
       const servObj = estado.servicios.find(s => s.id === idServ) || estado.servicios[0];
-      const fecha = document.getElementById("turnoFecha").value;
-      const nombre = document.getElementById("turnoNombre").value.trim();
-      const email = document.getElementById("turnoEmail").value.trim();
-      const telefono = document.getElementById("turnoTelefono").value.trim();
-      const nota = document.getElementById("turnoNota").value.trim();
-
-      if (!fecha || !horarioSeleccionado || !nombre || !telefono) {
-        alert("Por favor completá tu Nombre, Teléfono, Fecha y Horario.");
-        return;
-      }
-
+      const fecha = document.getElementById("turnoFecha").value, nombre = document.getElementById("turnoNombre").value.trim();
+      const email = document.getElementById("turnoEmail").value.trim(), telefono = document.getElementById("turnoTelefono").value.trim(), nota = document.getElementById("turnoNota").value.trim();
+      if (!fecha || !horarioSeleccionado || !nombre || !telefono) return alert("Completá Nombre, Teléfono, Fecha y Horario.");
       const choques = (estado.turnos || []).filter(t => t.fecha === fecha && t.hora === horarioSeleccionado && t.estado !== "finalizado").length;
-
-      const nuevoTurno = {
-        id: Date.now(),
-        fecha,
-        hora: horarioSeleccionado,
-        servicio: servObj.nombre,
-        precio: servObj.precio,
-        cliente: nombre,
-        email,
-        telefono,
-        nota,
-        estado: "espera"
-      };
-
-      estado.turnos.push(nuevoTurno);
-      guardarDatos();
-
+      const t = { id: Date.now(), fecha, hora: horarioSeleccionado, servicio: servObj.nombre, precio: servObj.precio, cliente: nombre, email, telefono, nota, estado: "espera" };
+      estado.turnos.push(t); guardarDatos();
       const comp = document.getElementById("comprobanteTurno");
       comp.style.display = "block";
-      comp.innerHTML = `
-        <h4 style="color:var(--success); margin-bottom:6px;">✅ ¡Turno Registrado en la Agenda!</h4>
-        <p style="font-size:0.86rem; line-height:1.45;">
-          <strong>Cliente:</strong> ${nuevoTurno.cliente}<br>
-          <strong>Corte:</strong> ${nuevoTurno.servicio} ($${Number(nuevoTurno.precio).toLocaleString("es-AR")})<br>
-          <strong>Fecha y Hora:</strong> ${nuevoTurno.fecha} a las ${nuevoTurno.hora} hs<br>
-          <strong>Lugar:</strong> C. Ushuaia y Pasaje Mansilla, Resistencia<br>
-          ${choques > 0 ? `<span style="color:#fbbf24;">⚠️ Hay ${choques} turno(s) previo(s) en ese horario. Recordá que como el barbero no corta contra reloj, aguardarás a que termine el corte anterior.</span>` : `<span>✨ Primer lugar reservado en ese horario.</span>`}
-        </p>
-      `;
-      document.getElementById("turnoNota").value = "";
+      comp.innerHTML = `<strong style="color:var(--success);">Reserva Confirmada:</strong> ${sanitizar(t.cliente)} — ${sanitizar(t.servicio)} el ${sanitizar(t.fecha)} a las ${sanitizar(t.hora)} hs. ${choques > 0 ? `(Hay ${choques} turno previo en ese bloque; aguardarás a que termine el anterior).` : ''}`;
     }
 
     function renderVistaPublicaTurnosDia() {
-      const inFecha = document.getElementById("turnoFecha");
-      const fecha = inFecha ? inFecha.value : "";
+      const fecha = document.getElementById("turnoFecha").value;
+      const lista = (estado.turnos || []).filter(t => t.fecha === fecha).sort((a, b) => a.hora.localeCompare(b.hora));
       const cont = document.getElementById("vistaPublicaTurnosDia");
-      if (!cont) return;
-
-      const lista = (estado.turnos || [])
-        .filter(t => t.fecha === fecha)
-        .sort((a, b) => a.hora.localeCompare(b.hora));
-
-      if (lista.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.86rem;">No hay turnos anotados para esta fecha todavía. ¡Todos los horarios disponibles!</p>`;
-        return;
-      }
-
-      cont.innerHTML = lista.map((t, idx) => `
-        <div class="item-row">
-          <div>
-            <strong>#${idx + 1} — ${t.hora} hs</strong> | ${t.cliente.split(" ")[0]}
-            <span style="color:var(--text-muted); font-size:0.8rem;">(${t.servicio})</span>
-          </div>
-          <span class="status-pill ${t.estado === 'atendiendo' ? 'status-atendiendo' : t.estado === 'finalizado' ? 'status-listo' : 'status-espera'}">
-            ${t.estado === 'atendiendo' ? '✂️ Cortando Ahora' : t.estado === 'finalizado' ? '✅ Terminado' : '⏳ En Espera'}
-          </span>
-        </div>
-      `).join("");
+      if (!lista.length) { cont.innerHTML = `<p style="color:var(--text-muted);font-size:0.82rem;">Todos los horarios libres para esta fecha.</p>`; return; }
+      cont.innerHTML = lista.map((t, i) => `<div class="item-row"><div><strong>#${i + 1} — ${sanitizar(t.hora)} hs</strong> | ${sanitizar((t.cliente || "").split(" ")[0])} (${sanitizar(t.servicio)})</div><span class="status-pill ${t.estado === 'atendiendo' ? 'status-atendiendo' : t.estado === 'finalizado' ? 'status-listo' : 'status-espera'}">${t.estado === 'atendiendo' ? 'En Silla' : t.estado === 'finalizado' ? 'Terminado' : 'En Espera'}</span></div>`).join("");
     }
 
     function registrarNuevoUsuario() {
-      const nombre = document.getElementById("regNombre").value.trim();
-      const email = document.getElementById("regEmail").value.trim();
-      const telefono = document.getElementById("regTelefono").value.trim();
-      const rol = document.getElementById("regRol").value;
-      const user = document.getElementById("regUser").value.trim().toLowerCase();
-      const pass = document.getElementById("regPass").value.trim();
-
-      if (!nombre || !email || !user || !pass) {
-        alert("Completá Nombre, Correo Gmail, Usuario y Contraseña.");
-        return;
-      }
-
-      if ((estado.usuarios || []).some(u => u.user.toLowerCase() === user || u.email.toLowerCase() === email.toLowerCase())) {
-        alert("Ese usuario o correo ya existe.");
-        return;
-      }
-
-      const nuevo = {
-        id: Date.now(),
-        nombre,
-        email,
-        telefono,
-        rol,
-        user,
-        pass,
-        estado: "pendiente",
-        fechaAlta: new Date().toLocaleDateString("es-AR")
-      };
-
-      estado.usuarios.push(nuevo);
-      usuarioActual = nuevo;
+      const nombre = document.getElementById("regNombre").value.trim(), email = document.getElementById("regEmail").value.trim();
+      const telefono = document.getElementById("regTelefono").value.trim(), rol = document.getElementById("regRol").value;
+      const user = document.getElementById("regUser").value.trim().toLowerCase(), pass = document.getElementById("regPass").value.trim();
+      if (!nombre || !email || !user || !pass) return alert("Completá todos los campos.");
+      if ((estado.usuarios || []).some(u => u.user.toLowerCase() === user || u.email.toLowerCase() === email.toLowerCase())) return alert("Ese usuario o correo ya existe.");
+      const nuevo = { id: Date.now(), nombre, email, telefono, rol, user, pass, estado: "pendiente", fechaAlta: new Date().toLocaleDateString("es-AR") };
+      estado.usuarios.push(nuevo); usuarioActual = nuevo;
       localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual));
-      guardarDatos();
-      alert("🎉 ¡Usuario creado! Ya se activó la burbuja de notificación para que el Personal apruebe tu cuenta.");
+      guardarDatos(); alert("Cuenta creada. Pendiente de aprobación por el Personal.");
     }
 
     function iniciarSesionUsuario() {
-      const iden = document.getElementById("loginUser").value.trim().toLowerCase();
-      const pass = document.getElementById("loginPass").value.trim();
-      const encontrado = (estado.usuarios || []).find(
-        u => (u.user.toLowerCase() === iden || u.email.toLowerCase() === iden) && u.pass === pass
-      );
-      if (!encontrado) return alert("Usuario o contraseña incorrectos.");
-      usuarioActual = encontrado;
-      localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual));
-      renderTodo();
+      const iden = document.getElementById("loginUser").value.trim().toLowerCase(), pass = document.getElementById("loginPass").value.trim();
+      const enc = (estado.usuarios || []).find(u => (u.user.toLowerCase() === iden || u.email.toLowerCase() === iden) && u.pass === pass);
+      if (!enc) return alert("Datos incorrectos.");
+      usuarioActual = enc; localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual)); renderTodo();
     }
 
-    function cerrarSesionUsuario() {
-      usuarioActual = null;
-      localStorage.removeItem("fenix_usuario_sesion");
-      renderTodo();
-      cambiarSeccion("inicio");
-    }
+    function cerrarSesionUsuario() { usuarioActual = null; localStorage.removeItem("fenix_usuario_sesion"); renderTodo(); cambiarSeccion("inicio"); }
 
     function renderSesionUsuario() {
-      const btnHeaderLogin = document.getElementById("btnHeaderLogin");
-      const btnHeroCrearUsuario = document.getElementById("btnHeroCrearUsuario");
-      const drawerItemUsuarios = document.getElementById("drawerItemUsuarios");
-      const txtDrawerUsuarios = document.getElementById("txtDrawerUsuarios");
-      const vistaLog = document.getElementById("vistaUsuarioLogueado");
-      const vistaAuth = document.getElementById("vistaFormulariosAuth");
-
       if (usuarioActual && estado.usuarios) {
         const act = estado.usuarios.find(u => u.id === usuarioActual.id);
-        if (act) {
-          usuarioActual = act;
-          localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual));
-        }
+        if (act) { usuarioActual = act; localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual)); }
       }
+      const logueado = Boolean(usuarioActual || esPersonal);
+      document.getElementById("btnHeaderLogin").classList.toggle("hidden", logueado);
+      document.getElementById("btnHeroCrearUsuario").classList.toggle("hidden", logueado);
 
-      const haySesionActiva = Boolean(usuarioActual || esPersonal);
-
-      if (btnHeaderLogin) {
-        btnHeaderLogin.classList.toggle("hidden", haySesionActiva);
-      }
-      if (btnHeroCrearUsuario) {
-        btnHeroCrearUsuario.classList.toggle("hidden", haySesionActiva);
-      }
+      const vistaLog = document.getElementById("vistaUsuarioLogueado"), vistaAuth = document.getElementById("vistaFormulariosAuth");
+      const itemMenu = document.getElementById("drawerItemUsuarios"), txtMenu = document.getElementById("txtDrawerUsuarios");
 
       if (usuarioActual) {
-        if (drawerItemUsuarios) drawerItemUsuarios.classList.remove("hidden");
-        if (txtDrawerUsuarios) txtDrawerUsuarios.innerText = "👤 Mi Perfil (" + usuarioActual.nombre.split(" ")[0] + ")";
-
+        itemMenu.classList.remove("hidden");
+        txtMenu.innerText = "Mi Perfil (" + (usuarioActual.nombre || "").split(" ")[0] + ")";
         if (!document.getElementById("turnoNombre").value) {
           document.getElementById("turnoNombre").value = usuarioActual.nombre;
           document.getElementById("turnoEmail").value = usuarioActual.email || "";
           document.getElementById("turnoTelefono").value = usuarioActual.telefono || "";
         }
-        vistaAuth.style.display = "none";
-        vistaLog.style.display = "block";
-        vistaLog.innerHTML = `
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">👤 Cuenta de ${usuarioActual.nombre}</div>
-              <span class="status-pill ${usuarioActual.estado === 'activo' ? 'status-listo' : 'status-espera'}">
-                ${usuarioActual.estado === 'activo' ? '✅ Habilitado' : '⏳ Pendiente de Aceptación'}
-              </span>
-            </div>
-            <p style="margin-bottom:8px; font-size:0.88rem;"><strong>Usuario:</strong> @${usuarioActual.user} | <strong>Categoría:</strong> ${usuarioActual.rol === 'alumno' ? '🎓 Alumno del Curso' : '💈 Cliente Barbería'}</p>
-            <p style="margin-bottom:14px; font-size:0.84rem; color:var(--text-muted);"><strong>Gmail:</strong> ${usuarioActual.email}</p>
-            <div style="display:flex; gap:8px; flex-wrap:wrap;">
-              <button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">📅 Reservar Turno</button>
-              <button type="button" class="btn" onclick="cambiarSeccion('sorteos')">🎁 Sorteos</button>
-              <button type="button" class="btn" onclick="cambiarSeccion('academia')">🎓 Aula Virtual</button>
-              <button type="button" class="btn" onclick="cambiarPassUsuarioLogueado()">🔑 Cambiar mi Contraseña</button>
-              <button type="button" class="btn btn-danger" onclick="cerrarSesionUsuario()">Cerrar Sesión</button>
-            </div>
-          </div>
-        `;
+        vistaAuth.style.display = "none"; vistaLog.style.display = "block";
+        vistaLog.innerHTML = `<div class="card"><div class="card-header"><div class="card-title">Cuenta de ${sanitizar(usuarioActual.nombre)}</div><span class="status-pill ${usuarioActual.estado === 'activo' ? 'status-listo' : 'status-espera'}">${usuarioActual.estado === 'activo' ? 'Habilitado' : 'Pendiente'}</span></div><p style="margin-bottom:10px;font-size:0.84rem;">Usuario: @${sanitizar(usuarioActual.user)} | ${sanitizar(usuarioActual.email)}</p><div style="display:flex;gap:8px;flex-wrap:wrap;"><button type="button" class="btn btn-gold" onclick="cambiarSeccion('turnos')">Reservar Turno</button><button type="button" class="btn" onclick="cambiarSeccion('academia')">Aula Virtual</button><button type="button" class="btn" onclick="cambiarPassUsuarioLogueado()">Cambiar Contraseña</button><button type="button" class="btn btn-danger" onclick="cerrarSesionUsuario()">Cerrar Sesión</button></div></div>`;
       } else if (esPersonal) {
-        if (drawerItemUsuarios) drawerItemUsuarios.classList.add("hidden");
-        vistaAuth.style.display = "none";
-        vistaLog.style.display = "block";
-        vistaLog.innerHTML = `
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">💼 Sesión de Personal Activa</div>
-            </div>
-            <p style="margin-bottom:12px; font-size:0.88rem; color:var(--text-muted);">Estás operando como Administrador / Personal de Fenix Studio.</p>
-            <div style="display:flex; gap:8px; flex-wrap:wrap;">
-              <button type="button" class="btn btn-gold" onclick="cambiarSeccion('admin')">Ir al Panel de Personal</button>
-              <button type="button" class="btn" onclick="cambiarClavePersonal()">🔑 Cambiar Contraseña</button>
-              <button type="button" class="btn btn-danger" onclick="cerrarSesionPersonal()">Salir de Personal</button>
-            </div>
-          </div>
-        `;
+        itemMenu.classList.add("hidden");
+        vistaAuth.style.display = "none"; vistaLog.style.display = "block";
+        vistaLog.innerHTML = `<div class="card"><div class="card-title" style="margin-bottom:10px;">Sesión de Personal Activa</div><button type="button" class="btn btn-gold" onclick="cambiarSeccion('admin')">Ir al Panel</button></div>`;
       } else {
-        if (drawerItemUsuarios) drawerItemUsuarios.classList.remove("hidden");
-        if (txtDrawerUsuarios) txtDrawerUsuarios.innerText = "👤 Iniciar Sesión / Crear Usuario";
-        vistaAuth.style.display = "grid";
-        vistaLog.style.display = "none";
+        itemMenu.classList.remove("hidden"); txtMenu.innerText = "Iniciar Sesión / Registro";
+        vistaAuth.style.display = "grid"; vistaLog.style.display = "none";
       }
     }
 
     function cambiarPassUsuarioLogueado() {
       if (!usuarioActual) return;
-      const nueva = prompt("🔑 Ingresá tu nueva contraseña de usuario:");
-      if (!nueva || nueva.trim().length < 4) {
-        alert("La contraseña debe tener al menos 4 caracteres.");
-        return;
-      }
-      usuarioActual.pass = nueva.trim();
+      const n = prompt("Ingresá tu nueva contraseña:");
+      if (!n || n.trim().length < 4) return alert("Mínimo 4 caracteres.");
+      usuarioActual.pass = n.trim();
       const idx = (estado.usuarios || []).findIndex(u => u.id === usuarioActual.id);
-      if (idx !== -1) {
-        estado.usuarios[idx].pass = usuarioActual.pass;
-      }
-      localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual));
-      guardarDatos();
-      alert("✅ Tu contraseña ha sido actualizada.");
+      if (idx !== -1) estado.usuarios[idx].pass = usuarioActual.pass;
+      localStorage.setItem("fenix_usuario_sesion", JSON.stringify(usuarioActual)); guardarDatos();
     }
 
     function renderAulaVirtual() {
       const cont = document.getElementById("contenidoAulaVirtual");
-      if (!cont) return;
-
-      if (esPersonal) {
-        cont.innerHTML = `
-          <div style="margin-bottom:12px; color:var(--gold); font-weight:700;">
-            💼 Vista de Personal — Módulos del Aula Virtual Activos:
-          </div>
-          ${(estado.clasesAcademia || []).map((c, i) => `
-            <div class="item-row">
-              <div>
-                <strong style="color:var(--gold);">${c.titulo}</strong>
-                <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">${c.descripcion}</p>
-              </div>
-              <span class="status-pill status-listo">Módulo #${i + 1}</span>
-            </div>
-          `).join("")}
-        `;
+      if (!esPersonal && !usuarioActual) {
+        cont.innerHTML = `<div class="notice-box">Iniciá sesión con tu cuenta de Alumno para acceder a los videos, guías y archivos PDF del curso.</div><button type="button" class="btn btn-gold" onclick="cambiarSeccion('usuarios')">Iniciar Sesión / Crear Usuario</button>`;
         return;
       }
-
-      if (!usuarioActual) {
-        cont.innerHTML = `
-          <div class="notice-box">
-            🔒 <strong>Acceso al Campus Virtual:</strong> Iniciá sesión con tu usuario de alumno o creá tu cuenta seleccionando "Alumno del Curso" para desbloquear los videos, PDFs y guías.
-          </div>
-          <button type="button" class="btn btn-gold" onclick="cambiarSeccion('usuarios')">🔑 Iniciar Sesión / Crear Usuario de Alumno</button>
-        `;
+      if (!esPersonal && usuarioActual.estado !== "activo") {
+        cont.innerHTML = `<div class="notice-box">Hola <strong>${sanitizar(usuarioActual.nombre)}</strong>, tu solicitud de acceso al Aula Virtual está pendiente de aprobación por el Personal.</div>`;
         return;
       }
-
-      if (usuarioActual.estado !== "activo") {
-        cont.innerHTML = `
-          <div class="notice-box">
-            ⏳ <strong>Solicitud Pendiente:</strong> Hola <strong>${usuarioActual.nombre}</strong>, tu usuario <strong>@${usuarioActual.user}</strong> ya le figura al Personal con una notificación. Apenas acepten tu solicitud tendrás acceso completo a los módulos acá mismo.
-          </div>
-        `;
-        return;
-      }
-
-      cont.innerHTML = `
-        <div style="margin-bottom:14px; color:var(--success); font-weight:700;">
-          ✅ Aula Virtual Desbloqueada — Alumno: ${usuarioActual.nombre} (@${usuarioActual.user})
-        </div>
-        ${(estado.clasesAcademia || []).map((c, i) => `
-          <div class="item-row">
-            <div>
-              <strong style="color:var(--gold);">${c.titulo}</strong>
-              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">${c.descripcion}</p>
-            </div>
-            <span class="status-pill status-listo">Módulo #${i + 1} Activo</span>
-          </div>
-        `).join("")}
-      `;
+      cont.innerHTML = (estado.clasesAcademia || []).map((c, i) => `<div class="item-row"><div><strong style="color:var(--gold);">${sanitizar(c.titulo)}</strong><p style="font-size:0.8rem;color:var(--text-muted);margin-top:4px;">${sanitizar(c.descripcion)}</p></div><span class="status-pill status-listo">Módulo #${i + 1}</span></div>`).join("");
     }
 
     function renderSorteo() {
-      const cont = document.getElementById("contenedorSorteoPublico");
-      if (!cont) return;
       const s = estado.sorteo;
-      const yaParticipa = usuarioActual && (s.participantes || []).some(p => p.id === usuarioActual.id);
-
-      cont.innerHTML = `
-        <div style="text-align:center; padding:16px;">
-          <span class="status-pill status-listo">SORTEO ACTIVO</span>
-          <h3 style="font-size:1.4rem; color:var(--gold); margin:10px 0;">${s.titulo}</h3>
-          <p style="font-size:0.95rem; margin-bottom:8px;">🏆 <strong>Premio:</strong> ${s.premio}</p>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:16px;">📅 Fecha: ${s.fecha} | Participantes: <strong>${(s.participantes || []).length}</strong></p>
-          ${!usuarioActual ? `
-            <button type="button" class="btn btn-gold btn-cta-large" onclick="cambiarSeccion('usuarios')">
-              🔑 Iniciá Sesión o Creá tu Usuario para Participar
-            </button>
-          ` : yaParticipa ? `
-            <div style="padding:10px 16px; background:rgba(16,185,129,0.2); border:1px solid var(--success); border-radius:10px; display:inline-block; font-size:0.86rem;">
-              ✅ <strong>¡Ya estás participando con @${usuarioActual.user}!</strong>
-            </div>
-          ` : `
-            <button type="button" class="btn btn-gold btn-cta-large" onclick="participarSorteo()">
-              🎟️ Participar del Sorteo con 1 Clic
-            </button>
-          `}
+      const part = usuarioActual && (s.participantes || []).some(p => p.id === usuarioActual.id);
+      document.getElementById("contenedorSorteoPublico").innerHTML = `
+        <div style="text-align:center;padding:16px;">
+          <span class="status-pill status-listo">Sorteo Activo</span>
+          <h3 style="font-size:1.25rem;color:var(--gold);margin:10px 0;">${sanitizar(s.titulo)}</h3>
+          <p style="font-size:0.9rem;margin-bottom:6px;"><strong>Premio:</strong> ${sanitizar(s.premio)}</p>
+          <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:14px;">Fecha: ${sanitizar(s.fecha)} | Participantes: ${(s.participantes || []).length}</p>
+          ${!usuarioActual ? `<button type="button" class="btn btn-gold btn-cta-large" onclick="cambiarSeccion('usuarios')">Iniciá Sesión para Participar</button>` : part ? `<div class="notice-box" style="display:inline-block;">Ya estás participando con @${sanitizar(usuarioActual.user)}</div>` : `<button type="button" class="btn btn-gold btn-cta-large" onclick="participarSorteo()">Participar del Sorteo</button>`}
         </div>
-        ${s.ultimoGanador ? `
-          <div class="notice-box">
-            🎉 <strong>Último Ganador:</strong> Felicitaciones a <strong>${s.ultimoGanador.nombre} (@${s.ultimoGanador.user})</strong>.
-          </div>
-        ` : ``}
-      `;
-
-      const inTit = document.getElementById("adminSorteoTitulo");
-      if (inTit && !inTit.value) {
-        inTit.value = s.titulo;
-        document.getElementById("adminSorteoPremio").value = s.premio;
-        document.getElementById("adminSorteoFecha").value = s.fecha;
+        ${s.ultimoGanador ? `<div class="notice-box"><strong>Último Ganador:</strong> ${sanitizar(s.ultimoGanador.nombre)} (@${sanitizar(s.ultimoGanador.user)})</div>` : ''}`;
+      if (esPersonal) {
+        document.getElementById("cantParticipantesSorteo").innerText = (s.participantes || []).length;
+        if (!document.getElementById("adminSorteoTitulo").value) {
+          document.getElementById("adminSorteoTitulo").value = s.titulo;
+          document.getElementById("adminSorteoPremio").value = s.premio;
+          document.getElementById("adminSorteoFecha").value = s.fecha;
+        }
       }
-      const cantEl = document.getElementById("cantParticipantesSorteo");
-      if (cantEl) cantEl.innerText = (s.participantes || []).length;
     }
 
     function participarSorteo() {
       if (!usuarioActual) return cambiarSeccion("usuarios");
       if (!estado.sorteo.participantes) estado.sorteo.participantes = [];
       if (!estado.sorteo.participantes.some(p => p.id === usuarioActual.id)) {
-        estado.sorteo.participantes.push({
-          id: usuarioActual.id,
-          nombre: usuarioActual.nombre,
-          user: usuarioActual.user,
-          email: usuarioActual.email
-        });
+        estado.sorteo.participantes.push({ id: usuarioActual.id, nombre: usuarioActual.nombre, user: usuarioActual.user, email: usuarioActual.email });
         guardarDatos();
       }
     }
 
     function accesoPersonalLogin() {
-      if (esPersonal) {
-        cambiarSeccion("admin");
-        return;
-      }
-      const pin = prompt("💼 Acceso Personal — Ingresá tu clave:");
+      if (esPersonal) return cambiarSeccion("admin");
+      const pin = prompt("Acceso Personal — Ingresá tu clave:");
       if (pin === obtenerClavePersonal()) {
         esPersonal = true;
         document.getElementById("staffBanner").classList.add("active");
         document.getElementById("drawerItemPersonal").classList.remove("hidden");
-        document.getElementById("lblAccesoPersonalDrawer").innerText = "Ir a Panel de Personal";
-        renderTodo();
-        cambiarSeccion("admin");
-      } else if (pin !== null) {
-        alert("Clave incorrecta.");
-      }
+        renderTodo(); cambiarSeccion("admin");
+      } else if (pin !== null) alert("Clave incorrecta.");
     }
 
     function cerrarSesionPersonal() {
       esPersonal = false;
       document.getElementById("staffBanner").classList.remove("active");
       document.getElementById("drawerItemPersonal").classList.add("hidden");
-      document.getElementById("lblAccesoPersonalDrawer").innerText = "Acceso Personal";
-      renderTodo();
-      cambiarSeccion("inicio");
+      renderTodo(); cambiarSeccion("inicio");
     }
 
     function renderAdminSolicitudes() {
+      const pend = (estado.usuarios || []).filter(u => u.estado === "pendiente");
       const cont = document.getElementById("listaPendientesAdmin");
-      if (!cont) return;
-      const pendientes = (estado.usuarios || []).filter(u => u.estado === "pendiente");
-      if (pendientes.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.84rem;">✅ No hay solicitudes pendientes en este momento.</p>`;
-        return;
-      }
-      cont.innerHTML = pendientes.map(u => `
-        <div class="item-row" style="border-color: var(--gold);">
-          <div>
-            <strong>${u.nombre}</strong> (@${u.user})
-            <span class="status-pill status-pendiente">${u.rol === 'alumno' ? '🎓 Solicitud Alumno' : '💈 Nuevo Cliente'}</span>
-            <div style="font-size:0.78rem; color:var(--text-muted); margin-top:4px;">
-              📧 ${u.email} | 📱 ${u.telefono || 'Sin tel'}
-            </div>
-          </div>
-          <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            <button type="button" class="btn btn-success" onclick="aprobarUsuarioAdmin(${u.id})">✅ Aceptar</button>
-            <button type="button" class="btn btn-info" onclick="enviarCorreoIndividual('${u.email}', 'Bienvenido a Fenix Studio', 'Hola ${u.nombre}, tu cuenta @${u.user} ya fue aceptada y habilitada.')">📧 Avisar por Gmail</button>
-            <button type="button" class="btn btn-danger" onclick="rechazarUsuarioAdmin(${u.id})">❌ Rechazar</button>
-          </div>
-        </div>
-      `).join("");
+      if (!pend.length) { cont.innerHTML = `<p style="color:var(--text-muted);font-size:0.82rem;">Sin solicitudes pendientes.</p>`; return; }
+      cont.innerHTML = pend.map(u => `<div class="item-row"><div><strong>${sanitizar(u.nombre)}</strong> (@${sanitizar(u.user)}) — <span class="status-pill status-pendiente">${u.rol === 'alumno' ? 'Alumno' : 'Cliente'}</span><div style="font-size:0.75rem;color:var(--text-muted);">${sanitizar(u.email)}</div></div><div style="display:flex;gap:6px;"><button type="button" class="btn btn-success" onclick="aprobarUsuarioAdmin(${Number(u.id)})">Aceptar</button><button type="button" class="btn btn-danger" onclick="rechazarUsuarioAdmin(${Number(u.id)})">Rechazar</button></div></div>`).join("");
     }
-
-    function aprobarUsuarioAdmin(id) {
-      const u = estado.usuarios.find(x => x.id === id);
-      if (u) { u.estado = "activo"; guardarDatos(); }
-    }
-
-    function rechazarUsuarioAdmin(id) {
-      if (!confirm("¿Rechazar y eliminar este usuario?")) return;
-      estado.usuarios = estado.usuarios.filter(x => x.id !== id);
-      guardarDatos();
-    }
+    function aprobarUsuarioAdmin(id) { const u = estado.usuarios.find(x => x.id === id); if (u) { u.estado = "activo"; guardarDatos(); } }
+    function rechazarUsuarioAdmin(id) { estado.usuarios = estado.usuarios.filter(x => x.id !== id); guardarDatos(); }
 
     function registrarMovimientoFinanciero(tipo) {
-      const concepto = document.getElementById("cajaConcepto").value.trim();
-      const monto = Number(document.getElementById("cajaMonto").value);
-      if (!concepto || !monto || monto <= 0) return alert("Ingresá concepto y monto.");
-      if (!estado.finanzas) estado.finanzas = [];
-      estado.finanzas.push({
-        id: Date.now(),
-        tipo,
-        concepto,
-        monto,
-        fecha: new Date().toLocaleDateString("es-AR") + " " + new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" })
-      });
-      document.getElementById("cajaConcepto").value = "";
-      document.getElementById("cajaMonto").value = "";
-      guardarDatos();
+      const concepto = document.getElementById("cajaConcepto").value.trim(), monto = Number(document.getElementById("cajaMonto").value);
+      if (!concepto || !monto) return;
+      estado.finanzas.push({ id: Date.now(), tipo, concepto, monto, fecha: new Date().toLocaleDateString("es-AR") });
+      document.getElementById("cajaConcepto").value = ""; document.getElementById("cajaMonto").value = ""; guardarDatos();
     }
 
     function renderAdminFinanzas() {
-      const cont = document.getElementById("listaMovimientosFinanzas");
-      if (!cont) return;
       const movs = estado.finanzas || [];
-      const ingresos = movs.filter(m => m.tipo === "ingreso").reduce((a, b) => a + Number(b.monto), 0);
-      const egresos = movs.filter(m => m.tipo === "egreso").reduce((a, b) => a + Number(b.monto), 0);
-      const neto = ingresos - egresos;
-
-      document.getElementById("finTotalIngresos").innerText = "+$" + ingresos.toLocaleString("es-AR");
-      document.getElementById("finTotalEgresos").innerText = "-$" + egresos.toLocaleString("es-AR");
-      document.getElementById("finBalanceNeto").innerText = "$" + neto.toLocaleString("es-AR");
-
-      if (movs.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.84rem;">Sin movimientos cargados.</p>`;
-        return;
-      }
-
-      cont.innerHTML = movs.slice().reverse().map(m => `
-        <div class="item-row">
-          <div>
-            <strong>${m.concepto}</strong>
-            <span class="status-pill ${m.tipo === 'ingreso' ? 'status-listo' : 'status-pendiente'}">${m.tipo}</span>
-            <small style="color:var(--text-muted); display:block;">${m.fecha}</small>
-          </div>
-          <div style="display:flex; align-items:center; gap:8px;">
-            <strong style="color:${m.tipo === 'ingreso' ? 'var(--success)' : 'var(--danger)'};">
-              ${m.tipo === 'ingreso' ? '+' : '-'}$${Number(m.monto).toLocaleString("es-AR")}
-            </strong>
-            <button type="button" class="btn btn-danger" onclick="eliminarMovimientoFinanza(${m.id})">🗑️</button>
-          </div>
-        </div>
-      `).join("");
+      const ing = movs.filter(m => m.tipo === "ingreso").reduce((a, b) => a + Number(b.monto), 0);
+      const egr = movs.filter(m => m.tipo === "egreso").reduce((a, b) => a + Number(b.monto), 0);
+      document.getElementById("finTotalIngresos").innerText = "+$" + ing.toLocaleString("es-AR");
+      document.getElementById("finTotalEgresos").innerText = "-$" + egr.toLocaleString("es-AR");
+      document.getElementById("finBalanceNeto").innerText = "$" + (ing - egr).toLocaleString("es-AR");
+      document.getElementById("listaMovimientosFinanzas").innerHTML = movs.slice().reverse().map(m => `<div class="item-row"><div><strong>${sanitizar(m.concepto)}</strong> <small style="color:var(--text-muted);">(${sanitizar(m.fecha)})</small></div><div style="display:flex;gap:8px;align-items:center;"><strong style="color:${m.tipo === 'ingreso' ? 'var(--success)' : 'var(--danger)'};">${m.tipo === 'ingreso' ? '+' : '-'}$${Number(m.monto).toLocaleString("es-AR")}</strong><button type="button" class="btn btn-danger" onclick="eliminarMovimientoFinanza(${Number(m.id)})">✕</button></div></div>`).join("");
     }
-
-    function eliminarMovimientoFinanza(id) {
-      estado.finanzas = (estado.finanzas || []).filter(m => m.id !== id);
-      guardarDatos();
-    }
+    function eliminarMovimientoFinanza(id) { estado.finanzas = estado.finanzas.filter(m => m.id !== id); guardarDatos(); }
 
     function agregarDeudorAdmin() {
-      const nombre = document.getElementById("deudorNombre").value.trim();
-      const detalle = document.getElementById("deudorDetalle").value.trim();
-      const monto = Number(document.getElementById("deudorMonto").value);
-      if (!nombre || !monto) return alert("Completá nombre y monto adeudado.");
-      if (!estado.deudores) estado.deudores = [];
+      const nombre = document.getElementById("deudorNombre").value.trim(), detalle = document.getElementById("deudorDetalle").value.trim(), monto = Number(document.getElementById("deudorMonto").value);
+      if (!nombre || !monto) return;
       estado.deudores.push({ id: Date.now(), nombre, detalle: detalle || "Pendiente", monto });
-      document.getElementById("deudorNombre").value = "";
-      document.getElementById("deudorDetalle").value = "";
-      document.getElementById("deudorMonto").value = "";
-      guardarDatos();
+      document.getElementById("deudorNombre").value = ""; document.getElementById("deudorDetalle").value = ""; document.getElementById("deudorMonto").value = ""; guardarDatos();
     }
-
     function renderAdminDeudores() {
-      const cont = document.getElementById("listaDeudoresAdmin");
-      if (!cont) return;
-      const lista = estado.deudores || [];
-      if (lista.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.84rem;">No hay deudores registrados.</p>`;
-        return;
-      }
-      cont.innerHTML = lista.map(d => `
-        <div class="item-row">
-          <div>
-            <strong>${d.nombre}</strong> — <span style="color:var(--danger); font-weight:700;">$${Number(d.monto).toLocaleString("es-AR")}</span>
-            <div style="font-size:0.76rem; color:var(--text-muted);">${d.detalle}</div>
-          </div>
-          <div style="display:flex; gap:6px;">
-            <button type="button" class="btn btn-success" onclick="saldarDeudor(${d.id})">✅ Cobrar (+Ingreso)</button>
-            <button type="button" class="btn btn-danger" onclick="eliminarDeudor(${d.id})">🗑️</button>
-          </div>
-        </div>
-      `).join("");
+      document.getElementById("listaDeudoresAdmin").innerHTML = (estado.deudores || []).map(d => `<div class="item-row"><div><strong>${sanitizar(d.nombre)}</strong> ($${Number(d.monto).toLocaleString("es-AR")}) — ${sanitizar(d.detalle)}</div><div style="display:flex;gap:6px;"><button type="button" class="btn btn-success" onclick="saldarDeudor(${Number(d.id)})">Cobrar</button><button type="button" class="btn btn-danger" onclick="eliminarDeudor(${Number(d.id)})">✕</button></div></div>`).join("");
     }
-
     function saldarDeudor(id) {
-      const d = (estado.deudores || []).find(x => x.id === id);
-      if (!d) return;
-      estado.finanzas.push({
-        id: Date.now(),
-        tipo: "ingreso",
-        concepto: `Deuda saldada: ${d.nombre} (${d.detalle})`,
-        monto: Number(d.monto),
-        fecha: new Date().toLocaleDateString("es-AR")
-      });
-      estado.deudores = estado.deudores.filter(x => x.id !== id);
-      guardarDatos();
+      const d = estado.deudores.find(x => x.id === id); if (!d) return;
+      estado.finanzas.push({ id: Date.now(), tipo: "ingreso", concepto: `Deuda cobrada: ${d.nombre}`, monto: Number(d.monto), fecha: new Date().toLocaleDateString("es-AR") });
+      estado.deudores = estado.deudores.filter(x => x.id !== id); guardarDatos();
     }
+    function eliminarDeudor(id) { estado.deudores = estado.deudores.filter(x => x.id !== id); guardarDatos(); }
 
-    function eliminarDeudor(id) {
-      estado.deudores = (estado.deudores || []).filter(x => x.id !== id);
-      guardarDatos();
+    function renderAdminAgenda(todos = false) {
+      const f = document.getElementById("filtroFechaAdmin").value;
+      let l = (estado.turnos || []).filter(t => todos || !f || t.fecha === f).sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
+      document.getElementById("listaAgendaAdmin").innerHTML = l.length ? l.map(t => `<div class="item-row"><div><strong style="color:var(--gold);">${sanitizar(t.fecha)} ${sanitizar(t.hora)} hs</strong> | <strong>${sanitizar(t.cliente)}</strong> (${sanitizar(t.servicio)})<div style="font-size:0.75rem;color:var(--text-muted);">Tel: ${sanitizar(t.telefono)} ${t.nota ? ' | ' + sanitizar(t.nota) : ''}</div></div><div style="display:flex;gap:6px;">${t.estado === 'espera' ? `<button type="button" class="btn btn-info" onclick="cambiarEstadoTurno(${Number(t.id)},'atendiendo')">En Silla</button>` : ''}${t.estado !== 'finalizado' ? `<button type="button" class="btn btn-success" onclick="finalizarYCobrarTurno(${Number(t.id)})">Cobrar</button>` : ''}<button type="button" class="btn btn-danger" onclick="eliminarTurnoAdmin(${Number(t.id)})">✕</button></div></div>`).join("") : `<p style="color:var(--text-muted);font-size:0.82rem;">Sin turnos para esta fecha.</p>`;
     }
-
-    function renderAdminAgenda(mostrarTodos = false) {
-      const cont = document.getElementById("listaAgendaAdmin");
-      if (!cont) return;
-      const fechaFiltro = document.getElementById("filtroFechaAdmin").value;
-      let lista = estado.turnos || [];
-      if (!mostrarTodos && fechaFiltro) lista = lista.filter(t => t.fecha === fechaFiltro);
-      lista.sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
-
-      if (lista.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.84rem;">No hay turnos agendados para esta fecha.</p>`;
-        return;
-      }
-
-      cont.innerHTML = lista.map(t => `
-        <div class="item-row">
-          <div>
-            <strong style="color:var(--gold);">${t.fecha} — ${t.hora} hs</strong> | <strong>${t.cliente}</strong>
-            <span class="status-pill ${t.estado === 'atendiendo' ? 'status-atendiendo' : t.estado === 'finalizado' ? 'status-listo' : 'status-espera'}">
-              ${t.estado === 'atendiendo' ? '✂️ En Silla' : t.estado === 'finalizado' ? '✅ Terminado' : '⏳ En Espera'}
-            </span>
-            <div style="font-size:0.78rem; color:var(--text-muted); margin-top:4px;">
-              ${t.servicio} ($${Number(t.precio).toLocaleString("es-AR")}) | 📱 ${t.telefono} | 📧 ${t.email || 'Sin email'}
-              ${t.nota ? `<br>📝 Nota: <em>${t.nota}</em>` : ``}
-            </div>
-          </div>
-          <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            ${t.estado === 'espera' ? `<button type="button" class="btn btn-info" onclick="cambiarEstadoTurno(${t.id}, 'atendiendo')">✂️ Pasar a Silla</button>` : ``}
-            ${t.estado !== 'finalizado' ? `<button type="button" class="btn btn-success" onclick="finalizarYCobrarTurno(${t.id})">✅ Terminar (+Ingreso)</button>` : ``}
-            ${t.email ? `<button type="button" class="btn" onclick="enviarCorreoIndividual('${t.email}', 'Confirmación de Turno - Fenix Studio', 'Hola ${t.cliente}, te confirmamos tu turno para el ${t.fecha} a las ${t.hora} hs en C. Ushuaia y Pasaje Mansilla.')">📧 Gmail</button>` : ``}
-            <button type="button" class="btn btn-danger" onclick="eliminarTurnoAdmin(${t.id})">🗑️</button>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function cambiarEstadoTurno(id, nuevoEstado) {
-      const t = estado.turnos.find(x => x.id === id);
-      if (t) { t.estado = nuevoEstado; guardarDatos(); }
-    }
-
+    function cambiarEstadoTurno(id, est) { const t = estado.turnos.find(x => x.id === id); if (t) { t.estado = est; guardarDatos(); } }
     function finalizarYCobrarTurno(id) {
-      const t = estado.turnos.find(x => x.id === id);
-      if (!t) return;
+      const t = estado.turnos.find(x => x.id === id); if (!t) return;
       t.estado = "finalizado";
-      estado.finanzas.push({
-        id: Date.now(),
-        tipo: "ingreso",
-        concepto: `Corte: ${t.servicio} (${t.cliente})`,
-        monto: Number(t.precio),
-        fecha: new Date().toLocaleDateString("es-AR") + " " + new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" })
-      });
+      estado.finanzas.push({ id: Date.now(), tipo: "ingreso", concepto: `Corte: ${t.servicio} (${t.cliente})`, monto: Number(t.precio), fecha: new Date().toLocaleDateString("es-AR") });
       guardarDatos();
     }
-
-    function eliminarTurnoAdmin(id) {
-      estado.turnos = estado.turnos.filter(x => x.id !== id);
-      guardarDatos();
-    }
+    function eliminarTurnoAdmin(id) { estado.turnos = estado.turnos.filter(x => x.id !== id); guardarDatos(); }
 
     function crearUsuarioManualAdmin() {
-      const nombre = document.getElementById("manualNombre").value.trim();
-      const email = document.getElementById("manualEmail").value.trim();
-      const user = document.getElementById("manualUser").value.trim().toLowerCase();
-      const pass = document.getElementById("manualPass").value.trim();
-      const rol = document.getElementById("manualRol").value;
-      if (!nombre || !user || !pass) return alert("Completá Nombre, Usuario y Contraseña.");
-
-      estado.usuarios.push({
-        id: Date.now(),
-        nombre,
-        email: email || "sin-correo@gmail.com",
-        telefono: "",
-        rol,
-        user,
-        pass,
-        estado: "activo",
-        fechaAlta: new Date().toLocaleDateString("es-AR")
-      });
-
-      document.getElementById("manualNombre").value = "";
-      document.getElementById("manualEmail").value = "";
-      document.getElementById("manualUser").value = "";
-      document.getElementById("manualPass").value = "";
+      const nombre = document.getElementById("manualNombre").value.trim(), email = document.getElementById("manualEmail").value.trim();
+      const user = document.getElementById("manualUser").value.trim().toLowerCase(), pass = document.getElementById("manualPass").value.trim(), rol = document.getElementById("manualRol").value;
+      if (!nombre || !user || !pass) return;
+      estado.usuarios.push({ id: Date.now(), nombre, email: email || "sin-email@gmail.com", telefono: "", rol, user, pass, estado: "activo", fechaAlta: new Date().toLocaleDateString("es-AR") });
       guardarDatos();
     }
 
     function renderAdminUsuarios() {
-      const cont = document.getElementById("listaTodosUsuariosAdmin");
-      if (!cont) return;
-      if (!estado.usuarios || estado.usuarios.length === 0) {
-        cont.innerHTML = `<p style="color:var(--text-muted); font-size:0.84rem;">Sin usuarios registrados.</p>`;
-        return;
-      }
-      cont.innerHTML = estado.usuarios.map(u => `
-        <div class="item-row">
-          <div>
-            <strong>${u.nombre}</strong> (@${u.user} / Clave: <code>${u.pass}</code>)
-            <span class="status-pill ${u.estado === 'activo' ? 'status-listo' : 'status-espera'}">${u.estado}</span>
-            <div style="font-size:0.76rem; color:var(--text-muted);">${u.rol === 'alumno' ? '🎓 Alumno' : '💈 Cliente'} | ${u.email}</div>
-          </div>
-          <div style="display:flex; gap:6px;">
-            ${u.rol === 'alumno' ? `<button type="button" class="btn btn-gold" onclick="cobrarCuotaAlumno(${u.id})">💰 Cobrar Mes ($75.000)</button>` : ``}
-            <button type="button" class="btn" onclick="enviarCorreoIndividual('${u.email}', 'Fenix Studio', 'Hola ${u.nombre}...')">✉️</button>
-            <button type="button" class="btn btn-danger" onclick="rechazarUsuarioAdmin(${u.id})">🗑️</button>
-          </div>
-        </div>
-      `).join("");
+      document.getElementById("listaTodosUsuariosAdmin").innerHTML = (estado.usuarios || []).map(u => `<div class="item-row"><div><strong>${sanitizar(u.nombre)}</strong> (@${sanitizar(u.user)}) — ${u.rol === 'alumno' ? 'Alumno' : 'Cliente'}</div><div style="display:flex;gap:6px;">${u.rol === 'alumno' ? `<button type="button" class="btn btn-gold" onclick="cobrarCuotaAlumno(${Number(u.id)})">+Cuota $75k</button>` : ''}<button type="button" class="btn" onclick="enviarCorreoIndividual('${sanitizar(u.email)}','Fenix Studio','Hola ${sanitizar(u.nombre)}')">Gmail</button><button type="button" class="btn btn-danger" onclick="rechazarUsuarioAdmin(${Number(u.id)})">✕</button></div></div>`).join("");
     }
-
     function cobrarCuotaAlumno(id) {
-      const u = estado.usuarios.find(x => x.id === id);
-      if (!u) return;
-      estado.finanzas.push({
-        id: Date.now(),
-        tipo: "ingreso",
-        concepto: `Cuota Curso (Mes) - ${u.nombre}`,
-        monto: 75000,
-        fecha: new Date().toLocaleDateString("es-AR")
-      });
+      const u = estado.usuarios.find(x => x.id === id); if (!u) return;
+      estado.finanzas.push({ id: Date.now(), tipo: "ingreso", concepto: `Cuota Curso - ${u.nombre}`, monto: 75000, fecha: new Date().toLocaleDateString("es-AR") });
       guardarDatos();
-      alert(`✅ Cuota de $75.000 de ${u.nombre} sumada a Ingresos.`);
     }
 
     function actualizarDestinatariosMail() {
-      const filtro = document.getElementById("mailDestinatario").value;
-      let lista = estado.usuarios || [];
-      if (filtro === "alumnos") lista = lista.filter(u => u.rol === "alumno");
-      if (filtro === "clientes") lista = lista.filter(u => u.rol === "cliente");
-      const correos = lista.map(u => u.email).filter(e => e && e.includes("@"));
-      document.getElementById("mailListaCorreos").value = correos.join(", ") || "Sin correos en este filtro";
+      const f = document.getElementById("mailDestinatario").value;
+      let l = estado.usuarios || [];
+      if (f === "alumnos") l = l.filter(u => u.rol === "alumno");
+      if (f === "clientes") l = l.filter(u => u.rol === "cliente");
+      document.getElementById("mailListaCorreos").value = l.map(u => u.email).filter(e => e && e.includes("@")).join(", ") || "Sin correos";
     }
-
-    function cargarPlantillaMail(tipo) {
-      const asu = document.getElementById("mailAsunto");
-      const cue = document.getElementById("mailCuerpo");
-      if (tipo === "sorteo") {
-        asu.value = "🎁 ¡Nuevo Sorteo en Fenix Studio!";
-        cue.value = `Hola comunidad de Fenix Studio,\n\nYa está activo el sorteo por: ${estado.sorteo.premio}.\nIngresá con tu usuario en nuestra web y anotate con un clic.\n\n📍 C. Ushuaia y Pasaje Mansilla, Resistencia\n📸 @fenixstudio25`;
-      } else if (tipo === "turnos") {
-        asu.value = "📅 Turnos Disponibles - Fenix Studio";
-        cue.value = `Hola,\n\nYa podés reservar tu horario de esta semana directamente en nuestra agenda web.\n\n📍 C. Ushuaia y Pasaje Mansilla, Resistencia\n📸 @fenixstudio25`;
-      } else if (tipo === "academia") {
-        asu.value = "🎓 Aviso Curso de Barbería - Fenix Studio";
-        cue.value = `Estimados alumnos,\n\nYa tienen actualizado el material en el Aula Virtual. Ingresen con su usuario y contraseña.\n\nSaludos,\nFenix Studio`;
-      }
+    function cargarPlantillaMail(t) {
+      const a = document.getElementById("mailAsunto"), c = document.getElementById("mailCuerpo");
+      if (t === "sorteo") { a.value = "Nuevo Sorteo - Fenix Studio"; c.value = `Hola, ya podés participar por ${estado.sorteo.premio} entrando con tu usuario en nuestra web.`; }
+      if (t === "turnos") { a.value = "Turnos Disponibles - Fenix Studio"; c.value = "Hola, ya están abiertos los horarios de esta semana en nuestra agenda web."; }
+      if (t === "academia") { a.value = "Aviso Academia - Fenix Studio"; c.value = "Estimados alumnos, tienen material actualizado en el Aula Virtual."; }
     }
-
     function dispararGmailWeb() {
-      const correos = document.getElementById("mailListaCorreos").value;
-      if (!correos || correos.startsWith("Sin correos")) return alert("No hay correos cargados.");
-      const asunto = encodeURIComponent(document.getElementById("mailAsunto").value || "Fenix Studio");
-      const cuerpo = encodeURIComponent(document.getElementById("mailCuerpo").value || "");
-      window.open(`https://mail.google.com/mail/?view=cm&fs=1&bcc=${encodeURIComponent(correos)}&su=${asunto}&body=${cuerpo}`, "_blank");
+      const c = document.getElementById("mailListaCorreos").value; if (!c || c === "Sin correos") return alert("Sin destinatarios.");
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&bcc=${encodeURIComponent(c)}&su=${encodeURIComponent(document.getElementById("mailAsunto").value)}&body=${encodeURIComponent(document.getElementById("mailCuerpo").value)}`, "_blank");
     }
-
     function dispararMailtoApp() {
-      const correos = document.getElementById("mailListaCorreos").value;
-      const asunto = encodeURIComponent(document.getElementById("mailAsunto").value || "Fenix Studio");
-      const cuerpo = encodeURIComponent(document.getElementById("mailCuerpo").value || "");
-      window.location.href = `mailto:?bcc=${encodeURIComponent(correos)}&subject=${asunto}&body=${cuerpo}`;
+      const c = document.getElementById("mailListaCorreos").value;
+      window.location.href = `mailto:?bcc=${encodeURIComponent(c)}&subject=${encodeURIComponent(document.getElementById("mailAsunto").value)}&body=${encodeURIComponent(document.getElementById("mailCuerpo").value)}`;
     }
-
-    function enviarCorreoIndividual(email, asunto, cuerpo) {
-      if (!email || !email.includes("@")) return alert("Sin correo Gmail válido.");
-      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`, "_blank");
+    function enviarCorreoIndividual(email, asu, cue) {
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(asu)}&body=${encodeURIComponent(cue)}`, "_blank");
     }
 
     function guardarConfigSorteo() {
@@ -2911,31 +1128,32 @@
       estado.sorteo.premio = document.getElementById("adminSorteoPremio").value.trim();
       estado.sorteo.fecha = document.getElementById("adminSorteoFecha").value.trim();
       guardarDatos();
-      alert("✅ Sorteo actualizado.");
     }
-
     function sortearGanadorAzar() {
-      const part = estado.sorteo.participantes || [];
-      if (part.length === 0) return alert("No hay participantes anotados.");
-      const ganador = part[Math.floor(Math.random() * part.length)];
-      estado.sorteo.ultimoGanador = ganador;
-      guardarDatos();
-      document.getElementById("resultadoGanadorAdmin").innerHTML = `
-        <div class="notice-box" style="margin-top:10px;">
-          🎉 <strong>Ganador:</strong> ${ganador.nombre} (@${ganador.user})<br>
-          <button type="button" class="btn btn-gold" style="margin-top:6px;" onclick="enviarCorreoIndividual('${ganador.email}', '🏆 ¡Ganaste el Sorteo de Fenix Studio!', '¡Felicitaciones ${ganador.nombre}! Ganaste: ${estado.sorteo.premio}. Te esperamos en C. Ushuaia y Pasaje Mansilla.')">
-            📧 Avisar por Gmail
-          </button>
-        </div>
-      `;
+      const p = estado.sorteo.participantes || []; if (!p.length) return alert("Sin participantes.");
+      const g = p[Math.floor(Math.random() * p.length)]; estado.sorteo.ultimoGanador = g; guardarDatos();
+      document.getElementById("resultadoGanadorAdmin").innerHTML = `<div class="notice-box" style="margin-top:8px;">Ganador: <strong>${sanitizar(g.nombre)} (@${sanitizar(g.user)})</strong></div>`;
+    }
+    function vaciarParticipantesSorteo() { estado.sorteo.participantes = []; guardarDatos(); }
+
+    function renderTodo() {
+      actualizarBurbujasNotificacion(); renderCortesYServicios(); renderProductos();
+      renderGaleriaFenix(); renderHorariosDisponibles(); renderVistaPublicaTurnosDia();
+      renderSorteo(); renderAulaVirtual(); renderSesionUsuario();
+      if (esPersonal) {
+        renderAdminSolicitudes(); renderAdminAgenda(); renderAdminFinanzas();
+        renderAdminDeudores(); renderAdminUsuarios(); actualizarDestinatariosMail();
+      }
     }
 
-    function vaciarParticipantesSorteo() {
-      if (!confirm("¿Reiniciar lista de participantes?")) return;
-      estado.sorteo.participantes = [];
-      guardarDatos();
+    function inicializarApp() {
+      cargarDatosLocales();
+      const hoy = new Date().toISOString().split("T")[0];
+      document.getElementById("turnoFecha").value = hoy;
+      document.getElementById("filtroFechaAdmin").value = hoy;
+      renderTodo();
+      if (cloudDbUrl && cloudDbUrl.startsWith("http")) { descargarDesdeNube(); setInterval(descargarDesdeNube, 12000); }
     }
-
     inicializarApp();
   </script>
 </body>
