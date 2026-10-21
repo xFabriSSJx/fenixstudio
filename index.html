@@ -89,14 +89,19 @@
     .drawer-footer { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
     .staff-subtle-link { background: transparent; border: none; color: #52525b; font-size: 0.72rem; text-align: left; padding: 4px 2px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
 
+    /* BOTONES CON RELIEVE METÁLICO TRIDIMENSIONAL */
     .btn {
       background: var(--bg-card-alt); color: var(--text-main); border: 1px solid var(--border);
-      padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.3px;
-      cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; white-space: nowrap; transition: 0.2s;
+      padding: 7px 13px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.3px;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; white-space: nowrap; transition: all 0.2s ease;
     }
-    .btn:hover { border-color: var(--border-gold); }
-    .btn-gold { background: var(--gold); color: #09090b; border: 1px solid var(--gold); font-weight: 700; }
-    .btn-gold:hover { background: var(--gold-light); }
+    .btn:hover { border-color: var(--border-gold); background: rgba(255, 255, 255, 0.04); }
+    .btn-gold {
+      background: linear-gradient(135deg, #e2c47a 0%, #c8a44d 50%, #9a7828 100%);
+      color: #09090b; border: 1px solid var(--gold); font-weight: 700;
+      box-shadow: 0 4px 15px rgba(200, 164, 77, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+    .btn-gold:hover { filter: brightness(1.1); box-shadow: 0 6px 20px rgba(200, 164, 77, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.5); transform: translateY(-1px); }
     .btn-success { background: var(--success); color: #fff; border: none; }
     .btn-danger { background: var(--danger); color: #fff; border: none; }
     .btn-info { background: var(--info); color: #fff; border: none; }
@@ -108,39 +113,26 @@
     .section { display: none; }
     .section.active { display: block; }
 
+    /* PORTADA CON PROFUNDIDAD Y LUZ RADIAL */
     .hero-banner {
-      background-image: linear-gradient(180deg, rgba(9,9,11,0.52) 0%, rgba(9,9,11,0.94) 100%), var(--hero-bg), url('fondodelapagina.jpg');
-      background-size: cover; background-position: center; border: 1px solid var(--border);
-      border-radius: 10px; padding: 40px 18px; text-align: center; margin-bottom: 20px;
+      background-image: 
+        radial-gradient(circle at center, rgba(200, 164, 77, 0.12) 0%, rgba(9, 9, 11, 0.8) 70%),
+        linear-gradient(180deg, rgba(9, 9, 11, 0.2) 0%, rgba(9, 9, 11, 0.98) 100%),
+        var(--hero-bg);
+      background-size: cover; background-position: center; 
+      border: 1px solid rgba(200, 164, 77, 0.35);
+      border-radius: 10px; padding: 46px 18px; text-align: center; margin-bottom: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
     .hero-subtitle { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 3px; color: var(--gold); display: block; margin-bottom: 8px; font-weight: 600; }
-    .hero-banner h2 { font-size: 1.9rem; color: #fff; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 10px; }
+    .hero-banner h2 { font-size: 1.9rem; color: #fff; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 10px; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9); }
     
-    /* EFECTO BARBER POLE ELEGANTE Y ANIMADO */
     .barber-pole-accent {
-      height: 3px;
-      width: 120px;
-      margin: 12px auto 16px auto;
-      background: repeating-linear-gradient(
-        45deg,
-        var(--gold),
-        var(--gold) 10px,
-        #1c1c24 10px,
-        #1c1c24 20px,
-        #2563eb 20px,
-        #2563eb 30px,
-        #1c1c24 30px,
-        #1c1c24 40px
-      );
-      background-size: 200% 100%;
-      animation: barberMove 5s linear infinite;
-      border-radius: 2px;
-      opacity: 0.9;
+      height: 3px; width: 120px; margin: 12px auto 16px auto;
+      background: repeating-linear-gradient(45deg, var(--gold), var(--gold) 10px, #1c1c24 10px, #1c1c24 20px, #2563eb 20px, #2563eb 30px, #1c1c24 30px, #1c1c24 40px);
+      background-size: 200% 100%; animation: barberMove 5s linear infinite; border-radius: 2px; opacity: 0.9;
     }
-    @keyframes barberMove {
-      0% { background-position: 0 0; }
-      100% { background-position: 40px 0; }
-    }
+    @keyframes barberMove { 0% { background-position: 0 0; } 100% { background-position: 40px 0; } }
 
     .hero-banner p { color: #d4d4d8; max-width: 580px; margin: 0 auto 20px; font-size: 0.86rem; line-height: 1.55; }
     .hero-buttons { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
@@ -151,13 +143,30 @@
     .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     @media (max-width: 820px) { .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 9px; } }
 
-    .card { background: var(--bg-card); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 18px; }
+    /* TARJETAS CON EFECTO GLASSMORPHISM Y GLOW */
+    .card {
+      background: linear-gradient(145deg, rgba(18, 18, 24, 0.95), rgba(11, 11, 15, 0.98));
+      backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+      border-radius: 10px; padding: 16px; margin-bottom: 18px;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover { border-color: rgba(200, 164, 77, 0.45); box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(200, 164, 77, 0.12); }
+    
     .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 9px; border-bottom: 1px solid var(--border); gap: 8px; flex-wrap: wrap; }
     .card-title { font-size: 0.85rem; color: var(--text-main); font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px; display: flex; align-items: center; gap: 8px; }
     .card-title::before { content: ""; display: inline-block; width: 3px; height: 13px; background: var(--gold); border-radius: 1px; }
 
-    .cut-card { background: var(--bg-card-alt); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
-    .cut-card img { width: 100%; height: 125px; object-fit: cover; border-bottom: 1px solid var(--border); background: #141419; }
+    /* TARJETAS DE CORTES CON RELIEVE Y ZOOM */
+    .cut-card {
+      background: #111116; border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5); border-radius: 8px; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .cut-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 14px 35px rgba(0, 0, 0, 0.75), 0 0 20px rgba(200, 164, 77, 0.18); }
+    .cut-card img { width: 100%; height: 125px; object-fit: cover; border-bottom: 1px solid var(--border); filter: brightness(0.96) contrast(1.04); transition: transform 0.4s ease; }
+    .cut-card:hover img { transform: scale(1.05); }
     .cut-card-body { padding: 10px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
     .cut-card-title { font-size: 0.84rem; display: block; margin-bottom: 4px; color: var(--text-main); font-weight: 600; }
     .cut-card-desc { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; line-height: 1.3; }
@@ -175,9 +184,14 @@
 
     .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
     @media (max-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; } }
-    .gallery-item { position: relative; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); height: 135px; background: #121217; }
+    .gallery-item {
+      position: relative; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4); height: 135px; background: #121217; transition: all 0.3s ease;
+    }
+    .gallery-item:hover { border-color: var(--gold); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(200, 164, 77, 0.2); transform: translateY(-2px); }
     @media (max-width: 480px) { .gallery-item { height: 112px; } }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .gallery-item:hover img { transform: scale(1.06); }
     .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); padding: 14px 6px 5px; font-size: 0.7rem; color: #e4e4e7; text-align: center; }
 
     .notice-box { background: rgba(200,164,77,0.08); border-left: 2px solid var(--gold); padding: 12px 14px; border-radius: 6px; margin-bottom: 14px; font-size: 0.82rem; line-height: 1.48; color: #d4d4d8; }
@@ -385,7 +399,7 @@
 
       <div class="bottom-contact-bar">
         <div class="card-title" style="justify-content:center;margin-bottom:6px;">Contacto y Ubicación</div>
-        <p style="font-size:0.8rem;color:var(--text-muted);">C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco</p>
+        <p style="font-size:0.8rem;color:var(--text-muted);">C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco[cite: 1]</p>
         <div class="bottom-contact-buttons">
           <a href="https://www.instagram.com/fenixstudio25/" target="_blank" class="btn">
             <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -663,7 +677,7 @@
   </div>
 
   <footer>
-    <span>© 2026 Fenix Studio — C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco</span>
+    <span>© 2026 Fenix Studio — C. Ushuaia y Pasaje Mansilla, Resistencia, Chaco[cite: 1]</span>
     <span>•</span>
     <a href="https://www.instagram.com/fenixstudio25/" target="_blank">@fenixstudio25</a>
     <span>•</span>
@@ -1154,7 +1168,7 @@
     function guardarConfigSorteo() {
       estado.sorteo.titulo = document.getElementById("adminSorteoTitulo").value.trim();
       estado.sorteo.premio = document.getElementById("adminSorteoPremio").value.trim();
-      estado.sorteo.fecha = document.getElementById("adminSorteoFecha").value.trim();
+      estado.sorteo.fecha = document.getElementById("adminSortoFecha").value.trim();
       guardarDatos();
     }
     function sortearGanadorAzar() {
