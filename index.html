@@ -115,6 +115,33 @@
     }
     .hero-subtitle { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 3px; color: var(--gold); display: block; margin-bottom: 8px; font-weight: 600; }
     .hero-banner h2 { font-size: 1.9rem; color: #fff; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 10px; }
+    
+    /* EFECTO BARBER POLE ELEGANTE Y ANIMADO */
+    .barber-pole-accent {
+      height: 3px;
+      width: 120px;
+      margin: 12px auto 16px auto;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--gold),
+        var(--gold) 10px,
+        #1c1c24 10px,
+        #1c1c24 20px,
+        #2563eb 20px,
+        #2563eb 30px,
+        #1c1c24 30px,
+        #1c1c24 40px
+      );
+      background-size: 200% 100%;
+      animation: barberMove 5s linear infinite;
+      border-radius: 2px;
+      opacity: 0.9;
+    }
+    @keyframes barberMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 40px 0; }
+    }
+
     .hero-banner p { color: #d4d4d8; max-width: 580px; margin: 0 auto 20px; font-size: 0.86rem; line-height: 1.55; }
     .hero-buttons { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
     .btn-cta-large { font-size: 0.78rem; padding: 9px 16px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.7px; white-space: normal; text-align: center; }
@@ -308,6 +335,7 @@
       <div class="hero-banner">
         <span class="hero-subtitle">Resistencia • Chaco</span>
         <h2>Fenix Studio</h2>
+        <div class="barber-pole-accent"></div>
         <p>Barbería & Academia de Estilo. Reservá tu horario en nuestra agenda online, formáte en nuestro curso profesional de 3 meses o sumate a la comunidad exclusiva.</p>
         <div class="hero-buttons">
           <button type="button" class="btn btn-gold btn-cta-large" onclick="cambiarSeccion('turnos')">Reservar Turno</button>
